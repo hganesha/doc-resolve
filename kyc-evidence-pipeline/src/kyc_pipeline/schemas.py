@@ -19,7 +19,7 @@ def validate_schemas(data: dict[str, Any]) -> dict[str, dict]:
             raise ValueError(f"Invalid predicate name in {where}")
         if not isinstance(spec, dict) or not isinstance(spec.get("category"), str) or not isinstance(spec.get("description"), str) or not spec["description"].strip():
             raise ValueError(f"{where} needs a category and a description")
-        unknown = set(spec) - {"category", "description", "object", "value", "value_required", "date", "date_roles", "claim_types", "evidence_terms", "single_valued"}
+        unknown = set(spec) - {"category", "description", "object", "value", "value_required", "date", "date_roles", "claim_types", "evidence_terms", "single_valued", "magnitude"}
         if unknown:
             raise ValueError(f"Unknown fields {sorted(unknown)} in {where}")
         if spec.get("object", "optional") not in {"required", "optional", "none"}:
@@ -28,8 +28,11 @@ def validate_schemas(data: dict[str, Any]) -> dict[str, dict]:
             raise ValueError(f"{where}: value must be one of {sorted(VALUE_TYPES)}")
         if spec.get("date", "optional") not in {"required", "optional"}:
             raise ValueError(f"{where}: date must be required or optional")
-        if not isinstance(spec.get("value_required", False), bool):
-            raise ValueError(f"{where}: value_required must be true or false")
+        for key in ("value_required", "magnitude"):
+            if not isinstance(spec.get(key, False), bool):
+                raise ValueError(f"{where}: {key} must be true or false")
+        if spec.get("magnitude") and spec.get("value", "none") not in {"amount", "count"}:
+            raise ValueError(f"{where}: magnitude needs an amount or count value")
         single = spec.get("single_valued", False)
         if not (isinstance(single, bool) or single == "per_object"):
             raise ValueError(f"{where}: single_valued must be true, false or per_object")
@@ -84,6 +87,8 @@ def check_fact(spec: dict, fact: dict) -> list[str]:
         violations.append("an amount needs a currency or unit")
     elif kind == "count" and value < 0:
         violations.append("a count cannot be negative")
+    if spec.get("magnitude") and isinstance(value, (int, float)) and value < 0:
+        violations.append("value must not be negative; the predicate gives the direction")
     if spec.get("date") == "required" and not fact.get("effective_date"):
         violations.append("a date or reporting period is required")
     if spec.get("date_roles") and fact.get("date_role", "unspecified") not in spec["date_roles"]:

@@ -16,7 +16,7 @@
       "evidence_spans": 121,
       "normalized_quote_offsets_valid": 121,
       "status": "REVIEW_REQUIRED",
-      "seconds": 15.6
+      "seconds": 16.5
     },
     {
       "document": "disney",
@@ -29,7 +29,7 @@
       "evidence_spans": 24,
       "normalized_quote_offsets_valid": 24,
       "status": "REVIEW_REQUIRED",
-      "seconds": 11.1
+      "seconds": 11.6
     }
   ],
   "fact_targets": [

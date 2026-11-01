@@ -45,6 +45,8 @@ Matching on entities exposed one comparison that text matching never made: "28% 
 
 **Registry and licence records.** The new registry and licence rules add nothing on either report: neither has `Label: value` registry records, and both still give the same facts, issues and coverage. The GLEIF check is off by default and was not used for these runs.
 
+**Source of funds.** The bank-statement, declaration and completion-statement rules add nothing on either report: neither has an account-holder header or a sale record, so both still give the same 15 and 17 facts. The transactions and wealth-and-funds categories are not part of the financial-statements family, so these rules do not run on annual reports.
+
 Section structure is inferred from font size and weight, with repeated page headers and footers recorded as `page_furniture` rather than headings. The Berkshire report now yields 105 sections (previously 54), including Parts, Items 1–15 and all 27 notes to the financial statements; previously signatures, table labels and running headers such as `/S/ CHARLOTTE GUYMAN` and `MANUFACTURING:` opened top-level sections. Disney yields 126 sections following PART → ITEM → subsection.
 
 Berkshire p.139 and 26 Disney pages include geometry-inferred, borderless tables. Disney PDF pages 3, 129 and 132 include images that were **not OCR'd**. The PDF parser inferred a few structurally blank pages from the absence of text/images/drawings/annotations; visual review is still needed. Offsets refer to normalized stored text, not raw PDF byte offsets. Reconstructed table separators and row order must be checked against the original pages.

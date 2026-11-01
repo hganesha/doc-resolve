@@ -1,0 +1,18 @@
+# Bank Statement
+All names and amounts in this statement are fictional.
+
+Account holder: Jane Smith
+Bank: Northbank plc
+Account number: ****4821
+Currency: GBP
+Statement period: 1 March 2026 to 31 March 2026
+Opening balance: 12,400.00
+Closing balance: 445,230.00
+
+| Date | Description | Money in | Money out | Balance |
+| --- | --- | --- | --- | --- |
+| 2 March 2026 | SALARY ACME LTD | 4,200.00 | | 16,600.00 |
+| 5 March 2026 | RENT ELM PROPERTIES | | 1,850.00 | 14,750.00 |
+| 9 March 2026 | COMPLETION FUNDS HARBOUR LAW LLP | 438,250.00 | | 453,000.00 |
+| 12 March 2026 | CARD PAYMENT GROCER | | 120.00 | 452,880.00 |
+| 20 March 2026 | TRANSFER TO SAVINGS | | 7,650.00 | 445,230.00 |

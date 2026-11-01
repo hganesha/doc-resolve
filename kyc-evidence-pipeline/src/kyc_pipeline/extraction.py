@@ -225,6 +225,221 @@ def _field_record_facts(body: str, applicable: set[str]) -> list[dict]:
     return found
 
 
+_CURRENCY_SYMBOLS = {"£": "GBP", "$": "USD", "€": "EUR", "¥": "JPY", "₹": "INR", "CHF": "CHF"}
+_AMOUNT = re.compile(r"^(?P<sign>[-−])?\s*(?P<open>\()?\s*(?P<pre>[A-Z]{3}|[£$€¥₹])?\s*(?P<sign2>[-−])?\s*(?P<num>\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)\s*(?P<post>[A-Z]{3})?\s*(?P<close>\))?$")
+
+
+def _amount(text: str) -> tuple[float, str | None] | None:
+    """'£1,250.00' -> (1250.0, 'GBP'); '(250.00)' and '-250.00' are negative. Only comma-thousands, dot-decimal."""
+    m = _AMOUNT.match(text.strip())
+    if not m or bool(m.group("open")) != bool(m.group("close")):
+        return None
+    value = float(m.group("num").replace(",", ""))
+    if m.group("sign") or m.group("sign2") or m.group("open"):
+        value = -value
+    code = m.group("pre") or m.group("post")
+    return value, _CURRENCY_SYMBOLS.get(code, code) if code else None
+
+
+def _currency_in(text: str | None) -> str | None:
+    m = re.search(r"\b([A-Z]{3})\b|([£$€¥₹])", text or "")
+    if not m:
+        return None
+    return m.group(1) if m.group(1) in {"GBP", "USD", "EUR", "CHF", "JPY", "INR", "CAD", "AUD", "SGD", "HKD", "AED", "SEK", "NOK", "DKK", "ZAR"} else _CURRENCY_SYMBOLS.get(m.group(2) or "")
+
+
+# Bank statement header record and transaction table.
+_HOLDER_LABEL = r"account\s+(?:holder|name)|name\s+on\s+account"
+_PERIOD = re.compile(r"(?P<start>.+?)\s+(?:to|until|-|–|—)\s+(?P<end>.+)$")
+
+
+def _statement_header(text: str) -> dict | None:
+    """Holder, bank, account, currency and period from a statement's "Label: value" record."""
+    holder = _field_line(_HOLDER_LABEL, text)
+    if not holder:
+        return None
+    header = {"holder": _trim_entity(holder.group("value")), "holder_line": holder.group(0).strip()}
+    for key, label in (("bank", r"bank(?:\s+name)?"), ("account", r"account\s+(?:number|no\.?)|iban"), ("currency", r"currency"), ("period", r"statement\s+period"), ("opening", r"opening\s+balance|balance\s+brought\s+forward"), ("closing", r"closing\s+balance|balance\s+carried\s+forward")):
+        m = _field_line(label, text)
+        if m:
+            header[key] = _trim_entity(m.group("value")) if key in {"bank", "account"} else m.group("value").strip()
+            header[key + "_line"] = m.group(0).strip()
+    if header.get("currency"):
+        header["currency"] = _currency_in(header["currency"]) or header["currency"].upper()
+    if header.get("period"):
+        m = _PERIOD.match(header["period"])
+        try:
+            header["start"], header["end"] = (normalize_date(m.group("start").strip(" .")), normalize_date(m.group("end").strip(" ."))) if m else (None, None)
+        except ValueError:
+            header["start"] = header["end"] = None
+    return header
+
+
+def _statement_header_facts(body: str) -> list[dict]:
+    header = _statement_header(body)
+    if not header or not any(k in header for k in ("bank", "account", "period", "opening", "closing")):
+        return []
+    holder, found = header["holder"], []
+    support = [header["holder_line"]]
+    if header.get("bank"):
+        found.append(_mk("transactions", holder, "holds_account_at", header["bank_line"], object=header["bank"], value=header.get("account"), supporting_quotes=support + [header["account_line"]] if header.get("account") else support))
+    for key, when, label in (("opening", "start", "opening balance"), ("closing", "end", "closing balance")):
+        amount = _amount(header.get(key, ""))
+        # A balance needs its date: the statement period's start or end.
+        if amount and header.get(when):
+            unit = amount[1] or header.get("currency")
+            extra = [header["currency_line"]] if not amount[1] and header.get("currency") else []
+            found.append(_mk("transactions", holder, "reported_account_balance", header[key + "_line"], object=header.get("account"), value=amount[0], unit=unit, effective_date=header[when], date_role="as_of", qualifier=label, supporting_quotes=support + [header["period_line"]] + extra + ([header["account_line"]] if header.get("account") else [])))
+    return found
+
+
+_COLUMNS = {
+    "date": r"(?:transaction\s+|posting\s+|value\s+)?date",
+    "description": r"description|details|narrative|particulars|transaction|payee|reference",
+    "credit": r"credits?|money\s+in|paid\s+in|deposits?|in",
+    "debit": r"debits?|money\s+out|paid\s+out|withdrawals?|payments?|out",
+    "amount": r"amount",
+    "balance": r"(?:running\s+)?balance",
+}
+
+
+def _statement_row_facts(chunk: dict) -> list[dict]:
+    """One transaction (and running balance) per statement table row.
+
+    The account holder must be named in the section's statement header, which
+    is cited as a supporting reference; without it no row is extracted.
+    """
+    header_line = chunk.get("table_header")
+    if not header_line or chunk["text"].strip() == header_line.strip():
+        return []
+    columns = [c.strip() for c in header_line.strip().strip("|").split("|")]
+    cells = [c.strip() for c in chunk["text"].strip().strip("|").split("|")]
+    if len(columns) != len(cells) or _is_separator_row(chunk["text"]):
+        return []
+    index: dict[str, int] = {}
+    for i, column in enumerate(columns):
+        name = re.sub(r"\s*\([^)]*\)", "", column).strip()
+        for key, pattern in _COLUMNS.items():
+            if key not in index and re.fullmatch(pattern, name, re.I):
+                index[key] = i
+                break
+    if "date" not in index or not ({"credit", "debit", "amount", "balance"} & set(index)):
+        return []
+    header = ref = None
+    for candidate in chunk.get("section_context", []):
+        header = _statement_header(candidate["text"])
+        if header:
+            ref = candidate
+            break
+    if not header:
+        return []
+    try:
+        when = normalize_date(cells[index["date"]])
+    except ValueError:
+        return []
+    holder = header["holder"]
+    row = chunk["text"].strip()
+    refs = [{"segment_id": ref["segment_id"], "quote": header["holder_line"]}]
+
+    def unit_for(column: int, cell_unit: str | None) -> str | None:
+        unit = cell_unit or _currency_in(columns[column])
+        if not unit and header.get("currency"):
+            currency_ref = {"segment_id": ref["segment_id"], "quote": header["currency_line"]}
+            if currency_ref not in refs:
+                refs.append(currency_ref)
+            unit = header["currency"]
+        return unit
+
+    found = []
+    description = cells[index["description"]] if "description" in index else ""
+    moves = []
+    for key in ("credit", "debit", "amount"):
+        if key in index and cells[index[key]]:
+            amount = _amount(cells[index[key]])
+            if amount and amount[0] != 0:
+                received = amount[0] > 0 if key == "amount" else key == "credit"
+                moves.append(("received_payment" if received else "made_payment", abs(amount[0]), unit_for(index[key], amount[1])))
+    for predicate, value, unit in moves:
+        if description:
+            found.append(_mk("transactions", holder, predicate, row, object=description, value=value, unit=unit, effective_date=when, date_role="event", supporting_quotes=[header_line], supporting_refs=refs))
+    if "balance" in index and cells[index["balance"]]:
+        balance = _amount(cells[index["balance"]])
+        if balance:
+            unit = unit_for(index["balance"], balance[1])
+            account_refs = [{"segment_id": ref["segment_id"], "quote": header["account_line"]}] if header.get("account") else []
+            found.append(_mk("transactions", holder, "reported_account_balance", row, object=header.get("account"), value=balance[0], unit=unit, effective_date=when, date_role="as_of", qualifier="running balance", supporting_quotes=[header_line], supporting_refs=refs + account_refs))
+    return found
+
+
+def _is_separator_row(text: str) -> bool:
+    return bool(re.fullmatch(r"[\s|:\-]+", text))
+
+
+# Source-of-funds declarations and sale (completion) statements.
+_DECLARANT_LABEL = r"(?:customer|client|applicant)(?:\s+name)?|declarant|seller|vendor"
+
+
+def _funds_record_facts(body: str) -> list[dict]:
+    subject_line = _field_line(_DECLARANT_LABEL, body)
+    if not subject_line:
+        return []
+    subject = _trim_entity(subject_line.group("value"))
+    support = [subject_line.group(0).strip()]
+    currency = _field_line(r"currency", body)
+    declared = _field_line(r"date\s+of\s+declaration|declaration\s+date|date\s+signed", body)
+    as_of = None
+    if declared:
+        try:
+            as_of = normalize_date(declared.group("value").strip(" ."))
+        except ValueError:
+            as_of = None
+
+    def money(label: str) -> tuple[float, str | None, list[str]] | None:
+        m = _field_line(label, body)
+        amount = _amount(m.group("value")) if m else None
+        if not amount:
+            return None
+        quotes = [m.group(0).strip()]
+        unit = amount[1]
+        if not unit and currency:
+            unit = _currency_in(currency.group("value")) or currency.group("value").strip().upper()
+            quotes.append(currency.group(0).strip())
+        return amount[0], unit, quotes
+
+    found = []
+    dated = {"effective_date": as_of, "date_role": "as_of"} if as_of else {}
+    dated_support = [declared.group(0).strip()] if as_of else []
+    for label, predicate, amount_label in ((r"source\s+of\s+funds", "declared_source_of_funds", r"(?:declared\s+|expected\s+)?amount(?:\s+of\s+funds)?"), (r"source\s+of\s+wealth", "declared_source_of_wealth", r"(?:estimated\s+|total\s+)?(?:wealth|net\s+worth)")):
+        m = _field_line(label, body)
+        if not m:
+            continue
+        amount = money(amount_label)
+        fields = {"object": _trim_entity(m.group("value")), **dated}
+        quotes = support + dated_support
+        if amount:
+            fields.update(value=amount[0], unit=amount[1])
+            quotes += amount[2]
+        found.append(_mk("wealth_and_funds", subject, predicate, m.group(0).strip(), supporting_quotes=[q for q in dict.fromkeys(quotes) if q != m.group(0).strip()], **fields))
+    # A sale or completion statement: what was sold, the price, and the net proceeds.
+    asset = _field_line(r"property(?:\s+address)?|asset(?:\s+sold)?|shares\s+sold|business\s+sold", body)
+    if asset:
+        completed = _field_line(r"completion\s+date|date\s+of\s+(?:sale|completion)", body)
+        when = None
+        if completed:
+            try:
+                when = normalize_date(completed.group("value").strip(" ."))
+            except ValueError:
+                when = None
+        date_fields = {"effective_date": when, "date_role": "event"} if when else {}
+        base = support + [asset.group(0).strip()] + ([completed.group(0).strip()] if when else [])
+        for label, predicate in ((r"sale\s+price|purchase\s+price|consideration", "sold_asset"), (r"net\s+proceeds|(?:balance|amount)\s+due\s+to\s+(?:the\s+)?(?:seller|vendor)|net\s+amount\s+payable\s+to\s+(?:the\s+)?(?:seller|vendor)", "received_sale_proceeds")):
+            amount = money(label)
+            if amount:
+                quotes = [q for q in dict.fromkeys(base + amount[2][1:])]
+                found.append(_mk("wealth_and_funds", subject, predicate, amount[2][0], object=_trim_entity(asset.group("value")), value=abs(amount[0]), unit=amount[1], supporting_quotes=quotes, **date_fields))
+    return found
+
+
 def rules_extract(chunk: dict, requirements: list[dict]) -> list[dict]:
     """Small, intentionally non-exhaustive examples; absence is never a negative finding."""
     applicable = {r["category"] for r in requirements if r["applicable"]}
@@ -293,6 +508,10 @@ def rules_extract(chunk: dict, requirements: list[dict]) -> list[dict]:
             if m:
                 found.append(_mk("allegations_and_outcomes", _trim_entity(m.group("subject")), "accused_of", quote, object=_trim_entity(m.group("object")), effective_date=_date_in(text), claim_type="allegation"))
     found.extend(_field_record_facts(body, applicable))
+    if "transactions" in applicable:
+        found.extend(_statement_row_facts(chunk) if chunk["kind"] == "table" else _statement_header_facts(body))
+    if "wealth_and_funds" in applicable and chunk["kind"] != "table":
+        found.extend(_funds_record_facts(body))
     if "legal_identity" in applicable:
         found.extend(_sec_cover_facts(body))
     if "financial_condition" in applicable and chunk["kind"] == "table" and chunk.get("table_header") and chunk["text"] != chunk["table_header"]:

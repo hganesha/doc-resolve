@@ -134,7 +134,8 @@ def verify_candidates(document: dict, segments: list[dict], chunks: list[dict], 
                 "exact_quote_match": True,
                 "subject_literal_present": _contains_phrase(combined_quote, c.subject) if not c.subject.startswith("UNRESOLVED_") else False,
                 "object_literal_present": _contains_phrase(combined_quote, c.object) if c.object else None,
-                "value_literal_present": _numeric_in(c.value, combined_quote) if isinstance(c.value, (int, float)) else (_contains_phrase(combined_quote, c.value) if isinstance(c.value, str) else None),
+                # A magnitude (a debit of 250) may be printed signed: -250.00.
+                "value_literal_present": (_numeric_in(c.value, combined_quote) or bool(spec and spec.get("magnitude") and _numeric_in(-c.value, combined_quote))) if isinstance(c.value, (int, float)) else (_contains_phrase(combined_quote, c.value) if isinstance(c.value, str) else None),
                 "date_literal_present": date_present_in_text(c.effective_date, combined_quote) if c.effective_date else None,
             }
             subject_key = identity_key(c.subject)

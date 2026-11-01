@@ -22,8 +22,9 @@ LEI = "5299000ASTERHOLD0035"  # synthetic, with valid check digits
 
 
 def _ingest(tmp_path, source: Path | str, *, case="reg", profile=None, registry_factory=None, registry_check=None, run_id="run_1", store=None):
-    path = Path(source)
-    if not path.exists():
+    if isinstance(source, Path):
+        path = source
+    else:
         path = tmp_path / f"{run_id}.txt"
         path.write_text(source)
     store = store or EvidenceStore(tmp_path / "db.sqlite")

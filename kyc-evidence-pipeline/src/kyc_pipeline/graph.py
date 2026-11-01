@@ -19,12 +19,13 @@ from .local_embeddings import LocalEmbeddingProvider
 from .parsing import parse_file
 from .ownership import build_ownership_graph, graph_settings
 from .reconciliation import issue_finding, reconcile
+from .funds import inflow_checks, statement_checks
 from .registry import GleifClient, cached_lookup, check_gleif, status_issues
 from .store import EvidenceStore
 from .util import digest, json_text, utc_now
 
 # Increment whenever extraction prompts, rules, or output schema change.
-EXTRACTION_CACHE_VERSION = {"rules": "8", "openai": "5"}
+EXTRACTION_CACHE_VERSION = {"rules": "9", "openai": "5"}
 # A batch that fails for one of these reasons is split in half and retried, so
 # one long or filtered chunk does not cost the whole batch.
 _SPLIT_ON = {"output_truncated", "content_filter"}
@@ -327,6 +328,9 @@ def build_graph(store: EvidenceStore, checkpointer: Any, provider_factory: Calla
         graph_issues = [i for i in graph_issues if i["issue_id"] not in known]
         material = {r["category"]: r["material"] for r in state["requirements"]}
         extra = status_issues(state["document"]["document_id"], state["facts"], material)
+        statement_findings, statement_issues = statement_checks(state["document"]["document_id"], state["facts"], state["evidence"], state["segments"], material)
+        inflow_findings, inflow_issues = inflow_checks(state["document"]["document_id"], state["facts"], previous)
+        extra += statement_issues + inflow_issues
         checks: list[dict] = []
         if state.get("registry_check") == "gleif":
             # Only the entities this document is about are looked up.
@@ -345,7 +349,7 @@ def build_graph(store: EvidenceStore, checkpointer: Any, provider_factory: Calla
         known |= {i["issue_id"] for i in graph_issues}
         extra = [i for i in {i["issue_id"]: i for i in extra}.values() if i["issue_id"] not in known]
         new = graph_issues + extra
-        return {"findings": findings + [issue_finding(i) for i in new], "issues": issues + new, "case_revision": revision, "case_entities": case_entities, "registry_checks": checks}
+        return {"findings": findings + statement_findings + inflow_findings + [issue_finding(i) for i in new], "issues": issues + new, "case_revision": revision, "case_entities": case_entities, "registry_checks": checks}
 
     def review_node(state: PipelineState) -> dict:
         items = [i for i in state["issues"] if i["status"] == "OPEN" and i["severity"] == "high"]

@@ -94,7 +94,7 @@ profiles:
   source_of_funds:
     family: source_of_wealth_and_funds
     title: Source-of-wealth or source-of-funds document
-    signals: [bank statement, source of funds, source of wealth, sale agreement, tax return]
+    signals: [bank statement, source of funds, source of wealth, sale agreement, tax return, completion statement]
     strategy: transaction_event_aware
     max_chars: 1800
     overlap_chars: 120

@@ -1,0 +1,8 @@
+# Completion Statement
+All names and amounts in this completion statement are fictional.
+
+Seller: Jane Smith
+Property: 12 Elm Road, Bristol
+Completion date: 6 March 2026
+Sale price: GBP 450,000.00
+Net proceeds: GBP 438,250.00

@@ -13,6 +13,8 @@
 #   date: required | optional                      (default optional)
 #   date_roles / claim_types: allowed values       (default any)
 #   evidence_terms: regex the cited spans must match, or the fact is flagged
+#   magnitude: the value is an unsigned size and the predicate gives the
+#     direction (a debit printed as -250.00 is made_payment 250); default false
 #   single_valued: true: one object (or value) per subject and period;
 #     per_object: one value per subject, object and period (one status per licence).
 #     Differing values in overlapping or undated periods conflict.
@@ -194,6 +196,70 @@ predicates:
     object: required
     value: percent
     date_roles: [event, unspecified]
+
+  # transactions
+  received_payment:
+    category: transactions
+    description: Money credited to the subject's account; object is the payer, or the transaction description as printed.
+    object: required
+    value: amount
+    value_required: true
+    magnitude: true
+    date: required
+    date_roles: [event, unspecified]
+  made_payment:
+    category: transactions
+    description: Money debited from the subject's account; object is the payee, or the transaction description as printed.
+    object: required
+    value: amount
+    value_required: true
+    magnitude: true
+    date: required
+    date_roles: [event, unspecified]
+  reported_account_balance:
+    category: transactions
+    description: An account balance printed on a statement (opening, closing or running); qualifier says which. Object is the account if stated.
+    value: amount
+    value_required: true
+    date: required
+    date_roles: [as_of, unspecified]
+  holds_account_at:
+    category: transactions
+    description: The subject holds an account at the object (a bank); value is the account identifier as printed, usually masked.
+    object: required
+    value: text
+
+  # wealth_and_funds
+  declared_source_of_funds:
+    category: wealth_and_funds
+    description: The source of the funds for this relationship or transaction, as the customer declares it; value is the declared amount.
+    object: required
+    value: amount
+  declared_source_of_wealth:
+    category: wealth_and_funds
+    description: How the customer says their overall wealth arose (employment, business sale, inheritance, ...); value is an amount if stated.
+    object: required
+    value: amount
+  sold_asset:
+    category: wealth_and_funds
+    description: The subject sold the object (a property, shares or a business); value is the sale price.
+    object: required
+    value: amount
+    date_roles: [event, unspecified]
+  received_sale_proceeds:
+    category: wealth_and_funds
+    description: Net proceeds of a sale paid to the subject; object is the asset sold.
+    object: required
+    value: amount
+    value_required: true
+    magnitude: true
+    date_roles: [event, unspecified]
+  received_income_from:
+    category: wealth_and_funds
+    description: Salary, dividends or other income paid to the subject by the object, for a period.
+    object: required
+    value: amount
+    date_roles: [reporting_period, event, unspecified]
 
   # legal_proceedings
   party_to_case:
