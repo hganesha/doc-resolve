@@ -20,7 +20,7 @@ from .parsing import parse_file
 from .ownership import build_ownership_graph, graph_settings
 from .reconciliation import issue_finding, reconcile
 from .funds import inflow_checks, statement_checks
-from .registry import GleifClient, cached_lookup, check_gleif, status_issues
+from .registry import CompaniesHouseClient, GleifClient, RegistryLookupError, cached_lookup, check_companies_house, check_gleif, status_issues
 from .store import EvidenceStore
 from .util import digest, json_text, utc_now
 
@@ -58,7 +58,7 @@ class PipelineState(TypedDict, total=False):
     model_timeout: float
     model_max_retries: int
     model_usage: dict
-    registry_check: str | None
+    registry_check: list[str] | str | None
     registry_checks: list[dict]
     provider_endpoint_sha256: str | None
     retry_from_run: str | None
@@ -93,8 +93,13 @@ def _layout_client(state: PipelineState) -> AzureLayoutClient:
     return AzureLayoutClient(allow_remote=state["allow_remote"])
 
 
-def _registry_client(state: PipelineState) -> GleifClient:
-    return GleifClient()
+def _registry_client(state: PipelineState, source: str) -> Any:
+    return GleifClient() if source == "gleif" else CompaniesHouseClient()
+
+
+def registry_sources(value: list[str] | str | None) -> list[str]:
+    """Runs before Companies House support stored a single source name."""
+    return [value] if isinstance(value, str) else list(value or [])
 
 
 def validate_review_response(response: Any, issues: list[dict]) -> list[dict]:
@@ -332,20 +337,36 @@ def build_graph(store: EvidenceStore, checkpointer: Any, provider_factory: Calla
         inflow_findings, inflow_issues = inflow_checks(state["document"]["document_id"], state["facts"], previous)
         extra += statement_issues + inflow_issues
         checks: list[dict] = []
-        if state.get("registry_check") == "gleif":
+        sources = registry_sources(state.get("registry_check"))
+        if sources:
             # Only the entities this document is about are looked up.
             facts_by_entity: dict[str, list[dict]] = {}
+            held_by_entity: dict[str, list[dict]] = {}
             for f in previous + state["facts"]:
-                link = f.get("entity_links", {}).get("subject")
-                if link and link["entity_id"] in entity_map:
-                    facts_by_entity.setdefault(entity_map[link["entity_id"]], []).append(f)
-            client = registry_factory(state)
-            try:
-                checks, gleif_issues = check_gleif(state["document"]["document_id"], case_entities, facts_by_entity, current_case, cached_lookup(store, client))
-            finally:
-                if hasattr(client, "client"):
-                    client.client.close()
-            extra += gleif_issues
+                for role, index in (("subject", facts_by_entity), ("object", held_by_entity)):
+                    link = f.get("entity_links", {}).get(role)
+                    if link and link["entity_id"] in entity_map:
+                        index.setdefault(entity_map[link["entity_id"]], []).append(f)
+            for source in sources:
+                try:
+                    client = registry_factory(state, source)
+                    lookup = cached_lookup(store, client, "GLEIF" if source == "gleif" else "COMPANIES_HOUSE")
+                except RegistryLookupError as exc:
+                    # A missing API key fails every lookup visibly rather than skipping the check.
+                    client, error = None, exc
+
+                    def lookup(_: str, error: RegistryLookupError = error) -> tuple[dict | None, str, bool]:
+                        raise error
+                try:
+                    if source == "gleif":
+                        source_checks, source_issues = check_gleif(state["document"]["document_id"], case_entities, facts_by_entity, current_case, lookup)
+                    else:
+                        source_checks, source_issues = check_companies_house(state["document"]["document_id"], case_entities, facts_by_entity, held_by_entity, previous + state["facts"], current_case, lookup)
+                finally:
+                    if hasattr(client, "client"):
+                        client.client.close()
+                checks += source_checks
+                extra += source_issues
         known |= {i["issue_id"] for i in graph_issues}
         extra = [i for i in {i["issue_id"]: i for i in extra}.values() if i["issue_id"] not in known]
         new = graph_issues + extra

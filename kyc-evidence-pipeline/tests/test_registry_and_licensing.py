@@ -30,7 +30,7 @@ def _ingest(tmp_path, source: Path | str, *, case="reg", profile=None, registry_
     store = store or EvidenceStore(tmp_path / "db.sqlite")
     state = {"run_id": run_id, "case_id": case, "started_at": utc_now(), "doc_path": str(path), "requested_profile": profile, "contract": load_contract(), "extractor": "rules", "embeddings": "lexical", "allow_remote": False, "verify_material": False, "model": "unused", "embedding_model": "unused", "retry_from_run": None, "expected_document_sha256": None, "registry_check": registry_check}
     store.start_run(run_id, case, state["started_at"])
-    graph = build_graph(store, InMemorySaver(), registry_factory=registry_factory or (lambda _: pytest.fail("registry looked up without --registry-check")))
+    graph = build_graph(store, InMemorySaver(), registry_factory=registry_factory or (lambda *_: pytest.fail("registry looked up without --registry-check")))
     config = {"configurable": {"thread_id": run_id}}
     result = graph.invoke(state, config)
     return store, result, graph.get_state(config).values
@@ -148,7 +148,7 @@ def _client(responses):
 
 def test_gleif_record_matches_and_is_cached(tmp_path):
     client, calls = _client(lambda lei: _gleif(lei, other=["Aster Ventures Ltd"]))
-    store, result, values = _ingest(tmp_path, ROOT / "examples/synthetic_registry_extract.txt", registry_check="gleif", registry_factory=lambda _: client)
+    store, result, values = _ingest(tmp_path, ROOT / "examples/synthetic_registry_extract.txt", registry_check="gleif", registry_factory=lambda *_: client)
     check, = values["registry_checks"]
     assert check["status"] == "CHECKED" and not check["served_from_cache"] and calls == [f"/api/v1/lei-records/{LEI}"]
     assert {c["field"]: c["result"] for c in check["comparisons"]} == {"legal_name": "MATCH", "former_names": "MATCH", "jurisdiction": "MATCH", "registration_number": "MATCH", "incorporation_date": "MATCH"}
@@ -156,14 +156,14 @@ def test_gleif_record_matches_and_is_cached(tmp_path):
     assert store.export_case("reg")["registry_checks"][0]["lei"] == LEI
     # A second document about the same entity reuses the stored record.
     client2, calls2 = _client(lambda lei: pytest.fail("cached record not reused"))
-    _, _, values = _ingest(tmp_path, f"# Companies Registry Extract\nCompany name: Aster Holdings Ltd\nLEI: {LEI}\n", registry_check="gleif", registry_factory=lambda _: client2, run_id="run_2", store=store)
+    _, _, values = _ingest(tmp_path, f"# Companies Registry Extract\nCompany name: Aster Holdings Ltd\nLEI: {LEI}\n", registry_check="gleif", registry_factory=lambda *_: client2, run_id="run_2", store=store)
     assert values["registry_checks"][0]["served_from_cache"] and not calls2
 
 
 def test_gleif_mismatches_raise_issues(tmp_path):
     record = _gleif(LEI, name="Birch Group Ltd", jurisdiction="GB", registered_as="00999999", status="INACTIVE", registration="LAPSED", created="2001-01-01T00:00:00Z")
     client, _ = _client(lambda lei: record)
-    _, result, values = _ingest(tmp_path, ROOT / "examples/synthetic_registry_extract.txt", registry_check="gleif", registry_factory=lambda _: client)
+    _, result, values = _ingest(tmp_path, ROOT / "examples/synthetic_registry_extract.txt", registry_check="gleif", registry_factory=lambda *_: client)
     codes = {i["code"]: i for i in values["issues"]}
     assert codes["REGISTRY_NAME_MISMATCH"]["severity"] == "high" and codes["REGISTRY_JURISDICTION_MISMATCH"]["details"]["registry"] == "GB"
     assert {"REGISTRY_NUMBER_MISMATCH", "REGISTRY_INCORPORATION_DATE_MISMATCH", "REGISTRY_ENTITY_INACTIVE", "LEI_NOT_CURRENT"} <= set(codes)
@@ -173,9 +173,9 @@ def test_gleif_mismatches_raise_issues(tmp_path):
 
 def test_gleif_not_found_and_lookup_failure(tmp_path):
     client, _ = _client(lambda lei: None)
-    _, _, values = _ingest(tmp_path, ROOT / "examples/synthetic_registry_extract.txt", registry_check="gleif", registry_factory=lambda _: client)
+    _, _, values = _ingest(tmp_path, ROOT / "examples/synthetic_registry_extract.txt", registry_check="gleif", registry_factory=lambda *_: client)
     assert values["registry_checks"][0]["status"] == "NOT_FOUND" and any(i["code"] == "REGISTRY_RECORD_NOT_FOUND" for i in values["issues"])
     client, _ = _client(lambda lei: httpx.Response(400, json={"errors": [{"detail": "secret"}]}))
-    _, _, values = _ingest(tmp_path, ROOT / "examples/synthetic_registry_extract.txt", case="other", registry_check="gleif", registry_factory=lambda _: client, run_id="run_9", store=EvidenceStore(tmp_path / "db2.sqlite"))
+    _, _, values = _ingest(tmp_path, ROOT / "examples/synthetic_registry_extract.txt", case="other", registry_check="gleif", registry_factory=lambda *_: client, run_id="run_9", store=EvidenceStore(tmp_path / "db2.sqlite"))
     failed = next(i for i in values["issues"] if i["code"] == "REGISTRY_LOOKUP_FAILED")
     assert failed["details"]["error"] == "GLEIF returned HTTP 400" and values["registry_checks"][0]["status"] == "LOOKUP_FAILED"

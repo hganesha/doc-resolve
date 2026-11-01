@@ -58,6 +58,14 @@ def legal_key(name: str) -> str:
     return " ".join(_FORMS.get(t, t) for t in tokens)
 
 
+_TITLES = {"mr", "mrs", "ms", "miss", "mx", "dr", "sir", "dame", "prof"}
+
+
+def person_key(name: str | None) -> str:
+    """'Ms Jane Smith' and 'JANE SMITH' agree; 'J Smith' does not."""
+    return " ".join(t for t in legal_key(name or "").split() if t not in _TITLES)
+
+
 def alias_key(name: str) -> str:
     tokens = identity_key(name).split()
     return " ".join(tokens[1:] if tokens[:1] == ["the"] else tokens)

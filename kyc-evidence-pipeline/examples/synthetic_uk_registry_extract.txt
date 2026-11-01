@@ -1,0 +1,14 @@
+# Companies Registry Extract
+All names, numbers and addresses in this extract are fictional.
+
+Date of extract: 15 January 2026
+Company name: Birchwood Trading Limited
+Company number: 99000123
+Jurisdiction: England and Wales
+Company status: Active
+Company type: Private limited company
+Date of incorporation: 4 June 2018
+Registered office: 5 Harbour Street, Bristol BS1 4QA
+Previous names: Birchwood Imports Limited
+Directors: Jane Smith; Omar Haddad
+Company secretary: Lena Park

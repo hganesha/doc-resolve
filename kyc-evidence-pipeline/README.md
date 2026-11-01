@@ -24,7 +24,7 @@ Document → parse + classify → structure/chunk → index
 - **Structure and provenance:** sections, paragraphs, table rows and headers, linked Markdown footnotes, page numbers and PDF block/table coordinates where available. Quotes carry a document SHA-256, normalized segment SHA-256, exact Unicode-code-point offsets, source locator, and representation type. Table reconstruction is identified as such.
 - **Atomic facts, evidence and findings** are separate. Every extracted claim remains `PENDING_HUMAN`; exact quote matching and optional model source-support checks do not establish external truth or legal identity.
 - **Coverage and gaps:** section inventory, processed/failed chunks, category status and explicit unresolved issues. Available statuses are `FOUND`, `NOT_FOUND_AFTER_REVIEW`, `NOT_APPLICABLE`, `NOT_REVIEWED`, `EXTRACTION_FAILED`, and `CONFLICTED`. A negative automated review is not proof of absence. Parsing gaps (un-OCR'd images, inferred tables, thin pages) do not void what was extracted elsewhere: each category records `source_fully_parsed` and `parse_gap_pages`, cannot be `NOT_FOUND_AFTER_REVIEW` while gaps remain, and a material category with gaps stays an unresolved requirement. `EXTRACTION_FAILED` is reserved for failed chunks, an unparseable document, or open claim-level issues in that category.
-- **Registry and licence records:** registry extracts and licence register entries yield legal name, identifiers, status, legal form, incorporation date, registered address, former names, directors and secretary, and a licence's type, status, number, issuer, dates and restrictions. LEI check digits are verified, and adverse company or licence statuses and passed expiry dates are raised for review. An opt-in GLEIF lookup compares each LEI's public record with the documents (see below).
+- **Registry and licence records:** registry extracts and licence register entries yield legal name, identifiers, status, legal form, incorporation date, registered address, former names, directors and secretary, and a licence's type, status, number, issuer, dates and restrictions. LEI check digits are verified, and adverse company or licence statuses and passed expiry dates are raised for review. Opt-in GLEIF and Companies House lookups compare each LEI's and UK company number's public record with the documents, including officers and people with significant control (see below).
 - **Source of funds:** bank statements yield the account holder, bank, opening and closing balances, and each row's credit, debit and running balance; the printed balances are checked against the arithmetic. Declarations and sale completion statements yield the declared source and amount, the asset sold and the net proceeds, which are looked for among the credits on the same person's statements (see below).
 - **Entity layer:** links each fact's subject (and owned or controlled party) to an entity using the document's own definitions, SEC cover-page and registry identity, and identifier-first matching across the case (see below).
 - **Ownership graph:** builds who-holds-what across the case from the linked facts, with stakes as low–high ranges, look-through interests through chains, control from voting rights or majority stakes, and checks for holdings above 100% and cycles (see below).
@@ -273,7 +273,7 @@ Not yet covered:
 - people (no dates of birth or nationality matching);
 - definitions scoped to one section (Berkshire's Item 1 uses "Company" for the parent, but its auditor's report uses it for the group);
 - former names and successor entities;
-- lookups against GLEIF, Companies House or SEC EDGAR;
+- entities resolved from register records: GLEIF and Companies House records are compared with the documents, not merged into the entity; no SEC EDGAR lookup;
 - the model extractor producing cover-page facts (only the local rules do).
 
 ## Profiles and policy
@@ -359,7 +359,7 @@ The example's LEI is synthetic (its check digits are valid but GLEIF has no reco
 | Incorporation date | GLEIF entity creation date | `REGISTRY_INCORPORATION_DATE_MISMATCH` (medium) |
 | Entity and LEI status | `ACTIVE`; `ISSUED` | `REGISTRY_ENTITY_INACTIVE`, `LEI_NOT_CURRENT` (medium) |
 
-An LEI that GLEIF does not know raises `REGISTRY_RECORD_NOT_FOUND` (high); a failed lookup raises `REGISTRY_LOOKUP_FAILED` (medium), so a check never passes silently. GLEIF data is reported by the entity itself and validated by its LEI issuer to varying degrees (the record's `corroboration_level`), so a match is not proof of identity and a mismatch may be a stale record. National company registers and licence registers (such as Companies House or a regulator's register) are not looked up.
+An LEI that GLEIF does not know raises `REGISTRY_RECORD_NOT_FOUND` (high); a failed lookup raises `REGISTRY_LOOKUP_FAILED` (medium), so a check never passes silently. GLEIF data is reported by the entity itself and validated by its LEI issuer to varying degrees (the record's `corroboration_level`), so a match is not proof of identity and a mismatch may be a stale record. Other national company registers (US state registers among them) and regulators' licence registers are not looked up.
 
 ## Source of funds
 
@@ -381,6 +381,33 @@ Limits:
 - People are matched by name, ignoring titles and case (`Ms Jane Smith` is `JANE SMITH`) but not initials (`J Smith` is a different person). A joint account or a company account in a person's name is not handled.
 - A matching credit shows that a payment of that size arrived, not that it came from the declared source; payments split across several credits, or arriving in another account, are not matched. Unusual credits (size, round amounts, unexplained third parties) are not flagged.
 
+### Companies House check
+
+```bash
+export COMPANIES_HOUSE_API_KEY=...   # free, from the Companies House developer hub
+kyc-pipeline ingest examples/synthetic_uk_registry_extract.txt --case-id uk-demo --registry-check companies-house
+```
+
+`--registry-check companies-house` looks up each company number that the document gives for a UK company in the [Companies House public data API](https://developer.company-information.service.gov.uk/): the company profile, its officers (including resigned ones) and its people with significant control (PSCs). Only the company number is sent. A company is looked up only when the documents give it a UK jurisdiction (`England and Wales`, `Scotland`, `Northern Ireland`, `United Kingdom`); a number with no stated jurisdiction is listed as `NOT_LOOKED_UP` and never sent, since it may belong to another country's register. Numbers are normalized to Companies House format (`9876543` → `09876543`, `SC 123456` → `SC123456`). `--registry-check` can be repeated to run GLEIF and Companies House together. Records are cached for 24 hours as for GLEIF, and each check is kept in `registry_checks` with a link to the company's public page.
+
+The example's company number is synthetic, so with a real key this command pauses with `REGISTRY_RECORD_NOT_FOUND`; the tests run every comparison against a mocked API.
+
+| Compared | Against | Raised when they differ |
+|---|---|---|
+| Legal name | Company name, then previous names | `REGISTRY_NAME_MISMATCH` (high); `REGISTRY_NAME_IS_OTHER_NAME` (medium) for a previous name |
+| Former names | Previous company names | reported as `NOT_IN_REGISTRY`, no issue |
+| Jurisdiction | `england-wales`, `scotland`, `northern-ireland` | `REGISTRY_JURISDICTION_MISMATCH` (high); `United Kingdom` alone is `NOT_COMPARED` |
+| Status | Company status | `REGISTRY_ENTITY_INACTIVE` whatever the documents say: high when dissolved, removed or closed, medium otherwise (liquidation, administration, ...) |
+| Legal form | Company type (`ltd`, `plc`, `llp`, ...) with common wording for each | `REGISTRY_LEGAL_FORM_MISMATCH` (medium); an unlisted type is `NOT_COMPARED` |
+| Incorporation date | Date of creation | `REGISTRY_INCORPORATION_DATE_MISMATCH` (medium) |
+| Registered office | Postcode only | `REGISTRY_ADDRESS_MISMATCH` (medium); the office may have moved since the document's date |
+| Directors and secretary | Appointments, by name, as of the document's date | `REGISTRY_OFFICER_NOT_FOUND`; `REGISTRY_OFFICER_RESIGNED` when they resigned before that date (both medium). Resigned since is reported as `RESIGNED_SINCE`, no issue |
+| Reported stakes (`owns_equity_in` this company) | Current PSCs' shareholding bands (more than 25% up to 50%, and so on) | `REGISTRY_PSC_BAND_MISMATCH` when outside the band; `REGISTRY_PSC_MISSING` for a stake above 25% whose holder is not a current PSC (both medium) |
+
+Register flags (insolvency history, registered office in dispute or undeliverable, overdue accounts or confirmation statement) raise `REGISTRY_RECORD_FLAGGED` (medium). Current officers the documents don't name are listed under `registry_only`, not raised: a document may name only some of them. The record's PSCs are kept in the check for a reviewer, but they are not yet added to the ownership graph.
+
+Officer names are matched on first name and surname, with every name part in the document also in the register's name: `Jane Smith` matches `SMITH, Jane Elizabeth`, but `J Smith` and `Jane Smyth` do not. A missing match may be a spelling difference. A PSC holder is matched by legal name or, for a person, the same rule; a stake whose holder the documents name only as "we" or "the Company" will not match. Companies House records what companies file and verifies little of it, so a match is not proof of identity or ownership. Missing API key, rate limits and failed requests raise `REGISTRY_LOOKUP_FAILED` (medium); no check passes silently.
+
 ## Ownership graph
 
 `ownership.py` builds the case's ownership and control graph from verified facts and case entities. It is rebuilt from the stored case on every `report` and `ownership` export, so it reflects every document and review decision. During ingestion it runs only to raise issues for review.
@@ -400,7 +427,7 @@ The thresholds (25% reporting, 50% control) and the chain depth are illustrative
 - PDF text blocks, coordinates and detected tables use PyMuPDF. PDF headings are inferred from font size and weight relative to the document's body text (plus `PART`/`ITEM` numbering); text repeated in the top or bottom margin of three or more pages is recorded as `page_furniture`, not a heading. PDFs with no size or weight variation fall back to capitalised-line headings. Heading inference is heuristic: some headings will be missed and some bold labels outside detected tables may still open sections. Empty pages with no detected text, images, drawings or annotations are recorded as structurally blank; pages containing images are flagged because the local parser does not OCR (use `--parser azure-di`). Borderless tables are inferred from text geometry only when heuristic alignment is detected, and always flagged for visual review. Not every embedded image, complex/merged table, cross-page table, multi-column order, footnote or cross-reference will be detected. HTML scripts, images, embedded sources, merged cells and orphan text are flagged when recognized. Treat parsing issues as coverage failures and visually review original sources.
 - Inline Markdown footnote markers are linked to matching footnotes in the **same parsed section**. General footnote resolution, complex table semantics, document amendments, and semantic cross-reference navigation are not complete.
 - Entity links come from the document's own definitions and printed identifiers, not from an authoritative register; a merge on legal name alone can join two different entities that share a name and lack identifiers.
-- Apart from the opt-in GLEIF LEI lookup, the pipeline does not perform authoritative registry or licence-register checks, live sanctions/PEP screening, identity verification, beneficial-owner identification (the ownership graph has no natural persons), source-of-funds verification (statement arithmetic and amount matching are not proof of origin), complete contradiction resolution, or policy-driven customer acceptance decisions. Allegations are not findings of guilt.
+- Apart from the opt-in GLEIF and Companies House lookups, the pipeline does not perform authoritative registry or licence-register checks, live sanctions/PEP screening, identity verification, beneficial-owner identification (the ownership graph has no natural persons), source-of-funds verification (statement arithmetic and amount matching are not proof of origin), complete contradiction resolution, or policy-driven customer acceptance decisions. Allegations are not findings of guilt.
 - Literal quote and number checks are not semantic validation. Model source-support checks can also be wrong or manipulated. Automated `NOT_FOUND_AFTER_REVIEW` means only that the parsed chunks received a successful model pass; it is not proof of absence.
 - SQLite is suitable only for a single-host POC. The evidence store and graph checkpoints are separate databases, so their commits are not one distributed transaction; writes are designed to be idempotent and use a case revision check. There is no authentication, authorization, encryption, secrets manager, immutable/WORM audit log, redaction, retention/deletion workflow, scalable job queue, or production observability. Human reviewer IDs are self-reported. Add these before handling real KYC information.
 - All document content in the evidence database, extraction cache, checkpoint database, exports, and review files is sensitive. Control access to all copies, including SQLite WAL/SHM files and backups. External API calls send source text when opted in; configure provider logging and retention appropriately.
@@ -418,7 +445,7 @@ src/kyc_pipeline/
   extraction.py         # local rules and opt-in batched OpenAI / Azure OpenAI client (strict output, retries)
   evidence.py           # exact spans, atomic claims, material source checks
   reconciliation.py     # conservative claims, date and conflict checks
-  registry.py           # LEI check digits, status and expiry checks, opt-in GLEIF lookup
+  registry.py           # LEI check digits, status and expiry checks, opt-in GLEIF and Companies House lookups
   funds.py              # statement balance arithmetic and declared-amount matching
   ownership.py          # ownership/control graph, look-through interests, graph checks
   coverage.py           # coverage ledger and section manifest

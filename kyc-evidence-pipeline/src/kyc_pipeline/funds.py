@@ -13,18 +13,12 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from .entities import legal_key
+from .entities import person_key
 from .evidence import make_issue
 from .util import stable_id
 
-_TITLES = {"mr", "mrs", "ms", "miss", "mx", "dr", "sir", "dame", "prof"}
 _TOLERANCE = 0.005  # half a cent
 _NEAR = 0.01  # within 1% (fees, rounding) is reported, but as a near match
-
-
-def person_key(name: str | None) -> str:
-    """'Ms Jane Smith' and 'JANE SMITH' agree; 'J Smith' does not."""
-    return " ".join(t for t in legal_key(name or "").split() if t not in _TITLES)
 
 
 def _finding(kind: str, fact_ids: list[str], category: str, description: str, details: dict) -> dict:
