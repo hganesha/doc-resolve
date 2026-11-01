@@ -3,19 +3,49 @@ from __future__ import annotations
 import json
 import math
 import os
+import random
 import re
 import time
 from typing import Any
+from urllib.parse import quote
 
 import httpx
 from pydantic import ValidationError
 
-from .models import BatchExtractionResponse, CandidateFact, ExtractionResponse, SupportResponse
+from .models import BatchExtractionResponse, CandidateFact, ExtractionResponse, SupportResponse, strict_schema
 from .util import normalize_date
+
+PROVIDERS = ("openai", "azure_openai")
+OUTPUT_MODES = ("strict", "json_object")
+OPENAI_DEFAULT_BASE_URL = "https://api.openai.com/v1"
+AZURE_OPENAI_API_VERSION = "2024-10-21"
+# Retried with backoff, as the official SDKs do. A 429 for exhausted quota is not.
+_RETRY_STATUS = {408, 409, 429, 500, 502, 503, 504}
+_SAFE_TOKEN = re.compile(r"[A-Za-z0-9_.:-]{1,80}")
 
 
 class ProviderError(RuntimeError):
-    """Sanitized provider failure: do not include request or response bodies."""
+    """Sanitized provider failure: never includes request or response bodies.
+
+    code is a short reason such as output_truncated, content_filter, refusal,
+    invalid_output, timeout or the provider's own error code; request_id is the
+    provider's opaque ID for a support ticket. Both are safe to log.
+    """
+
+    def __init__(self, message: str, *, code: str | None = None, status: int | None = None, request_id: str | None = None):
+        super().__init__(message)
+        self.code, self.status, self.request_id = code, status, request_id
+
+
+def _safe(value: Any) -> str | None:
+    return value if isinstance(value, str) and _SAFE_TOKEN.fullmatch(value) else None
+
+
+def provider_endpoint(provider: str = "openai") -> str:
+    """The endpoint identity recorded (hashed) with a run; retries must match it."""
+    if provider == "azure_openai":
+        return f"{os.environ.get('AZURE_OPENAI_ENDPOINT', '').rstrip('/')}/openai?api-version={os.environ.get('AZURE_OPENAI_API_VERSION', AZURE_OPENAI_API_VERSION)}"
+    return os.environ.get("OPENAI_BASE_URL", OPENAI_DEFAULT_BASE_URL).rstrip("/")
 
 
 def _date_in(text: str) -> str | None:
@@ -223,57 +253,164 @@ _CONTEXT_RULES = (
     "pronoun or defined term with a name found in section_context, cite the text that gives the name in supporting_refs; otherwise "
     "keep the source's wording. "
 )
+_NULL_RULES = (
+    "Every fact field must be present: use null for an absent object, value, unit, date, qualifier or attribution, "
+    "'unspecified' for an unknown date_role, and empty arrays when there are no supporting quotes or refs. "
+)
 
 
 class OpenAICompatible:
-    def __init__(self, *, allow_remote: bool, model: str | None = None, embedding_model: str | None = None, max_output_tokens: int | None = None, reasoning_effort: str | None = None, client: httpx.Client | None = None):
+    """Chat-completions and embeddings client for OpenAI, Azure OpenAI or an OpenAI-compatible server.
+
+    provider="openai" uses OPENAI_BASE_URL (default api.openai.com) and OPENAI_API_KEY.
+    provider="azure_openai" uses AZURE_OPENAI_ENDPOINT with AZURE_OPENAI_API_KEY or a
+    pre-fetched Entra ID token in AZURE_OPENAI_AD_TOKEN; model and embedding_model are
+    deployment names.
+    """
+
+    def __init__(self, *, allow_remote: bool, model: str | None = None, embedding_model: str | None = None, max_output_tokens: int | None = None, reasoning_effort: str | None = None, client: httpx.Client | None = None, provider: str = "openai", output_mode: str = "strict", timeout: float = 120.0, max_retries: int = 4, max_retry_wait: float = 60.0):
         if not allow_remote:
             raise ValueError("Remote processing is disabled. Explicitly pass --allow-remote-sensitive-data after assessing your data-sharing and provider controls.")
-        self.base_url = os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1").rstrip("/")
-        self.api_key = os.environ.get("OPENAI_API_KEY", "")
-        self.model = model or os.environ.get("OPENAI_MODEL", "gpt-4.1-mini")
-        self.embedding_model = embedding_model or os.environ.get("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
+        if provider not in PROVIDERS:
+            raise ValueError(f"Model provider must be one of {', '.join(PROVIDERS)}")
+        if output_mode not in OUTPUT_MODES:
+            raise ValueError(f"Model output mode must be one of {', '.join(OUTPUT_MODES)}")
+        self.provider = provider
+        if provider == "azure_openai":
+            self.base_url = os.environ.get("AZURE_OPENAI_ENDPOINT", "").rstrip("/")
+            self.api_key = os.environ.get("AZURE_OPENAI_API_KEY", "")
+            self.ad_token = os.environ.get("AZURE_OPENAI_AD_TOKEN", "")
+            self.api_version = os.environ.get("AZURE_OPENAI_API_VERSION", AZURE_OPENAI_API_VERSION)
+            self.model = model or os.environ.get("AZURE_OPENAI_DEPLOYMENT", "")
+            self.embedding_model = embedding_model or os.environ.get("AZURE_OPENAI_EMBEDDING_DEPLOYMENT", "")
+            if not self.base_url.startswith("https://"):
+                raise ValueError("AZURE_OPENAI_ENDPOINT must be an https:// resource endpoint")
+            if not (self.api_key or self.ad_token):
+                raise ValueError("AZURE_OPENAI_API_KEY or AZURE_OPENAI_AD_TOKEN is required for Azure OpenAI")
+            if not re.fullmatch(r"[A-Za-z0-9._-]{1,64}", self.api_version):
+                raise ValueError("AZURE_OPENAI_API_VERSION is not a valid API version")
+        else:
+            self.base_url = os.environ.get("OPENAI_BASE_URL", OPENAI_DEFAULT_BASE_URL).rstrip("/")
+            self.api_key = os.environ.get("OPENAI_API_KEY", "")
+            self.ad_token = ""
+            self.api_version = None
+            self.model = model or os.environ.get("OPENAI_MODEL", "gpt-4.1-mini")
+            self.embedding_model = embedding_model or os.environ.get("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
+            if self.base_url == OPENAI_DEFAULT_BASE_URL and not self.api_key:
+                raise ValueError("OPENAI_API_KEY is required for the default provider endpoint")
         self.max_output_tokens = max_output_tokens
         self.reasoning_effort = reasoning_effort
-        if self.base_url == "https://api.openai.com/v1" and not self.api_key:
-            raise ValueError("OPENAI_API_KEY is required for the default provider endpoint")
-        self.client = client or httpx.Client(timeout=90.0)
+        self.output_mode = output_mode
+        self.max_retries = max_retries
+        self.max_retry_wait = max_retry_wait
+        # OpenAI and Azure reject max_tokens for reasoning models; other compatible servers may only know max_tokens.
+        self.token_param = "max_completion_tokens" if provider == "azure_openai" or self.base_url == OPENAI_DEFAULT_BASE_URL else "max_tokens"
+        self.client = client or httpx.Client(timeout=httpx.Timeout(timeout, connect=min(10.0, timeout)))
+        # The last chat call's request ID, attempts and token usage, for the extraction log.
+        self.last_call: dict | None = None
 
-    def _post(self, endpoint: str, payload: dict) -> dict:
-        headers = {"Authorization": f"Bearer {self.api_key}"} if self.api_key else {}
-        for attempt in range(2):
+    def _url(self, operation: str, deployment: str) -> str:
+        if self.provider == "azure_openai":
+            if not deployment:
+                raise ProviderError("Azure OpenAI needs a deployment name for this operation", code="missing_deployment")
+            return f"{self.base_url}/openai/deployments/{quote(deployment, safe='')}/{operation}?api-version={self.api_version}"
+        return f"{self.base_url}/{operation}"
+
+    def _headers(self) -> dict:
+        if self.provider == "azure_openai":
+            return {"api-key": self.api_key} if self.api_key else {"Authorization": f"Bearer {self.ad_token}"}
+        return {"Authorization": f"Bearer {self.api_key}"} if self.api_key else {}
+
+    def _retry_delay(self, attempt: int, response: httpx.Response | None = None) -> float:
+        if response is not None:
+            for header, scale in (("retry-after-ms", 0.001), ("retry-after", 1.0)):
+                try:
+                    return min(self.max_retry_wait, max(0.0, float(response.headers[header]) * scale))
+                except (KeyError, ValueError):
+                    pass
+        return min(self.max_retry_wait, 0.5 * 2 ** attempt) * random.uniform(0.5, 1.0)
+
+    @staticmethod
+    def _error_details(response: httpx.Response) -> tuple[str | None, str | None]:
+        try:
+            error = response.json().get("error")
+        except (ValueError, AttributeError):
+            return None, None
+        if not isinstance(error, dict):
+            return None, None
+        return _safe(error.get("code")) or _safe(error.get("type")), _safe(error.get("param"))
+
+    def _post(self, url: str, payload: dict) -> tuple[dict, dict]:
+        """POST with retries; returns the JSON object and call metadata (request ID, attempts)."""
+        attempts = self.max_retries + 1
+        for attempt in range(attempts):
+            last = attempt == attempts - 1
             try:
-                response = self.client.post(f"{self.base_url}/{endpoint}", headers=headers, json=payload)
-                if response.status_code in {429, 500, 502, 503, 504} and attempt == 0:
-                    time.sleep(0.2)
+                response = self.client.post(url, headers=self._headers(), json=payload)
+            except httpx.HTTPError as exc:
+                if not last:
+                    time.sleep(self._retry_delay(attempt))
                     continue
-                if not response.is_success:
-                    raise ProviderError(f"Provider returned HTTP {response.status_code}")
+                timed_out = isinstance(exc, httpx.TimeoutException)
+                raise ProviderError("Provider request timed out" if timed_out else "Provider request failed", code="timeout" if timed_out else "transport") from None
+            meta = {"request_id": _safe(response.headers.get("x-request-id") or response.headers.get("apim-request-id")), "attempts": attempt + 1}
+            code, param = self._error_details(response) if not response.is_success else (None, None)
+            if response.status_code in _RETRY_STATUS and code != "insufficient_quota" and not last:
+                time.sleep(self._retry_delay(attempt, response))
+                continue
+            if not response.is_success:
+                if code == "content_filter":
+                    raise ProviderError(f"Provider content filter blocked the request (HTTP {response.status_code})", code=code, status=response.status_code, request_id=meta["request_id"])
+                detail = f" ({code}{': ' + param if param else ''})" if code else ""
+                raise ProviderError(f"Provider returned HTTP {response.status_code}{detail}", code=code or f"http_{response.status_code}", status=response.status_code, request_id=meta["request_id"])
+            try:
                 data = response.json()
-                if not isinstance(data, dict):
-                    raise ProviderError("Provider returned a non-object response")
-                return data
-            except ProviderError:
-                raise
-            except (httpx.HTTPError, ValueError):
-                if attempt == 0:
-                    time.sleep(0.2)
-                    continue
-                raise ProviderError("Provider request failed or returned invalid JSON") from None
-        raise ProviderError("Provider request failed")
+            except ValueError:
+                data = None
+            if isinstance(data, dict):
+                return data, meta
+            if not last:
+                time.sleep(self._retry_delay(attempt))
+                continue
+            raise ProviderError("Provider returned invalid JSON", code="invalid_response", status=response.status_code, request_id=meta["request_id"])
+        raise ProviderError("Provider request failed", code="transport")
 
-    def _chat(self, system: str, user_payload: dict) -> dict:
-        payload = {"model": self.model, "temperature": 0, "response_format": {"type": "json_object"}, "messages": [{"role": "system", "content": system}, {"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)}]}
+    def _chat(self, system: str, user_payload: dict, response_model: type, schema: dict | None = None) -> dict:
+        """One chat completion whose content must be a JSON object for response_model.
+
+        In strict mode the provider is constrained by the schema itself; in
+        json_object mode (for compatible servers without json_schema support)
+        the schema is sent in the prompt instead. Either way the caller validates.
+        """
+        self.last_call = None
+        if self.output_mode == "strict":
+            response_format = {"type": "json_schema", "json_schema": {"name": response_model.__name__, "strict": True, "schema": schema or strict_schema(response_model)}}
+        else:
+            response_format = {"type": "json_object"}
+            user_payload = {"schema": response_model.model_json_schema(), **user_payload}
+        payload = {"model": self.model, "response_format": response_format, "messages": [{"role": "system", "content": system}, {"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)}]}
         if self.max_output_tokens is not None:
-            payload["max_tokens"] = self.max_output_tokens
+            payload[self.token_param] = self.max_output_tokens
         if self.reasoning_effort:
+            # Reasoning models accept only their default temperature.
             payload["reasoning_effort"] = self.reasoning_effort
-        response = self._post("chat/completions", payload)
+        else:
+            payload["temperature"] = 0
+        response, meta = self._post(self._url("chat/completions", self.model), payload)
+        usage = response.get("usage") if isinstance(response.get("usage"), dict) else {}
+        self.last_call = {**meta, "prompt_tokens": usage.get("prompt_tokens") if isinstance(usage.get("prompt_tokens"), int) else None, "completion_tokens": usage.get("completion_tokens") if isinstance(usage.get("completion_tokens"), int) else None}
+        rid = meta["request_id"]
         try:
             choice = response["choices"][0]
-            if choice.get("finish_reason") == "length":
-                raise ProviderError("Provider output was truncated; extraction cannot be treated as complete")
-            content = choice["message"]["content"]
+            finish = choice.get("finish_reason")
+            if finish == "length":
+                raise ProviderError("Provider output was truncated; extraction cannot be treated as complete", code="output_truncated", request_id=rid)
+            if finish == "content_filter":
+                raise ProviderError("Provider content filter withheld the output", code="content_filter", request_id=rid)
+            message = choice["message"]
+            if message.get("refusal"):
+                raise ProviderError("Provider refused the request", code="refusal", request_id=rid)
+            content = message["content"]
             if not isinstance(content, str) or len(content) > 200000:
                 raise ValueError()
             result = json.loads(content)
@@ -282,8 +419,11 @@ class OpenAICompatible:
             return result
         except ProviderError:
             raise
-        except (KeyError, IndexError, TypeError, ValueError):
-            raise ProviderError("Provider did not return the requested JSON object") from None
+        except (KeyError, IndexError, TypeError, AttributeError, ValueError):
+            raise ProviderError("Provider did not return the requested JSON object", code="invalid_output", request_id=rid) from None
+
+    def _invalid(self, message: str) -> ProviderError:
+        return ProviderError(message, code="invalid_output", request_id=(self.last_call or {}).get("request_id"))
 
     def extract(self, chunk: dict, requirements: list[dict]) -> list[dict]:
         system = (
@@ -293,19 +433,21 @@ class OpenAICompatible:
             "a table header may be included as a supporting_quote only if it occurs verbatim in the same table. "
             "Use context only for disambiguation; do not imply that a footnote is evidence unless it is actually cited. "
             "Do not infer current ownership from historical acquisitions, do not convert allegations into proven facts, "
-            "and do not invent missing dates or entity identifiers. Use YYYY, YYYY-MM, or YYYY-MM-DD. "
-            + _SCHEMA_RULES + _CONTEXT_RULES +
+            "and do not invent missing dates or entity identifiers. Use YYYY, YYYY-MM, or YYYY-MM-DD, or null when no date is stated. "
+            + _SCHEMA_RULES + _CONTEXT_RULES + _NULL_RULES +
             "supporting_refs may cite only section_context or context_refs, by exact segment ID and exact quote. "
             "Return an empty facts array if no supported claim is present."
         )
-        data = self._chat(system, {"schema": ExtractionResponse.model_json_schema(), "requirements": requirements_payload(requirements), "section": chunk["section_path"], "current_text": chunk["text"], "table_header_context": chunk.get("table_header"), "footnote_context": chunk.get("footnote_context", []), "context_refs": chunk.get("context_refs", []), "section_context": chunk.get("section_context", [])})
+        allowed = sorted({r["category"] for r in requirements if r["applicable"]})
+        schema = strict_schema(ExtractionResponse)
+        schema["$defs"]["CandidateFact"]["properties"]["category"] = {"type": "string", "enum": allowed}
+        data = self._chat(system, {"requirements": requirements_payload(requirements), "section": chunk["section_path"], "current_text": chunk["text"], "table_header_context": chunk.get("table_header"), "footnote_context": chunk.get("footnote_context", []), "context_refs": chunk.get("context_refs", []), "section_context": chunk.get("section_context", [])}, ExtractionResponse, schema)
         try:
             result = ExtractionResponse.model_validate(data)
         except ValidationError:
-            raise ProviderError("Provider extraction did not match the required schema") from None
-        allowed = {r["category"] for r in requirements if r["applicable"]}
+            raise self._invalid("Provider extraction did not match the required schema") from None
         if any(f.category not in allowed for f in result.facts):
-            raise ProviderError("Provider returned a fact outside the applicable coverage contract")
+            raise self._invalid("Provider returned a fact outside the applicable coverage contract")
         return [f.model_dump() for f in result.facts]
 
     def extract_batch(self, chunks: list[dict], requirements: list[dict]) -> dict[str, list[dict]]:
@@ -321,23 +463,26 @@ class OpenAICompatible:
             "do not normalize, shorten, change whitespace, or paraphrase the quote. supporting_quotes must occur in the same source segment; supporting_refs may cite only that chunk's section_context or context_refs by exact segment ID and exact quote. "
             "Preserve approximate/generally qualifiers; do not assert that allegations are findings or that an old stake is current. "
             "Use YYYY, YYYY-MM or YYYY-MM-DD when a date is explicit; otherwise use null. "
-            + _SCHEMA_RULES + _CONTEXT_RULES +
+            + _SCHEMA_RULES + _CONTEXT_RULES + _NULL_RULES +
             "claim_type must be one of assertion, reported_statement, allegation, finding, order, disposition, denial. "
             "Skip claims that cannot be anchored to an exact source quote. Return {\"claims\":[]} if none."
         )
+        allowed_chunks = {c["chunk_id"] for c in chunks}
+        allowed_categories = {r["category"] for r in requirements if r["applicable"]}
+        # Strict mode then cannot produce an unknown chunk or category; the checks below still apply.
+        schema = strict_schema(BatchExtractionResponse)
+        schema["$defs"]["BatchClaim"]["properties"]["chunk_id"] = {"type": "string", "enum": [c["chunk_id"] for c in chunks]}
+        schema["$defs"]["CandidateFact"]["properties"]["category"] = {"type": "string", "enum": sorted(allowed_categories)}
         data = self._chat(system, {
-            "schema": BatchExtractionResponse.model_json_schema(),
             "requirements": requirements_payload(requirements),
             "chunks": [{"chunk_id": c["chunk_id"], "section": c["section_path"], "current_text": c["text"], "table_header_context": c.get("table_header"), "footnote_context": c.get("footnote_context", []), "context_refs": c.get("context_refs", []), "section_context": c.get("section_context", [])} for c in chunks],
-        })
+        }, BatchExtractionResponse, schema)
         try:
             response = BatchExtractionResponse.model_validate(data)
         except ValidationError:
-            raise ProviderError("Provider batch did not match the required schema") from None
-        allowed_chunks = {c["chunk_id"] for c in chunks}
-        allowed_categories = {r["category"] for r in requirements if r["applicable"]}
+            raise self._invalid("Provider batch did not match the required schema") from None
         if any(claim.chunk_id not in allowed_chunks or claim.fact.category not in allowed_categories for claim in response.claims):
-            raise ProviderError("Provider returned an unknown chunk or category")
+            raise self._invalid("Provider returned an unknown chunk or category")
         grouped = {chunk_id: [] for chunk_id in allowed_chunks}
         for claim in response.claims:
             grouped[claim.chunk_id].append(claim.fact.model_dump())
@@ -351,16 +496,16 @@ class OpenAICompatible:
             "Return UNCERTAIN if essential context is missing and UNSUPPORTED if it contradicts the source. "
             "Return only JSON matching the schema. Do not claim external truth."
         )
-        output = self._chat(system, {"schema": SupportResponse.model_json_schema(), "candidate_claim": {k: fact.get(k) for k in ("category", "subject", "predicate", "object", "value", "unit", "effective_date", "claim_type", "attribution")}, "source_quotes": [e["quote"] for e in evidence]})
+        output = self._chat(system, {"candidate_claim": {k: fact.get(k) for k in ("category", "subject", "predicate", "object", "value", "unit", "effective_date", "claim_type", "attribution")}, "source_quotes": [e["quote"] for e in evidence]}, SupportResponse)
         try:
             return SupportResponse.model_validate(output).model_dump()
         except ValidationError:
-            raise ProviderError("Provider verification did not match the required schema") from None
+            raise self._invalid("Provider verification did not match the required schema") from None
 
     def embed(self, texts: list[str]) -> list[list[float]]:
         if not texts:
             return []
-        result = self._post("embeddings", {"model": self.embedding_model, "input": texts})
+        result, _ = self._post(self._url("embeddings", self.embedding_model), {"model": self.embedding_model, "input": texts})
         try:
             items = sorted(result["data"], key=lambda x: x["index"])
             if [item["index"] for item in items] != list(range(len(texts))):
@@ -372,4 +517,4 @@ class OpenAICompatible:
                 raise ValueError()
             return [[float(x) for x in v] for v in vectors]
         except (KeyError, TypeError, ValueError):
-            raise ProviderError("Provider returned invalid embeddings") from None
+            raise ProviderError("Provider returned invalid embeddings", code="invalid_output") from None

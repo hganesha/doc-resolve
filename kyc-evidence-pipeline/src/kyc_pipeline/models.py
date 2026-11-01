@@ -80,3 +80,31 @@ class SupportResponse(BaseModel):
     model_config = ConfigDict(extra="forbid")
     support: Literal["SUPPORTED", "UNSUPPORTED", "UNCERTAIN"]
     explanation: str = Field(max_length=500)
+
+
+# Keywords OpenAI strict structured output rejects or may reject. They are
+# dropped from the request schema only; responses are still validated against
+# the full pydantic model, so lengths and patterns are enforced locally.
+_NOT_STRICT = {"default", "title", "minLength", "maxLength", "pattern", "format", "minItems", "maxItems"}
+
+
+def strict_schema(model: type[BaseModel]) -> dict:
+    """The model's JSON schema in the subset accepted by strict structured output.
+
+    Every property is required and every object is closed; fields that are
+    optional in the model stay nullable, and fields with a non-null default
+    must be given explicitly.
+    """
+    def walk(node, *, names: bool = False):
+        if isinstance(node, list):
+            return [walk(x) for x in node]
+        if not isinstance(node, dict):
+            return node
+        if names:
+            return {k: walk(v) for k, v in node.items()}
+        out = {k: walk(v, names=k in {"properties", "$defs"}) for k, v in node.items() if k not in _NOT_STRICT}
+        if out.get("type") == "object" and "properties" in out:
+            out["required"] = list(out["properties"])
+            out["additionalProperties"] = False
+        return out
+    return walk(model.model_json_schema())

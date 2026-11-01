@@ -14,7 +14,7 @@ from langgraph.types import Command
 
 from .azure_di import AzureLayoutClient, endpoint_from_env
 from .config import load_contract, requirements_for
-from .extraction import OpenAICompatible, ProviderError
+from .extraction import OpenAICompatible, ProviderError, provider_endpoint
 from .graph import build_graph, validate_review_response
 from .local_embeddings import DEFAULT_LOCAL_EMBEDDING_MODEL, LocalEmbeddingProvider
 from .ownership import to_mermaid
@@ -63,6 +63,30 @@ def _positive_int(value: str) -> int:
         raise argparse.ArgumentTypeError("Value must be an integer from 1 to 200000") from None
 
 
+def _retries(value: str) -> int:
+    try:
+        number = int(value)
+        if not 0 <= number <= 10:
+            raise ValueError()
+        return number
+    except ValueError:
+        raise argparse.ArgumentTypeError("Retries must be an integer from 0 to 10") from None
+
+
+def _timeout(value: str) -> float:
+    try:
+        number = float(value)
+        if not 5 <= number <= 900:
+            raise ValueError()
+        return number
+    except ValueError:
+        raise argparse.ArgumentTypeError("Timeout must be between 5 and 900 seconds") from None
+
+
+def _provider_option(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument("--model-provider", choices=["openai", "azure-openai"], default="openai", help="openai: OPENAI_BASE_URL (OpenAI or a compatible server). azure-openai: AZURE_OPENAI_ENDPOINT; --model and --embedding-model are deployment names")
+
+
 def _interval(value: str) -> float:
     try:
         number = float(value)
@@ -85,6 +109,7 @@ def make_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("profiles", help="List declarative processing profiles and illustrative coverage categories")
     p.add_argument("--profiles-file")
     p.add_argument("--policy-file")
+    p.add_argument("--schemas-file", help="Typed extraction schemas (defaults to the bundled illustrative set)")
     p = sub.add_parser("ingest", help="Parse and prepare one document")
     p.add_argument("file")
     p.add_argument("--case-id", type=_case, required=True)
@@ -99,12 +124,17 @@ def make_parser() -> argparse.ArgumentParser:
     p.add_argument("--max-model-requests", type=_positive_int, default=20, help="Extraction request budget; remaining chunks are NOT_REVIEWED (default: 20)")
     p.add_argument("--model-request-interval", type=_interval, default=0.0, help="Minimum seconds between model extraction requests")
     p.add_argument("--model-max-tokens", type=_positive_int, help="Optional output token limit for providers that support max_tokens")
-    p.add_argument("--model-reasoning-effort", choices=["low", "medium", "high"], help="Optional provider-specific reasoning_effort")
+    p.add_argument("--model-reasoning-effort", choices=["low", "medium", "high"], help="Optional provider-specific reasoning_effort (temperature is then left at the model's default)")
+    _provider_option(p)
+    p.add_argument("--model-output", choices=["strict", "json-object"], default="strict", help="strict: JSON-schema structured output (default). json-object: for compatible servers without json_schema support")
+    p.add_argument("--model-timeout", type=_timeout, default=120.0, help="Seconds to wait for one model response (default: 120)")
+    p.add_argument("--model-max-retries", type=_retries, default=4, help="Retries with exponential backoff for rate limits, timeouts and 5xx errors (default: 4)")
     p.add_argument("--allow-remote-sensitive-data", action="store_true", help="Explicitly permit sending document content to the configured API endpoint")
-    p.add_argument("--model", default=os.environ.get("OPENAI_MODEL", "gpt-4.1-mini"))
+    p.add_argument("--model", help="Chat model, or the Azure deployment name (defaults: OPENAI_MODEL or gpt-4.1-mini; AZURE_OPENAI_DEPLOYMENT)")
     p.add_argument("--embedding-model", help="Dense embedding model; defaults depend on --embeddings")
     p.add_argument("--profiles-file")
     p.add_argument("--policy-file")
+    p.add_argument("--schemas-file", help="Typed extraction schemas (defaults to the bundled illustrative set)")
     _db_options(p, checkpoint=True)
     p = sub.add_parser("resume", help="Resume an interrupted run using a human review JSON file")
     p.add_argument("--run-id", required=True)
@@ -133,6 +163,7 @@ def make_parser() -> argparse.ArgumentParser:
     p.add_argument("--top-k", type=int, default=5)
     p.add_argument("--embeddings", choices=["lexical", "openai", "local"], default="lexical")
     p.add_argument("--embedding-model", help="Dense embedding model; defaults depend on --embeddings")
+    _provider_option(p)
     p.add_argument("--allow-remote-sensitive-data", action="store_true")
     _db_options(p)
     p = sub.add_parser("segment", help="Inspect the normalized source segment behind an evidence offset")
@@ -162,14 +193,34 @@ def _parser_endpoint_hash(parser: str) -> str | None:
     return digest(endpoint_from_env()) if parser == "azure_di" else None
 
 
-def _preflight_remote(extractor: str, embeddings: str, verify_material: bool, allow_remote: bool, model: str, embedding_model: str, parser: str = "native") -> None:
+def _default_model(provider: str) -> str:
+    return os.environ.get("AZURE_OPENAI_DEPLOYMENT", "") if provider == "azure_openai" else os.environ.get("OPENAI_MODEL", "gpt-4.1-mini")
+
+
+def _default_embedding_model(embeddings: str, provider: str) -> str:
+    if embeddings == "local":
+        return os.environ.get("LOCAL_EMBEDDING_MODEL", DEFAULT_LOCAL_EMBEDDING_MODEL)
+    if provider == "azure_openai":
+        return os.environ.get("AZURE_OPENAI_EMBEDDING_DEPLOYMENT", "")
+    return os.environ.get("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
+
+
+def _endpoint_hash(extractor: str, embeddings: str, provider: str) -> str | None:
+    return digest(provider_endpoint(provider)) if extractor == "openai" or embeddings == "openai" else None
+
+
+def _preflight_remote(extractor: str, embeddings: str, verify_material: bool, allow_remote: bool, model: str, embedding_model: str, parser: str = "native", provider: str = "openai") -> None:
     if parser == "azure_di":
         AzureLayoutClient(allow_remote=allow_remote).client.close()
     if verify_material and extractor != "openai":
         raise ValueError("--verify-material requires --extractor openai")
     if extractor == "openai" or embeddings == "openai":
-        provider = OpenAICompatible(allow_remote=allow_remote, model=model, embedding_model=embedding_model)
-        provider.client.close()
+        client = OpenAICompatible(allow_remote=allow_remote, model=model, embedding_model=embedding_model, provider=provider)
+        client.client.close()
+        if provider == "azure_openai" and extractor == "openai" and not model:
+            raise ValueError("Azure OpenAI needs the chat deployment name: pass --model or set AZURE_OPENAI_DEPLOYMENT")
+        if provider == "azure_openai" and embeddings == "openai" and not embedding_model:
+            raise ValueError("Azure OpenAI embeddings need a deployment name: pass --embedding-model or set AZURE_OPENAI_EMBEDDING_DEPLOYMENT")
 
 
 def _interrupt_value(result: dict) -> dict | None:
@@ -218,7 +269,7 @@ def _write_output(data: dict | str, output: str | None = None) -> None:
 
 def execute(args: argparse.Namespace) -> dict | str:
     if args.command == "profiles":
-        contract = load_contract(args.profiles_file, args.policy_file)
+        contract = load_contract(args.profiles_file, args.policy_file, args.schemas_file)
         return {"policy_id": contract["policy"]["policy_id"], "profiles": [{"profile_id": pid, **p, "requirements": requirements_for(contract, p)} for pid, p in contract["profiles"].items()], "note": "Profiles and policy are illustrative, not bank-approved policy."}
     store = EvidenceStore(args.db)
     if args.command == "report":
@@ -239,10 +290,11 @@ def execute(args: argparse.Namespace) -> dict | str:
         return segment
     if args.command == "query":
         provider = None
+        model_provider = args.model_provider.replace("-", "_")
         if args.embeddings == "openai":
-            provider = OpenAICompatible(allow_remote=args.allow_remote_sensitive_data, embedding_model=args.embedding_model or os.environ.get("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small"))
+            provider = OpenAICompatible(allow_remote=args.allow_remote_sensitive_data, embedding_model=args.embedding_model or _default_embedding_model("openai", model_provider), provider=model_provider)
         elif args.embeddings == "local":
-            provider = LocalEmbeddingProvider(args.embedding_model or os.environ.get("LOCAL_EMBEDDING_MODEL", DEFAULT_LOCAL_EMBEDDING_MODEL))
+            provider = LocalEmbeddingProvider(args.embedding_model or _default_embedding_model("local", model_provider))
         try:
             chunks = store.current_chunks(args.case_id)
             if not chunks:
@@ -255,13 +307,14 @@ def execute(args: argparse.Namespace) -> dict | str:
     with SqliteSaver.from_conn_string(checkpoint_path) as saver:
         graph = build_graph(store, saver)
         if args.command == "ingest":
-            contract = load_contract(args.profiles_file, args.policy_file)
-            if not args.embedding_model:
-                args.embedding_model = os.environ.get("LOCAL_EMBEDDING_MODEL", DEFAULT_LOCAL_EMBEDDING_MODEL) if args.embeddings == "local" else os.environ.get("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
+            contract = load_contract(args.profiles_file, args.policy_file, args.schemas_file)
+            model_provider = args.model_provider.replace("-", "_")
+            args.model = args.model or _default_model(model_provider)
+            args.embedding_model = args.embedding_model or _default_embedding_model(args.embeddings, model_provider)
             parser = args.parser.replace("-", "_")
-            _preflight_remote(args.extractor, args.embeddings, args.verify_material, args.allow_remote_sensitive_data, args.model, args.embedding_model, parser)
+            _preflight_remote(args.extractor, args.embeddings, args.verify_material, args.allow_remote_sensitive_data, args.model, args.embedding_model, parser, model_provider)
             run_id = _new_run_id()
-            state = {"run_id": run_id, "case_id": args.case_id, "started_at": utc_now(), "doc_path": str(Path(args.file).expanduser().resolve()), "requested_profile": args.profile, "contract": contract, "parser": parser, "parser_endpoint_sha256": _parser_endpoint_hash(parser), "extractor": args.extractor, "embeddings": args.embeddings, "allow_remote": args.allow_remote_sensitive_data, "verify_material": args.verify_material, "model": args.model, "embedding_model": args.embedding_model, "extraction_pages": args.extract_pages, "model_batch_size": args.model_batch_size, "model_batch_max_chars": args.model_batch_max_chars, "max_model_requests": args.max_model_requests, "model_request_interval": args.model_request_interval, "model_max_tokens": args.model_max_tokens, "model_reasoning_effort": args.model_reasoning_effort, "provider_endpoint_sha256": digest(os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1").rstrip("/")) if args.extractor == "openai" or args.embeddings == "openai" else None, "retry_from_run": None, "expected_document_sha256": None}
+            state = {"run_id": run_id, "case_id": args.case_id, "started_at": utc_now(), "doc_path": str(Path(args.file).expanduser().resolve()), "requested_profile": args.profile, "contract": contract, "parser": parser, "parser_endpoint_sha256": _parser_endpoint_hash(parser), "extractor": args.extractor, "embeddings": args.embeddings, "allow_remote": args.allow_remote_sensitive_data, "verify_material": args.verify_material, "model": args.model, "embedding_model": args.embedding_model, "extraction_pages": args.extract_pages, "model_batch_size": args.model_batch_size, "model_batch_max_chars": args.model_batch_max_chars, "max_model_requests": args.max_model_requests, "model_request_interval": args.model_request_interval, "model_max_tokens": args.model_max_tokens, "model_reasoning_effort": args.model_reasoning_effort, "model_provider": model_provider, "model_output_mode": args.model_output.replace("-", "_"), "model_timeout": args.model_timeout, "model_max_retries": args.model_max_retries, "provider_endpoint_sha256": _endpoint_hash(args.extractor, args.embeddings, model_provider), "retry_from_run": None, "expected_document_sha256": None}
             store.start_run(run_id, args.case_id, state["started_at"])
             return _drive(graph, store, run_id, args.case_id, state)
         row = store.get_run(args.run_id)
@@ -288,15 +341,16 @@ def execute(args: argparse.Namespace) -> dict | str:
             path = Path(args.file or prior["doc_path"]).expanduser().resolve()
             if not path.is_file() or digest(path.read_bytes()) != prior["document"]["sha256"]:
                 raise ValueError("Retry requires the identical original source bytes; use ingest for changed documents")
-            _preflight_remote(prior["extractor"], prior["embeddings"], prior.get("verify_material", False), args.allow_remote_sensitive_data, prior["model"], prior["embedding_model"])
-            endpoint_hash = digest(os.environ.get("OPENAI_BASE_URL", "https://api.openai.com/v1").rstrip("/")) if prior["extractor"] == "openai" or prior["embeddings"] == "openai" else None
+            model_provider = prior.get("model_provider", "openai")
+            _preflight_remote(prior["extractor"], prior["embeddings"], prior.get("verify_material", False), args.allow_remote_sensitive_data, prior["model"], prior["embedding_model"], provider=model_provider)
+            endpoint_hash = _endpoint_hash(prior["extractor"], prior["embeddings"], model_provider)
             if endpoint_hash != prior.get("provider_endpoint_sha256"):
                 raise ValueError("Retry requires the same provider endpoint; use a fresh ingestion if it changed")
             parser = prior.get("parser", "native")
             if _parser_endpoint_hash(parser) != prior.get("parser_endpoint_sha256"):
                 raise ValueError("Retry requires the same Azure Document Intelligence endpoint; use a fresh ingestion if it changed")
             new_id = _new_run_id()
-            state = {"run_id": new_id, "case_id": prior["case_id"], "started_at": utc_now(), "doc_path": str(path), "requested_profile": prior["profile_id"], "contract": prior["contract"], "parser": parser, "parser_endpoint_sha256": prior.get("parser_endpoint_sha256"), "extractor": prior["extractor"], "embeddings": prior["embeddings"], "allow_remote": args.allow_remote_sensitive_data, "verify_material": prior.get("verify_material", False), "model": prior["model"], "embedding_model": prior["embedding_model"], "extraction_pages": prior.get("extraction_pages"), "model_batch_size": prior.get("model_batch_size", 12), "model_batch_max_chars": prior.get("model_batch_max_chars", 18000), "max_model_requests": prior.get("max_model_requests", 20), "model_request_interval": prior.get("model_request_interval", 0.0), "model_max_tokens": prior.get("model_max_tokens"), "model_reasoning_effort": prior.get("model_reasoning_effort"), "provider_endpoint_sha256": endpoint_hash, "retry_from_run": args.run_id, "expected_document_sha256": prior["document"]["sha256"]}
+            state = {"run_id": new_id, "case_id": prior["case_id"], "started_at": utc_now(), "doc_path": str(path), "requested_profile": prior["profile_id"], "contract": prior["contract"], "parser": parser, "parser_endpoint_sha256": prior.get("parser_endpoint_sha256"), "extractor": prior["extractor"], "embeddings": prior["embeddings"], "allow_remote": args.allow_remote_sensitive_data, "verify_material": prior.get("verify_material", False), "model": prior["model"], "embedding_model": prior["embedding_model"], "extraction_pages": prior.get("extraction_pages"), "model_batch_size": prior.get("model_batch_size", 12), "model_batch_max_chars": prior.get("model_batch_max_chars", 18000), "max_model_requests": prior.get("max_model_requests", 20), "model_request_interval": prior.get("model_request_interval", 0.0), "model_max_tokens": prior.get("model_max_tokens"), "model_reasoning_effort": prior.get("model_reasoning_effort"), "model_provider": model_provider, "model_output_mode": prior.get("model_output_mode", "strict"), "model_timeout": prior.get("model_timeout", 120.0), "model_max_retries": prior.get("model_max_retries", 4), "provider_endpoint_sha256": endpoint_hash, "retry_from_run": args.run_id, "expected_document_sha256": prior["document"]["sha256"]}
             store.start_run(new_id, state["case_id"], state["started_at"])
             if row["finished_at"] is None and row["status"] in {"REVIEW_REQUIRED", "FAILED", "PROCESSING"}:
                 store.set_run_status(args.run_id, "SUPERSEDED")

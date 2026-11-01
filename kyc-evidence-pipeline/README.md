@@ -19,16 +19,17 @@ Document → parse + classify → structure/chunk → index
 ```
 
 - **Two distinct paths:** retrieval searches the source chunks; extraction independently processes every parsed chunk against the applicable document-family contract. Retrieval results are not treated as proof of completeness.
-- **Ten declarative document-family profiles** and a separate illustrative policy/coverage contract. Three starter examples cover a financial report, registry extract, and adverse-media article; the remaining profiles are templates, not fully tuned specialist extractors.
+- **Ten declarative document-family profiles** and a separate illustrative policy/coverage contract. Each profile's settings change how it is chunked (where long text may be split, whether field records stay whole) and what surrounding text the model sees. Three starter examples cover a financial report, registry extract, and adverse-media article; the remaining profiles are templates, not fully tuned specialist extractors.
+- **Typed extraction schemas:** each category lists the predicates it accepts and the fields each one needs (object, value type and unit, date, claim type). Off-schema predicates are rejected, and claims that don't fit are flagged. Single-valued attributes, such as legal name, jurisdiction and identifiers, are checked for conflicts across the case (see below).
 - **Structure and provenance:** sections, paragraphs, table rows and headers, linked Markdown footnotes, page numbers and PDF block/table coordinates where available. Quotes carry a document SHA-256, normalized segment SHA-256, exact Unicode-code-point offsets, source locator, and representation type. Table reconstruction is identified as such.
 - **Atomic facts, evidence and findings** are separate. Every extracted claim remains `PENDING_HUMAN`; exact quote matching and optional model source-support checks do not establish external truth or legal identity.
 - **Coverage and gaps:** section inventory, processed/failed chunks, category status and explicit unresolved issues. Available statuses are `FOUND`, `NOT_FOUND_AFTER_REVIEW`, `NOT_APPLICABLE`, `NOT_REVIEWED`, `EXTRACTION_FAILED`, and `CONFLICTED`. A negative automated review is not proof of absence. Parsing gaps (un-OCR'd images, inferred tables, thin pages) do not void what was extracted elsewhere: each category records `source_fully_parsed` and `parse_gap_pages`, cannot be `NOT_FOUND_AFTER_REVIEW` while gaps remain, and a material category with gaps stays an unresolved requirement. `EXTRACTION_FAILED` is reserved for failed chunks, an unparseable document, or open claim-level issues in that category.
 - **Entity layer:** links each fact's subject (and owned or controlled party) to an entity using the document's own definitions, SEC cover-page and registry identity, and identifier-first matching across the case (see below).
 - **Ownership graph:** builds who-holds-what across the case from the linked facts, with stakes as low–high ranges, look-through interests through chains, control from voting rights or majority stakes, and checks for holdings above 100% and cycles (see below).
-- **Conservative reconciliation:** matching on resolved entities (text only where unresolved), same/overlapping-date ownership conflicts, duplicate-like source claims, and older ownership snapshots followed by disposals. Different dated stakes are not automatically contradictions. No current percentage is inferred from a partial disposal.
+- **Conservative reconciliation:** matching on resolved entities (text only where unresolved), same/overlapping-date ownership conflicts, conflicting single-valued attributes such as two legal names for one entity, duplicate-like source claims, and older ownership snapshots followed by disposals. Different dated stakes are not automatically contradictions. No current percentage is inferred from a partial disposal.
 - **Human intervention:** a LangGraph interrupt includes the issues, related facts and source quotes. Review decisions are persisted with self-reported reviewer attribution. Deferring an issue does not resolve it; resolving a possible conflict preserves all source claims and does not automatically verify either claim.
 - **Checkpoints and retry:** graph stages are checkpointed in SQLite; extraction results are cached per chunk. A retry of identical source bytes and the same configuration reuses successful units and retries failed ones. An optimistic case-revision check prevents persisting conclusions based on a case that changed during processing or review.
-- **Offline by default:** BM25 retrieval and intentionally narrow rule extraction require no API key and make no network calls. Optional local neural embeddings run on your machine after downloading model weights; optional OpenAI-compatible extraction, material-fact source-support checks and embeddings require explicit data-sharing opt-in. A model-request budget and optional PDF page scope mark remaining chunks as not reviewed.
+- **Offline by default:** BM25 retrieval and intentionally narrow rule extraction require no API key and make no network calls. Optional local neural embeddings run on your machine after downloading model weights; optional model extraction, material-fact source-support checks and embeddings (OpenAI, Azure OpenAI or an OpenAI-compatible server, with strict structured output and retries) require explicit data-sharing opt-in. A model-request budget and optional PDF page scope mark remaining chunks as not reviewed.
 
 ## Requirements and quick start
 
@@ -99,7 +100,7 @@ RUN_ID=$(python -c "import json; print(json.load(open('pause.json'))['run_id'])"
 kyc-pipeline resume --run-id "$RUN_ID" --decision decision.json
 ```
 
-Each pending high-severity issue needs exactly one decision. `defer` leaves it open. For a `POSSIBLE_OWNERSHIP_CONFLICT`, the request also permits `resolve` with a nonempty reason and exactly one `selected_fact_ids` value copied from that issue. All conflicting claims remain stored; reviewer identity is **not authenticated** in this POC. Parse failures, unsupported source claims and stale ownership can only be deferred here; obtain better evidence or reprocess an improved source rather than declaring them resolved without support.
+Each pending high-severity issue needs exactly one decision. `defer` leaves it open. For a `POSSIBLE_OWNERSHIP_CONFLICT` or `POSSIBLE_ATTRIBUTE_CONFLICT`, the request also permits `resolve` with a nonempty reason and exactly one `selected_fact_ids` value copied from that issue. All conflicting claims remain stored; reviewer identity is **not authenticated** in this POC. Parse failures, unsupported source claims and stale ownership can only be deferred here; obtain better evidence or reprocess an improved source rather than declaring them resolved without support.
 
 Check a paused run without consuming it:
 
@@ -152,7 +153,7 @@ Only use a model endpoint after confirming that sending the specific documents a
 
 ```bash
 export OPENAI_API_KEY='...'
-export OPENAI_MODEL='your-model-supporting-json-object-mode'
+export OPENAI_MODEL='your-model-supporting-structured-outputs'
 # Optional; default is https://api.openai.com/v1
 export OPENAI_BASE_URL='https://your-approved-openai-compatible-endpoint/v1'
 # Optional, only for dense search:
@@ -167,6 +168,33 @@ kyc-pipeline ingest examples/synthetic_annual_report.txt \
 
 Model extraction groups chunks into bounded requests. The default `--max-model-requests 20` is a cost/safety cap; chunks beyond that limit are `NOT_REVIEWED`. To attempt a full large report, explicitly set an appropriate higher budget after estimating cost and capacity. `--extract-pages 45` (or `13,38,45-47`) intentionally limits extraction to selected physical pages; all other parsed chunks remain unreviewed, even when a category has a `FOUND` claim. Use `--model-batch-size`, `--model-batch-max-chars`, and `--model-request-interval` for provider limits. `--model-max-tokens` and `--model-reasoning-effort` are optional, provider-specific parameters. The extraction-request budget does not include optional embeddings or per-fact verification calls.
 
+### How model calls behave
+
+- **Strict output.** Requests use JSON-schema structured output (`response_format` type `json_schema`, `strict: true`), built from the same pydantic models that validate the reply. Each batch's schema also limits `chunk_id` to the chunks sent and `category` to the applicable categories. Length and pattern limits are not sent (strict mode does not accept all of them) but are still enforced when the reply is validated. For a compatible server without `json_schema` support, pass `--model-output json-object`; the schema then goes in the prompt instead.
+- **Retries.** Rate limits (429), timeouts, connection errors and 408/409/5xx responses are retried up to `--model-max-retries` times (default 4) with exponential backoff and jitter, honouring `retry-after-ms` and `Retry-After` up to 60 seconds. A 429 for exhausted quota and other 4xx errors fail at once. `--model-timeout` (default 120 seconds) bounds each response.
+- **Failures say why.** Errors name the HTTP status and the provider's error code and parameter, for example `Provider returned HTTP 400 (unsupported_parameter: temperature)`, plus the provider's request ID in the extraction log (`provider_request_id`). Response bodies and document text are never included. Truncated output, a content-filter block, a model refusal and schema-invalid output each fail closed with their own `error_code`.
+- **Truncated or filtered batches are split.** If a batch is truncated or blocked by a content filter, it is halved and each half retried, down to single chunks, so one long or filtered chunk fails alone. Split requests count against `--max-model-requests`.
+- **Usage.** Each extraction unit records its request's ID, attempts and token counts (`model_call`); the run summary totals them in `model_usage`.
+- **Reasoning models.** With `--model-reasoning-effort`, `temperature` is not sent. `--model-max-tokens` is sent as `max_completion_tokens` to OpenAI and Azure and as `max_tokens` to other servers.
+
+### Azure OpenAI
+
+```bash
+export AZURE_OPENAI_ENDPOINT='https://your-resource.openai.azure.com'
+export AZURE_OPENAI_API_KEY='...'          # or AZURE_OPENAI_AD_TOKEN for an Entra ID token
+export AZURE_OPENAI_DEPLOYMENT='your-chat-deployment'
+export AZURE_OPENAI_EMBEDDING_DEPLOYMENT='your-embedding-deployment'   # only for --embeddings openai
+# Optional; default 2024-10-21 (the first GA version with strict structured output)
+export AZURE_OPENAI_API_VERSION='2024-10-21'
+
+kyc-pipeline ingest examples/synthetic_annual_report.txt \
+  --case-id azure-demo --profile financial_annual_report \
+  --extractor openai --model-provider azure-openai \
+  --allow-remote-sensitive-data
+```
+
+`--model-provider azure-openai` calls `/openai/deployments/{deployment}/chat/completions?api-version=...` with the `api-key` header. `--model` and `--embedding-model` then name deployments and override the environment variables. The `openai` choices of `--extractor` and `--embeddings` mean "the configured model provider". An Entra ID token is used as given and not refreshed, so a long run needs a token that outlives it. Azure's content filters may block passages in adverse-media, litigation or sanctions documents; those chunks are reported as `EXTRACTION_FAILED` with `error_code` `content_filter`, never silently dropped. Ask your Azure administrator about a filter configuration suited to this content.
+
 `--verify-material` makes an additional model call for each material candidate claim to check whether its **cited text** supports it. It does not check external truth, sanctions status or identity. A `SUPPORTED` verdict is still provisional; `UNSUPPORTED`, `UNCERTAIN`, errors, or missing literal fields create review issues. Model output must match a strict JSON schema and cite exact source text. Truncated or schema-invalid output marks the chunk as failed. A claim whose citation is not in the source is discarded and raises `CANDIDATE_CITATION_REJECTED` for that claim's category only; `retry` re-extracts those chunks rather than reusing them. Document content is treated as untrusted data, but prompt-injection resistance is not guaranteed.
 
 For hybrid query-time retrieval, the question is also sent to the configured embedding endpoint:
@@ -176,7 +204,7 @@ kyc-pipeline query --case-id model-demo --query 'Who controls Birch Ltd?' \
   --embeddings openai --allow-remote-sensitive-data
 ```
 
-Use the same embedding model as indexing. Missing, failed, incompatible or mismatched embeddings fall back to lexical search with a warning. The endpoint must implement OpenAI-style `/chat/completions` with JSON-object mode and/or `/embeddings`; no live provider is needed for the test suite. A retry that uses a model requires `--allow-remote-sensitive-data` again and the same endpoint. Model providers can change behavior under a stable model name; cached responses are not an independent validation.
+Use the same embedding model as indexing. Missing, failed, incompatible or mismatched embeddings fall back to lexical search with a warning. The endpoint must implement OpenAI-style `/chat/completions` with JSON-schema (or, with `--model-output json-object`, JSON-object) output and/or `/embeddings`; no live provider is needed for the test suite. A retry that uses a model requires `--allow-remote-sensitive-data` again and the same provider and endpoint (for Azure, the same API version); it reuses the original run's output mode, timeout and retry settings. Model providers can change behavior under a stable model name; cached responses are not an independent validation.
 
 ## Optional Azure Document Intelligence parser
 
@@ -248,17 +276,49 @@ Not yet covered:
 
 ## Profiles and policy
 
-`src/kyc_pipeline/configs/document_profiles.yaml` defines family, classification signals and chunk sizes; `src/kyc_pipeline/configs/kyc_policy.yaml` defines illustrative category guidance and materiality per family. They are separate because document processing and bank policy are different concerns. Replace them with approved configurations, for example:
+Three files configure the pipeline, kept apart because document processing, bank policy and fact definitions are different concerns:
+
+- `configs/document_profiles.yaml`: family, classification signals, chunk sizes and chunking settings per profile;
+- `configs/kyc_policy.yaml`: illustrative category guidance and materiality per family, plus ownership graph settings;
+- `configs/extraction_schemas.yaml`: the typed predicates each category accepts, reusable across policies.
+
+Replace them with approved configurations, for example:
 
 ```bash
 kyc-pipeline ingest my-report.pdf --case-id case-42 \
   --profile financial_annual_report \
-  --profiles-file approved-profiles.yaml --policy-file approved-policy.yaml
+  --profiles-file approved-profiles.yaml --policy-file approved-policy.yaml \
+  --schemas-file approved-schemas.yaml
 ```
+
+`kyc-pipeline profiles` lists each profile with its settings, requirements and predicates. Each run records the SHA-256 of all three files, and a change to any of them invalidates the extraction cache.
 
 For a specific family, an explicit policy requirement may be written as `{category: ownership, applicable: false, reason: 'documented rationale'}`. `NOT_APPLICABLE` requires that reason; it is not inferred from missing evidence. The included policy is **illustrative only**, not a regulatory rule or a bank-approved policy.
 
-The strategy names in the ten profiles are configuration labels for the intended document treatment; this POC uses one shared generic structure/table engine with profile-specific window sizes. It does not yet implement distinct clause-, transaction-, or chronology-aware parsers for every profile, and field groupings depend on the parsed record/paragraph boundaries.
+### Chunking settings
+
+A profile's `strategy` is a label. Three settings change behaviour:
+
+| Setting | Values | Effect |
+|---|---|---|
+| `boundary` | `whitespace`, `sentence`, `clause` | Where a segment longer than `max_chars` may be split. `sentence` splits at sentence ends and starts each overlap at a sentence. `clause` splits first before numbered clauses (`1.`, `(a)`, `2.1`, `Section 3`). `whitespace` is the old behaviour. |
+| `keep_records_whole` | `true`, `false` | Keeps a field record (two or more `Label: value` lines making up at least half its lines) in one chunk, up to four times `max_chars`. A registry's registration number then stays with its legal name instead of falling back to `UNRESOLVED_REGISTRY_SUBJECT`. A larger record is split and flagged `OVERSIZED_FIELD_RECORD_SPLIT`. |
+| `context_unit` | `parent_section`, `document_header`, `none` | Text attached to each chunk as `section_context`. `parent_section` gives the section's opening paragraph and the paragraph before the chunk. `document_header` gives the document's first three paragraphs (title, caption, publisher, date). |
+
+The model sees `section_context` beside each chunk so it can resolve "we", "the Company", units and titles. It must still quote claims from the chunk itself. If it replaces a pronoun with a name from the context, it must cite that text in `supporting_refs`, which are checked against the exact source like any other quote. Local rules ignore the context.
+
+These settings only choose split points and context; they are not separate clause-, transaction- or chronology-aware parsers, and they work within the segments the parser produced. Most PDF text blocks are shorter than `max_chars`, so on the two annual reports only a few blocks split differently.
+
+### Typed extraction schemas
+
+`extraction_schemas.yaml` declares predicates per category. Each one sets whether an object is required, the value type (`percent`, `amount`, `count`, `text` or none), whether a value or date is required, and optionally the allowed `date_roles` and `claim_types`, an `evidence_terms` pattern the cited text must match, and `single_valued`.
+
+- **Typed and open categories.** A category with declared predicates is typed: a candidate using any other predicate is discarded and raises `CANDIDATE_SCHEMA_REJECTED`, which marks that category `EXTRACTION_FAILED`. Categories with none (identity fields, address, sanctions, funds, transactions, prior decisions, discrepancies) are open: their facts are kept with `schema_check.status: UNTYPED`.
+- **Field checks.** Each fact records `schema_check` (`CONFORMS`, `VIOLATIONS` or `UNTYPED`). A violation, such as a stake given in dollars, revenue without a period, or an accusation recorded as a finding, raises `FACT_SCHEMA_VIOLATION`. A numeric string such as `"27.5"` is converted to a number where the schema expects one. `evidence_terms` replaces the earlier hard-coded wording checks (`PREDICATE_NOT_LITERAL_IN_EVIDENCE`).
+- **The model sees the schema.** Each category is sent with its predicates and field rules, replacing the four predicate names that were hard-coded in the prompt.
+- **Single-valued attributes.** Legal name, registration number, jurisdiction, legal status, LEI, SEC file number and EIN are `single_valued`. Two facts for the same entity with different values, in overlapping or undated periods, raise `POSSIBLE_ATTRIBUTE_CONFLICT` (high), which a reviewer can resolve by selecting one fact. Values are compared after normalizing case, punctuation and legal forms, so `BERKSHIRE HATHAWAY INC.` and `Berkshire Hathaway Incorporated` agree, and so do `12-3456789` and `123456789`. Facts whose subject is unresolved are not compared. A conflict may be a real rename or re-domiciling, or a sign that two entities were wrongly merged.
+
+The schemas are illustrative. They cover the categories of the four priority families (financial statements, ownership and control, regulatory and legal, adverse media) plus registry identity and licensing.
 
 The local rules intentionally recognize only a small set of literal patterns: simple registry fields, some ownership percentages and repurchases, contractual voting rights, selected legal-proceeding phrases, simple consolidated revenue rows, and a basic allegation phrase. They do not cover ordinary variations comprehensively. They do **not** perform an exhaustive semantic review. A category with no matched rule is `NOT_REVIEWED`, not `NOT_FOUND_AFTER_REVIEW`. A `FOUND` record only means a candidate was found; it does not imply the category is exhaustive or the fact is verified.
 
@@ -290,12 +350,13 @@ The thresholds (25% reporting, 50% control) and the chain depth are illustrative
 
 ```text
 src/kyc_pipeline/
-  configs/              # processing profiles and separate illustrative policy
+  configs/              # processing profiles, illustrative policy, typed extraction schemas
+  schemas.py            # typed predicate schema validation and per-fact checks
   parsing.py            # format adapters and parse-gap tracking
   azure_di.py           # opt-in Azure Document Intelligence layout client and segment mapping
   entities.py           # defined terms, cover-page/registry identity, document and case entity resolution
-  chunking.py           # sections, child windows, tables, footnote context
-  extraction.py         # local rules and opt-in batched OpenAI-compatible provider
+  chunking.py           # sections, boundary-aware windows, field records, tables, footnote and section context
+  extraction.py         # local rules and opt-in batched OpenAI / Azure OpenAI client (strict output, retries)
   evidence.py           # exact spans, atomic claims, material source checks
   reconciliation.py     # conservative claims, date and conflict checks
   ownership.py          # ownership/control graph, look-through interests, graph checks

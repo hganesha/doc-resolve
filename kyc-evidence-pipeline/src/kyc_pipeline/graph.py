@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections import deque
 from typing import Any, Callable, TypedDict
 import time
 
@@ -22,7 +23,10 @@ from .store import EvidenceStore
 from .util import digest, json_text, utc_now
 
 # Increment whenever extraction prompts, rules, or output schema change.
-EXTRACTION_CACHE_VERSION = {"rules": "7", "openai": "4"}
+EXTRACTION_CACHE_VERSION = {"rules": "7", "openai": "5"}
+# A batch that fails for one of these reasons is split in half and retried, so
+# one long or filtered chunk does not cost the whole batch.
+_SPLIT_ON = {"output_truncated", "content_filter"}
 
 
 class PipelineState(TypedDict, total=False):
@@ -47,6 +51,11 @@ class PipelineState(TypedDict, total=False):
     model_request_interval: float
     model_max_tokens: int | None
     model_reasoning_effort: str | None
+    model_provider: str
+    model_output_mode: str
+    model_timeout: float
+    model_max_retries: int
+    model_usage: dict
     provider_endpoint_sha256: str | None
     retry_from_run: str | None
     expected_document_sha256: str | None
@@ -73,7 +82,7 @@ class PipelineState(TypedDict, total=False):
 
 
 def _provider(state: PipelineState) -> OpenAICompatible:
-    return OpenAICompatible(allow_remote=state["allow_remote"], model=state.get("model"), embedding_model=state.get("embedding_model"), max_output_tokens=state.get("model_max_tokens"), reasoning_effort=state.get("model_reasoning_effort"))
+    return OpenAICompatible(allow_remote=state["allow_remote"], model=state.get("model"), embedding_model=state.get("embedding_model"), max_output_tokens=state.get("model_max_tokens"), reasoning_effort=state.get("model_reasoning_effort"), provider=state.get("model_provider", "openai"), output_mode=state.get("model_output_mode", "strict"), timeout=state.get("model_timeout", 120.0), max_retries=state.get("model_max_retries", 4))
 
 
 def _layout_client(state: PipelineState) -> AzureLayoutClient:
@@ -179,7 +188,7 @@ def build_graph(store: EvidenceStore, checkpointer: Any, provider_factory: Calla
         pending: list[tuple[dict, str]] = []
         scope_pages = set(state.get("extraction_pages") or [])
         for chunk in state["chunks"]:
-            fingerprint = digest(json_text({"version": EXTRACTION_CACHE_VERSION[state["extractor"]], "chunk_id": chunk["chunk_id"], "profile_id": state["profile_id"], "profiles_sha256": state["contract"]["profiles_sha256"], "policy_sha256": state["contract"]["policy_sha256"], "schemas_sha256": state["contract"].get("schemas_sha256"), "extractor": state["extractor"], "model": state.get("model") if state["extractor"] == "openai" else None, "provider_endpoint_sha256": state.get("provider_endpoint_sha256") if state["extractor"] == "openai" else None, "model_max_tokens": state.get("model_max_tokens"), "model_reasoning_effort": state.get("model_reasoning_effort")}))
+            fingerprint = digest(json_text({"version": EXTRACTION_CACHE_VERSION[state["extractor"]], "chunk_id": chunk["chunk_id"], "profile_id": state["profile_id"], "profiles_sha256": state["contract"]["profiles_sha256"], "policy_sha256": state["contract"]["policy_sha256"], "schemas_sha256": state["contract"].get("schemas_sha256"), "extractor": state["extractor"], "model": state.get("model") if state["extractor"] == "openai" else None, "provider_endpoint_sha256": state.get("provider_endpoint_sha256") if state["extractor"] == "openai" else None, "model_max_tokens": state.get("model_max_tokens"), "model_reasoning_effort": state.get("model_reasoning_effort"), "model_output_mode": state.get("model_output_mode", "strict") if state["extractor"] == "openai" else None}))
             if scope_pages and chunk.get("page") not in scope_pages:
                 log = {"chunk_id": chunk["chunk_id"], "status": "NOT_REVIEWED", "method": state["extractor"], "candidate_count": 0, "candidates": [], "reason": "outside explicitly selected extraction pages", "cache_fingerprint": fingerprint}
                 store.put_extraction_unit(state["run_id"], log)
@@ -220,34 +229,60 @@ def build_graph(store: EvidenceStore, checkpointer: Any, provider_factory: Calla
             if group:
                 batches.append(group)
             last_started: float | None = None
-            for batch_no, batch in enumerate(batches):
-                if batch_no >= max_requests:
-                    for chunk, fingerprint in batch:
-                        log = {"chunk_id": chunk["chunk_id"], "status": "NOT_REVIEWED", "method": "openai", "candidate_count": 0, "candidates": [], "reason": "model request budget reached", "cache_fingerprint": fingerprint}
-                        store.put_extraction_unit(state["run_id"], log)
-                        logs_by_id[chunk["chunk_id"]] = log
+            queue = deque(batches)
+            requests = 0
+            usage = {"requests": 0, "http_attempts": 0, "prompt_tokens": 0, "completion_tokens": 0, "split_batches": 0}
+
+            def record(batch: list[tuple[dict, str]], **fields: Any) -> None:
+                """Log every chunk of a batch that produced no candidates."""
+                for chunk, fingerprint in batch:
+                    log = {"chunk_id": chunk["chunk_id"], "method": "openai", "candidate_count": 0, "candidates": [], **fields, "cache_fingerprint": fingerprint}
+                    store.put_extraction_unit(state["run_id"], log)
+                    logs_by_id[chunk["chunk_id"]] = log
+
+            while queue:
+                batch = queue.popleft()
+                if requests >= max_requests:
+                    record(batch, status="NOT_REVIEWED", reason="model request budget reached")
                     continue
                 if last_started is not None:
                     wait = interval - (time.monotonic() - last_started)
                     if wait > 0:
                         time.sleep(wait)
                 last_started = time.monotonic()
+                requests += 1
                 try:
                     mapped = provider.extract_batch([c for c, _ in batch], state["requirements"])
+                    error = None
+                except (ProviderError, ValidationError, ValueError) as exc:
+                    error = exc
+                call = getattr(provider, "last_call", None)
+                usage["requests"] += 1
+                if call:
+                    usage["http_attempts"] += call.get("attempts") or 0
+                    usage["prompt_tokens"] += call.get("prompt_tokens") or 0
+                    usage["completion_tokens"] += call.get("completion_tokens") or 0
+                if error is None:
                     for chunk, fingerprint in batch:
                         candidates = mapped.get(chunk["chunk_id"], [])
-                        log = {"chunk_id": chunk["chunk_id"], "status": "OK", "method": "openai", "candidate_count": len(candidates), "candidates": candidates, "batch_number": batch_no + 1, "cache_fingerprint": fingerprint}
+                        log = {"chunk_id": chunk["chunk_id"], "status": "OK", "method": "openai", "candidate_count": len(candidates), "candidates": candidates, "batch_number": requests, "model_call": call, "cache_fingerprint": fingerprint}
                         store.put_extraction_unit(state["run_id"], log)
                         logs_by_id[chunk["chunk_id"]] = log
-                except (ProviderError, ValidationError, ValueError) as exc:
-                    safe = str(exc) if isinstance(exc, ProviderError) else "Batch extraction or validation failed"
-                    for chunk, fingerprint in batch:
-                        log = {"chunk_id": chunk["chunk_id"], "status": "ERROR", "method": "openai", "candidate_count": 0, "candidates": [], "error": safe, "batch_number": batch_no + 1, "cache_fingerprint": fingerprint}
-                        store.put_extraction_unit(state["run_id"], log)
-                        logs_by_id[chunk["chunk_id"]] = log
+                    continue
+                code = getattr(error, "code", None)
+                if code in _SPLIT_ON and len(batch) > 1:
+                    half = len(batch) // 2
+                    queue.extendleft([batch[half:], batch[:half]])
+                    usage["split_batches"] += 1
+                    continue
+                safe = str(error) if isinstance(error, ProviderError) else "Batch extraction or validation failed"
+                record(batch, status="ERROR", error=safe, error_code=code, provider_request_id=getattr(error, "request_id", None), batch_number=requests)
             if hasattr(provider, "client"):
                 provider.client.close()
-        return {"extraction_log": [logs_by_id[c["chunk_id"]] for c in state["chunks"]]}
+        result = {"extraction_log": [logs_by_id[c["chunk_id"]] for c in state["chunks"]]}
+        if provider is not None:
+            result["model_usage"] = usage
+        return result
 
     def verify_node(state: PipelineState) -> dict:
         provider = provider_factory(state) if state.get("verify_material") else None

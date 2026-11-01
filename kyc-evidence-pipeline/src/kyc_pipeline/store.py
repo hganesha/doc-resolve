@@ -215,7 +215,7 @@ class EvidenceStore:
         summary = {
             "run_id": run_id, "case_id": case_id, "document_id": document_id,
             "profile_id": state["profile_id"], "policy_id": state["contract"]["policy"]["policy_id"],
-            "profiles_sha256": state["contract"]["profiles_sha256"], "policy_sha256": state["contract"]["policy_sha256"],
+            "profiles_sha256": state["contract"]["profiles_sha256"], "policy_sha256": state["contract"]["policy_sha256"], "schemas_sha256": state["contract"].get("schemas_sha256"),
             "extractor": state["extractor"], "extraction_model": state.get("model") if state["extractor"] == "openai" else None,
             "embeddings": state["embeddings"], "embedding_model": state.get("embedding_model") if state["embeddings"] in {"openai", "local"} else None,
             "provider_endpoint_sha256": state.get("provider_endpoint_sha256"),
@@ -223,6 +223,9 @@ class EvidenceStore:
             "extraction_pages": state.get("extraction_pages"), "model_batch_size": state.get("model_batch_size") if state["extractor"] == "openai" else None,
             "max_model_requests": state.get("max_model_requests") if state["extractor"] == "openai" else None,
             "model_max_tokens": state.get("model_max_tokens"), "model_reasoning_effort": state.get("model_reasoning_effort"),
+            "model_provider": state.get("model_provider", "openai") if state["extractor"] == "openai" or state["embeddings"] == "openai" else None,
+            "model_output_mode": state.get("model_output_mode", "strict") if state["extractor"] == "openai" else None,
+            "model_usage": state.get("model_usage"),
             "ownership_graph_settings": graph_settings(state["contract"]["policy"]),
             "status": status, "fact_count": len(state.get("facts", [])), "evidence_count": len(state.get("evidence", [])),
             "open_issue_count": sum(i["status"] == "OPEN" for i in issues),
