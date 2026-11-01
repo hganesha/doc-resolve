@@ -27,7 +27,7 @@ Document → parse + classify → structure/chunk → index
 - **Registry and licence records:** registry extracts and licence register entries yield legal name, identifiers, status, legal form, incorporation date, registered address, former names, directors and secretary, and a licence's type, status, number, issuer, dates and restrictions. LEI check digits are verified, and adverse company or licence statuses and passed expiry dates are raised for review. Opt-in GLEIF and Companies House lookups compare each LEI's and UK company number's public record with the documents, including officers and people with significant control (see below).
 - **Source of funds:** bank statements yield the account holder, bank, opening and closing balances, and each row's credit, debit and running balance; the printed balances are checked against the arithmetic. Declarations and sale completion statements yield the declared source and amount, the asset sold and the net proceeds, which are looked for among the credits on the same person's statements (see below).
 - **Entity layer:** links each fact's subject (and owned or controlled party) to an entity using the document's own definitions, SEC cover-page and registry identity, and identifier-first matching across the case (see below).
-- **Ownership graph:** builds who-holds-what across the case from the linked facts, with stakes as low–high ranges, look-through interests through chains, control from voting rights or majority stakes, and checks for holdings above 100% and cycles (see below).
+- **Ownership graph:** builds who-holds-what across the case from the linked facts, with stakes as low–high ranges, look-through interests through chains, control from voting rights or majority stakes, checks for holdings above 100% and cycles, and a beneficial-owner report per company that sets the owners derived from holdings beside declared owners and register PSCs (see below).
 - **Conservative reconciliation:** matching on resolved entities (text only where unresolved), same/overlapping-date ownership conflicts, conflicting single-valued attributes such as two legal names for one entity, duplicate-like source claims, and older ownership snapshots followed by disposals. Different dated stakes are not automatically contradictions. No current percentage is inferred from a partial disposal.
 - **Human intervention:** a LangGraph interrupt includes the issues, related facts and source quotes. Review decisions are persisted with self-reported reviewer attribution. Deferring an issue does not resolve it; resolving a possible conflict preserves all source claims and does not automatically verify either claim.
 - **Checkpoints and retry:** graph stages are checkpointed in SQLite; extraction results are cached per chunk. A retry of identical source bytes and the same configuration reuses successful units and retries failed ones. An optimistic case-revision check prevents persisting conclusions based on a case that changed during processing or review.
@@ -270,7 +270,7 @@ The report's `entities` list shows each case entity with its names, identifiers,
 
 Not yet covered:
 
-- people (no dates of birth or nationality matching);
+- people beyond their names: a person is a director, a declared beneficial owner or a holder the source calls an individual, matched across documents by name without titles; no dates of birth or nationality, so two people with the same name are merged;
 - definitions scoped to one section (Berkshire's Item 1 uses "Company" for the parent, but its auditor's report uses it for the group);
 - former names and successor entities;
 - entities resolved from register records: GLEIF and Companies House records are compared with the documents, not merged into the entity; no SEC EDGAR lookup;
@@ -322,7 +322,7 @@ These settings only choose split points and context; they are not separate claus
 
 The schemas are illustrative. They cover the categories of the four priority families (financial statements, ownership and control, regulatory and legal, adverse media) plus registry identity, licensing, transactions and wealth and funds.
 
-The local rules intentionally recognize only a small set of literal patterns: registry and licence `Label: value` records (see below), bank-statement headers and transaction tables, source-of-funds declarations and sale completion statements (see below), some ownership percentages and repurchases, contractual voting rights, selected legal-proceeding phrases, simple consolidated revenue rows, and a basic allegation phrase. They do not cover ordinary variations comprehensively. They do **not** perform an exhaustive semantic review. A category with no matched rule is `NOT_REVIEWED`, not `NOT_FOUND_AFTER_REVIEW`. A `FOUND` record only means a candidate was found; it does not imply the category is exhaustive or the fact is verified.
+The local rules intentionally recognize only a small set of literal patterns: registry and licence `Label: value` records (see below), bank-statement headers and transaction tables, source-of-funds declarations and sale completion statements, shareholder-register and beneficial-owner tables (see below), some ownership percentages and repurchases, contractual voting rights, selected legal-proceeding phrases, simple consolidated revenue rows, and a basic allegation phrase. They do not cover ordinary variations comprehensively. They do **not** perform an exhaustive semantic review. A category with no matched rule is `NOT_REVIEWED`, not `NOT_FOUND_AFTER_REVIEW`. A `FOUND` record only means a candidate was found; it does not imply the category is exhaustive or the fact is verified.
 
 ## Registry and licence records
 
@@ -404,7 +404,7 @@ The example's company number is synthetic, so with a real key this command pause
 | Directors and secretary | Appointments, by name, as of the document's date | `REGISTRY_OFFICER_NOT_FOUND`; `REGISTRY_OFFICER_RESIGNED` when they resigned before that date (both medium). Resigned since is reported as `RESIGNED_SINCE`, no issue |
 | Reported stakes (`owns_equity_in` this company) | Current PSCs' shareholding bands (more than 25% up to 50%, and so on) | `REGISTRY_PSC_BAND_MISMATCH` when outside the band; `REGISTRY_PSC_MISSING` for a stake above 25% whose holder is not a current PSC (both medium) |
 
-Register flags (insolvency history, registered office in dispute or undeliverable, overdue accounts or confirmation statement) raise `REGISTRY_RECORD_FLAGGED` (medium). Current officers the documents don't name are listed under `registry_only`, not raised: a document may name only some of them. The record's PSCs are kept in the check for a reviewer, but they are not yet added to the ownership graph.
+Register flags (insolvency history, registered office in dispute or undeliverable, overdue accounts or confirmation statement) raise `REGISTRY_RECORD_FLAGGED` (medium). Current officers the documents don't name are listed under `registry_only`, not raised: a document may name only some of them. The record's current PSCs are also added to the ownership graph and its beneficial-owner report (see below).
 
 Officer names are matched on first name and surname, with every name part in the document also in the register's name: `Jane Smith` matches `SMITH, Jane Elizabeth`, but `J Smith` and `Jane Smyth` do not. A missing match may be a spelling difference. A PSC holder is matched by legal name or, for a person, the same rule; a stake whose holder the documents name only as "we" or "the Company" will not match. Companies House records what companies file and verifies little of it, so a match is not proof of identity or ownership. Missing API key, rate limits and failed requests raise `REGISTRY_LOOKUP_FAILED` (medium); no check passes silently.
 
@@ -412,14 +412,47 @@ Officer names are matched on first name and surname, with every name part in the
 
 `ownership.py` builds the case's ownership and control graph from verified facts and case entities. It is rebuilt from the stored case on every `report` and `ownership` export, so it reflects every document and review decision. During ingestion it runs only to raise issues for review.
 
-- **Edges.** One `EQUITY` edge per holder and held entity, one `VOTING_RIGHTS` edge per reported voting-rights claim, and a `GROUP_PARENT` edge from a parent to its "and subsidiaries" group. Each edge lists its facts, the documents they come from, and any open issues on them.
+- **Edges.** One `EQUITY` edge per holder and held entity, one `VOTING_RIGHTS` edge per reported voting-rights claim, a `GROUP_PARENT` edge from a parent to its "and subsidiaries" group, and a `REGISTER_PSC` edge for each current person with significant control from a Companies House check. Each edge lists its facts, the documents they come from, and any open issues on them.
 - **Stakes are ranges.** The latest reported period is current; earlier dated figures are listed as `superseded_fact_ids`, and undated figures stay in the range. Differing current figures give a range (`low`–`high`), not a choice. An open `POSSIBLE_OWNERSHIP_CONFLICT` marks the edge `CONFLICTED`. When a reviewer resolves the conflict, only the selected figure is used. A disposal after the latest stake (`STALE_AFTER_DISPOSAL`), or one that cannot be ordered (`CHRONOLOGY_UNRESOLVED`), lowers the bottom of the range to 0.
 - **Groups.** A group's holding counts as its parent's consolidated interest (`ATTRIBUTED_FROM_GROUP`). It is combined with the parent's own figure, never added to it, because the group's stake includes the parent's. If the parent alone holds more than the whole group, the check raises `GROUP_STAKE_BELOW_PARENT_STAKE` (medium).
 - **Look-through interests.** Stakes are multiplied along every chain of up to `max_chain_depth` holdings and added across chains. If A holds 60% of B, B holds 50% of C, and A holds 10% of C directly, A's interest in C is 40%. Each interest lists its paths and whether it meets the reporting threshold (`YES`, `POSSIBLE` when only the top of the range does, or `NO`). Flags carry through: `APPROXIMATE`, `UNDATED`, `MIXED_DATES`, `OPEN_ISSUES`, `UNRESOLVED_PARTY` (a party matched by text only) and the edge statuses.
-- **Control.** Reported voting rights, or a stake whose whole range is above `control_threshold_percent`, gives `REPORTED` control. If only the top of the range is above it, control is `POSSIBLE`. Reported control links chain (`CONTROL_CHAIN`, `DERIVED`).
+- **Control.** Voting rights reported without a figure, or a stake or voting percentage whose whole range is above `control_threshold_percent`, gives `REPORTED` control; 40% of the votes is not control. If only the top of the range is above the threshold, control is `POSSIBLE`. A register PSC with the right to appoint the board, significant influence or control, or more than 50% of the votes gives `REGISTER_PSC` control. Reported control links chain (`CONTROL_CHAIN`, `DERIVED`).
+- **Register bands.** A PSC's shareholding band (more than 25% up to 50%, and so on) is used as a stake only where the documents report none for that holder and company, flagged `REGISTER_BAND`; where both exist the documents' figure is used and the Companies House check compares the two.
 - **Checks.** Distinct holders reported to own more than 100% of one entity in the same or an unknown period raise `OWNERSHIP_TOTAL_EXCEEDS_100` (high). Holders that hold one another are not added, because one figure may include the other. A cycle of holdings raises `OWNERSHIP_CYCLE` (medium); look-through figures skip the circular part.
 
-The thresholds (25% reporting, 50% control) and the chain depth are illustrative settings under `ownership_graph` in `kyc_policy.yaml`. `identified_entities_without_reported_owners` lists identified entities, such as registrants, for which no owner was found. That is a gap in the documents, not evidence that the entity has no owners. No natural persons are extracted, so the top of a chain is never a beneficial owner. `kyc-pipeline ownership --format mermaid` draws the edges as a Mermaid flowchart for reading; use the JSON for analysis.
+The thresholds (25% reporting, 50% control) and the chain depth are illustrative settings under `ownership_graph` in `kyc_policy.yaml`. `identified_entities_without_reported_owners` lists identified entities, such as registrants, for which no owner was found. That is a gap in the documents, not evidence that the entity has no owners. `kyc-pipeline ownership --format mermaid` draws the edges as a Mermaid flowchart for reading, with people as rounded nodes and register PSCs as dotted edges; use the JSON for analysis.
+
+### Beneficial owners
+
+```bash
+kyc-pipeline ingest examples/synthetic_beneficial_ownership_declaration.txt --case-id ubo-demo
+kyc-pipeline ingest examples/synthetic_shareholder_register.txt --case-id ubo-demo
+kyc-pipeline ownership --case-id ubo-demo
+```
+
+The rules read two kinds of table, in the same section as the company's `Company name:` record (cited with each row, with the record's `Date of declaration:` or `Register date:` as the as-of date):
+
+- a **shareholder register** (`Shareholder`, `Shares held (%)`, optional `Type` and `Voting rights (%)` columns) gives `owns_equity_in` and `has_voting_rights_over`; a `Type` of `Individual` marks the holder as a person;
+- a **beneficial-owner table** (a `Beneficial owner` column or a `Nature of control` column) gives `is_beneficial_owner_of`: a *declared* ultimate owner and interest, which is never treated as a direct stake.
+
+People are entities of type `person`: directors, declared beneficial owners and holders typed `Individual`, unless the name is an organization's. They are matched across documents by name without titles (`Ms Jane Smith` is `Jane Smith`, `match_basis: PERSON_NAME`) and to register PSCs by first name and surname.
+
+`beneficial_owners` lists, for each organization with reported owners, the people who own or control it, with three sources side by side rather than merged into one figure:
+
+- `HOLDINGS`: a look-through interest at or above the reporting threshold (`interest`, `meets_threshold`);
+- `CONTROL`: reported, derived or possible control, with its basis and path;
+- `DECLARED` and `REGISTER_PSC`: what a beneficial-ownership declaration and the Companies House register say.
+
+The company's `status` is `IDENTIFIED` when the holdings, control or register identify someone, `DECLARED_ONLY` when only a declaration names owners, `POSSIBLE` when only the top of a range reaches the threshold, and `NOT_IDENTIFIED` otherwise. A declared owner nothing else supports is flagged `NOT_CORROBORATED`. `chain_ends_at` lists organizations holding at least the threshold whose own owners the case doesn't show: the beneficial owners may be behind them. `direct_holdings_percent` is how much of the company the reported direct stakes account for. Where no owner is identified, `senior_managing_officials` lists the directors the documents name and the register's current directors, the usual fallback.
+
+Where a declaration exists for the company, two issues compare it with the rest:
+
+- `UBO_NOT_DECLARED` (high): the holdings (at or above the threshold), reported or derived control, or a register PSC identifies a person the declaration doesn't name.
+- `UBO_DECLARED_PERCENT_DIFFERS` (medium): a declared percentage is outside the look-through interest (allowing 0.5 points) or the register band.
+
+In the demo, Omar Haddad holds 60% of Aster Holdings, which holds 60% of Birchwood Trading: a 36% interest, and control through Aster's majority. Both match the declaration, so nothing is raised. Remove him from the declaration and ingesting Aster's register raises `UBO_NOT_DECLARED`.
+
+Limits: only tables in the company's own section are read, and only plain percentages (a band such as `25-50%` is skipped). People have no dates of birth or nationality yet, so two people with the same name are one person. A trust, nominee or a holder the source does not call an individual is an organization, so its beneficiaries are not reached. A listed company's owners are not expected to be reported, so annual-report investees show `NOT_IDENTIFIED` with the registrant at the top of the chain. A beneficial owner here is a lead built from the documents and register, not a verified identification.
 
 ## Input formats and known gaps
 
@@ -427,7 +460,7 @@ The thresholds (25% reporting, 50% control) and the chain depth are illustrative
 - PDF text blocks, coordinates and detected tables use PyMuPDF. PDF headings are inferred from font size and weight relative to the document's body text (plus `PART`/`ITEM` numbering); text repeated in the top or bottom margin of three or more pages is recorded as `page_furniture`, not a heading. PDFs with no size or weight variation fall back to capitalised-line headings. Heading inference is heuristic: some headings will be missed and some bold labels outside detected tables may still open sections. Empty pages with no detected text, images, drawings or annotations are recorded as structurally blank; pages containing images are flagged because the local parser does not OCR (use `--parser azure-di`). Borderless tables are inferred from text geometry only when heuristic alignment is detected, and always flagged for visual review. Not every embedded image, complex/merged table, cross-page table, multi-column order, footnote or cross-reference will be detected. HTML scripts, images, embedded sources, merged cells and orphan text are flagged when recognized. Treat parsing issues as coverage failures and visually review original sources.
 - Inline Markdown footnote markers are linked to matching footnotes in the **same parsed section**. General footnote resolution, complex table semantics, document amendments, and semantic cross-reference navigation are not complete.
 - Entity links come from the document's own definitions and printed identifiers, not from an authoritative register; a merge on legal name alone can join two different entities that share a name and lack identifiers.
-- Apart from the opt-in GLEIF and Companies House lookups, the pipeline does not perform authoritative registry or licence-register checks, live sanctions/PEP screening, identity verification, beneficial-owner identification (the ownership graph has no natural persons), source-of-funds verification (statement arithmetic and amount matching are not proof of origin), complete contradiction resolution, or policy-driven customer acceptance decisions. Allegations are not findings of guilt.
+- Apart from the opt-in GLEIF and Companies House lookups, the pipeline does not perform authoritative registry or licence-register checks, live sanctions/PEP screening, identity verification, verified beneficial-owner identification (people are matched by name only, and the report is built from what the documents and register state), source-of-funds verification (statement arithmetic and amount matching are not proof of origin), complete contradiction resolution, or policy-driven customer acceptance decisions. Allegations are not findings of guilt.
 - Literal quote and number checks are not semantic validation. Model source-support checks can also be wrong or manipulated. Automated `NOT_FOUND_AFTER_REVIEW` means only that the parsed chunks received a successful model pass; it is not proof of absence.
 - SQLite is suitable only for a single-host POC. The evidence store and graph checkpoints are separate databases, so their commits are not one distributed transaction; writes are designed to be idempotent and use a case revision check. There is no authentication, authorization, encryption, secrets manager, immutable/WORM audit log, redaction, retention/deletion workflow, scalable job queue, or production observability. Human reviewer IDs are self-reported. Add these before handling real KYC information.
 - All document content in the evidence database, extraction cache, checkpoint database, exports, and review files is sensitive. Control access to all copies, including SQLite WAL/SHM files and backups. External API calls send source text when opted in; configure provider logging and retention appropriately.
@@ -447,7 +480,7 @@ src/kyc_pipeline/
   reconciliation.py     # conservative claims, date and conflict checks
   registry.py           # LEI check digits, status and expiry checks, opt-in GLEIF and Companies House lookups
   funds.py              # statement balance arithmetic and declared-amount matching
-  ownership.py          # ownership/control graph, look-through interests, graph checks
+  ownership.py          # ownership/control graph, look-through interests, register PSCs, beneficial owners, graph checks
   coverage.py           # coverage ledger and section manifest
   graph.py              # LangGraph orchestration and human interrupt
   store.py              # local SQLite records, cache, audit and case revisions

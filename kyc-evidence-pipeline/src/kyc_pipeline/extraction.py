@@ -375,6 +375,81 @@ def _is_separator_row(text: str) -> bool:
     return bool(re.fullmatch(r"[\s|:\-]+", text))
 
 
+# Shareholder registers and beneficial-ownership declarations, as tables in the
+# same section as the company's "Label: value" record.
+_HOLDING_COLUMNS = {
+    "holder": r"(?:share|unit|stock)?holder(?:\s+name)?|name(?:\s+of\s+(?:share)?holder)?|member|(?:ultimate\s+)?beneficial\s+owner|owner",
+    "type": r"(?:holder\s+)?type|category",
+    "percent": r"shares?\s+held|shareholding|ownership(?:\s+interest)?|equity(?:\s+interest)?|interest|holding|percentage(?:\s+of\s+shares)?",
+    "voting": r"voting(?:\s+rights)?(?:\s+held)?",
+    "nature": r"nature\s+of\s+(?:control|interest|ownership)",
+}
+_COMPANY_LABEL = r"(?:legal|registered|company|entity)\s+name|name\s+of\s+(?:company|entity)"
+_REGISTER_DATE_LABEL = r"date\s+of\s+(?:declaration|register|extract)|(?:declaration|register|extract)\s+date|as\s+at|data\s+as\s+of"
+
+
+def _percent_cell(text: str) -> float | None:
+    m = re.fullmatch(r"(\d{1,3}(?:\.\d+)?)\s*%?", text.strip())
+    return float(m.group(1)) if m and 0 < float(m.group(1)) <= 100 else None
+
+
+def _holding_row_facts(chunk: dict) -> list[dict]:
+    """One holder per shareholder-register or beneficial-owner table row.
+
+    The company is the one named by a "Company name:" line in the table's
+    section, cited as a supporting reference; without it no row is extracted.
+    A beneficial-owner table (its holder column says so, or it has a "nature
+    of control" column) gives declared ultimate owners, not direct stakes.
+    """
+    header_line = chunk.get("table_header")
+    if not header_line or chunk["text"].strip() == header_line.strip() or _is_separator_row(chunk["text"]):
+        return []
+    columns = [re.sub(r"\s*\([^)]*\)", "", c).strip() for c in header_line.strip().strip("|").split("|")]
+    cells = [c.strip() for c in chunk["text"].strip().strip("|").split("|")]
+    if len(columns) != len(cells):
+        return []
+    index: dict[str, int] = {}
+    for i, column in enumerate(columns):
+        for key, pattern in _HOLDING_COLUMNS.items():
+            if key not in index and re.fullmatch(pattern, column, re.I):
+                index[key] = i
+                break
+    if "holder" not in index or not ({"percent", "voting", "nature"} & set(index)):
+        return []
+    company = ref = None
+    for candidate in chunk.get("section_context", []):
+        company = _field_line(_COMPANY_LABEL, candidate["text"])
+        if company:
+            ref = candidate
+            break
+    holder = _trim_entity(cells[index["holder"]])
+    if not company or not holder:
+        return []
+    refs = [{"segment_id": ref["segment_id"], "quote": company.group(0).strip()}]
+    dated: dict[str, Any] = {}
+    as_of = _field_line(_REGISTER_DATE_LABEL, ref["text"])
+    if as_of:
+        try:
+            dated = {"effective_date": normalize_date(as_of.group("value").strip(" .")), "date_role": "as_of"}
+            refs.append({"segment_id": ref["segment_id"], "quote": as_of.group(0).strip()})
+        except ValueError:
+            dated = {}
+    obj, row = _trim_entity(company.group("value")), chunk["text"].strip()
+    percent = _percent_cell(cells[index["percent"]]) if "percent" in index else None
+    common = {"object": obj, "supporting_quotes": [header_line], "supporting_refs": refs, **dated}
+    if re.search(r"beneficial|ultimate", columns[index["holder"]], re.I) or "nature" in index:
+        nature = cells[index["nature"]] if "nature" in index and cells[index["nature"]] else None
+        return [_mk("ownership", holder, "is_beneficial_owner_of", row, value=percent, unit="percent" if percent else None, qualifier=nature, **common)]
+    found = []
+    individual = "type" in index and re.search(r"\b(?:individual|natural\s+person)\b", cells[index["type"]], re.I)
+    if percent:
+        found.append(_mk("ownership", holder, "owns_equity_in", row, value=percent, unit="percent", qualifier="individual" if individual else None, **common))
+    voting = _percent_cell(cells[index["voting"]]) if "voting" in index else None
+    if voting:
+        found.append(_mk("control", holder, "has_voting_rights_over", row, value=voting, unit="percent", qualifier="individual" if individual else None, **common))
+    return found
+
+
 # Source-of-funds declarations and sale (completion) statements.
 _DECLARANT_LABEL = r"(?:customer|client|applicant)(?:\s+name)?|declarant|seller|vendor"
 
@@ -508,6 +583,8 @@ def rules_extract(chunk: dict, requirements: list[dict]) -> list[dict]:
             if m:
                 found.append(_mk("allegations_and_outcomes", _trim_entity(m.group("subject")), "accused_of", quote, object=_trim_entity(m.group("object")), effective_date=_date_in(text), claim_type="allegation"))
     found.extend(_field_record_facts(body, applicable))
+    if "ownership" in applicable and chunk["kind"] == "table":
+        found.extend(f for f in _holding_row_facts(chunk) if f["category"] in applicable)
     if "transactions" in applicable:
         found.extend(_statement_row_facts(chunk) if chunk["kind"] == "table" else _statement_header_facts(body))
     if "wealth_and_funds" in applicable and chunk["kind"] != "table":

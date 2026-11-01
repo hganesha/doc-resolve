@@ -1,0 +1,11 @@
+# Shareholder Register
+All names and figures in this register are fictional.
+
+Company name: Aster Holdings Ltd
+Jurisdiction: Texas
+Register date: 31 December 2025
+
+| Shareholder | Type | Shares held (%) |
+| --- | --- | --- |
+| Omar Haddad | Individual | 60 |
+| Lena Park | Individual | 40 |

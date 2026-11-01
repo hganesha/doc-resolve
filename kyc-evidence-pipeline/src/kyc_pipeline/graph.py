@@ -25,7 +25,7 @@ from .store import EvidenceStore
 from .util import digest, json_text, utc_now
 
 # Increment whenever extraction prompts, rules, or output schema change.
-EXTRACTION_CACHE_VERSION = {"rules": "9", "openai": "5"}
+EXTRACTION_CACHE_VERSION = {"rules": "10", "openai": "5"}
 # A batch that fails for one of these reasons is split in half and retried, so
 # one long or filtered chunk does not cost the whole batch.
 _SPLIT_ON = {"output_truncated", "content_filter"}
@@ -327,10 +327,7 @@ def build_graph(store: EvidenceStore, checkpointer: Any, provider_factory: Calla
         current_case = {entity_map[eid] for eid in current if eid in entity_map}
         entity_issues = [i for i in entity_issues if set(i["details"].get("entity_ids", [])) & current or i["details"].get("entity_id") in current_case]
         findings, issues = reconcile(state["document"], state["facts"], previous, state["issues"] + entity_issues, entity_map, state["contract"].get("schemas"))
-        # The graph itself is rebuilt from the stored case on export; here it only raises issues for review.
-        _, graph_issues = build_ownership_graph(previous + state["facts"], case_entities, entity_map, issues, document_id=state["document"]["document_id"], current_fact_ids={f["fact_id"] for f in state["facts"]}, settings=graph_settings(state["contract"]["policy"]))
         known = {i["issue_id"] for i in issues}
-        graph_issues = [i for i in graph_issues if i["issue_id"] not in known]
         material = {r["category"]: r["material"] for r in state["requirements"]}
         extra = status_issues(state["document"]["document_id"], state["facts"], material)
         statement_findings, statement_issues = statement_checks(state["document"]["document_id"], state["facts"], state["evidence"], state["segments"], material)
@@ -367,6 +364,11 @@ def build_graph(store: EvidenceStore, checkpointer: Any, provider_factory: Calla
                         client.client.close()
                 checks += source_checks
                 extra += source_issues
+        # The graph itself is rebuilt from the stored case on export; here it only raises issues for review.
+        # It runs after the register checks so that this run's PSCs are seen.
+        previous_checks = store.get_case_registry_checks(state["case_id"], exclude_document_id=state["document"]["document_id"])
+        _, graph_issues = build_ownership_graph(previous + state["facts"], case_entities, entity_map, issues, document_id=state["document"]["document_id"], current_fact_ids={f["fact_id"] for f in state["facts"]}, settings=graph_settings(state["contract"]["policy"]), registry_checks=previous_checks + checks)
+        graph_issues = [i for i in graph_issues if i["issue_id"] not in known]
         known |= {i["issue_id"] for i in graph_issues}
         extra = [i for i in {i["issue_id"]: i for i in extra}.values() if i["issue_id"] not in known]
         new = graph_issues + extra

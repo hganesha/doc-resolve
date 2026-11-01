@@ -39,7 +39,9 @@ _GENERIC_PARENTS = {"parent company", "company", "registrant", "parent"}
 # Identifiers that are unique on their own; a registration number needs its jurisdiction.
 _IDENTIFIER_PREDICATES = {"has_sec_file_number": "SEC_FILE_NUMBER", "has_us_employer_identification_number": "US_EIN", "has_registration_number": "REGISTRATION_NUMBER", "has_lei": "LEI"}
 _SCHEME_RANK = ["LEI", "SEC_FILE_NUMBER", "US_EIN", "REGISTRATION_NUMBER"]
-_ENTITY_OBJECTS = {"owns_equity_in", "has_voting_rights_over", "disposed_interest_in"}
+_ENTITY_OBJECTS = {"owns_equity_in", "has_voting_rights_over", "disposed_interest_in", "is_beneficial_owner_of", "is_director_of", "is_officer_of"}
+# Predicates whose subject is a natural person unless the name is an organization's.
+_PERSON_PREDICATES = {"is_beneficial_owner_of", "is_director_of", "is_officer_of"}
 _PLACEHOLDERS = {"UNRESOLVED_REGISTRANT", "UNRESOLVED_REGISTRY_SUBJECT", "UNRESOLVED_REPORTING_ENTITY"}
 
 _QUOTED = re.compile(r"[“\"]([^”\"]{1,60})[”\"]")
@@ -64,6 +66,15 @@ _TITLES = {"mr", "mrs", "ms", "miss", "mx", "dr", "sir", "dame", "prof"}
 def person_key(name: str | None) -> str:
     """'Ms Jane Smith' and 'JANE SMITH' agree; 'J Smith' does not."""
     return " ".join(t for t in legal_key(name or "").split() if t not in _TITLES)
+
+
+def same_person(document: str, registry: str) -> bool:
+    """Same first name and surname, and every name part in ``document`` also in ``registry``.
+
+    'Jane Smith' matches 'Mrs Jane Elizabeth Smith'; 'J Smith' and 'Jane Smyth' do not.
+    """
+    d, r = person_key(document).split(), person_key(registry).split()
+    return bool(d and r) and d[0] == r[0] and d[-1] == r[-1] and set(d) <= set(r)
 
 
 def alias_key(name: str) -> str:
@@ -378,6 +389,10 @@ def resolve_document(document: dict, segments: list[dict], facts: list[dict], is
                 links[role] = (key, basis, ids)
                 if basis in {"LEGAL_NAME", "MENTION"}:
                     graph.add_name(key, name, "mention", f["evidence_ids"][:1])
+                    # A director, a declared beneficial owner, or a holder the source calls an individual.
+                    attrs = graph.attrs[graph.find(key)]
+                    if role == "subject" and attrs["entity_type"] == "unknown" and not is_organization(name) and (f["predicate"] in _PERSON_PREDICATES or f.get("qualifier") == "individual"):
+                        attrs["entity_type"] = "person"
         pending.append((f, links))
     graph.merge_groups()
 
@@ -477,7 +492,9 @@ def resolve_case(entities: list[dict], document_id: str) -> tuple[list[dict], di
     issues: list[dict] = []
     by_name: dict[str, list[str]] = defaultdict(list)
     for e in orgs:
-        for key in {legal_key(n["name"]) for n in e["names"] if n["kind"] in {"legal_name", "full_name", "mention"}}:
+        # People are matched on their name without titles ("Ms Jane Smith" is "Jane Smith"), and only by name.
+        name_key = person_key if e["entity_type"] == "person" else legal_key
+        for key in {name_key(n["name"]) for n in e["names"] if n["kind"] in {"legal_name", "full_name", "mention"}}:
             if key:
                 by_name[key].append(e["entity_id"])
     for key, ids in by_name.items():
@@ -525,7 +542,7 @@ def resolve_case(entities: list[dict], document_id: str) -> tuple[list[dict], di
             "jurisdictions": sorted({j["value"] for m in group for j in m["jurisdictions"]}),
             "roles": sorted({r for m in group for r in m["roles"]}),
             "documents": documents, "member_entity_ids": [m["entity_id"] for m in group],
-            "match_basis": "SINGLE_DOCUMENT" if len(documents) == 1 else "IDENTIFIER" if shared else "LEGAL_NAME",
+            "match_basis": "SINGLE_DOCUMENT" if len(documents) == 1 else "IDENTIFIER" if shared else "PERSON_NAME" if any(m["entity_type"] == "person" for m in group) else "LEGAL_NAME",
             "group_of": None,
         })
     groups: dict[str, dict] = {}

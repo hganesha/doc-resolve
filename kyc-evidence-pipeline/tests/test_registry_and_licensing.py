@@ -7,6 +7,7 @@ from pathlib import Path
 import httpx
 import pytest
 from langgraph.checkpoint.memory import InMemorySaver
+from langgraph.types import Command
 
 from conftest import ROOT
 from kyc_pipeline.config import load_contract
@@ -21,7 +22,8 @@ from kyc_pipeline.util import lei_check_digits_valid, utc_now
 LEI = "5299000ASTERHOLD0035"  # synthetic, with valid check digits
 
 
-def _ingest(tmp_path, source: Path | str, *, case="reg", profile=None, registry_factory=None, registry_check=None, run_id="run_1", store=None):
+def _ingest(tmp_path, source: Path | str, *, case="reg", profile=None, registry_factory=None, registry_check=None, run_id="run_1", store=None, defer=False):
+    """Run one document; with ``defer``, a paused run is resumed by deferring every review item."""
     if isinstance(source, Path):
         path = source
     else:
@@ -33,6 +35,9 @@ def _ingest(tmp_path, source: Path | str, *, case="reg", profile=None, registry_
     graph = build_graph(store, InMemorySaver(), registry_factory=registry_factory or (lambda *_: pytest.fail("registry looked up without --registry-check")))
     config = {"configurable": {"thread_id": run_id}}
     result = graph.invoke(state, config)
+    if defer and "__interrupt__" in result:
+        decisions = [{"issue_id": i["issue_id"], "action": "defer", "reason": "Deferred by the test."} for i in result["__interrupt__"][0].value["issues"]]
+        graph.invoke(Command(resume={"reviewer_id": "TEST", "decisions": decisions}), config)
     return store, result, graph.get_state(config).values
 
 

@@ -215,6 +215,13 @@ class EvidenceStore:
                 WHERE e.case_id=? AND (? IS NULL OR e.document_id<>?) ORDER BY e.document_id, e.entity_id""", (case_id, exclude_document_id, exclude_document_id)).fetchall()
         return [json.loads(r[0]) for r in rows]
 
+    def get_case_registry_checks(self, case_id: str, exclude_document_id: str | None = None) -> list[dict]:
+        """Register checks recorded by each document's current run."""
+        with self._connect() as conn:
+            rows = conn.execute("""SELECT r.summary_json FROM runs r JOIN documents d ON d.current_run_id=r.run_id AND d.case_id=r.case_id
+                WHERE r.case_id=? AND (? IS NULL OR d.document_id<>?)""", (case_id, exclude_document_id, exclude_document_id)).fetchall()
+        return [c for (summary,) in rows if summary for c in json.loads(summary).get("registry_checks", [])]
+
     def get_current_facts(self, case_id: str, exclude_document_id: str | None = None) -> list[dict]:
         return self.get_case_snapshot(case_id, exclude_document_id)[1]
 
@@ -332,7 +339,8 @@ class EvidenceStore:
             fact["case_entity_ids"] = {role: entity_map.get(link["entity_id"]) for role, link in fact.get("entity_links", {}).items()}
         # The newest run's policy settings apply; the graph is rebuilt so it reflects every review.
         settings = next((r["summary"]["ownership_graph_settings"] for r in sorted(active_runs, key=lambda r: r["started_at"], reverse=True) if (r.get("summary") or {}).get("ownership_graph_settings")), None)
-        ownership_graph, _ = build_ownership_graph(facts, entities, entity_map, issues, settings=settings)
+        registry_checks = [c for r in active_runs for c in (r.get("summary") or {}).get("registry_checks", [])]
+        ownership_graph, _ = build_ownership_graph(facts, entities, entity_map, issues, settings=settings, registry_checks=registry_checks)
         open_requirements = [c for c in cov if c["material"] and (c["status"] in {"NOT_REVIEWED", "NOT_FOUND_AFTER_REVIEW", "EXTRACTION_FAILED", "CONFLICTED"} or c.get("chunks_not_reviewed", 0) > 0 or not c.get("source_fully_parsed", True))]
         status = "REVIEW_REQUIRED" if pending or open_issues or open_requirements or not docs else "PROVISIONAL"
-        return {"case_id": case_id, "status": status, "disclaimer": "Provisional evidence package. No completeness, identity, source independence, sanctions clearance, or KYC decision is guaranteed.", "documents": docs, "runs": active_runs, "pending_runs": pending, "evidence": evidence, "facts": facts, "entities": entities, "document_entities": document_entities, "ownership_graph": ownership_graph, "registry_checks": [c for r in active_runs for c in (r.get("summary") or {}).get("registry_checks", [])], "findings": findings, "coverage": cov, "section_inventory": sections, "issues": issues, "unresolved": {"open_issue_ids": [i["issue_id"] for i in open_issues], "material_requirement_gaps": [{"run_id": c["run_id"], "category": c["category"], "status": c["status"], "chunks_not_reviewed": c.get("chunks_not_reviewed", 0), "parse_gap_pages": c.get("parse_gap_pages", [])} for c in open_requirements], "verification_note": "Source-match checks are not external verification; all facts remain pending human verification."}, "review_decisions": reviews, "audit_events": audit}
+        return {"case_id": case_id, "status": status, "disclaimer": "Provisional evidence package. No completeness, identity, source independence, sanctions clearance, or KYC decision is guaranteed.", "documents": docs, "runs": active_runs, "pending_runs": pending, "evidence": evidence, "facts": facts, "entities": entities, "document_entities": document_entities, "ownership_graph": ownership_graph, "registry_checks": registry_checks, "findings": findings, "coverage": cov, "section_inventory": sections, "issues": issues, "unresolved": {"open_issue_ids": [i["issue_id"] for i in open_issues], "material_requirement_gaps": [{"run_id": c["run_id"], "category": c["category"], "status": c["status"], "chunks_not_reviewed": c.get("chunks_not_reviewed", 0), "parse_gap_pages": c.get("parse_gap_pages", [])} for c in open_requirements], "verification_note": "Source-match checks are not external verification; all facts remain pending human verification."}, "review_decisions": reviews, "audit_events": audit}

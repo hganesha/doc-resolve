@@ -31,7 +31,7 @@ from typing import Any, Callable
 
 import httpx
 
-from .entities import legal_key, person_key
+from .entities import legal_key, same_person
 from .evidence import make_issue
 from .util import identity_key, lei_check_digits_valid
 
@@ -323,15 +323,6 @@ def _officer_name(name: str) -> str:
     """Companies House lists individuals as 'SMITH, Jane Elizabeth'."""
     surname, _, forenames = name.partition(",")
     return f"{forenames.strip()} {surname.strip()}".strip() if forenames else name.strip()
-
-
-def same_person(document: str, registry: str) -> bool:
-    """Same first name and surname, and every document name part in the register's name.
-
-    'Jane Smith' matches 'Mrs Jane Elizabeth Smith'; 'J Smith' and 'Jane Smyth' do not.
-    """
-    d, r = person_key(document).split(), person_key(registry).split()
-    return bool(d and r) and d[0] == r[0] and d[-1] == r[-1] and set(d) <= set(r)
 
 
 def summarize_companies_house(company: dict, officers: list[dict], pscs: list[dict]) -> dict:

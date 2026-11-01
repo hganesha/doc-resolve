@@ -86,7 +86,8 @@ def _section_context(seg: dict, unit: str, by_section: dict[str, list[dict]], he
         body = [s for s in by_section[seg["section_id"]] if s["kind"] not in {"heading", "footnote"}]
         if body and body[0]["segment_id"] != seg["segment_id"]:
             refs.append(_context_ref(body[0], "section_lead"))
-        before = [s for s in body if s["ordinal"] < seg["ordinal"]]
+        # A table's context is the text introducing it, not an earlier table.
+        before = [s for s in body if s["ordinal"] < seg["ordinal"] and not (seg["kind"] == "table" and s["kind"] == "table")]
         if before and before[-1]["segment_id"] != seg["segment_id"]:
             refs.append(_context_ref(before[-1], "preceding_text", tail=True))
     elif unit == "document_header":

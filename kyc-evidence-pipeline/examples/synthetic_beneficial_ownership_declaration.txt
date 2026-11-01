@@ -1,0 +1,17 @@
+# Beneficial Ownership Declaration
+All names, numbers and figures in this declaration are fictional.
+
+Company name: Birchwood Trading Limited
+Company number: 99000123
+Jurisdiction: England and Wales
+Date of declaration: 20 January 2026
+
+| Shareholder | Type | Shares held (%) | Voting rights (%) |
+| --- | --- | --- | --- |
+| Jane Smith | Individual | 40 | 40 |
+| Aster Holdings Ltd | Company | 60 | 60 |
+
+| Beneficial owner | Ownership (%) | Nature of control |
+| --- | --- | --- |
+| Jane Smith | 40 | Direct shareholding |
+| Omar Haddad | 36 | Indirect, through Aster Holdings Ltd |

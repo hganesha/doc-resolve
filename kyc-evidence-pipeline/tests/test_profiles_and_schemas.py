@@ -136,7 +136,8 @@ def test_open_categories_keep_facts_but_mark_them_untyped(tmp_path):
     payload = {r["category"]: r for r in requirements_payload(reqs)}
     assert payload["identity_fields"]["typed"] is False
     ownership = {r["category"]: r for r in requirements_payload(_contract("ownership_control")[2])}["ownership"]
-    assert ownership["typed"] and ownership["predicates"][0]["predicate"] == "owns_equity_in" and "evidence_terms" not in ownership["predicates"][0]
+    owns = next(p for p in ownership["predicates"] if p["predicate"] == "owns_equity_in")
+    assert ownership["typed"] and "evidence_terms" not in owns
 
 
 def test_single_valued_attributes_conflict_only_when_they_really_differ():

@@ -85,6 +85,13 @@ predicates:
     value: percent
     date_roles: [as_of, reporting_period, unspecified]
 
+  is_beneficial_owner_of:
+    category: ownership
+    description: A source declares the subject, a natural person, to be a beneficial owner of the object; value is the declared ultimate interest and qualifier the nature of control, if stated.
+    object: required
+    value: percent
+    date_roles: [as_of, unspecified]
+
   # control
   has_voting_rights_over:
     category: control
