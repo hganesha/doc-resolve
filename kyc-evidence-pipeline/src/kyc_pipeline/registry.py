@@ -31,6 +31,7 @@ from typing import Any, Callable
 
 import httpx
 
+from .credentials import get_secret
 from .entities import legal_key, same_person
 from .evidence import make_issue
 from .util import identity_key, lei_check_digits_valid
@@ -351,7 +352,7 @@ class CompaniesHouseClient:
 
     def __init__(self, api_key: str | None = None, *, client: httpx.Client | None = None, timeout: float = 20.0, max_retries: int = 2, max_pages: int = 5):
         if client is None:
-            api_key = api_key or os.environ.get("COMPANIES_HOUSE_API_KEY")
+            api_key = api_key or get_secret("COMPANIES_HOUSE_API_KEY")
             if not api_key:
                 raise RegistryLookupError("COMPANIES_HOUSE_API_KEY is not set")
             client = httpx.Client(base_url=COMPANIES_HOUSE_API, timeout=timeout, auth=httpx.BasicAuth(api_key, ""), headers={"Accept": "application/json"})

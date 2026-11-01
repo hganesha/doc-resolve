@@ -15,3 +15,5 @@ dist/
 build/
 .databricks/
 .DS_Store
+secrets/
+anchors/

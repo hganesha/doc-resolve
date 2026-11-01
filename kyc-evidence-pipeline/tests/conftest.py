@@ -11,7 +11,20 @@ ROOT = Path(__file__).resolve().parents[1]
 
 @pytest.fixture
 def paths(tmp_path):
-    return {"db": str(tmp_path / "evidence.sqlite"), "cp": str(tmp_path / "checkpoints.sqlite"), "tmp": tmp_path}
+    """SQLite files, or with KYC_TEST_POSTGRES_URL set, a fresh schema in that Postgres database."""
+    url = os.environ.get("KYC_TEST_POSTGRES_URL")
+    if not url:
+        yield {"db": str(tmp_path / "evidence.sqlite"), "cp": str(tmp_path / "checkpoints.sqlite"), "tmp": tmp_path}
+        return
+    import uuid
+    import psycopg
+    schema = "test_" + uuid.uuid4().hex[:12]
+    with psycopg.connect(url, autocommit=True) as conn:
+        conn.execute(f"CREATE SCHEMA {schema}")
+    db = url + ("&" if "?" in url else "?") + f"options=-csearch_path%3D{schema}"
+    yield {"db": db, "cp": db, "tmp": tmp_path}
+    with psycopg.connect(url, autocommit=True) as conn:
+        conn.execute(f"DROP SCHEMA {schema} CASCADE")
 
 
 @pytest.fixture

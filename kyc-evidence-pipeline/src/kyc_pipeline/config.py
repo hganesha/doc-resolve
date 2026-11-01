@@ -75,6 +75,13 @@ def load_contract(profiles_path: str | None = None, policy_path: str | None = No
         raise ValueError("screening.max_age_days must be an integer from 1 to 3650")
     if isinstance(threshold, bool) or not isinstance(threshold, (int, float)) or not 0.5 <= threshold <= 1:
         raise ValueError("screening.name_match_threshold must be a number from 0.5 to 1")
+    retention = policy.setdefault("retention", {})
+    if not isinstance(retention, dict):
+        raise ValueError("retention must be a mapping")
+    for key, default in (("case_days_after_last_activity", 1825), ("unfinished_run_days", 90), ("cache_days", 30)):
+        value = retention.setdefault(key, default)
+        if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= 36500:
+            raise ValueError(f"retention.{key} must be a number of days from 1 to 36500")
     for name, category in categories.items():
         if not isinstance(category, dict) or not isinstance(category.get("description"), str) or not isinstance(category.get("material"), bool):
             raise ValueError(f"Invalid category {name!r}")

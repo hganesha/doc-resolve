@@ -12,6 +12,12 @@ identity_checks:
 screening:
   max_age_days: 90
   name_match_threshold: 0.88
+# Illustrative retention periods, not legal advice: set them from your record-keeping
+# obligations (for example, five years after the end of the business relationship).
+retention:
+  case_days_after_last_activity: 1825
+  unfinished_run_days: 90
+  cache_days: 30
 categories:
   legal_identity:
     description: Legal names, registration identifiers, jurisdiction, and status.

@@ -304,6 +304,12 @@ def write_case(sink: Any, package: dict, exported_at: str, *, force: bool = Fals
     return {"case_id": package["case_id"], "export_id": eid, "written": True, "rows": {t: len(tables[t]) for t in WRITE_ORDER}}
 
 
+def delete_case(sink: Any, case_id: str) -> None:
+    """Remove every row of the case: kyc_cases first, so readers stop seeing it at once."""
+    for table in ["kyc_cases"] + [t for t in WRITE_ORDER if t != "kyc_cases"]:
+        sink.write(table, [], case_id)
+
+
 def ddl_script(catalog: str, schema: str) -> str:
     return ";\n\n".join(table_ddl(catalog, schema)) + ";\n"
 

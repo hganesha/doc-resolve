@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 import argparse
+import getpass
 import json
 import os
 import re
+import sqlite3
 import sys
 import uuid
+from contextlib import contextmanager
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -14,14 +18,16 @@ from langgraph.types import Command
 
 from .azure_di import AzureLayoutClient, endpoint_from_env
 from .config import load_contract, requirements_for
+from .credentials import get_secret
+from .crypto import PayloadCipher, checkpoint_serde
 from .extraction import OpenAICompatible, ProviderError, provider_endpoint
 from .graph import build_graph, validate_review_response
-from .lakehouse import LocalDeltaSink, ddl_script, write_case
+from .lakehouse import LocalDeltaSink, ddl_script, delete_case, write_case
 from .local_embeddings import DEFAULT_LOCAL_EMBEDDING_MODEL, LocalEmbeddingProvider
 from .ownership import to_mermaid
 from .screening import load_list
 from .retrieval import search_chunks
-from .store import EvidenceStore
+from .store import EvidenceStore, check_postgres_tls, is_postgres
 from .util import digest, json_text, utc_now
 
 DEFAULT_DB = "kyc_data/evidence.sqlite"
@@ -100,9 +106,16 @@ def _interval(value: str) -> float:
 
 
 def _db_options(parser: argparse.ArgumentParser, *, checkpoint: bool = False) -> None:
-    parser.add_argument("--db", default=DEFAULT_DB, help=f"Evidence SQLite file (default: {DEFAULT_DB})")
+    parser.add_argument("--db", help=f"Evidence store: a SQLite file or a postgresql:// URL (default: the KYC_DATABASE_URL secret, else {DEFAULT_DB}). Prefer the secret for URLs with passwords: command lines are visible to other users.")
     if checkpoint:
-        parser.add_argument("--checkpoint-db", default=DEFAULT_CHECKPOINT, help=f"LangGraph SQLite checkpoints (default: {DEFAULT_CHECKPOINT})")
+        parser.add_argument("--checkpoint-db", help=f"LangGraph checkpoints: a SQLite file or a postgresql:// URL (default: the KYC_CHECKPOINT_DATABASE_URL secret, else the evidence store's Postgres database, else {DEFAULT_CHECKPOINT})")
+
+
+def _as_of(value: str) -> datetime:
+    try:
+        return datetime.fromisoformat(value).replace(tzinfo=timezone.utc)
+    except ValueError:
+        raise argparse.ArgumentTypeError("Use a date such as 2026-11-01") from None
 
 
 def make_parser() -> argparse.ArgumentParser:
@@ -166,6 +179,24 @@ def make_parser() -> argparse.ArgumentParser:
     p.add_argument("--delta-dir", required=True, help="Folder holding one Delta table per record type; created if missing")
     p.add_argument("--force", action="store_true", help="Rewrite the case even if the tables already hold this package")
     _db_options(p)
+    p = sub.add_parser("verify-audit", help="Check the case's audit hash chain and each persisted run's records against it")
+    p.add_argument("--case-id", type=_case, required=True)
+    p.add_argument("--anchor", help="JSON output of an earlier verify-audit, kept outside the database: its head must still be in the chain")
+    p.add_argument("--output", help="Write JSON to this file instead of stdout")
+    _db_options(p)
+    p = sub.add_parser("erase-case", help="Delete a case's documents, records, checkpoints and cached layouts; its audit events remain")
+    p.add_argument("--case-id", type=_case, required=True)
+    p.add_argument("--confirm", required=True, help="The case ID again")
+    p.add_argument("--reason", required=True, help="Why the case is erased (recorded in the audit log)")
+    p.add_argument("--requested-by", default=getpass.getuser(), help="Who asked for the erasure (self-reported; default: your user name)")
+    p.add_argument("--delta-dir", help="Also delete the case's rows from these local Delta tables")
+    _db_options(p, checkpoint=True)
+    p = sub.add_parser("retention", help="List what the policy's retention periods make due for deletion; --apply deletes it")
+    p.add_argument("--apply", action="store_true", help="Erase due cases, expire stale unfinished runs and purge old caches")
+    p.add_argument("--as-of", type=_as_of, help="Evaluate the periods as of this date instead of now")
+    p.add_argument("--requested-by", default=getpass.getuser(), help="Recorded in the audit log (self-reported; default: your user name)")
+    p.add_argument("--policy-file")
+    _db_options(p, checkpoint=True)
     p = sub.add_parser("lakehouse-ddl", help="Print CREATE TABLE statements for the Delta tables in Unity Catalog")
     p.add_argument("--catalog", required=True)
     p.add_argument("--schema", required=True)
@@ -196,6 +227,37 @@ def _checkpoint_path(path: str) -> str:
     except OSError:
         pass
     return str(p)
+
+
+def _db_target(args: argparse.Namespace) -> str:
+    return args.db or get_secret("KYC_DATABASE_URL") or DEFAULT_DB
+
+
+def _checkpoint_target(args: argparse.Namespace, db: str) -> str:
+    return getattr(args, "checkpoint_db", None) or get_secret("KYC_CHECKPOINT_DATABASE_URL") or (db if is_postgres(db) else DEFAULT_CHECKPOINT)
+
+
+@contextmanager
+def _saver(target: str, cipher: PayloadCipher | None):
+    """The LangGraph checkpointer, encrypted when KYC_DATA_KEY is set."""
+    serde = checkpoint_serde(cipher)
+    if is_postgres(target):
+        import psycopg
+        from langgraph.checkpoint.postgres import PostgresSaver
+        from psycopg.rows import dict_row
+        check_postgres_tls(target)
+        with psycopg.connect(target, autocommit=True, prepare_threshold=0, row_factory=dict_row) as conn:
+            saver = PostgresSaver(conn, serde=serde)
+            saver.setup()
+            yield saver
+        return
+    conn = sqlite3.connect(_checkpoint_path(target), check_same_thread=False)
+    conn.execute("PRAGMA secure_delete=ON")
+    try:
+        yield SqliteSaver(conn, serde=serde)
+        conn.execute("PRAGMA wal_checkpoint(TRUNCATE)")  # so deleted checkpoints do not linger in the write-ahead log
+    finally:
+        conn.close()
 
 
 def _new_run_id() -> str:
@@ -286,7 +348,23 @@ def execute(args: argparse.Namespace) -> dict | str:
         return {"policy_id": contract["policy"]["policy_id"], "profiles": [{"profile_id": pid, **p, "requirements": requirements_for(contract, p)} for pid, p in contract["profiles"].items()], "note": "Profiles and policy are illustrative, not bank-approved policy."}
     if args.command == "lakehouse-ddl":
         return ddl_script(args.catalog, args.schema)
-    store = EvidenceStore(args.db)
+    db = _db_target(args)
+    store = EvidenceStore(db)
+    try:
+        return _execute(args, store, db)
+    finally:
+        store.close()
+
+
+def _execute(args: argparse.Namespace, store: EvidenceStore, db: str) -> dict | str:
+    if args.command == "verify-audit":
+        anchor = None
+        if args.anchor:
+            try:
+                anchor = json.loads(Path(args.anchor).read_text(encoding="utf-8")).get("head")
+            except (OSError, json.JSONDecodeError, AttributeError):
+                raise ValueError("The anchor must be the JSON output of an earlier verify-audit") from None
+        return store.verify_audit(args.case_id, anchor)
     if args.command == "report":
         package = store.export_case(args.case_id)
         if not package["documents"] and not package["pending_runs"] and not package["audit_events"]:
@@ -325,8 +403,35 @@ def execute(args: argparse.Namespace) -> dict | str:
         finally:
             if provider and hasattr(provider, "client"):
                 provider.client.close()
-    checkpoint_path = _checkpoint_path(args.checkpoint_db)
-    with SqliteSaver.from_conn_string(checkpoint_path) as saver:
+    with _saver(_checkpoint_target(args, db), store.cipher) as saver:
+        if args.command == "erase-case":
+            if args.confirm != args.case_id:
+                raise ValueError("--confirm must repeat the case ID")
+            # Checkpoints first: they hold the documents' text, and deleting them again is harmless.
+            for run_id in store.case_run_ids(args.case_id):
+                saver.delete_thread(run_id)
+            result = store.erase_case(args.case_id, args.reason, args.requested_by)
+            if args.delta_dir:
+                sink = LocalDeltaSink(args.delta_dir)
+                sink.setup()
+                delete_case(sink, args.case_id)
+                result["delta_tables"] = "Case rows deleted. Earlier table versions keep them until the tables are vacuumed."
+            return result
+        if args.command == "retention":
+            contract = load_contract(policy_path=args.policy_file)
+            retention = contract["policy"]["retention"]
+            plan = store.retention_due(retention, args.as_of)
+            if not args.apply:
+                return {**plan, "applied": False, "next_step": "Nothing was deleted. Re-run with --apply to delete these."}
+            reason = f"Retention policy {contract['policy']['policy_id']}"
+            for case in plan["cases_to_erase"]:
+                for run_id in store.case_run_ids(case["case_id"]):
+                    saver.delete_thread(run_id)
+                store.erase_case(case["case_id"], f"{reason}: no activity since {case['last_activity']}", args.requested_by)
+            for run in plan["runs_to_expire"]:
+                saver.delete_thread(run["run_id"])
+                store.expire_run(run["run_id"], f"{reason}: unfinished since {run['started_at']}")
+            return {**plan, "applied": True, "cache_rows_deleted": store.purge_caches(retention["cache_days"], args.as_of)}
         graph = build_graph(store, saver)
         if args.command == "ingest":
             contract = load_contract(args.profiles_file, args.policy_file, args.schemas_file)
@@ -335,7 +440,7 @@ def execute(args: argparse.Namespace) -> dict | str:
             args.embedding_model = args.embedding_model or _default_embedding_model(args.embeddings, model_provider)
             parser = args.parser.replace("-", "_")
             _preflight_remote(args.extractor, args.embeddings, args.verify_material, args.allow_remote_sensitive_data, args.model, args.embedding_model, parser, model_provider)
-            if "companies-house" in args.registry_check and not os.environ.get("COMPANIES_HOUSE_API_KEY"):
+            if "companies-house" in args.registry_check and not get_secret("COMPANIES_HOUSE_API_KEY"):
                 raise ValueError("--registry-check companies-house needs COMPANIES_HOUSE_API_KEY (a free key from the Companies House developer hub)")
             for path in args.screening_list:
                 load_list(path)  # a missing or unreadable list fails before the run starts
@@ -389,7 +494,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         result = execute(args)
         _write_output(result, getattr(args, "output", None))
-        return 0
+        return 1 if args.command == "verify-audit" and result["status"] == "FAILED" else 0
     except (ValueError, OSError, ProviderError) as exc:
         sys.stderr.write(json_text({"status": "ERROR", "message": str(exc)}, pretty=True) + "\n")
         return 1

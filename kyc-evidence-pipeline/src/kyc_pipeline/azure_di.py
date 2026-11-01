@@ -18,6 +18,7 @@ from typing import Any
 
 import httpx
 
+from .credentials import get_secret
 from .parsing import _new_segment, _path, _table_text, _update_heading
 from .util import digest, json_text
 
@@ -48,7 +49,7 @@ class AzureLayoutClient:
         if not allow_remote:
             raise ValueError("Remote processing is disabled. Explicitly pass --allow-remote-sensitive-data after assessing your data-sharing and provider controls.")
         self.endpoint = (endpoint or endpoint_from_env()).rstrip("/")
-        self.key = key or os.environ.get("AZURE_DOCUMENT_INTELLIGENCE_KEY", "")
+        self.key = key or get_secret("AZURE_DOCUMENT_INTELLIGENCE_KEY")
         if not self.endpoint.startswith("https://"):
             raise ValueError("AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT must be an https:// resource endpoint")
         if not self.key:

@@ -2,7 +2,7 @@
 
 A runnable **Python + LangGraph proof of concept** for preparing auditable KYC/KYB evidence from documents. It combines structure-aware parent/child chunks, document-wide extraction, exact source pointers, a coverage ledger, basic reconciliation, and a checkpointed human-review gate. It is **not a KYC decision engine** and does not establish that a document or case is complete.
 
-> **Sensitive-data warning:** This project stores document text, extracted facts, review decisions, model outputs, and graph checkpoints in **unencrypted local SQLite files**. The original source file is not copied into the evidence store: retain it separately in an approved, immutable evidence repository. Use only synthetic data until appropriate security, retention, access-control, and model-provider controls have been established.
+> **Sensitive-data warning:** This project stores document text, extracted facts, review decisions, model outputs, and graph checkpoints in SQLite files or a Postgres database. They are encrypted only when you set a data key (see [Storage, audit and data protection](#storage-audit-and-data-protection)). The original source file is not copied into the evidence store: retain it separately in an approved, immutable evidence repository. Use only synthetic data until appropriate security, retention, access-control, and model-provider controls have been established.
 
 ## What is implemented
 
@@ -34,8 +34,9 @@ Document → parse + classify → structure/chunk → index
 - **Ownership graph:** builds who-holds-what across the case from the linked facts, with stakes as low–high ranges, look-through interests through chains, control from voting rights or majority stakes, checks for holdings above 100% and cycles, and a beneficial-owner report per company that sets the owners derived from holdings beside declared owners and register PSCs (see below).
 - **Conservative reconciliation:** matching on resolved entities (text only where unresolved), same/overlapping-date ownership conflicts, conflicting single-valued attributes such as two legal names for one entity, duplicate-like source claims, and older ownership snapshots followed by disposals. Different dated stakes are not automatically contradictions. No current percentage is inferred from a partial disposal.
 - **Human intervention:** a LangGraph interrupt includes the issues, related facts and source quotes. Review decisions are persisted with self-reported reviewer attribution. Deferring an issue does not resolve it; resolving a possible conflict preserves all source claims and does not automatically verify either claim.
-- **Checkpoints and retry:** graph stages are checkpointed in SQLite; extraction results are cached per chunk. A retry of identical source bytes and the same configuration reuses successful units and retries failed ones. An optimistic case-revision check prevents persisting conclusions based on a case that changed during processing or review.
+- **Checkpoints and retry:** graph stages are checkpointed in SQLite or Postgres; extraction results are cached per chunk. A retry of identical source bytes and the same configuration reuses successful units and retries failed ones. An optimistic case-revision check prevents persisting conclusions based on a case that changed during processing or review.
 - **Delta tables and Databricks:** each case's evidence package can be written to 14 Delta tables (cases, documents, runs, facts, evidence, entities, issues, findings, coverage, ownership edges, beneficial owners, screening checks, review decisions, audit events), locally or in Unity Catalog. An asset bundle deploys a serverless job that processes case folders dropped into a volume (see below).
+- **Audit, retention and data protection:** each case's audit events form a hash chain that `verify-audit` checks, together with every persisted run's records. Cases can be erased on request or by retention period, with the audit trail kept. Payloads and checkpoints can be encrypted with AES-256-GCM, and secrets can be read from files. The store runs on SQLite or Postgres (see below).
 - **Offline by default:** BM25 retrieval and intentionally narrow rule extraction require no API key and make no network calls. Optional local neural embeddings run on your machine after downloading model weights; optional model extraction, material-fact source-support checks and embeddings (OpenAI, Azure OpenAI or an OpenAI-compatible server, with strict structured output and retries) require explicit data-sharing opt-in. A model-request budget and optional PDF page scope mark remaining chunks as not reviewed.
 
 ## Requirements and quick start
@@ -579,6 +580,67 @@ The job creates the tables on its first run (it needs `CREATE TABLE` on the sche
 
 Tested on a workspace (1 November 2026, serverless environment version 3, `dev` target): four runs on a synthetic case. The first ingested a registry extract and an ownership declaration and created and filled the tables. The second picked up the stored databases, ingested only a newly added screening report and paused on its sanctions hit. The third read a defer decision from the inbox, resumed and rewrote the case. The fourth found nothing new and wrote nothing. SQL queries confirmed that every row matched its case's `export_id`, the table properties, and that the deferred issue stayed `OPEN`. The local Delta writer and the job are also covered by tests; the Spark writer's tests use a stub session. The tables hold document text and personal data: grant access accordingly. Copying the SQLite store in and out of a volume suits a proof of concept with one job at a time, not concurrent processing.
 
+## Storage, audit and data protection
+
+### SQLite or Postgres
+
+By default the evidence store and graph checkpoints are SQLite files (`--db`, `--checkpoint-db`). For a shared server, install the `postgres` extra and pass a connection URL instead, or set it as the secret `KYC_DATABASE_URL`:
+
+```bash
+pip install -e '.[postgres]'
+export KYC_DATABASE_URL='postgresql://kyc@db.internal:5432/kyc?sslmode=verify-full'
+kyc-pipeline ingest examples/synthetic_registry.txt --case-id case-reg --profile corporate_registry
+```
+
+The tables are created on first use. Checkpoints go to the same database unless `KYC_CHECKPOINT_DATABASE_URL` or `--checkpoint-db` names another. A server other than this machine must be reached with `sslmode=verify-full` (or `verify-ca`); anything weaker is refused. Concurrent runs on one case are serialized with a per-case advisory lock, and multi-table reads use one consistent snapshot. Run the test suite against a server with `KYC_TEST_POSTGRES_URL=postgresql://... pytest`: each test gets its own schema, which is dropped afterwards.
+
+### Tamper-evident audit log
+
+Every audit event records its position in the case's chain, the hash of the event before it, and its own SHA-256 hash over its content. The event that records a run's persistence also holds a digest of everything the run stored (segments, chunks, evidence, facts, entities, findings, issues, coverage, sections, reviews and its summary). Database triggers reject updates and deletions of audit events on both backends.
+
+```bash
+kyc-pipeline verify-audit --case-id case-reg --output anchors/case-reg.json
+kyc-pipeline verify-audit --case-id case-reg --anchor anchors/case-reg.json
+```
+
+`verify-audit` exits with status 1 and lists the problems when an event was edited, removed or inserted, when a run's stored records differ from those recorded when it was persisted, when records exist with no persistence event, or when a run's status differs from the one its audit events set. The triggers stop mistakes, not the database owner: someone who can drop them and recompute the whole chain is caught only by comparing it against a head kept elsewhere. Keep each verification's output (its `head`) outside the database, for example in WORM storage, and pass it back with `--anchor`. Stores created before the chain keep their earlier events, which are counted as `unchained_events_before_chaining` and not checked.
+
+### Erasure and retention
+
+```bash
+kyc-pipeline erase-case --case-id case-reg --confirm case-reg --reason "Erasure request 2026-114" --requested-by analyst.a
+kyc-pipeline retention                         # lists what is due; deletes nothing
+kyc-pipeline retention --apply
+```
+
+`erase-case` deletes the case's graph checkpoints, documents, run records, extraction units and vectors, and layout results that no other case uses. Runs are marked `ERASED`. The audit events remain, together with a `CASE_ERASED` event that records the reason, who asked (self-reported) and the number of rows deleted. Audit events hold identifiers, statuses and digests, not document text. `--delta-dir` also deletes the case's rows from local Delta tables; earlier table versions keep them until the tables are vacuumed. On SQLite, deleted content is overwritten (`secure_delete`) and the write-ahead log is truncated. On Postgres, deleted rows stay in the table files until `VACUUM`, and backups and replicas keep their copies.
+
+The policy's `retention` block sets three periods:
+- `case_days_after_last_activity` (default 1825): a case with no audit event for this long is erased;
+- `unfinished_run_days` (default 90): a run that never finished (paused, failed, processing or superseded) is expired, which deletes its working records and checkpoint;
+- `cache_days` (default 30): cached layout results and registry responses older than this are deleted.
+
+`retention` only lists what is due; `--apply` carries it out and records each erasure and expiry in the audit log. `--as-of 2027-01-01` evaluates the periods as of another date. Unity Catalog tables are not covered: delete there with SQL.
+
+### Encryption and secrets
+
+Set the secret `KYC_DATA_KEY` to 32 random bytes, base64-encoded, before creating a store:
+
+```bash
+python -c "import os,base64;print(base64.b64encode(os.urandom(32)).decode())" > secrets/KYC_DATA_KEY
+chmod 600 secrets/KYC_DATA_KEY
+export KYC_SECRETS_DIR=$PWD/secrets
+```
+
+Every payload (documents, segments, chunks, facts, evidence, run summaries, caches and the rest) and every graph checkpoint is then encrypted with AES-256-GCM. The table name is authenticated with each value, so a value cannot be moved to another table; swaps within a table are caught by `verify-audit`. Identifiers, statuses, timestamps and audit events stay readable, so the store can be queried and verified without the key. The store records the key's ID: opening it without the key, or with another key, is refused, and a key cannot be added to a store that already holds unencrypted data. Key rotation is not supported yet. Exports (`report`, Delta tables, review files) are not encrypted.
+
+Each secret (`KYC_DATA_KEY`, `KYC_DATABASE_URL`, `OPENAI_API_KEY`, `AZURE_OPENAI_API_KEY`, `AZURE_DOCUMENT_INTELLIGENCE_KEY`, `AZURE_OPENAI_AD_TOKEN`, `COMPANIES_HOUSE_API_KEY` and `KYC_CHECKPOINT_DATABASE_URL`) is read from the first of these:
+1. the file named by `NAME_FILE`, the Docker and Kubernetes convention;
+2. a file called `NAME` in the folder `KYC_SECRETS_DIR`;
+3. the environment variable `NAME`.
+
+Secret files readable by group or others are refused.
+
 ## Input formats and known gaps
 
 - UTF-8 `.txt`/`.md`, static `.html`, `.csv`, and text-based `.pdf` up to 50 MiB. TXT form feeds create supplied page anchors; HTML/CSV do not have invented page numbers. No URL fetching or JavaScript execution. With `--parser azure-di`: PDF, PNG, JPEG, TIFF, BMP, HEIF, DOCX, XLSX, PPTX and HTML (see above).
@@ -587,7 +649,7 @@ Tested on a workspace (1 November 2026, serverless environment version 3, `dev` 
 - Entity links come from the document's own definitions and printed identifiers, not from an authoritative register; a merge on legal name alone can join two different entities that share a name and lack identifiers.
 - Apart from the opt-in GLEIF and Companies House lookups, the pipeline does not perform authoritative registry or licence-register checks, live sanctions/PEP screening (list screening reads only a local file you supply), identity verification (identity documents are checked for internal consistency only), verified beneficial-owner identification (people are matched by name only, and the report is built from what the documents and register state), source-of-funds verification (statement arithmetic and amount matching are not proof of origin), complete contradiction resolution, or policy-driven customer acceptance decisions. Allegations are not findings of guilt.
 - Literal quote and number checks are not semantic validation. Model source-support checks can also be wrong or manipulated. Automated `NOT_FOUND_AFTER_REVIEW` means only that the parsed chunks received a successful model pass; it is not proof of absence.
-- SQLite is suitable only for a single-host POC. The evidence store and graph checkpoints are separate databases, so their commits are not one distributed transaction; writes are designed to be idempotent and use a case revision check. There is no authentication, authorization, encryption, secrets manager, immutable/WORM audit log, redaction, retention/deletion workflow, scalable job queue, or production observability. Human reviewer IDs are self-reported. Add these before handling real KYC information.
+- SQLite suits a single host; use Postgres for anything shared. The evidence store and graph checkpoints commit separately even in one Postgres database, so their commits are not one transaction. Writes are designed to be idempotent and use a case revision check. There is no authentication or authorization: reviewer IDs and erasure requesters are self-reported, and anyone with database access can read identifiers and audit events. The audit chain is tamper-evident, not tamper-proof (keep anchors outside the database). There is no key rotation, no encryption of exports or Delta tables, no redaction of document text, no scalable job queue and no production observability. The Databricks job uses SQLite state on a volume and does not read `KYC_DATA_KEY` from a secret scope yet. Add these before handling real KYC information.
 - All document content in the evidence database, extraction cache, checkpoint database, exports, Delta tables, Databricks volumes, and review files is sensitive. Control access to all copies, including SQLite WAL/SHM files and backups. External API calls send source text when opted in; configure provider logging and retention appropriately.
 
 ## Project layout
@@ -614,9 +676,11 @@ src/kyc_pipeline/
   ownership.py          # ownership/control graph, look-through interests, register PSCs, beneficial owners, graph checks
   coverage.py           # coverage ledger and section manifest
   graph.py              # LangGraph orchestration and human interrupt
-  store.py              # local SQLite records, cache, audit and case revisions
+  store.py              # SQLite or Postgres records, cache, hash-chained audit, erasure and retention
+  crypto.py             # AES-256-GCM payload and checkpoint encryption
+  credentials.py        # secrets from files, a secrets folder or the environment
   retrieval.py          # BM25 + optional embedding search, parent context
-  cli.py                # ingest, status, resume, retry, report, ownership, query, segment, lakehouse
+  cli.py                # ingest, status, resume, retry, report, ownership, query, segment, lakehouse, verify-audit, erase-case, retention
 databricks.yml          # asset bundle: schema, volumes and the serverless job
 examples/               # fictional fixtures and two pinned public-report PDFs
 real_evaluation/         # source-checked sample targets and recorded test outputs

@@ -12,6 +12,7 @@ from urllib.parse import quote
 import httpx
 from pydantic import ValidationError
 
+from .credentials import get_secret
 from .models import BatchExtractionResponse, CandidateFact, ExtractionResponse, SupportResponse, strict_schema
 from .util import normalize_date
 
@@ -992,8 +993,8 @@ class OpenAICompatible:
         self.provider = provider
         if provider == "azure_openai":
             self.base_url = os.environ.get("AZURE_OPENAI_ENDPOINT", "").rstrip("/")
-            self.api_key = os.environ.get("AZURE_OPENAI_API_KEY", "")
-            self.ad_token = os.environ.get("AZURE_OPENAI_AD_TOKEN", "")
+            self.api_key = get_secret("AZURE_OPENAI_API_KEY")
+            self.ad_token = get_secret("AZURE_OPENAI_AD_TOKEN")
             self.api_version = os.environ.get("AZURE_OPENAI_API_VERSION", AZURE_OPENAI_API_VERSION)
             self.model = model or os.environ.get("AZURE_OPENAI_DEPLOYMENT", "")
             self.embedding_model = embedding_model or os.environ.get("AZURE_OPENAI_EMBEDDING_DEPLOYMENT", "")
@@ -1005,7 +1006,7 @@ class OpenAICompatible:
                 raise ValueError("AZURE_OPENAI_API_VERSION is not a valid API version")
         else:
             self.base_url = os.environ.get("OPENAI_BASE_URL", OPENAI_DEFAULT_BASE_URL).rstrip("/")
-            self.api_key = os.environ.get("OPENAI_API_KEY", "")
+            self.api_key = get_secret("OPENAI_API_KEY")
             self.ad_token = ""
             self.api_version = None
             self.model = model or os.environ.get("OPENAI_MODEL", "gpt-4.1-mini")
