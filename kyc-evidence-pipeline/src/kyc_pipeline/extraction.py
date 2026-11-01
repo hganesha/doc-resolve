@@ -129,7 +129,7 @@ _RECORD_FIELDS: list[tuple[str, str, str, str]] = [
     (r"expiry\s+date|expiration\s+date|expires(?:\s+on)?|valid\s+until", "license_status", "license_expires_on", "date"),
     (r"conditions|restrictions?|limitations", "license_status", "license_restricted_by", "list"),
 ]
-_RECORD_DATE_LABELS = r"(?:date\s+of\s+extract|extract\s+date|as\s+at|data\s+as\s+of|retrieved\s+on|register\s+date)"
+_RECORD_DATE_LABELS = r"(?:date\s+of\s+extract|extract\s+date|as\s+at|data\s+as\s+of|retrieved\s+on|register\s+date|review\s+date|date\s+of\s+review)"
 _LICENCE_STATUS_LABEL = r"(?:licen[cs]e\s+)?status"
 
 
@@ -167,8 +167,10 @@ def _field_record_facts(body: str, applicable: set[str]) -> list[dict]:
         return list(dict.fromkeys(extra))
 
     seen: set[int] = set()
+    enforcement = not is_licence and is_enforcement_record(body)
     for label, category, predicate, kind in _RECORD_FIELDS:
-        if category not in applicable:
+        # An enforcement notice's "Regulator:" line is not a licence's issuer.
+        if category not in applicable or (category == "license_status" and enforcement):
             continue
         for m in re.finditer(rf"(?im)^[ \t]*(?:{label})[ \t]*:[ \t]*(?P<value>[^\n]*\S)", body):
             if m.start() in seen or len(m.group(0)) > 1200:
@@ -450,6 +452,300 @@ def _holding_row_facts(chunk: dict) -> list[dict]:
     return found
 
 
+# Identity documents (passport, identity card, driving licence) and proofs of
+# address (a bill or statement naming the person and their address).
+_SURNAME_LABEL = r"surname|family\s+name|last\s+name"
+_GIVEN_LABEL = r"given\s+names?|forenames?|first\s+names?"
+_PERSON_LABEL = r"(?:full\s+)?name|name\s+of\s+(?:holder|bearer)|holder(?:'s)?\s+name|account\s+holder|customer(?:\s+name)?|addressee"
+_DOCUMENT_NUMBER = r"(?P<kind>passport|document|card|(?:driving\s+|driver'?s\s+)?licen[cs]e|id(?:entity)?(?:\s+card)?)\s+(?:number|no\.?)"
+_DOCUMENT_KINDS = [(r"passport", "Passport"), (r"licen[cs]e", "Driving licence"), (r"card|id", "National identity card")]
+
+
+def _identity_record_facts(body: str) -> list[dict]:
+    """Identity-document and proof-of-address "Label: value" fields for one person."""
+    surname, given = _field_line(_SURNAME_LABEL, body), _field_line(_GIVEN_LABEL, body)
+    if surname and given:
+        subject = f"{_trim_entity(given.group('value'))} {_trim_entity(surname.group('value'))}"
+        name_quotes = [given.group(0).strip(), surname.group(0).strip()]
+    else:
+        full = _field_line(_PERSON_LABEL, body)
+        if not full:
+            return []
+        subject, name_quotes = _trim_entity(full.group("value")), [full.group(0).strip()]
+    found = []
+
+    def date_of(label: str) -> tuple[str | None, str | None]:
+        m = _field_line(label, body)
+        if not m:
+            return None, None
+        try:
+            return normalize_date(m.group("value").strip(" .")), m.group(0).strip()
+        except ValueError:
+            return None, None
+
+    def add(predicate: str, quote: str, **fields: Any) -> None:
+        cited = [q for q in dict.fromkeys(name_quotes + fields.pop("extra", [])) if q != quote]
+        category = "address" if predicate == "has_residential_address" else "identity_fields"
+        found.append(_mk(category, subject, predicate, quote, supporting_quotes=cited[:4], **fields))
+
+    number = _field_line(_DOCUMENT_NUMBER, body)
+    kind_line = _field_line(r"document\s+type|type\s+of\s+document", body)
+    if number:
+        value = _trim_entity(number.group("value"))
+        kind_text = kind_line.group("value").strip() if kind_line else number.group("kind")
+        kind = next((name for pattern, name in _DOCUMENT_KINDS if re.search(pattern, kind_text, re.I)), None)
+        literal = kind_line.group("value").strip() if kind_line else next((w for w in re.findall(r"[A-Za-z']+", number.group(0)) if re.search(r"passport|licen[cs]e|card", w, re.I)), None)
+        country = _field_line(r"issuing\s+(?:country|state|authority)|country\s+of\s+issue|authority", body)
+        if kind and literal:
+            extra = ([kind_line.group(0).strip()] if kind_line else []) + ([country.group(0).strip()] if country else [])
+            add("holds_identity_document", number.group(0).strip(), object=literal, value=value, qualifier=_trim_entity(country.group("value")) if country else None, extra=extra)
+            for label, predicate in ((r"date\s+of\s+issue|issue\s+date|issued(?:\s+on)?", "identity_document_issued_on"), (r"date\s+of\s+expiry|expiry\s+date|expiration\s+date|expires(?:\s+on)?|valid\s+until", "identity_document_expires_on")):
+                when, quote = date_of(label)
+                if when:
+                    add(predicate, quote, object=value, effective_date=when, date_role="event", extra=[number.group(0).strip()])
+    when, quote = date_of(r"date\s+of\s+birth|dob|birth\s+date|born")
+    if when:
+        add("has_date_of_birth", quote, effective_date=when, date_role="event")
+    for label, predicate in ((r"nationality|citizenship", "has_nationality"), (r"place\s+of\s+birth", "has_place_of_birth")):
+        m = _field_line(label, body)
+        if m:
+            add(predicate, m.group(0).strip(), object=_trim_entity(m.group("value")))
+    address = _field_line(r"(?:residential\s+|home\s+|current\s+|service\s+|supply\s+|postal\s+)?address", body)
+    if address:
+        # A bill or statement dates the address; an identity document's own dates do not.
+        as_of, quote = date_of(r"(?:statement|bill|invoice|letter)\s+date|date\s+of\s+(?:statement|bill|letter)|date") if not number else (None, None)
+        add("has_residential_address", address.group(0).strip(), object=_trim_entity(address.group("value")), effective_date=as_of, date_role="as_of" if as_of else "unspecified", qualifier=None if number else "proof of address", extra=[quote] if quote else [])
+    return found
+
+
+# Sanctions and PEP screening reports, and a customer's PEP declaration.
+_SCREENED_LABEL = r"screened\s+name|name\s+screened|subject\s+name|full\s+name|name"
+_SCREENING_DATE = r"screening\s+date|date\s+(?:of\s+)?screening|date\s+screened|search\s+date|date\s+checked"
+_POSITIVE = re.compile(r"\b(?:yes|match(?:ed)?|hit|positive|potential|possible|confirmed|true)\b", re.I)
+_NEGATIVE = re.compile(r"\b(?:no|none|not|negative|clear|nil|false)\b", re.I)
+
+
+def is_positive(text: str | None) -> bool:
+    """'Potential match' or 'Yes' is positive; 'No match' or 'Clear' is not."""
+    return bool(text and _POSITIVE.search(text) and not _NEGATIVE.search(text))
+
+
+def _screening_record_facts(body: str) -> list[dict]:
+    declaration = _field_line(r"(?:are\s+you\s+(?:a\s+)?)?politically\s+exposed\s+person\??|pep\s+declaration|declared\s+pep\s+status", body)
+    subject_line = _field_line(_SCREENED_LABEL if not declaration else r"(?:customer|client|applicant|declarant)(?:\s+name)?|full\s+name|name", body)
+    if not subject_line:
+        return []
+    subject = _trim_entity(subject_line.group("value"))
+    support = [subject_line.group(0).strip()]
+    dated: dict[str, Any] = {}
+    when = _field_line(_SCREENING_DATE if not declaration else r"date\s+of\s+declaration|declaration\s+date|date\s+signed|date", body)
+    if when:
+        try:
+            dated = {"effective_date": normalize_date(when.group("value").strip(" .")), "date_role": "as_of"}
+            support.append(when.group(0).strip())
+        except ValueError:
+            dated = {}
+    found = []
+    if declaration:
+        found.append(_mk("sanctions_pep", subject, "declared_pep_status", declaration.group(0).strip(), value=declaration.group("value").strip(), supporting_quotes=support, **dated))
+        return found
+    lists = _field_line(r"lists?\s+screened|lists?\s+checked|sanctions\s+lists?|watch\s*lists?", body)
+    result = _field_line(r"sanctions\s+(?:result|status|outcome)", body)
+    if result:
+        matched = _field_line(r"match(?:ed)?\s+(?:entry|record)|list\s+match", body)
+        extra = [m.group(0).strip() for m in (lists, matched) if m]
+        found.append(_mk("sanctions_pep", subject, "sanctions_screening_result", result.group(0).strip(), object=_trim_entity(lists.group("value")) if lists else None, value=result.group("value").strip(), qualifier=_trim_entity(matched.group("value"))[:150] if matched else None, supporting_quotes=(support + extra)[:4], **dated))
+    pep = _field_line(r"pep\s+(?:result|status|outcome)", body)
+    if pep:
+        found.append(_mk("sanctions_pep", subject, "pep_screening_result", pep.group(0).strip(), value=pep.group("value").strip(), supporting_quotes=support, **dated))
+    position = _field_line(r"pep\s+(?:position|role|function)|(?:public\s+)?(?:position|function|office)\s+held|prominent\s+public\s+function", body)
+    if position and not _NEGATIVE.fullmatch(position.group("value").strip()):
+        country = _field_line(r"pep\s+country|country\s+of\s+(?:office|function)|pep\s+relationship|relationship", body)
+        found.append(_mk("sanctions_pep", subject, "holds_public_function", position.group(0).strip(), object=_trim_entity(position.group("value")), qualifier=_trim_entity(country.group("value")) if country else None, supporting_quotes=(support + ([country.group(0).strip()] if country else []))[:4], **dated))
+    return found
+
+
+# Adverse media and enforcement: article metadata, outcome-stage sentences, and enforcement notices.
+_NAME = r"(?:[A-Z][\w&.'’-]*)(?:\s+(?:[A-Z][\w&.'’-]*|of|and|&|de|van|der|al|bin|for))*(?:\s+\([A-Z]{2,}\))?"
+_MONEY = r"(?:[A-Z]{3}|[£$€])\s?\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|thousand|m|bn)\b)?"
+_SCALES = {"thousand": "thousands", "million": "millions", "m": "millions", "billion": "billions", "bn": "billions"}
+
+
+def _media_amount(text: str | None) -> tuple[float, str] | None:
+    """'£2.4 million' -> (2.4, 'GBP_millions'): the printed number, with the scale in the unit."""
+    m = re.search(r"(?P<cur>[A-Z]{3}|[£$€])\s?(?P<num>\d[\d,]*(?:\.\d+)?)(?:\s*(?P<scale>million|billion|thousand|m|bn)\b)?", text or "")
+    if not m:
+        return None
+    unit = _CURRENCY_SYMBOLS.get(m.group("cur"), m.group("cur"))
+    return float(m.group("num").replace(",", "")), unit + (f"_{_SCALES[m.group('scale').lower()]}" if m.group("scale") else "")
+
+
+def _conduct(raw: str) -> str:
+    """'money laundering in March 2025, prosecutors said' -> 'money laundering'."""
+    return _trim_entity(re.split(r",|\s+(?:in|on|since|during|after|following|according\s+to|between)\s+(?=[A-Z0-9])|\s+(?:in|on)\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\b|\s+(?:through|via|when|while|because|saying)\s+", raw)[0])
+
+
+def _event_date(text: str) -> str | None:
+    """A sentence's event date: 'on 2 June 2026' as well as the forms _date_in reads."""
+    found = _date_in(text)
+    m = None if found else re.search(r"\b(?:on|in|since)\s+(\d{1,2}\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4})\b", text)
+    try:
+        return found or (normalize_date(m.group(1)) if m else None)
+    except ValueError:
+        return None
+
+
+_OUTCOME_SENTENCES: list[tuple[str, str, str]] = [
+    (rf"^(?P<subject>{_NAME})\s+(?:was|were|has\s+been|have\s+been|is|are)\s+(?:formally\s+)?(?:charged|indicted)\s+(?:with|on|for)\s+(?:\w+\s+counts?\s+of\s+)?(?P<object>.+)$", "charged_with", "reported_statement"),
+    (rf"^(?P<subject>{_NAME})\s+(?:was|were|has\s+been|have\s+been)\s+(?:convicted|found\s+guilty)\s+of\s+(?P<object>.+)$", "convicted_of", "reported_statement"),
+    (rf"^(?P<subject>{_NAME})\s+(?:has\s+|have\s+)?pleaded\s+guilty\s+to\s+(?P<object>.+)$", "convicted_of", "reported_statement"),
+    (rf"^(?P<subject>{_NAME})\s+(?:was|were|has\s+been|have\s+been)\s+(?:acquitted|cleared)\s+of\s+(?P<object>.+)$", "cleared_of", "reported_statement"),
+    (rf"^(?:The\s+)?(?P<object>charges?(?:\s+of\s+[^.;]+?)?)\s+against\s+(?P<subject>{_NAME})\s+(?:were|was|have\s+been|has\s+been)\s+(?:dropped|dismissed|withdrawn)\b.*$", "cleared_of", "reported_statement"),
+    (rf"^(?P<subject>{_NAME})\s+(?:has\s+|have\s+)?(?:denied|denies|deny|rejected|rejects)\s+(?P<object>(?:the\s+|any\s+|all\s+)?(?:allegations?|wrongdoing|claims?|charges?|accusations?)\b[^.;]*)", "denied", "denial"),
+    (rf"^(?P<subject>{_NAME})\s+(?:is|was|are|were|has\s+been|have\s+been)\s+(?:under\s+investigation|being\s+investigated)(?:\s+by\s+(?P<authority>[^,.;]+?))?\s+(?:for|over|in\s+connection\s+with|into)\s+(?P<object>.+)$", "under_investigation_for", "reported_statement"),
+    (rf"^(?P<authority>{_NAME})\s+(?:has\s+|have\s+)?(?:opened|launched|began|begun|started)\s+an?\s+(?:\w+\s+)?investigation\s+into\s+(?P<subject>{_NAME})\s+(?:over|for|in\s+connection\s+with|concerning)\s+(?P<object>.+)$", "under_investigation_for", "reported_statement"),
+    (rf"^(?P<authority>{_NAME})\s+(?:has\s+|have\s+)?fined\s+(?P<subject>{_NAME})\s+(?P<amount>{_MONEY})(?:\s+(?:for|over)\s+(?P<object>.+))?$", "received_regulatory_penalty", "reported_statement"),
+    (rf"^(?P<subject>{_NAME})\s+(?:was|were|has\s+been|have\s+been)\s+fined\s+(?P<amount>{_MONEY})\s+by\s+(?P<authority>[^,.;]+?)(?:\s+(?:for|over)\s+(?P<object>.+))?$", "received_regulatory_penalty", "reported_statement"),
+    (rf"^(?P<subject>{_NAME})\s+(?:has\s+|have\s+)?agreed\s+to\s+pay\s+(?P<amount>{_MONEY})\s+to\s+(?:settle|resolve)\s+(?P<object>.+)$", "settled", "reported_statement"),
+    (rf"^(?P<subject>{_NAME})\s+(?:has\s+|have\s+)?settled\s+(?P<object>.+?)(?:\s+for\s+(?P<amount>{_MONEY}))?$", "settled", "reported_statement"),
+]
+
+
+def _outcome_sentence_facts(text: str, quote: str) -> list[dict]:
+    """One fact per outcome-stage sentence: charged, convicted, cleared, denied, investigated, fined, settled."""
+    sentence = text.rstrip(" .;")
+    for pattern, predicate, claim_type in _OUTCOME_SENTENCES:
+        m = re.match(pattern, sentence)
+        if not m:
+            continue
+        groups = m.groupdict()
+        subject = _trim_entity(re.sub(r"^The\s+(?=[A-Z])", "", groups["subject"]) if predicate != "cleared_of" else groups["subject"])
+        conduct = _conduct(groups["object"]) if groups.get("object") else None
+        fields: dict[str, Any] = {"claim_type": claim_type, "effective_date": _event_date(text)}
+        if fields["effective_date"]:
+            fields["date_role"] = "event"
+        amount = _media_amount(groups.get("amount"))
+        if amount:
+            fields.update(value=amount[0], unit=amount[1])
+        authority = re.sub(r"^[Tt]he\s+", "", _trim_entity(groups["authority"])) if groups.get("authority") else None
+        if predicate == "received_regulatory_penalty":
+            fields.update(object=authority, qualifier=conduct)
+            return [_mk("legal_regulatory", subject, predicate, quote, **fields)]
+        if not conduct:
+            return []
+        fields["object"] = conduct
+        if authority:
+            fields["qualifier"] = authority
+        return [_mk("allegations_and_outcomes", subject, predicate, quote, **fields)]
+    return []
+
+
+def _article_metadata_facts(body: str) -> list[dict]:
+    headline = _field_line(r"headline|title", body)
+    if not headline:
+        return []
+    subject = _trim_entity(headline.group("value"))
+    found = []
+    publisher = _field_line(r"publisher|published\s+by|publication|source|outlet", body)
+    if publisher:
+        found.append(_mk("source_metadata", subject, "published_by", publisher.group(0).strip(), object=_trim_entity(publisher.group("value")), supporting_quotes=[headline.group(0).strip()]))
+    published = _field_line(r"published(?:\s+on)?|publication\s+date|date\s+published|date", body)
+    if published:
+        try:
+            found.append(_mk("source_metadata", subject, "published_on", published.group(0).strip(), effective_date=normalize_date(published.group("value").strip(" .")), date_role="event", supporting_quotes=[headline.group(0).strip()]))
+        except ValueError:
+            pass
+    return found
+
+
+_ENFORCEMENT_LABELS = r"(?:financial\s+)?penalty|fine|action(?:\s+taken)?|enforcement\s+action|sanction\s+imposed"
+
+
+def is_enforcement_record(body: str) -> bool:
+    return bool(re.search(rf"(?im)^[ \t]*(?:{_ENFORCEMENT_LABELS})[ \t]*:", body))
+
+
+def _enforcement_record_facts(body: str) -> list[dict]:
+    """A regulator's enforcement notice: firm, regulator, date, penalty, and other action."""
+    if not is_enforcement_record(body):
+        return []
+    subject_line = _field_line(_SUBJECT_LABELS + r"|firm|respondent|subject", body)
+    if not subject_line:
+        return []
+    subject = _trim_entity(subject_line.group("value"))
+    support = [subject_line.group(0).strip()]
+    regulator = _field_line(r"regulator|issued\s+by|(?:regulatory\s+)?authority", body)
+    reason = _field_line(r"reason|breach(?:es)?|grounds|conduct", body)
+    when = _field_line(r"date\s+of\s+(?:notice|decision)|(?:notice|decision)\s+date|date\s+issued|date", body)
+    fields: dict[str, Any] = {"claim_type": "order"}
+    if when:
+        try:
+            fields.update(effective_date=normalize_date(when.group("value").strip(" .")), date_role="event")
+            support.append(when.group(0).strip())
+        except ValueError:
+            pass
+    if regulator:
+        support.append(regulator.group(0).strip())
+    found = []
+    penalty = _field_line(r"(?:financial\s+)?penalty|fine", body)
+    amount = _amount(penalty.group("value")) or _media_amount(penalty.group("value")) if penalty else None
+    if penalty and amount:
+        extra = [reason.group(0).strip()] if reason else []
+        found.append(_mk("legal_regulatory", subject, "received_regulatory_penalty", penalty.group(0).strip(), object=_trim_entity(regulator.group("value")) if regulator else None, value=amount[0], unit=amount[1], qualifier=_trim_entity(reason.group("value"))[:150] if reason else None, supporting_quotes=(support + extra)[:4], **fields))
+    action = _field_line(r"action(?:\s+taken)?|enforcement\s+action|sanction\s+imposed", body)
+    if action:
+        for part in re.split(r"\s*;\s*", action.group("value")):
+            if _trim_entity(part):
+                found.append(_mk("legal_regulatory", subject, "subject_to_enforcement_action", action.group(0).strip(), object=_trim_entity(part), qualifier=_trim_entity(regulator.group("value")) if regulator else None, supporting_quotes=support[:4], **fields))
+    return found
+
+
+# The bank's own prior KYC file: decision, risk rating, next review, and the owners on file.
+_REVIEW_DATE = r"review\s+date|date\s+of\s+review|date\s+reviewed|decision\s+date"
+
+
+def _prior_record_facts(body: str, applicable: set[str]) -> list[dict]:
+    decision = _field_line(r"(?:kyc\s+|onboarding\s+|review\s+)?decision|review\s+outcome", body)
+    rating = _field_line(r"(?:customer\s+)?risk\s+(?:rating|grade|level)", body)
+    due = _field_line(r"next\s+review(?:\s+(?:due|date))?(?:\s+date)?|review\s+due(?:\s+date)?", body)
+    if not (decision or rating or due):
+        return []
+    subject_line = _field_line(_SUBJECT_LABELS + r"|(?:customer|client)(?:\s+name)?", body)
+    if not subject_line:
+        return []
+    subject = _trim_entity(subject_line.group("value"))
+    support = [subject_line.group(0).strip()]
+    dated: dict[str, Any] = {}
+    reviewed = _field_line(_REVIEW_DATE, body)
+    if reviewed:
+        try:
+            dated = {"effective_date": normalize_date(reviewed.group("value").strip(" ."))}
+            support.append(reviewed.group(0).strip())
+        except ValueError:
+            dated = {}
+    found = []
+    if "prior_decisions" in applicable:
+        if decision:
+            reason = _field_line(r"(?:decision\s+)?(?:reason|rationale)|reason\s+for\s+decision", body)
+            found.append(_mk("prior_decisions", subject, "kyc_decision", decision.group(0).strip(), value=decision.group("value").strip(), qualifier=_trim_entity(reason.group("value"))[:150] if reason else None, supporting_quotes=(support + ([reason.group(0).strip()] if reason else []))[:4], **dated, **({"date_role": "event"} if dated else {})))
+        if rating:
+            found.append(_mk("prior_decisions", subject, "assigned_risk_rating", rating.group(0).strip(), value=rating.group("value").strip(), supporting_quotes=support, **dated, **({"date_role": "as_of"} if dated else {})))
+        if due:
+            try:
+                found.append(_mk("prior_decisions", subject, "next_review_due", due.group(0).strip(), effective_date=normalize_date(due.group("value").strip(" .")), date_role="event", supporting_quotes=support[:1]))
+            except ValueError:
+                pass
+    owners = _field_line(r"beneficial\s+owners?(?:\s+on\s+file)?|ubos?(?:\s+on\s+file)?", body)
+    if owners and "ownership" in applicable:
+        # "Jane Smith (40%); Omar Haddad": each owner, with the stake if printed.
+        for part in re.split(r"\s*;\s*", owners.group("value")):
+            m = re.match(r"^(?P<name>[^()]+?)\s*(?:\((?P<pct>\d+(?:\.\d+)?)\s*%\))?\s*$", part)
+            if m and m.group("name").strip():
+                pct = float(m.group("pct")) if m.group("pct") else None
+                found.append(_mk("ownership", _trim_entity(m.group("name")), "is_beneficial_owner_of", owners.group(0).strip(), object=subject, value=pct, unit="percent" if pct is not None else None, supporting_quotes=support, **dated, **({"date_role": "as_of"} if dated else {})))
+    return found
+
+
 # Source-of-funds declarations and sale (completion) statements.
 _DECLARANT_LABEL = r"(?:customer|client|applicant)(?:\s+name)?|declarant|seller|vendor"
 
@@ -582,6 +878,8 @@ def rules_extract(chunk: dict, requirements: list[dict]) -> list[dict]:
             m = re.match(r"^(?P<subject>.+?)\s+(?:was|is|has been)\s+accused of\s+(?P<object>.+?)[.;]?$", text, re.I)
             if m:
                 found.append(_mk("allegations_and_outcomes", _trim_entity(m.group("subject")), "accused_of", quote, object=_trim_entity(m.group("object")), effective_date=_date_in(text), claim_type="allegation"))
+            else:
+                found.extend(f for f in _outcome_sentence_facts(text, quote) if f["category"] in applicable)
     found.extend(_field_record_facts(body, applicable))
     if "ownership" in applicable and chunk["kind"] == "table":
         found.extend(f for f in _holding_row_facts(chunk) if f["category"] in applicable)
@@ -589,6 +887,16 @@ def rules_extract(chunk: dict, requirements: list[dict]) -> list[dict]:
         found.extend(_statement_row_facts(chunk) if chunk["kind"] == "table" else _statement_header_facts(body))
     if "wealth_and_funds" in applicable and chunk["kind"] != "table":
         found.extend(_funds_record_facts(body))
+    if "sanctions_pep" in applicable and chunk["kind"] != "table":
+        found.extend(_screening_record_facts(body))
+    if "prior_decisions" in applicable and chunk["kind"] != "table":
+        found.extend(_prior_record_facts(body, applicable))
+    if "source_metadata" in applicable and chunk["kind"] != "table":
+        found.extend(_article_metadata_facts(body))
+    if "legal_regulatory" in applicable and {"license_status", "allegations_and_outcomes"} & applicable and chunk["kind"] != "table":
+        found.extend(_enforcement_record_facts(body))
+    if {"identity_fields", "address"} & applicable and chunk["kind"] != "table":
+        found.extend(f for f in _identity_record_facts(body) if f["category"] in applicable)
     if "legal_identity" in applicable:
         found.extend(_sec_cover_facts(body))
     if "financial_condition" in applicable and chunk["kind"] == "table" and chunk.get("table_header") and chunk["text"] != chunk["table_header"]:

@@ -5,6 +5,13 @@ ownership_graph:
   reporting_threshold_percent: 25
   control_threshold_percent: 50
   max_chain_depth: 8
+# Illustrative identity-document settings.
+identity_checks:
+  proof_of_address_max_age_days: 90
+# Illustrative screening settings.
+screening:
+  max_age_days: 90
+  name_match_threshold: 0.88
 categories:
   legal_identity:
     description: Legal names, registration identifiers, jurisdiction, and status.
@@ -70,4 +77,4 @@ families:
   adverse_media: [legal_identity, allegations_and_outcomes, legal_regulatory, source_metadata]
   sanctions_and_pep: [legal_identity, sanctions_pep]
   source_of_wealth_and_funds: [legal_identity, wealth_and_funds, transactions, related_parties]
-  internal_bank_records: [legal_identity, ownership, control, prior_decisions, discrepancies, material_changes]
+  internal_bank_records: [legal_identity, ownership, control, prior_decisions, discrepancies, material_changes, sanctions_pep]

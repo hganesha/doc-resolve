@@ -63,6 +63,18 @@ def load_contract(profiles_path: str | None = None, policy_path: str | None = No
     depth = ownership_graph.get("max_chain_depth", 8)
     if isinstance(depth, bool) or not isinstance(depth, int) or not 1 <= depth <= 20:
         raise ValueError("ownership_graph.max_chain_depth must be an integer from 1 to 20")
+    identity = policy.get("identity_checks", {})
+    age = identity.get("proof_of_address_max_age_days", 90) if isinstance(identity, dict) else None
+    if isinstance(age, bool) or not isinstance(age, int) or not 1 <= age <= 3650:
+        raise ValueError("identity_checks.proof_of_address_max_age_days must be an integer from 1 to 3650")
+    screening = policy.get("screening", {})
+    if not isinstance(screening, dict):
+        raise ValueError("screening must be a mapping")
+    days, threshold = screening.get("max_age_days", 90), screening.get("name_match_threshold", 0.88)
+    if isinstance(days, bool) or not isinstance(days, int) or not 1 <= days <= 3650:
+        raise ValueError("screening.max_age_days must be an integer from 1 to 3650")
+    if isinstance(threshold, bool) or not isinstance(threshold, (int, float)) or not 0.5 <= threshold <= 1:
+        raise ValueError("screening.name_match_threshold must be a number from 0.5 to 1")
     for name, category in categories.items():
         if not isinstance(category, dict) or not isinstance(category.get("description"), str) or not isinstance(category.get("material"), bool):
             raise ValueError(f"Invalid category {name!r}")

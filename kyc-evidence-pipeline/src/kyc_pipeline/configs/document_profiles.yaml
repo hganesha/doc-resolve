@@ -44,7 +44,7 @@ profiles:
   identity_verification:
     family: identity_verification
     title: Identity document or proof of address
-    signals: [proof of address, national identity card, driver's license, passport]
+    signals: [proof of address, national identity card, identity card, driver's license, driving licence, passport, utility bill, council tax bill]
     strategy: field_aware
     max_chars: 1200
     overlap_chars: 80
@@ -84,7 +84,7 @@ profiles:
   sanctions_pep:
     family: sanctions_and_pep
     title: Sanctions or politically exposed person record
-    signals: [sanctions list, pep profile, screening report, specially designated nationals]
+    signals: [sanctions list, pep profile, screening report, sanctions screening, pep declaration, politically exposed person declaration, specially designated nationals]
     strategy: record_entity_aware
     max_chars: 1400
     overlap_chars: 80
@@ -104,7 +104,7 @@ profiles:
   internal_kyc:
     family: internal_bank_records
     title: Internal KYC or customer correspondence
-    signals: [kyc review, customer profile, kyc questionnaire, customer correspondence]
+    signals: [kyc review, customer profile, kyc questionnaire, customer correspondence, kyc decision, risk rating, next review due, periodic review]
     strategy: record_conversation_aware
     max_chars: 1800
     overlap_chars: 160

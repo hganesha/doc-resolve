@@ -20,12 +20,16 @@ from .parsing import parse_file
 from .ownership import build_ownership_graph, graph_settings
 from .reconciliation import issue_finding, reconcile
 from .funds import inflow_checks, statement_checks
+from .identity import identity_checks
+from .media import media_checks
+from .prior import prior_checks
+from .screening import load_list, report_checks, screen_entities
 from .registry import CompaniesHouseClient, GleifClient, RegistryLookupError, cached_lookup, check_companies_house, check_gleif, status_issues
 from .store import EvidenceStore
 from .util import digest, json_text, utc_now
 
 # Increment whenever extraction prompts, rules, or output schema change.
-EXTRACTION_CACHE_VERSION = {"rules": "10", "openai": "5"}
+EXTRACTION_CACHE_VERSION = {"rules": "11", "openai": "5"}
 # A batch that fails for one of these reasons is split in half and retried, so
 # one long or filtered chunk does not cost the whole batch.
 _SPLIT_ON = {"output_truncated", "content_filter"}
@@ -60,6 +64,8 @@ class PipelineState(TypedDict, total=False):
     model_usage: dict
     registry_check: list[str] | str | None
     registry_checks: list[dict]
+    screening_lists: list[str] | None
+    screening_checks: list[dict]
     provider_endpoint_sha256: str | None
     retry_from_run: str | None
     expected_document_sha256: str | None
@@ -332,7 +338,17 @@ def build_graph(store: EvidenceStore, checkpointer: Any, provider_factory: Calla
         extra = status_issues(state["document"]["document_id"], state["facts"], material)
         statement_findings, statement_issues = statement_checks(state["document"]["document_id"], state["facts"], state["evidence"], state["segments"], material)
         inflow_findings, inflow_issues = inflow_checks(state["document"]["document_id"], state["facts"], previous)
-        extra += statement_issues + inflow_issues
+        identity_findings, identity_issues = identity_checks(state["document"]["document_id"], state["facts"], state["segments"], material, state["contract"]["policy"].get("identity_checks"))
+        screening_findings, screening_issues = report_checks(state["document"]["document_id"], state["facts"], previous, material, state["contract"]["policy"].get("screening"), entity_map=entity_map)
+        prior_findings, prior_issues = prior_checks(state["document"]["document_id"], state["facts"], previous, entity_map)
+        media_findings, media_issues = media_checks(state["document"]["document_id"], state["facts"], previous, entity_map)
+        extra += statement_issues + inflow_issues + identity_issues + screening_issues + prior_issues + media_issues
+        check_findings = statement_findings + inflow_findings + identity_findings + screening_findings + prior_findings + media_findings
+        screening: list[dict] = []
+        if state.get("screening_lists"):
+            # Only the entities this document names are screened; the others were screened with their own documents.
+            screening, list_issues = screen_entities(state["document"]["document_id"], case_entities, current_case, [load_list(p) for p in state["screening_lists"]], state["contract"]["policy"].get("screening"))
+            extra += list_issues
         checks: list[dict] = []
         sources = registry_sources(state.get("registry_check"))
         if sources:
@@ -372,7 +388,7 @@ def build_graph(store: EvidenceStore, checkpointer: Any, provider_factory: Calla
         known |= {i["issue_id"] for i in graph_issues}
         extra = [i for i in {i["issue_id"]: i for i in extra}.values() if i["issue_id"] not in known]
         new = graph_issues + extra
-        return {"findings": findings + statement_findings + inflow_findings + [issue_finding(i) for i in new], "issues": issues + new, "case_revision": revision, "case_entities": case_entities, "registry_checks": checks}
+        return {"findings": findings + check_findings + [issue_finding(i) for i in new], "issues": issues + new, "case_revision": revision, "case_entities": case_entities, "registry_checks": checks, "screening_checks": screening}
 
     def review_node(state: PipelineState) -> dict:
         items = [i for i in state["issues"] if i["status"] == "OPEN" and i["severity"] == "high"]

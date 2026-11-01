@@ -1,0 +1,8 @@
+# Utility Bill
+Proof of address. All names and details in this bill are fictional.
+
+Supplier: Severn Valley Water
+Account holder: Ms Jane Smith
+Service address: 14 Elm Road, Bristol BS1 5AA
+Bill date: 12 October 2026
+Amount due: GBP 48.20

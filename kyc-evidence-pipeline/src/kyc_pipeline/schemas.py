@@ -19,7 +19,7 @@ def validate_schemas(data: dict[str, Any]) -> dict[str, dict]:
             raise ValueError(f"Invalid predicate name in {where}")
         if not isinstance(spec, dict) or not isinstance(spec.get("category"), str) or not isinstance(spec.get("description"), str) or not spec["description"].strip():
             raise ValueError(f"{where} needs a category and a description")
-        unknown = set(spec) - {"category", "description", "object", "value", "value_required", "date", "date_roles", "claim_types", "evidence_terms", "single_valued", "magnitude"}
+        unknown = set(spec) - {"category", "description", "object", "value", "value_required", "date", "date_roles", "claim_types", "evidence_terms", "single_valued", "magnitude", "subject_name_parts"}
         if unknown:
             raise ValueError(f"Unknown fields {sorted(unknown)} in {where}")
         if spec.get("object", "optional") not in {"required", "optional", "none"}:
@@ -28,7 +28,7 @@ def validate_schemas(data: dict[str, Any]) -> dict[str, dict]:
             raise ValueError(f"{where}: value must be one of {sorted(VALUE_TYPES)}")
         if spec.get("date", "optional") not in {"required", "optional"}:
             raise ValueError(f"{where}: date must be required or optional")
-        for key in ("value_required", "magnitude"):
+        for key in ("value_required", "magnitude", "subject_name_parts"):
             if not isinstance(spec.get(key, False), bool):
                 raise ValueError(f"{where}: {key} must be true or false")
         if spec.get("magnitude") and spec.get("value", "none") not in {"amount", "count"}:

@@ -1,6 +1,6 @@
 # Real annual-report PDF evaluation
 
-**Run date:** 30 October 2026. **Status:** proof of concept; not a KYC decision engine. The PDFs and model output are public, but the pipeline stores ordinary case data and vectors in unencrypted SQLite: do not use it for confidential KYC data without appropriate controls.
+**Run date:** 1 November 2026. **Status:** proof of concept; not a KYC decision engine. The PDFs and model output are public, but the pipeline stores ordinary case data and vectors in unencrypted SQLite: do not use it for confidential KYC data without appropriate controls.
 
 ## Sources and scope
 
@@ -50,6 +50,8 @@ Matching on entities exposed one comparison that text matching never made: "28% 
 **Companies House check.** Not run for these reports: both registrants are US companies, so neither would be looked up. Registry checks are off by default.
 
 **Beneficial owners.** Facts, issues and coverage are unchanged on both reports. The shareholder-register and beneficial-owner table rules do not fire on them, and no person is extracted. The new `beneficial_owners` section lists each investee as `NOT_IDENTIFIED`, with the registrant where its stake reaches 25%: Occidental and Kraft Heinz under Berkshire Hathaway Inc., and the five Disney holdings under The Walt Disney Company. American Express lists no chain end because Berkshire's 21.6% is below the threshold. Neither report says who owns the registrant, which is expected for a listed company.
+
+**Identity documents, sanctions and PEP, prior KYC files, adverse media.** Facts, issues, coverage and findings are unchanged on both reports (rules cache version 11). The identity, screening-report and prior-file rules belong to families that annual reports are not classified as. The new outcome-stage sentences and enforcement-notice records run only for the adverse-media, litigation and licensing families, so the reports' `legal_regulatory` facts come from the same rules as before. No screening list was supplied. Run times fell (Berkshire 23.0 s to 15.8 s, Disney 16.5 s to 11.4 s), but these are single runs on a laptop and not a benchmark.
 
 Section structure is inferred from font size and weight, with repeated page headers and footers recorded as `page_furniture` rather than headings. The Berkshire report now yields 105 sections (previously 54), including Parts, Items 1–15 and all 27 notes to the financial statements; previously signatures, table labels and running headers such as `/S/ CHARLOTTE GUYMAN` and `MANUFACTURING:` opened top-level sections. Disney yields 126 sections following PART → ITEM → subsection.
 

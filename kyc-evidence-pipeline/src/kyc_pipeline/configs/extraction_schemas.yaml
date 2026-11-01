@@ -15,6 +15,8 @@
 #   evidence_terms: regex the cited spans must match, or the fact is flagged
 #   magnitude: the value is an unsigned size and the predicate gives the
 #     direction (a debit printed as -250.00 is made_payment 250); default false
+#   subject_name_parts: the subject is a person whose name may be printed as
+#     separate surname and given-name fields; every part must be cited
 #   single_valued: true: one object (or value) per subject and period;
 #     per_object: one value per subject, object and period (one status per licence).
 #     Differing values in overlapping or undated periods conflict.
@@ -178,9 +180,15 @@ predicates:
     claim_types: [order]
   received_regulatory_penalty:
     category: legal_regulatory
-    description: A regulator imposed a fine or penalty on the subject; object is the regulator.
+    description: A regulator imposed a fine or penalty on the subject; object is the regulator, qualifier the conduct penalized if stated.
     object: optional
     value: amount
+    date_roles: [event, unspecified]
+    claim_types: [order, finding, disposition, reported_statement]
+  subject_to_enforcement_action:
+    category: legal_regulatory
+    description: A regulator took enforcement action against the subject other than a fine (a ban, prohibition, censure, restriction or cancellation); object is the action, qualifier the regulator.
+    object: required
     date_roles: [event, unspecified]
     claim_types: [order, finding, disposition, reported_statement]
 
@@ -305,6 +313,37 @@ predicates:
     description: An authority found the subject responsible for the object.
     object: required
     claim_types: [finding, order, disposition]
+  under_investigation_for:
+    category: allegations_and_outcomes
+    description: A source reports an authority is investigating the subject over the object (the suspected conduct); qualifier is the authority if named. Not a finding.
+    object: required
+    date_roles: [event, as_of, unspecified]
+    claim_types: [reported_statement, assertion]
+  charged_with:
+    category: allegations_and_outcomes
+    description: The subject was charged with or indicted for the object; a charge is not a conviction.
+    object: required
+    date_roles: [event, unspecified]
+    claim_types: [reported_statement, order, disposition]
+  convicted_of:
+    category: allegations_and_outcomes
+    description: The subject was convicted of, found guilty of, or pleaded guilty to the object.
+    object: required
+    date_roles: [event, unspecified]
+    claim_types: [reported_statement, finding, disposition]
+  cleared_of:
+    category: allegations_and_outcomes
+    description: The subject was acquitted or cleared of the object, or the charges were dropped or dismissed.
+    object: required
+    date_roles: [event, unspecified]
+    claim_types: [reported_statement, finding, disposition]
+  settled:
+    category: allegations_and_outcomes
+    description: The subject settled the object (a claim, case or investigation); value is the amount paid if stated. A settlement is usually without admission.
+    object: required
+    value: amount
+    date_roles: [event, unspecified]
+    claim_types: [reported_statement, disposition]
 
   # source_metadata
   published_by:
@@ -316,6 +355,99 @@ predicates:
     description: The source's publication date; subject is the article or document.
     date: required
     date_roles: [event, unspecified]
+
+  # sanctions_pep
+  sanctions_screening_result:
+    category: sanctions_pep
+    description: The result of screening the subject against sanctions lists, as a screening report states it; object is the lists screened, value the result (no match, potential match, confirmed match), qualifier the matched entry if any, date the screening date.
+    object: optional
+    value: text
+    value_required: true
+    date_roles: [as_of, unspecified]
+  pep_screening_result:
+    category: sanctions_pep
+    description: The result of screening the subject for politically exposed person status; value is the result, date the screening date.
+    value: text
+    value_required: true
+    date_roles: [as_of, unspecified]
+  holds_public_function:
+    category: sanctions_pep
+    description: The subject holds or held a prominent public function (a PEP); object is the position, qualifier the country or relationship (for a family member or close associate).
+    object: required
+    date_roles: [as_of, event, unspecified]
+  declared_pep_status:
+    category: sanctions_pep
+    description: The customer's own declaration of whether the subject is a politically exposed person; value is the answer as written.
+    value: text
+    value_required: true
+    date_roles: [as_of, unspecified]
+
+  # prior_decisions
+  kyc_decision:
+    category: prior_decisions
+    description: A decision recorded in the bank's own KYC file about the subject (approved, approved with conditions, declined, exited); value is the decision as written, qualifier the stated reason, date the decision or review date.
+    value: text
+    value_required: true
+    date_roles: [event, as_of, unspecified]
+  assigned_risk_rating:
+    category: prior_decisions
+    description: The customer risk rating recorded in the bank's own KYC file; value is the rating as written, date the review date.
+    value: text
+    value_required: true
+    date_roles: [as_of, unspecified]
+  next_review_due:
+    category: prior_decisions
+    description: The date by which the bank's own KYC file says the subject is next due for review.
+    date: required
+    date_roles: [event]
+
+  # identity_fields
+  has_date_of_birth:
+    category: identity_fields
+    description: The subject's date of birth, in effective_date.
+    object: none
+    date: required
+    date_roles: [event, unspecified]
+    subject_name_parts: true
+  has_nationality:
+    category: identity_fields
+    description: The subject's nationality or citizenship as printed.
+    object: required
+    subject_name_parts: true
+  has_place_of_birth:
+    category: identity_fields
+    description: The subject's place of birth as printed.
+    object: required
+    subject_name_parts: true
+  holds_identity_document:
+    category: identity_fields
+    description: The subject holds an identity document; object is its type (passport, national identity card, driving licence), value its number, qualifier the issuing country or authority.
+    object: required
+    value: text
+    value_required: true
+    subject_name_parts: true
+  identity_document_issued_on:
+    category: identity_fields
+    description: The issue date of the subject's identity document; object is the document number.
+    object: required
+    date: required
+    date_roles: [event, unspecified]
+    subject_name_parts: true
+  identity_document_expires_on:
+    category: identity_fields
+    description: The expiry date of the subject's identity document; object is the document number.
+    object: required
+    date: required
+    date_roles: [event, unspecified]
+    subject_name_parts: true
+
+  # address
+  has_residential_address:
+    category: address
+    description: The subject's residential or service address, as one line; the date is the document's date (as_of); qualifier "proof of address" when the document is a bill or statement rather than an identity document.
+    object: required
+    date_roles: [as_of, unspecified]
+    subject_name_parts: true
 
   # license_status
   holds_license:

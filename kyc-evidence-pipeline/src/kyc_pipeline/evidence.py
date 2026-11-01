@@ -38,6 +38,12 @@ def _contains_phrase(haystack: str, needle: str) -> bool:
     return bool(n and f" {n} " in f" {identity_key(haystack)} ")
 
 
+def _contains_name_parts(haystack: str, name: str) -> bool:
+    words = set(identity_key(haystack).split())
+    parts = identity_key(name).split()
+    return len(parts) >= 2 and all(p in words for p in parts)
+
+
 def _numeric_in(value: float, text: str) -> bool:
     if not math.isfinite(value):
         return False
@@ -132,7 +138,8 @@ def verify_candidates(document: dict, segments: list[dict], chunks: list[dict], 
             combined_quote = "\n".join(e["quote"] for e in evs)
             checks: dict[str, bool | None] = {
                 "exact_quote_match": True,
-                "subject_literal_present": _contains_phrase(combined_quote, c.subject) if not c.subject.startswith("UNRESOLVED_") else False,
+                # An identity document prints the surname and given names on separate lines.
+                "subject_literal_present": (_contains_phrase(combined_quote, c.subject) or bool(spec and spec.get("subject_name_parts") and _contains_name_parts(combined_quote, c.subject))) if not c.subject.startswith("UNRESOLVED_") else False,
                 "object_literal_present": _contains_phrase(combined_quote, c.object) if c.object else None,
                 # A magnitude (a debit of 250) may be printed signed: -250.00.
                 "value_literal_present": (_numeric_in(c.value, combined_quote) or bool(spec and spec.get("magnitude") and _numeric_in(-c.value, combined_quote))) if isinstance(c.value, (int, float)) else (_contains_phrase(combined_quote, c.value) if isinstance(c.value, str) else None),

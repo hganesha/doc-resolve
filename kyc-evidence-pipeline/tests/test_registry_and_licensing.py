@@ -22,7 +22,7 @@ from kyc_pipeline.util import lei_check_digits_valid, utc_now
 LEI = "5299000ASTERHOLD0035"  # synthetic, with valid check digits
 
 
-def _ingest(tmp_path, source: Path | str, *, case="reg", profile=None, registry_factory=None, registry_check=None, run_id="run_1", store=None, defer=False):
+def _ingest(tmp_path, source: Path | str, *, case="reg", profile=None, registry_factory=None, registry_check=None, run_id="run_1", store=None, defer=False, **extra):
     """Run one document; with ``defer``, a paused run is resumed by deferring every review item."""
     if isinstance(source, Path):
         path = source
@@ -30,7 +30,7 @@ def _ingest(tmp_path, source: Path | str, *, case="reg", profile=None, registry_
         path = tmp_path / f"{run_id}.txt"
         path.write_text(source)
     store = store or EvidenceStore(tmp_path / "db.sqlite")
-    state = {"run_id": run_id, "case_id": case, "started_at": utc_now(), "doc_path": str(path), "requested_profile": profile, "contract": load_contract(), "extractor": "rules", "embeddings": "lexical", "allow_remote": False, "verify_material": False, "model": "unused", "embedding_model": "unused", "retry_from_run": None, "expected_document_sha256": None, "registry_check": registry_check}
+    state = {"run_id": run_id, "case_id": case, "started_at": utc_now(), "doc_path": str(path), "requested_profile": profile, "contract": load_contract(), "extractor": "rules", "embeddings": "lexical", "allow_remote": False, "verify_material": False, "model": "unused", "embedding_model": "unused", "retry_from_run": None, "expected_document_sha256": None, "registry_check": registry_check, **extra}
     store.start_run(run_id, case, state["started_at"])
     graph = build_graph(store, InMemorySaver(), registry_factory=registry_factory or (lambda *_: pytest.fail("registry looked up without --registry-check")))
     config = {"configurable": {"thread_id": run_id}}

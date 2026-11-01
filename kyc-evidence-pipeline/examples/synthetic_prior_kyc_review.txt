@@ -1,0 +1,12 @@
+# KYC Review Record
+All names, numbers, ratings and decisions in this record are fictional.
+
+Company name: Birchwood Trading Limited
+Company number: 99000123
+Review date: 10 March 2024
+Registered office: 22 Quay Road, Bristol BS1 6AB
+Beneficial owners on file: Jane Smith (40%)
+KYC decision: Approved
+Decision reason: Ownership and source of funds evidenced
+Customer risk rating: Medium
+Next review due: 10 March 2026

@@ -126,15 +126,15 @@ def test_typed_categories_reject_undeclared_predicates_and_flag_violations(tmp_p
 
 
 def test_open_categories_keep_facts_but_mark_them_untyped(tmp_path):
-    doc, segments, _ = _parse(tmp_path, "# Passport\nPassport number: X1234567\nNationality: Utopian\n")
-    _, profile, reqs = _contract("identity_verification")
-    assert {r["category"]: bool(r["predicates"]) for r in reqs} == {"identity_fields": False, "address": False}
+    doc, segments, _ = _parse(tmp_path, "# KYC Review\nNote: The customer's stated turnover differs from the accounts.\n")
+    _, profile, reqs = _contract("internal_kyc")
+    assert {r["category"]: bool(r["predicates"]) for r in reqs}["discrepancies"] is False
     chunk = build_chunks(segments, profile)[0][-1]
-    candidate = {"category": "identity_fields", "subject": "UNRESOLVED_HOLDER", "predicate": "has_passport_number", "object": "X1234567", "source_quote": "Passport number: X1234567"}
+    candidate = {"category": "discrepancies", "subject": "UNRESOLVED_CUSTOMER", "predicate": "has_turnover_discrepancy", "object": "stated turnover", "source_quote": "The customer's stated turnover differs from the accounts."}
     _, facts, _, _ = _verify(doc, segments, chunk, [candidate], reqs)
     assert facts[0]["schema_check"]["status"] == "UNTYPED"
     payload = {r["category"]: r for r in requirements_payload(reqs)}
-    assert payload["identity_fields"]["typed"] is False
+    assert payload["discrepancies"]["typed"] is False
     ownership = {r["category"]: r for r in requirements_payload(_contract("ownership_control")[2])}["ownership"]
     owns = next(p for p in ownership["predicates"] if p["predicate"] == "owns_equity_in")
     assert ownership["typed"] and "evidence_terms" not in owns

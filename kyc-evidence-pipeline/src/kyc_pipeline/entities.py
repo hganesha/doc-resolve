@@ -18,10 +18,11 @@ from __future__ import annotations
 
 import re
 from collections import defaultdict
+from itertools import combinations
 from typing import Any
 
 from .evidence import _evidence_record, make_issue
-from .util import identity_key, lei_check_digits_valid, stable_id
+from .util import identity_key, lei_check_digits_valid, stable_id, temporal_overlap
 
 _FORMS = {
     "inc": "inc", "incorporated": "inc", "corp": "corp", "corporation": "corp", "co": "co", "company": "co",
@@ -41,7 +42,7 @@ _IDENTIFIER_PREDICATES = {"has_sec_file_number": "SEC_FILE_NUMBER", "has_us_empl
 _SCHEME_RANK = ["LEI", "SEC_FILE_NUMBER", "US_EIN", "REGISTRATION_NUMBER"]
 _ENTITY_OBJECTS = {"owns_equity_in", "has_voting_rights_over", "disposed_interest_in", "is_beneficial_owner_of", "is_director_of", "is_officer_of"}
 # Predicates whose subject is a natural person unless the name is an organization's.
-_PERSON_PREDICATES = {"is_beneficial_owner_of", "is_director_of", "is_officer_of"}
+_PERSON_PREDICATES = {"is_beneficial_owner_of", "is_director_of", "is_officer_of", "has_date_of_birth", "has_nationality", "has_place_of_birth", "holds_identity_document", "identity_document_issued_on", "identity_document_expires_on", "has_residential_address", "holds_public_function", "declared_pep_status"}
 _PLACEHOLDERS = {"UNRESOLVED_REGISTRANT", "UNRESOLVED_REGISTRY_SUBJECT", "UNRESOLVED_REPORTING_ENTITY"}
 
 _QUOTED = re.compile(r"[“\"]([^”\"]{1,60})[”\"]")
@@ -179,7 +180,7 @@ class _DocumentEntities:
     def ensure(self, key: str, entity_type: str) -> str:
         if key not in self.parent:
             self.parent[key] = key
-            self.attrs[key] = {"entity_type": entity_type, "names": [], "identifiers": [], "jurisdictions": [], "roles": set(), "group_of": None, "resolution_evidence_ids": set()}
+            self.attrs[key] = {"entity_type": entity_type, "names": [], "identifiers": [], "jurisdictions": [], "roles": set(), "group_of": None, "resolution_evidence_ids": set(), "birth_dates": []}
         return self.find(key)
 
     def org(self, name: str, kind: str, evidence_ids: list[str]) -> str:
@@ -209,7 +210,7 @@ class _DocumentEntities:
             a, b = b, a
         self.parent[b] = a
         target, source = self.attrs[a], self.attrs.pop(b)
-        for field in ("names", "identifiers", "jurisdictions"):
+        for field in ("names", "identifiers", "jurisdictions", "birth_dates"):
             target[field].extend(source[field])
         target["roles"] |= source["roles"]
         target["resolution_evidence_ids"] |= source["resolution_evidence_ids"] | set(evidence_ids)
@@ -382,7 +383,8 @@ def resolve_document(document: dict, segments: list[dict], facts: list[dict], is
     pending: list[tuple[dict, dict]] = []
     for f in facts:
         links = {}
-        roles = [("subject", f["subject"])] + ([("object", f["object"])] if f["predicate"] in _ENTITY_OBJECTS and f.get("object") else [])
+        # An article's headline is not a party.
+        roles = [] if f.get("category") == "source_metadata" else [("subject", f["subject"])] + ([("object", f["object"])] if f["predicate"] in _ENTITY_OBJECTS and f.get("object") else [])
         for role, name in roles:
             key, basis, ids = link(name)
             if key:
@@ -393,6 +395,8 @@ def resolve_document(document: dict, segments: list[dict], facts: list[dict], is
                     attrs = graph.attrs[graph.find(key)]
                     if role == "subject" and attrs["entity_type"] == "unknown" and not is_organization(name) and (f["predicate"] in _PERSON_PREDICATES or f.get("qualifier") == "individual"):
                         attrs["entity_type"] = "person"
+                if role == "subject" and f["predicate"] == "has_date_of_birth" and f.get("effective_date"):
+                    graph.attrs[graph.find(key)]["birth_dates"].append({"value": f["effective_date"], "fact_id": f["fact_id"]})
         pending.append((f, links))
     graph.merge_groups()
 
@@ -410,6 +414,7 @@ def resolve_document(document: dict, segments: list[dict], facts: list[dict], is
             "entity_id": graph.entity_id(key), "document_id": doc_id, "entity_type": attrs["entity_type"],
             "name": name, "names": names, "identifiers": attrs["identifiers"], "jurisdictions": attrs["jurisdictions"],
             "roles": sorted(attrs["roles"]), "group_of": graph.entity_id(attrs["group_of"]) if attrs["group_of"] else None,
+            "birth_dates": sorted({b["value"] for b in attrs["birth_dates"]}),
             "strength": "IDENTIFIED" if identified else "DEFINED" if any(n["kind"] in {"full_name", "defined_term", "pronoun"} for n in names) else "MENTIONED",
             "resolution_evidence_ids": sorted(attrs["resolution_evidence_ids"]),
         }
@@ -481,6 +486,14 @@ def resolve_case(entities: list[dict], document_id: str) -> tuple[list[dict], di
     def jurisdictions(root: str) -> set[str]:
         return {identity_key(j["value"]) for eid in members[root] for j in by_id[eid]["jurisdictions"]}
 
+    def births(root: str) -> set[str]:
+        return {d for eid in members[root] for d in by_id[eid].get("birth_dates", [])}
+
+    def born_apart(a: str, b: str) -> bool:
+        """Both have dates of birth and none of them agree: different people with one name."""
+        da, db = births(a), births(b)
+        return bool(da and db) and not any(temporal_overlap(x, y) for x in da for y in db)
+
     orgs = [e for e in entities if e["entity_type"] != "group"]
     holders: dict[tuple, list[str]] = defaultdict(list)
     for e in orgs:
@@ -505,10 +518,23 @@ def resolve_case(entities: list[dict], document_id: str) -> tuple[list[dict], di
             sa, sb = schemes(a), schemes(b)
             clash = sorted(s[0] for s in set(sa) & set(sb) if sa[s] != sb[s])
             ja, jb = jurisdictions(a), jurisdictions(b)
-            if clash or (ja and jb and not ja & jb):
-                issues.append(make_issue("ENTITY_NAME_COLLISION", "Entities with the same name have different identifiers or jurisdictions and were kept apart; confirm they are different entities.", document_id=document_id, categories=["legal_identity"], severity="medium", details={"name_key": key, "entity_ids": sorted({ids[0], other}), "conflicting_schemes": clash, "jurisdictions": sorted(ja | jb)}))
+            if clash or (ja and jb and not ja & jb) or born_apart(a, b):
+                issues.append(make_issue("ENTITY_NAME_COLLISION", "Entities with the same name have different identifiers, jurisdictions or dates of birth and were kept apart; confirm they are different entities.", document_id=document_id, categories=["legal_identity"], severity="medium", details={"name_key": key, "entity_ids": sorted({ids[0], other}), "conflicting_schemes": clash, "jurisdictions": sorted(ja | jb), "birth_dates": sorted(births(a) | births(b))}))
                 continue
             union(a, b)
+    # A person named with a middle name in one document ("Jane Elizabeth Smith" on a passport) and
+    # without it in another ("Jane Smith" as a director) is joined when no date of birth disagrees.
+    people = [e for e in orgs if e["entity_type"] == "person"]
+    for x, y in combinations(people, 2):
+        a, b = find(x["entity_id"]), find(y["entity_id"])
+        if a == b or born_apart(a, b):
+            continue
+        names_a = {n["name"] for eid in members[a] for n in by_id[eid]["names"]}
+        names_b = {n["name"] for eid in members[b] for n in by_id[eid]["names"]}
+        pair = next(((p, q) for p in names_a for q in names_b if same_person(p, q) or same_person(q, p)), None)
+        if pair:
+            union(a, b)
+            issues.append(make_issue("PERSON_MATCHED_ON_NAME_PARTS", "Two names were joined as one person because one contains all parts of the other (for example a middle name); confirm they are the same person.", document_id=document_id, categories=["identity_fields", "related_parties"], severity="medium", details={"names": sorted(pair), "entity_ids": sorted({x["entity_id"], y["entity_id"]}), "birth_dates": sorted(births(find(a)))}))
 
     mapping: dict[str, str] = {}
     case_entities: list[dict] = []
@@ -541,6 +567,7 @@ def resolve_case(entities: list[dict], document_id: str) -> tuple[list[dict], di
             "identifiers": [{"scheme": s, "value": v, "jurisdiction": j} for s, v, j in identifiers],
             "jurisdictions": sorted({j["value"] for m in group for j in m["jurisdictions"]}),
             "roles": sorted({r for m in group for r in m["roles"]}),
+            "birth_dates": sorted({d for m in group for d in m.get("birth_dates", [])}),
             "documents": documents, "member_entity_ids": [m["entity_id"] for m in group],
             "match_basis": "SINGLE_DOCUMENT" if len(documents) == 1 else "IDENTIFIER" if shared else "PERSON_NAME" if any(m["entity_type"] == "person" for m in group) else "LEGAL_NAME",
             "group_of": None,

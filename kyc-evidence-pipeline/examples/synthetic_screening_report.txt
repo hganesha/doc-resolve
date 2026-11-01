@@ -1,0 +1,19 @@
+# Sanctions and PEP Screening Report
+All names, list entries and results in this report are fictional.
+
+## Subject 1
+Screened name: Jane Elizabeth Smith
+Screening date: 20 October 2026
+Lists screened: UN Consolidated; UK Sanctions List; EU Consolidated; OFAC SDN
+Sanctions result: No match
+PEP result: Match
+PEP position: Member of Bristol City Council
+PEP relationship: Domestic PEP
+
+## Subject 2
+Screened name: Birchwood Trading Limited
+Screening date: 20 October 2026
+Lists screened: UN Consolidated; UK Sanctions List; EU Consolidated; OFAC SDN
+Sanctions result: Potential match
+Matched entry: BIRCHWOOD TRADING LLC (synthetic list entry SYN-0042)
+PEP result: Not applicable
