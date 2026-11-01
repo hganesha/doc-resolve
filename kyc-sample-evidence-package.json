@@ -1,0 +1,698 @@
+{
+  "audit_events": [
+    {
+      "action": "RUN_STARTED",
+      "details": {},
+      "event_id": "audit_07417642390f9fcb9a844fab",
+      "happened_at": "2026-10-30T21:45:13.807665+00:00",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7"
+    },
+    {
+      "action": "RUN_REVIEW_REQUIRED",
+      "details": {},
+      "event_id": "audit_33ba83ea0df92cadcdbaec86",
+      "happened_at": "2026-10-30T21:45:13.867236+00:00",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_fab9ade058c771de809b4f2a",
+        "reviewer_id": "SYNTHETIC_DEMO_ONLY",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_d1b1211394eddb96caa85030",
+      "happened_at": "2026-10-30T21:45:15.204528+00:00",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7"
+    },
+    {
+      "action": "CANONICAL_RECORDS_PERSISTED",
+      "details": {
+        "fact_count": 5,
+        "status": "REVIEW_REQUIRED"
+      },
+      "event_id": "audit_3f2ae782ae44f6ed7d1f3487",
+      "happened_at": "2026-10-30T21:45:15.204639+00:00",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7"
+    }
+  ],
+  "case_id": "synthetic-1793396712-2713",
+  "coverage": [
+    {
+      "applicability_reason": null,
+      "category": "control",
+      "chunks_failed": 0,
+      "chunks_processed": 14,
+      "chunks_total": 14,
+      "completeness_asserted": false,
+      "description": "Voting rights, board appointments, control agreements, and their dates.",
+      "fact_count": 1,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "status": "FOUND"
+    },
+    {
+      "applicability_reason": null,
+      "category": "financial_condition",
+      "chunks_failed": 0,
+      "chunks_processed": 14,
+      "chunks_total": 14,
+      "completeness_asserted": false,
+      "description": "Revenue, assets, funding, liabilities, and audit qualifications with period and units.",
+      "fact_count": 1,
+      "material": false,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "status": "FOUND"
+    },
+    {
+      "applicability_reason": null,
+      "category": "legal_identity",
+      "chunks_failed": 0,
+      "chunks_processed": 14,
+      "chunks_total": 14,
+      "completeness_asserted": false,
+      "description": "Legal names, registration identifiers, jurisdiction, and status.",
+      "fact_count": 0,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "status": "NOT_REVIEWED"
+    },
+    {
+      "applicability_reason": null,
+      "category": "legal_regulatory",
+      "chunks_failed": 0,
+      "chunks_processed": 14,
+      "chunks_total": 14,
+      "completeness_asserted": false,
+      "description": "Regulatory investigations, penalties, proceedings, and enforcement status.",
+      "fact_count": 1,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "status": "FOUND"
+    },
+    {
+      "applicability_reason": null,
+      "category": "material_changes",
+      "chunks_failed": 0,
+      "chunks_processed": 14,
+      "chunks_total": 14,
+      "completeness_asserted": false,
+      "description": "Acquisitions, disposals, restructurings, amendments, and subsequent events.",
+      "fact_count": 1,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [
+        "issue_fab9ade058c771de809b4f2a"
+      ],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "status": "FOUND"
+    },
+    {
+      "applicability_reason": null,
+      "category": "ownership",
+      "chunks_failed": 0,
+      "chunks_processed": 14,
+      "chunks_total": 14,
+      "completeness_asserted": false,
+      "description": "Direct and indirect equity interests, percentage, parties, and effective dates.",
+      "fact_count": 1,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [
+        "issue_fab9ade058c771de809b4f2a"
+      ],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "status": "FOUND"
+    },
+    {
+      "applicability_reason": null,
+      "category": "related_parties",
+      "chunks_failed": 0,
+      "chunks_processed": 14,
+      "chunks_total": 14,
+      "completeness_asserted": false,
+      "description": "Affiliates, related parties, directors, and key counterparties.",
+      "fact_count": 0,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "status": "NOT_REVIEWED"
+    }
+  ],
+  "disclaimer": "Provisional evidence package. No completeness, identity, source independence, sanctions clearance, or KYC decision is guaranteed.",
+  "documents": [
+    {
+      "bytes": 660,
+      "current_run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "family": "financial_statements",
+      "filename": "synthetic_annual_report.txt",
+      "format": "txt",
+      "page_count": 5,
+      "profile_id": "financial_annual_report",
+      "sha256": "b4aace1c91058bd253ce0f0b3f9ed28f2641a5d9ad69245642a48f25edc71ad9"
+    }
+  ],
+  "evidence": [
+    {
+      "bbox": null,
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "document_sha256": "b4aace1c91058bd253ce0f0b3f9ed28f2641a5d9ad69245642a48f25edc71ad9",
+      "end": 79,
+      "evidence_id": "ev_10a22b0d41a2c2f46e7500df",
+      "locator": "page:5/line:17",
+      "normalized_segment_sha256": "379047f056ad3ac42d82deb6e982170f2ac69552a9b4c655bc4d21d8d1a38649",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 5,
+      "quote": "Aster Holdings Ltd disposed of part of its interest in Birch Ltd on 2024-02-15.",
+      "representation": "normalized_text",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "section_path": [
+        "Subsequent Events"
+      ],
+      "segment_id": "seg_9afbf18ebae47b18959a0461",
+      "start": 0
+    },
+    {
+      "bbox": null,
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "document_sha256": "b4aace1c91058bd253ce0f0b3f9ed28f2641a5d9ad69245642a48f25edc71ad9",
+      "end": 112,
+      "evidence_id": "ev_5a1fc73d46a83fec97638575",
+      "locator": "page:4/line:11",
+      "normalized_segment_sha256": "373817d6af3084d55830f383d550046c97576f9a49e184b4fda37f481f97de3f",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 4,
+      "quote": "| Birch Ltd | 200 | 2024 | [^1] |",
+      "representation": "normalized_markdown_table",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "section_path": [
+        "Financial Highlights"
+      ],
+      "segment_id": "seg_4d54b71294f586e2a9b208d2",
+      "start": 79
+    },
+    {
+      "bbox": null,
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "document_sha256": "b4aace1c91058bd253ce0f0b3f9ed28f2641a5d9ad69245642a48f25edc71ad9",
+      "end": 52,
+      "evidence_id": "ev_70ab62c129990330d974bbb9",
+      "locator": "page:4/line:11",
+      "normalized_segment_sha256": "373817d6af3084d55830f383d550046c97576f9a49e184b4fda37f481f97de3f",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 4,
+      "quote": "| Company | Revenue (USD millions) | Period | Note |",
+      "representation": "normalized_markdown_table",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "section_path": [
+        "Financial Highlights"
+      ],
+      "segment_id": "seg_4d54b71294f586e2a9b208d2",
+      "start": 0
+    },
+    {
+      "bbox": null,
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "document_sha256": "b4aace1c91058bd253ce0f0b3f9ed28f2641a5d9ad69245642a48f25edc71ad9",
+      "end": 78,
+      "evidence_id": "ev_90e06e09450f1719abd6f7fc",
+      "locator": "page:2/line:7",
+      "normalized_segment_sha256": "0f4c8583426571a899120b7a396ac2e8c46128fafe8e148c3566b7cf50e56f52",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 2,
+      "quote": "Cedar Group Ltd has contractual voting rights over Birch Ltd as of 2023-12-31.",
+      "representation": "normalized_text",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "section_path": [
+        "Related Parties and Voting Control"
+      ],
+      "segment_id": "seg_58f4aa3af817ab700f60fe70",
+      "start": 0
+    },
+    {
+      "bbox": null,
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "document_sha256": "b4aace1c91058bd253ce0f0b3f9ed28f2641a5d9ad69245642a48f25edc71ad9",
+      "end": 47,
+      "evidence_id": "ev_a170b869cc941c75cec0fde1",
+      "locator": "page:4/line:15",
+      "normalized_segment_sha256": "5b33318962e5f32d38a83dd707cb8bca936d4e573b4d1cecb06667410cc1d2d4",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 4,
+      "quote": "[^1]: Revenue excludes discontinued operations.",
+      "representation": "normalized_text",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "section_path": [
+        "Financial Highlights"
+      ],
+      "segment_id": "seg_8db744597f29b958f9b8686e",
+      "start": 0
+    },
+    {
+      "bbox": null,
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "document_sha256": "b4aace1c91058bd253ce0f0b3f9ed28f2641a5d9ad69245642a48f25edc71ad9",
+      "end": 68,
+      "evidence_id": "ev_a9ee3f69d704b08b6bd683f9",
+      "locator": "page:3/line:9",
+      "normalized_segment_sha256": "424cf0f4079b1eeec8f29d59727813b0809608845f643ac7dec1eb4c9107faa3",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 3,
+      "quote": "Birch Ltd is subject to a regulatory investigation as of 2024-10-15.",
+      "representation": "normalized_text",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "section_path": [
+        "Legal Proceedings"
+      ],
+      "segment_id": "seg_5850184f43f0da6d98bffe9d",
+      "start": 0
+    },
+    {
+      "bbox": null,
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "document_sha256": "b4aace1c91058bd253ce0f0b3f9ed28f2641a5d9ad69245642a48f25edc71ad9",
+      "end": 59,
+      "evidence_id": "ev_e177cb18a61fdb6752f7f3c7",
+      "locator": "page:1/line:5",
+      "normalized_segment_sha256": "10e974d9e27f31f0f318228d8d50de2365d6b7cf39880f97b50203c333648e5f",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 1,
+      "quote": "As of 2023-12-31, Aster Holdings Ltd owns 65% of Birch Ltd.",
+      "representation": "normalized_text",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "section_path": [
+        "Corporate Structure"
+      ],
+      "segment_id": "seg_6da33105edeac978a36e5903",
+      "start": 0
+    }
+  ],
+  "facts": [
+    {
+      "attribution": null,
+      "category": "material_changes",
+      "claim_type": "reported_statement",
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "effective_date": "2024-02-15",
+      "entity_resolution": "TEXT_MATCH_ONLY",
+      "evidence_ids": [
+        "ev_10a22b0d41a2c2f46e7500df"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_10a22b0d41a2c2f46e7500df",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_084e190b1bda728af4688fb8",
+      "object": "Birch Ltd",
+      "predicate": "disposed_interest_in",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": true,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": null
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "Aster Holdings Ltd",
+      "unit": null,
+      "value": null,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "financial_condition",
+      "claim_type": "reported_statement",
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "effective_date": "2024",
+      "entity_resolution": "TEXT_MATCH_ONLY",
+      "evidence_ids": [
+        "ev_5a1fc73d46a83fec97638575",
+        "ev_70ab62c129990330d974bbb9",
+        "ev_a170b869cc941c75cec0fde1"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_5a1fc73d46a83fec97638575",
+          "role": "primary_quote"
+        },
+        {
+          "evidence_id": "ev_70ab62c129990330d974bbb9",
+          "role": "supporting_quote"
+        },
+        {
+          "evidence_id": "ev_a170b869cc941c75cec0fde1",
+          "role": "referenced_footnote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_3afab291eead3a32234292f5",
+      "object": null,
+      "predicate": "reported_revenue",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": true,
+          "exact_quote_match": true,
+          "object_literal_present": null,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "Birch Ltd",
+      "unit": "USD_millions",
+      "value": 200.0,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "legal_regulatory",
+      "claim_type": "reported_statement",
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "effective_date": "2024-10-15",
+      "entity_resolution": "TEXT_MATCH_ONLY",
+      "evidence_ids": [
+        "ev_a9ee3f69d704b08b6bd683f9"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_a9ee3f69d704b08b6bd683f9",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_87e9bb9ec213ca46d745e5b7",
+      "object": null,
+      "predicate": "subject_to_regulatory_investigation",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": true,
+          "exact_quote_match": true,
+          "object_literal_present": null,
+          "subject_literal_present": true,
+          "value_literal_present": null
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "Birch Ltd",
+      "unit": null,
+      "value": null,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "effective_date": "2023-12-31",
+      "entity_resolution": "TEXT_MATCH_ONLY",
+      "evidence_ids": [
+        "ev_e177cb18a61fdb6752f7f3c7"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_e177cb18a61fdb6752f7f3c7",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_8d40f2e9557cf9768822936a",
+      "object": "Birch Ltd",
+      "predicate": "owns_equity_in",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": true,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "Aster Holdings Ltd",
+      "unit": "percent",
+      "value": 65.0,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "control",
+      "claim_type": "reported_statement",
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "effective_date": "2023-12-31",
+      "entity_resolution": "TEXT_MATCH_ONLY",
+      "evidence_ids": [
+        "ev_90e06e09450f1719abd6f7fc"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_90e06e09450f1719abd6f7fc",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_fe050614877c3fcbb4ce0658",
+      "object": "Birch Ltd",
+      "predicate": "has_voting_rights_over",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": true,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": null
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "Cedar Group Ltd",
+      "unit": null,
+      "value": null,
+      "verification_status": "PENDING_HUMAN"
+    }
+  ],
+  "findings": [
+    {
+      "category": "ownership",
+      "description": "An ownership snapshot predates a disposal; the current percentage cannot be inferred from these claims.",
+      "fact_ids": [
+        "fact_084e190b1bda728af4688fb8",
+        "fact_8d40f2e9557cf9768822936a"
+      ],
+      "finding_id": "finding_fd5d1384e5aa1c95aa4c7daf",
+      "issue_id": "issue_fab9ade058c771de809b4f2a",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "status": "OPEN",
+      "type": "STALE_OWNERSHIP_AFTER_DISPOSAL"
+    }
+  ],
+  "issues": [
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership",
+        "material_changes"
+      ],
+      "code": "STALE_OWNERSHIP_AFTER_DISPOSAL",
+      "details": {
+        "disposal_date": "2024-02-15",
+        "ownership_date": "2023-12-31"
+      },
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "fact_ids": [
+        "fact_084e190b1bda728af4688fb8",
+        "fact_8d40f2e9557cf9768822936a"
+      ],
+      "issue_id": "issue_fab9ade058c771de809b4f2a",
+      "message": "An ownership snapshot predates a disposal; the current percentage cannot be inferred from these claims.",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "severity": "high",
+      "status": "OPEN"
+    }
+  ],
+  "pending_runs": [],
+  "review_decisions": [
+    {
+      "action": "defer",
+      "issue_id": "issue_fab9ade058c771de809b4f2a",
+      "reason": "Synthetic demonstration: obtain a current ownership record.",
+      "reviewed_at": "2026-10-30T21:45:15.197710+00:00",
+      "reviewer_id": "SYNTHETIC_DEMO_ONLY",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "selected_fact_ids": []
+    }
+  ],
+  "runs": [
+    {
+      "document_id": "doc_b4aace1c91058bd253ce0f0b",
+      "error": null,
+      "finished_at": "2026-10-30T21:45:15.201347+00:00",
+      "policy_id": "illustrative_corporate_kyc_v1",
+      "profile_id": "financial_annual_report",
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "started_at": "2026-10-30T21:45:13.806997+00:00",
+      "status": "REVIEW_REQUIRED",
+      "summary": {
+        "case_id": "synthetic-1793396712-2713",
+        "disclaimer": "Provisional evidence preparation only; not a KYC decision or a guarantee of completeness.",
+        "document_id": "doc_b4aace1c91058bd253ce0f0b",
+        "embedding_model": null,
+        "embeddings": "lexical",
+        "evidence_count": 7,
+        "extraction_model": null,
+        "extractor": "rules",
+        "fact_count": 5,
+        "finished_at": "2026-10-30T21:45:15.201347+00:00",
+        "open_issue_count": 1,
+        "policy_id": "illustrative_corporate_kyc_v1",
+        "policy_sha256": "25a3015cb318b6ec4de055e67d2aebdae61b64a45f33df5ee6a79654c9f57b20",
+        "profile_id": "financial_annual_report",
+        "profiles_sha256": "61388008ca30daf8a0fe029045098377c401d2f100151c882f3d27bde7462372",
+        "provider_endpoint_sha256": null,
+        "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+        "semantic_verification_requested": false,
+        "started_at": "2026-10-30T21:45:13.806997+00:00",
+        "status": "REVIEW_REQUIRED"
+      }
+    }
+  ],
+  "section_inventory": [
+    {
+      "chunk_count": 4,
+      "chunks_failed": 0,
+      "chunks_processed": 4,
+      "pages": [
+        4
+      ],
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "section_id": "sec_0dfb92b6608e18f0dc77efca",
+      "section_path": [
+        "Financial Highlights"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        5
+      ],
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "section_id": "sec_57fb4a2aca0113754d619bbd",
+      "section_path": [
+        "Subsequent Events"
+      ],
+      "segment_count": 2
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        1
+      ],
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "section_id": "sec_90f64783a5e79e631273e22b",
+      "section_path": [
+        "Synthetic Annual Report"
+      ],
+      "segment_count": 2
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        3
+      ],
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "section_id": "sec_adc6f125d09b457b0495b397",
+      "section_path": [
+        "Legal Proceedings"
+      ],
+      "segment_count": 2
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        1
+      ],
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "section_id": "sec_b50758f586f55b7757d2281f",
+      "section_path": [
+        "Corporate Structure"
+      ],
+      "segment_count": 2
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        2
+      ],
+      "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+      "section_id": "sec_bedd85a60b0f7b4da59806b6",
+      "section_path": [
+        "Related Parties and Voting Control"
+      ],
+      "segment_count": 2
+    }
+  ],
+  "status": "REVIEW_REQUIRED",
+  "unresolved": {
+    "material_requirement_gaps": [
+      {
+        "category": "legal_identity",
+        "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+        "status": "NOT_REVIEWED"
+      },
+      {
+        "category": "related_parties",
+        "run_id": "run_6ba780feddae47508c525ba072ae09e7",
+        "status": "NOT_REVIEWED"
+      }
+    ],
+    "open_issue_ids": [
+      "issue_fab9ade058c771de809b4f2a"
+    ],
+    "verification_note": "Source-match checks are not external verification; all facts remain pending human verification."
+  }
+}

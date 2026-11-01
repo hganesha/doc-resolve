@@ -1,0 +1,113 @@
+# Illustrative processing profiles. `strategy` is a label; boundary,
+# keep_records_whole and context_unit are what change behaviour:
+#   boundary: where a long segment may be split. whitespace (any space),
+#     sentence (sentence ends first), or clause (numbered clauses and
+#     paragraphs, then sentences).
+#   keep_records_whole: keep a "Label: value" field record in one chunk (up to
+#     four times max_chars), so a legal name stays with its registration number.
+#   context_unit: text given to the model beside each chunk, citable as
+#     supporting evidence. parent_section (the section's opening paragraph and
+#     the paragraph before the chunk), document_header (the document's opening
+#     paragraphs: title, caption, publisher, date), or none.
+version: 1
+profiles:
+  corporate_registry:
+    family: corporate_registration
+    title: Corporate registry extract
+    signals: [registry extract, certificate of incorporation, business registry, company registration]
+    strategy: field_aware
+    max_chars: 1800
+    overlap_chars: 120
+    boundary: whitespace
+    keep_records_whole: true
+    context_unit: document_header
+  ownership_control:
+    family: ownership_and_control
+    title: Ownership or control agreement
+    signals: [shareholder register, beneficial ownership, shareholder agreement, ubo declaration, ownership agreement]
+    strategy: relationship_aware
+    max_chars: 1800
+    overlap_chars: 160
+    boundary: sentence
+    keep_records_whole: false
+    context_unit: parent_section
+  financial_annual_report:
+    family: financial_statements
+    title: Annual report or audited financial statements
+    signals: [annual report, form 10-k, audited financial statements, financial statements]
+    strategy: section_table_footnote_aware
+    max_chars: 1800
+    overlap_chars: 160
+    boundary: sentence
+    keep_records_whole: false
+    context_unit: parent_section
+  identity_verification:
+    family: identity_verification
+    title: Identity document or proof of address
+    signals: [proof of address, national identity card, driver's license, passport]
+    strategy: field_aware
+    max_chars: 1200
+    overlap_chars: 80
+    boundary: whitespace
+    keep_records_whole: true
+    context_unit: document_header
+  regulatory_licensing:
+    family: regulatory_and_licensing
+    title: Regulatory or licensing document
+    signals: [banking license, regulatory registration, enforcement notice, licence certificate]
+    strategy: clause_event_aware
+    max_chars: 1800
+    overlap_chars: 120
+    boundary: clause
+    keep_records_whole: true
+    context_unit: parent_section
+  legal_litigation:
+    family: legal_and_litigation
+    title: Legal or litigation document
+    signals: [court filing, consent order, judgment, settlement agreement, court of appeal]
+    strategy: event_chronology_aware
+    max_chars: 1800
+    overlap_chars: 160
+    boundary: clause
+    keep_records_whole: false
+    context_unit: document_header
+  adverse_media:
+    family: adverse_media
+    title: Adverse-media article or investigation
+    signals: [adverse media, investigative report, news article, investigation article, press release]
+    strategy: article_event_aware
+    max_chars: 1800
+    overlap_chars: 160
+    boundary: sentence
+    keep_records_whole: false
+    context_unit: document_header
+  sanctions_pep:
+    family: sanctions_and_pep
+    title: Sanctions or politically exposed person record
+    signals: [sanctions list, pep profile, screening report, specially designated nationals]
+    strategy: record_entity_aware
+    max_chars: 1400
+    overlap_chars: 80
+    boundary: whitespace
+    keep_records_whole: true
+    context_unit: none
+  source_of_funds:
+    family: source_of_wealth_and_funds
+    title: Source-of-wealth or source-of-funds document
+    signals: [bank statement, source of funds, source of wealth, sale agreement, tax return]
+    strategy: transaction_event_aware
+    max_chars: 1800
+    overlap_chars: 120
+    boundary: sentence
+    keep_records_whole: true
+    context_unit: parent_section
+  internal_kyc:
+    family: internal_bank_records
+    title: Internal KYC or customer correspondence
+    signals: [kyc review, customer profile, kyc questionnaire, customer correspondence]
+    strategy: record_conversation_aware
+    max_chars: 1800
+    overlap_chars: 160
+    boundary: sentence
+    keep_records_whole: false
+    context_unit: parent_section

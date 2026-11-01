@@ -1,0 +1,1109 @@
+{
+  "document": {
+    "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+    "filename": "disney_2024_annual_report.pdf",
+    "sha256": "8887cce1a4b609edc9f0b6aac241a1a097fa611cdaf46a84906e5c105eea66fd",
+    "bytes": 1663966,
+    "format": "pdf",
+    "page_count": 132
+  },
+  "issues": [
+    {
+      "code": "PDF_PAGE_TEXT_INSUFFICIENT",
+      "message": "Page has little or no extractable text; a blank or scanned/image page requires assessment or OCR.",
+      "page": 2
+    },
+    {
+      "code": "PDF_PAGE_TEXT_INSUFFICIENT",
+      "message": "Page has little or no extractable text; a blank or scanned/image page requires assessment or OCR.",
+      "page": 132
+    }
+  ],
+  "sections": [
+    {
+      "section_id": "sec_ec006e24bf5f76097e15c8a0",
+      "section_path": [
+        "FISCAL YEAR 2024 ANNUAL FINANCIAL REPORT"
+      ],
+      "segment_count": 1,
+      "chunk_count": 1,
+      "pages": [
+        1
+      ]
+    },
+    {
+      "section_id": "sec_708f35af2a4bf2cf8edfad88",
+      "section_path": [
+        "UNITED STATES SECURITIES AND EXCHANGE COMMISSION"
+      ],
+      "segment_count": 2,
+      "chunk_count": 2,
+      "pages": [
+        3
+      ]
+    },
+    {
+      "section_id": "sec_1b124c2fae696f87653e8a1d",
+      "section_path": [
+        "FORM 10-K"
+      ],
+      "segment_count": 28,
+      "chunk_count": 28,
+      "pages": [
+        3,
+        4
+      ]
+    },
+    {
+      "section_id": "sec_3426fcc7356d6313bd6c0b65",
+      "section_path": [
+        "THE WALT DISNEY COMPANY AND SUBSIDIARIES"
+      ],
+      "segment_count": 1,
+      "chunk_count": 1,
+      "pages": [
+        5
+      ]
+    },
+    {
+      "section_id": "sec_7ce0e3b19888d23a7bdeec79",
+      "section_path": [
+        "TABLE OF CONTENTS"
+      ],
+      "segment_count": 10,
+      "chunk_count": 10,
+      "pages": [
+        5
+      ]
+    },
+    {
+      "section_id": "sec_45afba3be4970b1ceb83a6ad",
+      "section_path": [
+        "PART II"
+      ],
+      "segment_count": 69,
+      "chunk_count": 69,
+      "pages": [
+        5,
+        37,
+        38
+      ]
+    },
+    {
+      "section_id": "sec_1c87b443070a015faf5276e6",
+      "section_path": [
+        "PART III"
+      ],
+      "segment_count": 87,
+      "chunk_count": 87,
+      "pages": [
+        5,
+        66,
+        67,
+        68,
+        69
+      ]
+    },
+    {
+      "section_id": "sec_ed8057ef48a254afb7ba1193",
+      "section_path": [
+        "PART IV"
+      ],
+      "segment_count": 3,
+      "chunk_count": 3,
+      "pages": [
+        5
+      ]
+    },
+    {
+      "section_id": "sec_5ece11608daf794e35d65b8a",
+      "section_path": [
+        "SIGNATURES 66"
+      ],
+      "segment_count": 12,
+      "chunk_count": 12,
+      "pages": [
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "section_id": "sec_66261777a7490fb973b5581d",
+      "section_path": [
+        "PART I"
+      ],
+      "segment_count": 4,
+      "chunk_count": 4,
+      "pages": [
+        8
+      ]
+    },
+    {
+      "section_id": "sec_5793f662fca24bd1cb07d65f",
+      "section_path": [
+        "ENTERTAINMENT"
+      ],
+      "segment_count": 135,
+      "chunk_count": 135,
+      "pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ]
+    },
+    {
+      "section_id": "sec_bbe8126573e892ec3dde5bb0",
+      "section_path": [
+        "SPORTS"
+      ],
+      "segment_count": 33,
+      "chunk_count": 33,
+      "pages": [
+        13,
+        14
+      ]
+    },
+    {
+      "section_id": "sec_381b10172f180d576a647bad",
+      "section_path": [
+        "ESPN(1) 66"
+      ],
+      "segment_count": 1,
+      "chunk_count": 1,
+      "pages": [
+        14
+      ]
+    },
+    {
+      "section_id": "sec_3692432470ad3afdf9a3cc1e",
+      "section_path": [
+        "ESPN2(1) 66"
+      ],
+      "segment_count": 1,
+      "chunk_count": 1,
+      "pages": [
+        14
+      ]
+    },
+    {
+      "section_id": "sec_cf2879f48ac5dbdbe6d6c935",
+      "section_path": [
+        "ESPNU(1) 47"
+      ],
+      "segment_count": 1,
+      "chunk_count": 1,
+      "pages": [
+        14
+      ]
+    },
+    {
+      "section_id": "sec_96a55b240899fb778c3610ac",
+      "section_path": [
+        "ESPNEWS(2) 40"
+      ],
+      "segment_count": 19,
+      "chunk_count": 19,
+      "pages": [
+        14,
+        15
+      ]
+    },
+    {
+      "section_id": "sec_c95fba5bf5bef4ffe6a051a1",
+      "section_path": [
+        "EXPERIENCES"
+      ],
+      "segment_count": 102,
+      "chunk_count": 102,
+      "pages": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "section_id": "sec_165d6d07d8ae5aa93dca22d7",
+      "section_path": [
+        "STAR INDIA TRANSACTION"
+      ],
+      "segment_count": 5,
+      "chunk_count": 5,
+      "pages": [
+        20,
+        84
+      ]
+    },
+    {
+      "section_id": "sec_8de08e02eb995d8e7c8afd28",
+      "section_path": [
+        "HUMAN CAPITAL"
+      ],
+      "segment_count": 19,
+      "chunk_count": 19,
+      "pages": [
+        20,
+        21
+      ]
+    },
+    {
+      "section_id": "sec_3bd0353ba5f968e85346aa80",
+      "section_path": [
+        "ENVIRONMENTAL SUSTAINABILITY"
+      ],
+      "segment_count": 2,
+      "chunk_count": 2,
+      "pages": [
+        21
+      ]
+    },
+    {
+      "section_id": "sec_92b450d1aac9f0f56b25938d",
+      "section_path": [
+        "INTELLECTUAL PROPERTY PROTECTION"
+      ],
+      "segment_count": 2,
+      "chunk_count": 2,
+      "pages": [
+        21
+      ]
+    },
+    {
+      "section_id": "sec_ef66d27060d9102a943669fd",
+      "section_path": [
+        "REGULATION"
+      ],
+      "segment_count": 27,
+      "chunk_count": 27,
+      "pages": [
+        21,
+        22,
+        23
+      ]
+    },
+    {
+      "section_id": "sec_8278701310be242675be6bba",
+      "section_path": [
+        "AVAILABLE INFORMATION"
+      ],
+      "segment_count": 6,
+      "chunk_count": 6,
+      "pages": [
+        23
+      ]
+    },
+    {
+      "section_id": "sec_9730fa177c36540abb9e278d",
+      "section_path": [
+        "RISKS RELATED TO OUR BUSINESSES AND INDUSTRY"
+      ],
+      "segment_count": 93,
+      "chunk_count": 102,
+      "pages": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ]
+    },
+    {
+      "section_id": "sec_1b65e1c69d718bf9b01a41d9",
+      "section_path": [
+        "RISKS RELATED TO OWNERSHIP OF OUR STOCK"
+      ],
+      "segment_count": 4,
+      "chunk_count": 4,
+      "pages": [
+        32
+      ]
+    },
+    {
+      "section_id": "sec_4a3124abf042ae56e8ae6fb3",
+      "section_path": [
+        "GENERAL RISKS"
+      ],
+      "segment_count": 81,
+      "chunk_count": 82,
+      "pages": [
+        33,
+        34,
+        35,
+        36
+      ]
+    },
+    {
+      "section_id": "sec_27f4f355bb846d65872a9b7c",
+      "section_path": [
+        "CONSOLIDATED RESULTS AND NON-SEGMENT ITEMS"
+      ],
+      "segment_count": 82,
+      "chunk_count": 82,
+      "pages": [
+        38,
+        39,
+        40,
+        41
+      ]
+    },
+    {
+      "section_id": "sec_73ed8c2767ddbfa528507b39",
+      "section_path": [
+        "BUSINESS SEGMENT RESULTS"
+      ],
+      "segment_count": 121,
+      "chunk_count": 121,
+      "pages": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ]
+    },
+    {
+      "section_id": "sec_2b4441da2861be8937c596d7",
+      "section_path": [
+        "2024 September 30,"
+      ],
+      "segment_count": 434,
+      "chunk_count": 434,
+      "pages": [
+        45,
+        46,
+        47,
+        48,
+        49,
+        62,
+        79,
+        88,
+        90,
+        97,
+        98,
+        99,
+        100,
+        101,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        117,
+        118,
+        121,
+        122
+      ]
+    },
+    {
+      "section_id": "sec_9c2f831f98526c7bfa174162",
+      "section_path": [
+        "ESPN"
+      ],
+      "segment_count": 146,
+      "chunk_count": 146,
+      "pages": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ]
+    },
+    {
+      "section_id": "sec_17b7895c79fef0123b535264",
+      "section_path": [
+        "CORPORATE AND UNALLOCATED SHARED EXPENSES"
+      ],
+      "segment_count": 5,
+      "chunk_count": 5,
+      "pages": [
+        53
+      ]
+    },
+    {
+      "section_id": "sec_c1bad5618fa0a9553dd81799",
+      "section_path": [
+        "LIQUIDITY AND CAPITAL RESOURCES"
+      ],
+      "segment_count": 57,
+      "chunk_count": 57,
+      "pages": [
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "section_id": "sec_3083bb3a6150f20a8b07c6a8",
+      "section_path": [
+        "2023 Borrowings Payments"
+      ],
+      "segment_count": 22,
+      "chunk_count": 22,
+      "pages": [
+        56,
+        57
+      ]
+    },
+    {
+      "section_id": "sec_4cb8516a5f4fcd473ecefc34",
+      "section_path": [
+        "DEVELOPMENTS AND TRENDS"
+      ],
+      "segment_count": 5,
+      "chunk_count": 5,
+      "pages": [
+        57
+      ]
+    },
+    {
+      "section_id": "sec_379f3d9d08afa1f7a3400878",
+      "section_path": [
+        "CRITICAL ACCOUNTING POLICIES AND ESTIMATES"
+      ],
+      "segment_count": 51,
+      "chunk_count": 51,
+      "pages": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ]
+    },
+    {
+      "section_id": "sec_8caaedb98f825b91fd269c72",
+      "section_path": [
+        "DTC PRODUCT DESCRIPTIONS, KEY DEFINITIONS AND SUPPLEMENTAL INFORMATION"
+      ],
+      "segment_count": 12,
+      "chunk_count": 12,
+      "pages": [
+        61,
+        62
+      ]
+    },
+    {
+      "section_id": "sec_315d3243846805c7355c6e90",
+      "section_path": [
+        "2024 September 30,",
+        "2024. The Combo+ subscribers at September 30, 2023 were 10.8 million."
+      ],
+      "segment_count": 1,
+      "chunk_count": 1,
+      "pages": [
+        62
+      ]
+    },
+    {
+      "section_id": "sec_62e4dc5d7968f4262479cba6",
+      "section_path": [
+        "SUPPLEMENTAL GUARANTOR FINANCIAL INFORMATION"
+      ],
+      "segment_count": 62,
+      "chunk_count": 67,
+      "pages": [
+        62,
+        63,
+        64,
+        65
+      ]
+    },
+    {
+      "section_id": "sec_a934fc2c3ee440e899d55cb3",
+      "section_path": [
+        "PART III",
+        "10.25 Voluntary Non-Qualified Deferred Compensation Plan \u2020"
+      ],
+      "segment_count": 6,
+      "chunk_count": 6,
+      "pages": [
+        69
+      ]
+    },
+    {
+      "section_id": "sec_0f6a94d334ac532531dd3d20",
+      "section_path": [
+        "PART III",
+        "10.32 Amended and Restated 1997 Non-Employee Directors Stock and Deferred Compensation Plan"
+      ],
+      "segment_count": 4,
+      "chunk_count": 4,
+      "pages": [
+        69
+      ]
+    },
+    {
+      "section_id": "sec_d40918952f4e2694bd2c1792",
+      "section_path": [
+        "PART III",
+        "10.37 Second Amendment to the Disney Key Employees Retirement Savings Plan \u2020"
+      ],
+      "segment_count": 16,
+      "chunk_count": 16,
+      "pages": [
+        69,
+        70
+      ]
+    },
+    {
+      "section_id": "sec_2e1a8a893323e06005b82240",
+      "section_path": [
+        "PART III",
+        "10.49 Form of Restricted Stock Unit Award Agreement (Time-Based Vesting) \u2020"
+      ],
+      "segment_count": 20,
+      "chunk_count": 20,
+      "pages": [
+        70,
+        71
+      ]
+    },
+    {
+      "section_id": "sec_9734abeea0ae46d61d4e3388",
+      "section_path": [
+        "21 Subsidiaries of the Company Filed herewith"
+      ],
+      "segment_count": 1,
+      "chunk_count": 1,
+      "pages": [
+        71
+      ]
+    },
+    {
+      "section_id": "sec_a11a8cf333668900e8f5acba",
+      "section_path": [
+        "22 List of Guarantor Subsidiaries Filed herewith"
+      ],
+      "segment_count": 1,
+      "chunk_count": 1,
+      "pages": [
+        71
+      ]
+    },
+    {
+      "section_id": "sec_0330eff3492978a224d0a8c2",
+      "section_path": [
+        "23 Consent of PricewaterhouseCoopers LLP Filed herewith"
+      ],
+      "segment_count": 9,
+      "chunk_count": 9,
+      "pages": [
+        71
+      ]
+    },
+    {
+      "section_id": "sec_88cb1f32df82ff744690e1a0",
+      "section_path": [
+        "97 The Walt Disney Company Clawback Policy Filed herewith"
+      ],
+      "segment_count": 3,
+      "chunk_count": 3,
+      "pages": [
+        71
+      ]
+    },
+    {
+      "section_id": "sec_5a278db81e6edfe9856bd3cd",
+      "section_path": [
+        "104 Cover Page Interactive Data File (embedded within the Inline XBRL document)"
+      ],
+      "segment_count": 6,
+      "chunk_count": 6,
+      "pages": [
+        71
+      ]
+    },
+    {
+      "section_id": "sec_683ea598bc8b725f9a1ed25e",
+      "section_path": [
+        "SIGNATURES"
+      ],
+      "segment_count": 2,
+      "chunk_count": 2,
+      "pages": [
+        72
+      ]
+    },
+    {
+      "section_id": "sec_7e5a6194e02022ab5ad23d87",
+      "section_path": [
+        "THE WALT DISNEY COMPANY"
+      ],
+      "segment_count": 46,
+      "chunk_count": 46,
+      "pages": [
+        72,
+        73
+      ]
+    },
+    {
+      "section_id": "sec_3ab26ed4f887a5bbef85350a",
+      "section_path": [
+        "MANAGEMENT\u2019S REPORT ON INTERNAL CONTROL OVER FINANCIAL REPORTING"
+      ],
+      "segment_count": 6,
+      "chunk_count": 6,
+      "pages": [
+        74
+      ]
+    },
+    {
+      "section_id": "sec_366dd0a84381f67ec4411ea5",
+      "section_path": [
+        "REPORT OF INDEPENDENT REGISTERED PUBLIC ACCOUNTING FIRM"
+      ],
+      "segment_count": 24,
+      "chunk_count": 24,
+      "pages": [
+        75,
+        76
+      ]
+    },
+    {
+      "section_id": "sec_07e2c5e4b445608682438908",
+      "section_path": [
+        "CONSOLIDATED STATEMENTS OF INCOME"
+      ],
+      "segment_count": 40,
+      "chunk_count": 40,
+      "pages": [
+        77
+      ]
+    },
+    {
+      "section_id": "sec_ec0f728a19bc33cca4293907",
+      "section_path": [
+        "CONSOLIDATED STATEMENTS OF COMPREHENSIVE INCOME"
+      ],
+      "segment_count": 15,
+      "chunk_count": 15,
+      "pages": [
+        78
+      ]
+    },
+    {
+      "section_id": "sec_e953b937f267dd6f50b819f8",
+      "section_path": [
+        "CONSOLIDATED BALANCE SHEETS"
+      ],
+      "segment_count": 3,
+      "chunk_count": 3,
+      "pages": [
+        79
+      ]
+    },
+    {
+      "section_id": "sec_3b44950b4ee2c96b4deb61f0",
+      "section_path": [
+        "ASSETS"
+      ],
+      "segment_count": 21,
+      "chunk_count": 21,
+      "pages": [
+        79
+      ]
+    },
+    {
+      "section_id": "sec_326d7ae9c3e22b551fd17762",
+      "section_path": [
+        "LIABILITIES AND EQUITY"
+      ],
+      "segment_count": 24,
+      "chunk_count": 24,
+      "pages": [
+        79
+      ]
+    },
+    {
+      "section_id": "sec_d93bc868ee504d6aeded9440",
+      "section_path": [
+        "CONSOLIDATED STATEMENTS OF CASH FLOWS"
+      ],
+      "segment_count": 3,
+      "chunk_count": 3,
+      "pages": [
+        80
+      ]
+    },
+    {
+      "section_id": "sec_329ce0c8c3e8e00d3059b9e5",
+      "section_path": [
+        "OPERATING ACTIVITIES"
+      ],
+      "segment_count": 19,
+      "chunk_count": 19,
+      "pages": [
+        80
+      ]
+    },
+    {
+      "section_id": "sec_68da0d824368caecae617ae1",
+      "section_path": [
+        "INVESTING ACTIVITIES"
+      ],
+      "segment_count": 6,
+      "chunk_count": 6,
+      "pages": [
+        80
+      ]
+    },
+    {
+      "section_id": "sec_8c1c407976b72468c68d638e",
+      "section_path": [
+        "FINANCING ACTIVITIES"
+      ],
+      "segment_count": 10,
+      "chunk_count": 10,
+      "pages": [
+        80
+      ]
+    },
+    {
+      "section_id": "sec_9150ba9f1d59e61396a6a1fb",
+      "section_path": [
+        "CASH FLOWS FROM DISCONTINUED OPERATIONS"
+      ],
+      "segment_count": 13,
+      "chunk_count": 13,
+      "pages": [
+        80
+      ]
+    },
+    {
+      "section_id": "sec_22517ab64bd91cc6e1f7f630",
+      "section_path": [
+        "CONSOLIDATED STATEMENTS OF SHAREHOLDERS\u2019 EQUITY"
+      ],
+      "segment_count": 41,
+      "chunk_count": 41,
+      "pages": [
+        81,
+        82
+      ]
+    },
+    {
+      "section_id": "sec_cea35934dd79587f4f389bad",
+      "section_path": [
+        "DESCRIPTION OF THE BUSINESS"
+      ],
+      "segment_count": 32,
+      "chunk_count": 32,
+      "pages": [
+        82,
+        83,
+        84
+      ]
+    },
+    {
+      "section_id": "sec_534e417857546a3a3e825642",
+      "section_path": [
+        "SEGMENT INFORMATION"
+      ],
+      "segment_count": 64,
+      "chunk_count": 64,
+      "pages": [
+        85,
+        86,
+        87,
+        88
+      ]
+    },
+    {
+      "section_id": "sec_2e8a33a715ae01c7bc36b464",
+      "section_path": [
+        "2 Summary of Significant Accounting Policies"
+      ],
+      "segment_count": 45,
+      "chunk_count": 45,
+      "pages": [
+        88,
+        89,
+        90
+      ]
+    },
+    {
+      "section_id": "sec_8244d2ed7e013a5497e19207",
+      "section_path": [
+        "2023 October 1,"
+      ],
+      "segment_count": 83,
+      "chunk_count": 83,
+      "pages": [
+        90,
+        91,
+        92,
+        93,
+        94,
+        95
+      ]
+    },
+    {
+      "section_id": "sec_8652094d26aa73131289a9be",
+      "section_path": [
+        "3 Revenues"
+      ],
+      "segment_count": 73,
+      "chunk_count": 73,
+      "pages": [
+        96,
+        97
+      ]
+    },
+    {
+      "section_id": "sec_8c2e6ce9d491b4e2641e8b17",
+      "section_path": [
+        "2024 September 30,",
+        "4. Dispositions"
+      ],
+      "segment_count": 26,
+      "chunk_count": 26,
+      "pages": [
+        98,
+        99
+      ]
+    },
+    {
+      "section_id": "sec_9c4282ad789edd1ac1a61f48",
+      "section_path": [
+        "5 Investments"
+      ],
+      "segment_count": 3,
+      "chunk_count": 3,
+      "pages": [
+        99
+      ]
+    },
+    {
+      "section_id": "sec_b4e8df8b0d83f439446e0a1f",
+      "section_path": [
+        "6 International Theme Parks"
+      ],
+      "segment_count": 5,
+      "chunk_count": 5,
+      "pages": [
+        99,
+        100
+      ]
+    },
+    {
+      "section_id": "sec_14a6acbfb5d4d8176de5ec5b",
+      "section_path": [
+        "7 Produced and Acquired/Licensed Content Costs and Advances"
+      ],
+      "segment_count": 54,
+      "chunk_count": 54,
+      "pages": [
+        101,
+        102
+      ]
+    },
+    {
+      "section_id": "sec_ce14c54589cc8c1f1c2c7f91",
+      "section_path": [
+        "8 Borrowings"
+      ],
+      "segment_count": 11,
+      "chunk_count": 11,
+      "pages": [
+        103
+      ]
+    },
+    {
+      "section_id": "sec_82b4ffd281350b8b38549ece",
+      "section_path": [
+        "2024 Sep. 30,"
+      ],
+      "segment_count": 68,
+      "chunk_count": 68,
+      "pages": [
+        103,
+        104,
+        105
+      ]
+    },
+    {
+      "section_id": "sec_4442d7e25f8a62bf3e465b95",
+      "section_path": [
+        "9 Income Taxes"
+      ],
+      "segment_count": 12,
+      "chunk_count": 12,
+      "pages": [
+        105,
+        106
+      ]
+    },
+    {
+      "section_id": "sec_0b9b44165a5010540a3e67e7",
+      "section_path": [
+        "10 Pension and Other Benefit Programs"
+      ],
+      "segment_count": 7,
+      "chunk_count": 7,
+      "pages": [
+        108
+      ]
+    },
+    {
+      "section_id": "sec_3086c55e8d057485c8b105f2",
+      "section_path": [
+        "2023 September 28,"
+      ],
+      "segment_count": 1,
+      "chunk_count": 1,
+      "pages": [
+        108
+      ]
+    },
+    {
+      "section_id": "sec_18ec25386d2c3b3ec70e9bf9",
+      "section_path": [
+        "11 Equity"
+      ],
+      "segment_count": 76,
+      "chunk_count": 76,
+      "pages": [
+        113,
+        114
+      ]
+    },
+    {
+      "section_id": "sec_30a8891f87b0c22cdb8e06ad",
+      "section_path": [
+        "12 Equity-Based Compensation"
+      ],
+      "segment_count": 60,
+      "chunk_count": 60,
+      "pages": [
+        115,
+        116,
+        117
+      ]
+    },
+    {
+      "section_id": "sec_195a9b035f87fd0566cde789",
+      "section_path": [
+        "13 Detail of Certain Balance Sheet Accounts"
+      ],
+      "segment_count": 2,
+      "chunk_count": 2,
+      "pages": [
+        117
+      ]
+    },
+    {
+      "section_id": "sec_d6cbf67f25e61c8bae92c6aa",
+      "section_path": [
+        "14 Commitments and Contingencies"
+      ],
+      "segment_count": 25,
+      "chunk_count": 28,
+      "pages": [
+        119,
+        120
+      ]
+    },
+    {
+      "section_id": "sec_61c2bc14cb4be444dff7d1ea",
+      "section_path": [
+        "15 Leases"
+      ],
+      "segment_count": 6,
+      "chunk_count": 6,
+      "pages": [
+        120,
+        121
+      ]
+    },
+    {
+      "section_id": "sec_556efd4a12e2c3cc7773231f",
+      "section_path": [
+        "16 Fair Value Measurements"
+      ],
+      "segment_count": 29,
+      "chunk_count": 29,
+      "pages": [
+        122,
+        123,
+        124
+      ]
+    },
+    {
+      "section_id": "sec_83ec1e1f9f740befeb5d3f23",
+      "section_path": [
+        "17 Derivative Instruments"
+      ],
+      "segment_count": 38,
+      "chunk_count": 38,
+      "pages": [
+        124,
+        125
+      ]
+    },
+    {
+      "section_id": "sec_018402d1e33f7eeb2cdc59d5",
+      "section_path": [
+        "2023 September"
+      ],
+      "segment_count": 42,
+      "chunk_count": 42,
+      "pages": [
+        125,
+        126
+      ]
+    },
+    {
+      "section_id": "sec_1395696183831be24052f6ae",
+      "section_path": [
+        "18 Restructuring and Impairment Charges"
+      ],
+      "segment_count": 19,
+      "chunk_count": 19,
+      "pages": [
+        127
+      ]
+    },
+    {
+      "section_id": "sec_fe703299dbce1de33a94eb8b",
+      "section_path": [
+        "19 New Accounting Pronouncements and Other Disclosure Rules"
+      ],
+      "segment_count": 47,
+      "chunk_count": 47,
+      "pages": [
+        127,
+        128,
+        129,
+        130
+      ]
+    },
+    {
+      "section_id": "sec_65a7543e94c9157f87a49c2a",
+      "section_path": [
+        "BOARD OF DIRECTORS EXECUTIVE OFFICERS"
+      ],
+      "segment_count": 10,
+      "chunk_count": 10,
+      "pages": [
+        131,
+        132
+      ]
+    }
+  ]
+}

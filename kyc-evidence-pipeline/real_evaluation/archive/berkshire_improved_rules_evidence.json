@@ -1,0 +1,1878 @@
+{
+  "audit_events": [
+    {
+      "action": "RUN_STARTED",
+      "details": {},
+      "event_id": "audit_b963fd770d41ebcc2fc8cced",
+      "happened_at": "2026-10-30T22:04:14.108501+00:00",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5"
+    },
+    {
+      "action": "RUN_REVIEW_REQUIRED",
+      "details": {},
+      "event_id": "audit_2f5be694276fb98580373fad",
+      "happened_at": "2026-10-30T22:04:54.474353+00:00",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_68f1511cb25b5bbe0985f7a9",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_16c1adfa930be3ea23ac24d4",
+      "happened_at": "2026-10-30T22:04:55.824693+00:00",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_3ddf2f1c9057988cbebb6a1f",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_691a3941db77bfef67e6123e",
+      "happened_at": "2026-10-30T22:04:55.824765+00:00",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_7effe9ad9a18495be58ece77",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_2f174e89bfeb18977f120710",
+      "happened_at": "2026-10-30T22:04:55.824786+00:00",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_5d18161594191e7fbc6adece",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_c4ab58bfe5cbe9341c7ca4ab",
+      "happened_at": "2026-10-30T22:04:55.824802+00:00",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5"
+    },
+    {
+      "action": "CANONICAL_RECORDS_PERSISTED",
+      "details": {
+        "fact_count": 8,
+        "status": "REVIEW_REQUIRED"
+      },
+      "event_id": "audit_2cd918a0a27fff9f312175df",
+      "happened_at": "2026-10-30T22:04:55.824883+00:00",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5"
+    }
+  ],
+  "case_id": "public-berkshire-2024",
+  "coverage": [
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "control",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3611,
+      "chunks_total": 3611,
+      "completeness_asserted": false,
+      "description": "Voting rights, board appointments, control agreements, and their dates.",
+      "fact_count": 0,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "status": "NOT_REVIEWED"
+    },
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "financial_condition",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3611,
+      "chunks_total": 3611,
+      "completeness_asserted": false,
+      "description": "Revenue, assets, funding, liabilities, and audit qualifications with period and units.",
+      "fact_count": 0,
+      "material": false,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "status": "NOT_REVIEWED"
+    },
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "legal_identity",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3611,
+      "chunks_total": 3611,
+      "completeness_asserted": false,
+      "description": "Legal names, registration identifiers, jurisdiction, and status.",
+      "fact_count": 0,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "status": "NOT_REVIEWED"
+    },
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "legal_regulatory",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3611,
+      "chunks_total": 3611,
+      "completeness_asserted": false,
+      "description": "Regulatory investigations, penalties, proceedings, and enforcement status.",
+      "fact_count": 0,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "status": "NOT_REVIEWED"
+    },
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "material_changes",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3611,
+      "chunks_total": 3611,
+      "completeness_asserted": false,
+      "description": "Acquisitions, disposals, restructurings, amendments, and subsequent events.",
+      "fact_count": 0,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "status": "NOT_REVIEWED"
+    },
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "ownership",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3611,
+      "chunks_total": 3611,
+      "completeness_asserted": false,
+      "description": "Direct and indirect equity interests, percentage, parties, and effective dates.",
+      "fact_count": 8,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [
+        "issue_68f1511cb25b5bbe0985f7a9",
+        "issue_3ddf2f1c9057988cbebb6a1f",
+        "issue_7effe9ad9a18495be58ece77",
+        "issue_5d18161594191e7fbc6adece"
+      ],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "status": "FOUND"
+    },
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "related_parties",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3611,
+      "chunks_total": 3611,
+      "completeness_asserted": false,
+      "description": "Affiliates, related parties, directors, and key counterparties.",
+      "fact_count": 0,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "status": "NOT_REVIEWED"
+    }
+  ],
+  "disclaimer": "Provisional evidence package. No completeness, identity, source independence, sanctions clearance, or KYC decision is guaranteed.",
+  "documents": [
+    {
+      "bytes": 1852116,
+      "current_run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "family": "financial_statements",
+      "filename": "berkshire_2024_annual_report.pdf",
+      "format": "pdf",
+      "page_count": 150,
+      "profile_id": "financial_annual_report",
+      "sha256": "6aa0a501680c50a57e0a1a2e841b46800e1fed828a8a7889d83d8eae7953e4bb",
+      "structurally_blank_pdf_pages": [
+        2,
+        4,
+        148
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "bbox": [
+        45.0,
+        308.12,
+        549.02,
+        398.61
+      ],
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "document_sha256": "6aa0a501680c50a57e0a1a2e841b46800e1fed828a8a7889d83d8eae7953e4bb",
+      "end": 188,
+      "evidence_id": "ev_265962c37008d94515de70fc",
+      "locator": "page:104/block:7",
+      "normalized_segment_sha256": "9307800fd25069e4dfbe0d3e65a3676daa6f2f4cbaccc68a677df9e373120891",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 104,
+      "quote": "As of December 31, 2024, we owned 151.6 million shares of American Express Company (“American Express”) common stock representing 21.6% of the outstanding common stock of American Express.",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_path": [
+        "BERKSHIRE HATHAWAY INC."
+      ],
+      "segment_id": "seg_e73611cc41688aca5d2638e2",
+      "start": 0
+    },
+    {
+      "bbox": [
+        45.0,
+        77.13,
+        549.02,
+        144.63
+      ],
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "document_sha256": "6aa0a501680c50a57e0a1a2e841b46800e1fed828a8a7889d83d8eae7953e4bb",
+      "end": 341,
+      "evidence_id": "ev_32004ef7417932cf8c47789e",
+      "locator": "page:103/block:3",
+      "normalized_segment_sha256": "3143d1ac3d3f27deed00b6590aadbbfd6d2c39891a9bf7aa28f6840b794dbf50",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 103,
+      "quote": "Prior to the transaction, we also held 100% of the general partner interest and we consolidated Cove Point for financial reporting purposes.",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_path": [
+        "BERKSHIRE HATHAWAY INC."
+      ],
+      "segment_id": "seg_a43ebf9790b348cf7e479a1d",
+      "start": 201
+    },
+    {
+      "bbox": [
+        45.0,
+        423.61,
+        549.02,
+        491.1
+      ],
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "document_sha256": "6aa0a501680c50a57e0a1a2e841b46800e1fed828a8a7889d83d8eae7953e4bb",
+      "end": 685,
+      "evidence_id": "ev_767b2eacf1d5669a80c28e3c",
+      "locator": "page:104/block:9",
+      "normalized_segment_sha256": "0be6afa2d7503b5da3411f2f4b0c61a81eacb00a05b0fea92df58282f7872982",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 104,
+      "quote": "As of December 31, 2024, we owned 27.2% of the Kraft Heinz outstanding common stock and 28.2% of the outstanding Occidental common stock which excludes the potential effect of the exercise of Occidental’s outstanding common stock warrants.",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_path": [
+        "BERKSHIRE HATHAWAY INC."
+      ],
+      "segment_id": "seg_53a6ddd9a6db82e114cabc3e",
+      "start": 446
+    },
+    {
+      "bbox": [
+        45.0,
+        504.1,
+        549.01,
+        583.09
+      ],
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "document_sha256": "6aa0a501680c50a57e0a1a2e841b46800e1fed828a8a7889d83d8eae7953e4bb",
+      "end": 238,
+      "evidence_id": "ev_9089901ba4921911ccae977e",
+      "locator": "page:45/block:9",
+      "normalized_segment_sha256": "801fe7b49591c56b72a72ac03221b85ee999475458155b189e08d3acb6e09138",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 45,
+      "quote": "As of December 31, 2024, Berkshire or a subsidiary owned approximately 27% of the outstanding common stock of The Kraft Heinz Company (“Kraft Heinz”) and 28% of the outstanding Occidental Petroleum Corporation (“Occidental”) common stock.",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_path": [
+        "BRK.A BRK.B BRK25 BRK27 BRK28 BRK30 BRK34 BRK35 BRK39 BRK41 BRK59"
+      ],
+      "segment_id": "seg_335ba0fe6b2677c38c225a74",
+      "start": 0
+    },
+    {
+      "bbox": [
+        45.0,
+        484.8,
+        549.0,
+        506.3
+      ],
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "document_sha256": "6aa0a501680c50a57e0a1a2e841b46800e1fed828a8a7889d83d8eae7953e4bb",
+      "end": 167,
+      "evidence_id": "ev_eb00459cc25e19c8fd7277ab",
+      "locator": "page:142/block:12",
+      "normalized_segment_sha256": "be8b06a5a33de118b939db87e721893f567d4985400bd5446e44c3d02d950bb4",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 142,
+      "quote": "As of December 31, 2024, Berkshire owned 27.2% of the outstanding shares of The Kraft Heinz Company common stock, which is accounted for pursuant to the equity method.",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_path": [
+        "REPORT OF INDEPENDENT REGISTERED PUBLIC ACCOUNTING FIRM"
+      ],
+      "segment_id": "seg_4186b5e0810a70bdf572c982",
+      "start": 0
+    }
+  ],
+  "facts": [
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "effective_date": "2024-12-31",
+      "entity_resolution": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_265962c37008d94515de70fc"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_265962c37008d94515de70fc",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_026266d25d25398d85bf0c2d",
+      "object": "American Express",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": true,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "we",
+      "unit": "percent",
+      "value": 21.6,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "effective_date": "2024-12-31",
+      "entity_resolution": "TEXT_MATCH_ONLY",
+      "evidence_ids": [
+        "ev_767b2eacf1d5669a80c28e3c"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_767b2eacf1d5669a80c28e3c",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_1dbd2cb4b8489276eefe713b",
+      "object": "the Kraft Heinz outstanding common stock and 28.2% of the outstanding Occidental common stock which excludes the potential effect of the exercise of Occidental’s outstanding common stock warrants",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": true,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "As of December 31, 2024, we",
+      "unit": "percent",
+      "value": 27.2,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "effective_date": "2024-12-31",
+      "entity_resolution": "TEXT_MATCH_ONLY",
+      "evidence_ids": [
+        "ev_eb00459cc25e19c8fd7277ab"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_eb00459cc25e19c8fd7277ab",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_44389f697a037872f59f9fcf",
+      "object": "shares of The Kraft Heinz Company",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": true,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "Berkshire",
+      "unit": "percent",
+      "value": 27.2,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "effective_date": null,
+      "entity_resolution": "TEXT_MATCH_ONLY",
+      "evidence_ids": [
+        "ev_32004ef7417932cf8c47789e"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_32004ef7417932cf8c47789e",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_56d2d37efdfe3bd2ce8923f2",
+      "object": "the general partner interest and we consolidated Cove Point for financial reporting purposes",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": null,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "Prior to the transaction, we also",
+      "unit": "percent",
+      "value": 100.0,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "effective_date": "2024-12-31",
+      "entity_resolution": "TEXT_MATCH_ONLY",
+      "evidence_ids": [
+        "ev_eb00459cc25e19c8fd7277ab"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_eb00459cc25e19c8fd7277ab",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_698fddd58b24cf12ba070d4f",
+      "object": "the outstanding shares of The Kraft Heinz Company common stock, which is accounted for pursuant to the equity method",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": true,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "As of December 31, 2024, Berkshire",
+      "unit": "percent",
+      "value": 27.2,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "effective_date": "2024-12-31",
+      "entity_resolution": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_9089901ba4921911ccae977e"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_9089901ba4921911ccae977e",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_8f56b4a5ee0c551864cb634f",
+      "object": "The Kraft Heinz Company",
+      "predicate": "owns_equity_in",
+      "qualifier": "approximately",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": true,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "Berkshire or a subsidiary",
+      "unit": "percent",
+      "value": 27.0,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "effective_date": "2024-12-31",
+      "entity_resolution": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_767b2eacf1d5669a80c28e3c"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_767b2eacf1d5669a80c28e3c",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_981045dd51c9507c7eac1c2c",
+      "object": "Occidental",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": true,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "we",
+      "unit": "percent",
+      "value": 28.2,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "effective_date": "2024-12-31",
+      "entity_resolution": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_9089901ba4921911ccae977e"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_9089901ba4921911ccae977e",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_e1e58d241abafa07a823a139",
+      "object": "Occidental Petroleum Corporation",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": true,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "Berkshire or a subsidiary",
+      "unit": "percent",
+      "value": 28.0,
+      "verification_status": "PENDING_HUMAN"
+    }
+  ],
+  "findings": [
+    {
+      "category": "ownership",
+      "description": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "fact_ids": [
+        "fact_026266d25d25398d85bf0c2d"
+      ],
+      "finding_id": "finding_7860355856573ab1c30c232e",
+      "issue_id": "issue_7effe9ad9a18495be58ece77",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "status": "OPEN",
+      "type": "ENTITY_IDENTITY_UNRESOLVED"
+    },
+    {
+      "category": "ownership",
+      "description": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "fact_ids": [
+        "fact_8f56b4a5ee0c551864cb634f"
+      ],
+      "finding_id": "finding_bceb5b0b6dde81d06e53a957",
+      "issue_id": "issue_68f1511cb25b5bbe0985f7a9",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "status": "OPEN",
+      "type": "ENTITY_IDENTITY_UNRESOLVED"
+    },
+    {
+      "category": "ownership",
+      "description": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "fact_ids": [
+        "fact_e1e58d241abafa07a823a139"
+      ],
+      "finding_id": "finding_dd195d4c0c4c958ac92544c5",
+      "issue_id": "issue_3ddf2f1c9057988cbebb6a1f",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "status": "OPEN",
+      "type": "ENTITY_IDENTITY_UNRESOLVED"
+    },
+    {
+      "category": "ownership",
+      "description": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "fact_ids": [
+        "fact_981045dd51c9507c7eac1c2c"
+      ],
+      "finding_id": "finding_e45f29de894ad3a314216e91",
+      "issue_id": "issue_5d18161594191e7fbc6adece",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "status": "OPEN",
+      "type": "ENTITY_IDENTITY_UNRESOLVED"
+    }
+  ],
+  "issues": [
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership"
+      ],
+      "code": "ENTITY_IDENTITY_UNRESOLVED",
+      "details": {
+        "subject": "Berkshire or a subsidiary"
+      },
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "fact_ids": [
+        "fact_e1e58d241abafa07a823a139"
+      ],
+      "issue_id": "issue_3ddf2f1c9057988cbebb6a1f",
+      "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership"
+      ],
+      "code": "ENTITY_IDENTITY_UNRESOLVED",
+      "details": {
+        "subject": "we"
+      },
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "fact_ids": [
+        "fact_981045dd51c9507c7eac1c2c"
+      ],
+      "issue_id": "issue_5d18161594191e7fbc6adece",
+      "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership"
+      ],
+      "code": "ENTITY_IDENTITY_UNRESOLVED",
+      "details": {
+        "subject": "Berkshire or a subsidiary"
+      },
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "fact_ids": [
+        "fact_8f56b4a5ee0c551864cb634f"
+      ],
+      "issue_id": "issue_68f1511cb25b5bbe0985f7a9",
+      "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership"
+      ],
+      "code": "ENTITY_IDENTITY_UNRESOLVED",
+      "details": {
+        "subject": "we"
+      },
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "fact_ids": [
+        "fact_026266d25d25398d85bf0c2d"
+      ],
+      "issue_id": "issue_7effe9ad9a18495be58ece77",
+      "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "severity": "high",
+      "status": "OPEN"
+    }
+  ],
+  "pending_runs": [],
+  "review_decisions": [
+    {
+      "action": "defer",
+      "issue_id": "issue_3ddf2f1c9057988cbebb6a1f",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:55.698321+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_5d18161594191e7fbc6adece",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:55.698329+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_68f1511cb25b5bbe0985f7a9",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:55.698296+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_7effe9ad9a18495be58ece77",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:55.698326+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "selected_fact_ids": []
+    }
+  ],
+  "runs": [
+    {
+      "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+      "error": null,
+      "finished_at": "2026-10-30T22:04:55.725423+00:00",
+      "policy_id": "illustrative_corporate_kyc_v1",
+      "profile_id": "financial_annual_report",
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "started_at": "2026-10-30T22:04:14.107955+00:00",
+      "status": "REVIEW_REQUIRED",
+      "summary": {
+        "case_id": "public-berkshire-2024",
+        "disclaimer": "Provisional evidence preparation only; not a KYC decision or a guarantee of completeness.",
+        "document_id": "doc_6aa0a501680c50a57e0a1a2e",
+        "embedding_model": null,
+        "embeddings": "lexical",
+        "evidence_count": 5,
+        "extraction_model": null,
+        "extraction_pages": null,
+        "extractor": "rules",
+        "fact_count": 8,
+        "finished_at": "2026-10-30T22:04:55.725423+00:00",
+        "max_model_requests": null,
+        "model_batch_size": null,
+        "model_max_tokens": null,
+        "model_reasoning_effort": null,
+        "open_issue_count": 4,
+        "policy_id": "illustrative_corporate_kyc_v1",
+        "policy_sha256": "25a3015cb318b6ec4de055e67d2aebdae61b64a45f33df5ee6a79654c9f57b20",
+        "profile_id": "financial_annual_report",
+        "profiles_sha256": "61388008ca30daf8a0fe029045098377c401d2f100151c882f3d27bde7462372",
+        "provider_endpoint_sha256": null,
+        "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+        "semantic_verification_requested": false,
+        "started_at": "2026-10-30T22:04:14.107955+00:00",
+        "status": "REVIEW_REQUIRED"
+      }
+    }
+  ],
+  "section_inventory": [
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_033e7d04937ca341e9d4cdc2",
+      "section_path": [
+        "/S/ CHARLOTTE GUYMAN"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 756,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 756,
+      "pages": [
+        1,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        145,
+        146,
+        147,
+        149
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_04ef4beac01abfa307794992",
+      "section_path": [
+        "BERKSHIRE HATHAWAY INC."
+      ],
+      "segment_count": 490
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        144
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_069e1cd09edbf9cfa7edba06",
+      "section_path": [
+        "23 Consent of Independent Registered Public Accounting Firm",
+        "31.1 Rule 13a—14(a)/15d-14(a) Certification"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        146
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_0977f6a0d9b01ccf573b388a",
+      "section_path": [
+        "MANUFACTURING:"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 35,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 35,
+      "pages": [
+        149,
+        150
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_107235b3f3acc73894857496",
+      "section_path": [
+        "DIRECTORS OFFICERS"
+      ],
+      "segment_count": 35
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        1,
+        3
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_1bbff13b4df69dc4ac750c52",
+      "section_path": [
+        "2024 ANNUAL REPORT"
+      ],
+      "segment_count": 2
+    },
+    {
+      "chunk_count": 17,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 17,
+      "pages": [
+        3
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_302b167a5692c226ecff39b0",
+      "section_path": [
+        "TABLE OF CONTENTS"
+      ],
+      "segment_count": 17
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        127
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_31ee5ce16d8837f728a899da",
+      "section_path": [
+        "2023 Manufactured products:"
+      ],
+      "segment_count": 2
+    },
+    {
+      "chunk_count": 7,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 7,
+      "pages": [
+        105
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_32dc5d78e185381fe4e0a3c1",
+      "section_path": [
+        "2023 December 31,"
+      ],
+      "segment_count": 5
+    },
+    {
+      "chunk_count": 291,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 291,
+      "pages": [
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_3540078e90d1dc3173581c9b",
+      "section_path": [
+        "2023 Assets $ 85,803 $ 71,287 Liabilities 50,869 42,515"
+      ],
+      "segment_count": 150
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_3903140b9b68baab8d986079",
+      "section_path": [
+        "/S/ MARC D. HAMBURG"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        144
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_39d01ae7048db01433e0944c",
+      "section_path": [
+        "21 Subsidiaries of Registrant"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        144
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_43c9ea9d7b039507e1f745a9",
+      "section_path": [
+        "23 Consent of Independent Registered Public Accounting Firm"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 8,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 8,
+      "pages": [
+        147
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_4c60173ece45d9f80e9e43bd",
+      "section_path": [
+        "STOCK TRANSFER AGENT"
+      ],
+      "segment_count": 8
+    },
+    {
+      "chunk_count": 44,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 44,
+      "pages": [
+        53,
+        54
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_4dc5c7416e3903538f27ab71",
+      "section_path": [
+        "FORWARD-LOOKING STATEMENTS"
+      ],
+      "segment_count": 35
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_530f4e0da5abbccfb518e75a",
+      "section_path": [
+        "/S/ GREGORY E. ABEL"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 5,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 5,
+      "pages": [
+        21
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_54e55e0dd5e5cbae91b90bb0",
+      "section_path": [
+        "UNITED STATES SECURITIES AND EXCHANGE COMMISSION"
+      ],
+      "segment_count": 5
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_55792da2bde441ce7aa5906a",
+      "section_path": [
+        "SIGNATURES"
+      ],
+      "segment_count": 2
+    },
+    {
+      "chunk_count": 401,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 401,
+      "pages": [
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_561628999a3e375e087a3c71",
+      "section_path": [
+        "2022 Manufactured products:"
+      ],
+      "segment_count": 212
+    },
+    {
+      "chunk_count": 121,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 121,
+      "pages": [
+        86,
+        87,
+        140,
+        141,
+        142
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_5efa4c9eb5515e89248643db",
+      "section_path": [
+        "REPORT OF INDEPENDENT REGISTERED PUBLIC ACCOUNTING FIRM"
+      ],
+      "segment_count": 63
+    },
+    {
+      "chunk_count": 5,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 5,
+      "pages": [
+        127
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_68c84ca74a231932869e2de0",
+      "section_path": [
+        "2024 BNSF"
+      ],
+      "segment_count": 5
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        105
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_6964c43007c941e1160671c3",
+      "section_path": [
+        "2024 December 30,"
+      ],
+      "segment_count": 2
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_6d4c7d1223fa7bf04c849192",
+      "section_path": [
+        "/S/ STEPHEN B. BURKE"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 7,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 7,
+      "pages": [
+        146
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_6d8140d0744513456555c19d",
+      "section_path": [
+        "OPERATING COMPANIES"
+      ],
+      "segment_count": 7
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_76df34d532482062aee5a328",
+      "section_path": [
+        "/S/ CHRISTOPHER C. DAVIS"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        144
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_7b9b69b59913f0b629da38a7",
+      "section_path": [
+        "23 Consent of Independent Registered Public Accounting Firm",
+        "32.2 Section 1350 Certification"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 6,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 6,
+      "pages": [
+        105
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_7dcd0418bdac0d64ede25b7e",
+      "section_path": [
+        "2023 Assets $ 88,287 $ 90,339 Liabilities 38,962 40,617"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        144
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_80307077ad51b6898a436bf3",
+      "section_path": [
+        "19 Insider Trading Policies and Procedures"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_8bf9f1e30c2ae7adb6c43f60",
+      "section_path": [
+        "/S/ KENNETH I. CHENAULT"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 19,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 19,
+      "pages": [
+        143,
+        144
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_8d3444e091d06a403a493bdc",
+      "section_path": [
+        "EXHIBIT INDEX"
+      ],
+      "segment_count": 19
+    },
+    {
+      "chunk_count": 9,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 9,
+      "pages": [
+        146
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_95f6f784d045ef7ccbde785f",
+      "section_path": [
+        "SERVICE AND RETAILING:"
+      ],
+      "segment_count": 9
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        144
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_974f1f4dd95e71f57d5a0760",
+      "section_path": [
+        "23 Consent of Independent Registered Public Accounting Firm",
+        "31.2 Rule 13a—14(a)/15d-14(a) Certification"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 63,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 63,
+      "pages": [
+        54,
+        55,
+        56,
+        57
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_a2973d6d29ec45a6ecb71945",
+      "section_path": [
+        "DOLLARS"
+      ],
+      "segment_count": 46
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        105
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_a2b6cfa618d7913526c7e5b5",
+      "section_path": [
+        "2024 September 30,"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 4,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 4,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_a99e4834e1462bf93e794977",
+      "section_path": [
+        "/S/ WARREN E. BUFFETT"
+      ],
+      "segment_count": 4
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_ac57a021c3283d4c417f4504",
+      "section_path": [
+        "/S/ SUSAN L. DECKER"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 4,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 4,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_b01cc599c964323cda021f51",
+      "section_path": [
+        "/S/ DANIEL J. JAKSICH"
+      ],
+      "segment_count": 4
+    },
+    {
+      "chunk_count": 5,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 5,
+      "pages": [
+        20
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_b810d3f3156ce6734751320d",
+      "section_path": [
+        "SHAREHOLDER MEETING SCHEDULE – SATURDAY, MAY 3"
+      ],
+      "segment_count": 5
+    },
+    {
+      "chunk_count": 6,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 6,
+      "pages": [
+        21
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_b9e73a73a9cdf53fa4dcc9e0",
+      "section_path": [
+        "1934 For the transition period from _________ to ________"
+      ],
+      "segment_count": 6
+    },
+    {
+      "chunk_count": 12,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 12,
+      "pages": [
+        20
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_c9c43b3874698ff583d66874",
+      "section_path": [
+        "OTHER SHAREHOLDER EVENTS INFORMATION"
+      ],
+      "segment_count": 12
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_ca1f0393eb6b3e1d0d3bf644",
+      "section_path": [
+        "/S/ THOMAS S. MURPHY, JR."
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        144
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_cf4b0c2e72b7f65a19dba7e7",
+      "section_path": [
+        "23 Consent of Independent Registered Public Accounting Firm",
+        "32.1 Section 1350 Certification"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 472,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 472,
+      "pages": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_d4bcc1ebaed3e79b5045fa66",
+      "section_path": [
+        "BRK.A BRK.B BRK25 BRK27 BRK28 BRK30 BRK34 BRK35 BRK39 BRK41 BRK59"
+      ],
+      "segment_count": 424
+    },
+    {
+      "chunk_count": 786,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 786,
+      "pages": [
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        112,
+        113,
+        114,
+        115
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_d5f25ea0c229b2b22ea960b6",
+      "section_path": [
+        "GEICO"
+      ],
+      "segment_count": 509
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_d6fbfa00a339a3a7f86dc133",
+      "section_path": [
+        "/S/ MERYL B. WITMER"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_dd04207bfe9816ba824906f4",
+      "section_path": [
+        "/S/ WALLACE R. WEITZ"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_e01477ee21227ebd1e54e29b",
+      "section_path": [
+        "/S/ RONALD L. OLSON"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_e2bfd46259ec2d5405fe6017",
+      "section_path": [
+        "/S/ HOWARD G. BUFFETT"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        20
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_e56067131c53eabe6752ff30",
+      "section_path": [
+        "BERKSHIRE HATHAWAY INC. SHAREHOLDER EVENT INFORMATION"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_eb753b2613f54946bc4967cc",
+      "section_path": [
+        "/S/ SUSAN A. BUFFETT"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 4,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 4,
+      "pages": [
+        144
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_ebf6cd437952eeb367b071f1",
+      "section_path": [
+        "97 Policy Relating to Recovery of Erroneously Awarded Compensation"
+      ],
+      "segment_count": 4
+    },
+    {
+      "chunk_count": 463,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 463,
+      "pages": [
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_ee2a848ee3c11a0cfb07e3e8",
+      "section_path": [
+        "BHRG"
+      ],
+      "segment_count": 199
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        144
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_f0437fb0a3e030e5606f1c7f",
+      "section_path": [
+        "95 Mine Safety Disclosures"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        145
+      ],
+      "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+      "section_id": "sec_fad0dc4bcd4bfe689f37acf4",
+      "section_path": [
+        "/S/ AJIT JAIN"
+      ],
+      "segment_count": 3
+    }
+  ],
+  "status": "REVIEW_REQUIRED",
+  "unresolved": {
+    "material_requirement_gaps": [
+      {
+        "category": "control",
+        "chunks_not_reviewed": 0,
+        "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+        "status": "NOT_REVIEWED"
+      },
+      {
+        "category": "legal_identity",
+        "chunks_not_reviewed": 0,
+        "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+        "status": "NOT_REVIEWED"
+      },
+      {
+        "category": "legal_regulatory",
+        "chunks_not_reviewed": 0,
+        "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+        "status": "NOT_REVIEWED"
+      },
+      {
+        "category": "material_changes",
+        "chunks_not_reviewed": 0,
+        "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+        "status": "NOT_REVIEWED"
+      },
+      {
+        "category": "related_parties",
+        "chunks_not_reviewed": 0,
+        "run_id": "run_b7dd873dd2c94bf7bb4e5d2351babdf5",
+        "status": "NOT_REVIEWED"
+      }
+    ],
+    "open_issue_ids": [
+      "issue_3ddf2f1c9057988cbebb6a1f",
+      "issue_5d18161594191e7fbc6adece",
+      "issue_68f1511cb25b5bbe0985f7a9",
+      "issue_7effe9ad9a18495be58ece77"
+    ],
+    "verification_note": "Source-match checks are not external verification; all facts remain pending human verification."
+  }
+}

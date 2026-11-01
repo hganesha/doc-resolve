@@ -1,0 +1,20 @@
+[
+  {
+    "filename": "berkshire_2024_annual_report.pdf",
+    "source_url": "https://www.berkshirehathaway.com/2024ar/2024ar.pdf",
+    "sha256": "6aa0a501680c50a57e0a1a2e841b46800e1fed828a8a7889d83d8eae7953e4bb",
+    "bytes": 1852116,
+    "pdf_pages": 150,
+    "purpose": "Publicly available 2024 annual report for an evidence-extraction evaluation.",
+    "retrieved_at": "2026-10-30"
+  },
+  {
+    "filename": "disney_2024_annual_report.pdf",
+    "source_url": "https://thewaltdisneycompany.com/app/uploads/2025/01/2024-Annual-Report.pdf",
+    "sha256": "8887cce1a4b609edc9f0b6aac241a1a097fa611cdaf46a84906e5c105eea66fd",
+    "bytes": 1663966,
+    "pdf_pages": 132,
+    "purpose": "Publicly available 2024 annual report for an evidence-extraction evaluation.",
+    "retrieved_at": "2026-10-30"
+  }
+]

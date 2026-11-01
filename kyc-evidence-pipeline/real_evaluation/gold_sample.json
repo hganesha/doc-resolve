@@ -1,0 +1,178 @@
+{
+  "description": "Eight source-checked example claims selected from two public 2024 reports. This is a targeted smoke-test set, not an exhaustive or independently adjudicated ground truth.",
+  "facts": [
+    {
+      "id": "BRK-ownership-kraft",
+      "document": "berkshire",
+      "page": 45,
+      "category": "ownership",
+      "subject": "Berkshire or a subsidiary",
+      "predicate": "owns_equity_in",
+      "object": "The Kraft Heinz Company",
+      "value": 27.0,
+      "unit": "percent",
+      "effective_date": "2024-12-31",
+      "qualifier": "approximately",
+      "query": "What ownership interest did Berkshire report in Kraft Heinz at the end of 2024?",
+      "passage_terms": [
+        "27%",
+        "The Kraft Heinz Company"
+      ],
+      "explanation": "The source says Berkshire OR a subsidiary; do not assume the direct owner. The figure is approximate.",
+      "relevant_alternatives": [
+        {
+          "page": 142,
+          "terms": [
+            "27.2%",
+            "The Kraft Heinz Company"
+          ]
+        },
+        {
+          "page": 104,
+          "terms": [
+            "27.2%",
+            "Kraft Heinz"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BRK-ownership-occidental",
+      "document": "berkshire",
+      "page": 45,
+      "category": "ownership",
+      "subject": "Berkshire or a subsidiary",
+      "predicate": "owns_equity_in",
+      "object": "Occidental Petroleum Corporation",
+      "value": 28.0,
+      "unit": "percent",
+      "effective_date": "2024-12-31",
+      "query": "What did Berkshire report about ownership of Occidental Petroleum at year end 2024?",
+      "passage_terms": [
+        "28%",
+        "Occidental Petroleum Corporation"
+      ],
+      "explanation": "Source reports Berkshire or a subsidiary, so the specific direct holder remains unresolved.",
+      "relevant_alternatives": [
+        {
+          "page": 104,
+          "terms": [
+            "28.2%",
+            "Occidental"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BRK-consolidated-revenue",
+      "document": "berkshire",
+      "page": 90,
+      "category": "financial_condition",
+      "subject": "BERKSHIRE HATHAWAY INC.",
+      "predicate": "reported_revenue",
+      "value": 371433.0,
+      "unit": "millions_of_dollars",
+      "effective_date": "2024",
+      "qualifier": "consolidated",
+      "query": "What were Berkshire's consolidated total revenues for 2024, in millions?",
+      "passage_terms": [
+        "Total revenues",
+        "371,433"
+      ],
+      "explanation": "Year, unit and consolidated subject require the table header and nearby source blocks."
+    },
+    {
+      "id": "BRK-bhe-repurchase",
+      "document": "berkshire",
+      "page": 102,
+      "category": "material_changes",
+      "subject": "Berkshire Hathaway Energy Company",
+      "predicate": "repurchased_own_shares",
+      "object": "its outstanding common stock",
+      "value": 5.85,
+      "unit": "percent",
+      "effective_date": "2024-09-30",
+      "query": "What stock repurchase did Berkshire Hathaway Energy report in 2024?",
+      "passage_terms": [
+        "repurchased",
+        "5.85%",
+        "Berkshire Hathaway Energy"
+      ],
+      "explanation": "The reported repurchase occurred on September 30, 2024; it is not a subsequent event."
+    },
+    {
+      "id": "BRK-legal-actions",
+      "document": "berkshire",
+      "page": 53,
+      "category": "legal_regulatory",
+      "subject": "Berkshire and its subsidiaries",
+      "predicate": "party_to_legal_proceedings",
+      "object": "a variety of legal actions",
+      "value": null,
+      "unit": null,
+      "effective_date": null,
+      "query": "What does Berkshire say about its legal proceedings?",
+      "passage_terms": [
+        "Berkshire and its subsidiaries",
+        "legal actions"
+      ],
+      "explanation": "The source reports that proceedings exist; it does not establish wrongdoing or the absence of material proceedings."
+    },
+    {
+      "id": "DIS-espn-stake",
+      "document": "disney",
+      "page": 13,
+      "category": "ownership",
+      "subject": "the Company",
+      "predicate": "owns_equity_in",
+      "object": "ESPN",
+      "value": 80.0,
+      "unit": "percent",
+      "effective_date": null,
+      "qualifier": "generally",
+      "query": "What percentage of ESPN does the company own?",
+      "passage_terms": [
+        "ESPN",
+        "generally owned 80%"
+      ],
+      "explanation": "The report says generally 80% and uses the generic term 'the Company'; exact legal-entity resolution is unresolved."
+    },
+    {
+      "id": "DIS-consolidated-revenue",
+      "document": "disney",
+      "page": 38,
+      "category": "financial_condition",
+      "subject": "The Walt Disney Company",
+      "predicate": "reported_revenue",
+      "value": 91361.0,
+      "unit": "millions_of_dollars",
+      "effective_date": "2024",
+      "qualifier": "consolidated",
+      "query": "What were Disney's consolidated total revenues in 2024?",
+      "passage_terms": [
+        "Total revenues",
+        "91,361"
+      ],
+      "explanation": "The value and period are in an inferred borderless table; the extractor must not guess the legal subject."
+    },
+    {
+      "id": "DIS-venu-injunction",
+      "document": "disney",
+      "page": 13,
+      "category": "legal_regulatory",
+      "subject": "Venu Sports",
+      "predicate": "launch_enjoined_by_court",
+      "object": "motion for preliminary injunction",
+      "value": null,
+      "unit": null,
+      "effective_date": "2024-08",
+      "query": "What court action affected the launch of Venu Sports in August 2024?",
+      "passage_terms": [
+        "preliminary injunction",
+        "Venu Sports",
+        "August 2024"
+      ],
+      "explanation": "This is a reported injunction at the time of the 2024 report, not a current litigation outcome or finding of guilt."
+    }
+  ]
+}

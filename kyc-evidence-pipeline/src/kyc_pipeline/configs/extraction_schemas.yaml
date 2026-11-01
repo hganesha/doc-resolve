@@ -1,0 +1,237 @@
+# Illustrative typed extraction schemas, reusable across policies and workflows.
+# The policy decides which categories a document family must cover; these
+# schemas decide what a fact in each category may say.
+#
+# A category with declared predicates is TYPED: a candidate using any other
+# predicate is rejected. A category with none is OPEN: its facts are kept but
+# marked UNTYPED, and nothing downstream reasons about their predicates.
+#
+# Fields per predicate (all optional except category and description):
+#   object: required | optional | none           (default optional)
+#   value: none | percent | amount | count | text  (default none: value must be empty)
+#   value_required: true | false                   (default false)
+#   date: required | optional                      (default optional)
+#   date_roles / claim_types: allowed values       (default any)
+#   evidence_terms: regex the cited spans must match, or the fact is flagged
+#   single_valued: one value per subject and period; differing values conflict
+version: 1
+predicates:
+  # legal_identity
+  has_legal_name:
+    category: legal_identity
+    description: The subject's exact legal name, as registered.
+    object: required
+    single_valued: true
+  has_former_name:
+    category: legal_identity
+    description: A name the subject previously used.
+    object: required
+  has_registration_number:
+    category: legal_identity
+    description: Company registration number issued by a registry.
+    object: required
+    single_valued: true
+  has_jurisdiction:
+    category: legal_identity
+    description: Jurisdiction of incorporation or registration.
+    object: required
+    single_valued: true
+  has_legal_status:
+    category: legal_identity
+    description: Registry status such as active, dissolved or in liquidation.
+    object: required
+    single_valued: true
+  has_lei:
+    category: legal_identity
+    description: Legal Entity Identifier (20 characters).
+    object: required
+    single_valued: true
+  has_sec_file_number:
+    category: legal_identity
+    description: SEC Commission file number.
+    object: required
+    single_valued: true
+  has_us_employer_identification_number:
+    category: legal_identity
+    description: US IRS Employer Identification Number.
+    object: required
+    single_valued: true
+
+  # ownership
+  owns_equity_in:
+    category: ownership
+    description: The subject holds an equity stake in the object, as a percentage.
+    object: required
+    value: percent
+    date_roles: [as_of, reporting_period, unspecified]
+
+  # control
+  has_voting_rights_over:
+    category: control
+    description: The subject holds voting rights or voting control over the object.
+    object: required
+    value: percent
+    evidence_terms: '\b(?:vote|votes|voting)\b'
+  appoints_board_of:
+    category: control
+    description: The subject may appoint or remove a majority of the object's board.
+    object: required
+    evidence_terms: '\b(?:appoint|appoints|nominate|nominates|remove|board|directors?)\b'
+
+  # related_parties
+  is_director_of:
+    category: related_parties
+    description: The subject is a director or board member of the object.
+    object: required
+  is_officer_of:
+    category: related_parties
+    description: The subject is an executive officer of the object.
+    object: required
+  has_related_party_transaction_with:
+    category: related_parties
+    description: A transaction the source reports as with a related party; value is its amount.
+    object: required
+    value: amount
+    evidence_terms: '\brelated[\s-]+part(?:y|ies)\b'
+
+  # financial_condition
+  reported_revenue:
+    category: financial_condition
+    description: Revenue, sales or turnover for a reporting period.
+    value: amount
+    value_required: true
+    date: required
+    date_roles: [reporting_period, as_of, unspecified]
+    evidence_terms: '\b(?:revenues?|sales|turnover)\b'
+  reported_net_income:
+    category: financial_condition
+    description: Net income or net earnings for a reporting period.
+    value: amount
+    value_required: true
+    date: required
+    date_roles: [reporting_period, as_of, unspecified]
+    evidence_terms: '\bnet\s+(?:income|earnings|loss)\b'
+  reported_total_assets:
+    category: financial_condition
+    description: Total assets at a balance-sheet date.
+    value: amount
+    value_required: true
+    date: required
+    evidence_terms: '\btotal\s+assets\b'
+  reported_total_liabilities:
+    category: financial_condition
+    description: Total liabilities at a balance-sheet date.
+    value: amount
+    value_required: true
+    date: required
+    evidence_terms: '\btotal\s+liabilities\b'
+  received_audit_opinion:
+    category: financial_condition
+    description: The auditor's opinion type (unqualified, qualified, adverse, disclaimer); object is the auditor.
+    object: optional
+    value: text
+    value_required: true
+    evidence_terms: '\b(?:opinion|audit(?:ed|or)?)\b'
+
+  # legal_regulatory
+  subject_to_regulatory_investigation:
+    category: legal_regulatory
+    description: A regulator is investigating the subject; object is the regulator if named.
+    object: optional
+    claim_types: [assertion, reported_statement, allegation]
+  party_to_legal_proceedings:
+    category: legal_regulatory
+    description: The subject is a party to legal proceedings; object describes them.
+    object: required
+  launch_enjoined_by_court:
+    category: legal_regulatory
+    description: A court order enjoined the launch of the subject.
+    object: optional
+    claim_types: [order]
+  received_regulatory_penalty:
+    category: legal_regulatory
+    description: A regulator imposed a fine or penalty on the subject; object is the regulator.
+    object: optional
+    value: amount
+    date_roles: [event, unspecified]
+    claim_types: [order, finding, disposition, reported_statement]
+
+  # material_changes
+  acquired_interest_in:
+    category: material_changes
+    description: The subject acquired an interest in the object; value is the stake acquired if stated.
+    object: required
+    value: percent
+    date_roles: [event, unspecified]
+  disposed_interest_in:
+    category: material_changes
+    description: The subject sold or disposed of an interest in the object.
+    object: required
+    value: percent
+    date_roles: [event, as_of, unspecified]
+  repurchased_own_shares:
+    category: material_changes
+    description: The subject repurchased a percentage of its own shares.
+    object: required
+    value: percent
+    date_roles: [event, unspecified]
+
+  # legal_proceedings
+  party_to_case:
+    category: legal_proceedings
+    description: The subject is a named party to a case; object is the case name or number.
+    object: required
+  court_found:
+    category: legal_proceedings
+    description: A court or tribunal finding against or about the subject; object states the finding.
+    object: required
+    claim_types: [finding]
+  court_ordered:
+    category: legal_proceedings
+    description: A court order directed at the subject; object states the order.
+    object: required
+    claim_types: [order]
+  case_disposed:
+    category: legal_proceedings
+    description: The final disposition of a case involving the subject; object states it.
+    object: required
+    claim_types: [disposition]
+
+  # allegations_and_outcomes
+  accused_of:
+    category: allegations_and_outcomes
+    description: Someone alleges the subject did the object; never a finding.
+    object: required
+    claim_types: [allegation]
+  denied:
+    category: allegations_and_outcomes
+    description: The subject denies the object.
+    object: required
+    claim_types: [denial]
+  found_responsible_for:
+    category: allegations_and_outcomes
+    description: An authority found the subject responsible for the object.
+    object: required
+    claim_types: [finding, order, disposition]
+
+  # source_metadata
+  published_by:
+    category: source_metadata
+    description: The publisher or author of the source; subject is the article or document.
+    object: required
+  published_on:
+    category: source_metadata
+    description: The source's publication date; subject is the article or document.
+    date: required
+    date_roles: [event, unspecified]
+
+  # license_status
+  holds_license:
+    category: license_status
+    description: The subject holds a license; object is its type, value its status if stated.
+    object: required
+    value: text
+  license_issued_by:
+    category: license_status
+    description: The authority that issued the subject's license.
+    object: required

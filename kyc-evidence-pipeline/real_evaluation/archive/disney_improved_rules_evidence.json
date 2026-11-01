@@ -1,0 +1,3072 @@
+{
+  "audit_events": [
+    {
+      "action": "RUN_STARTED",
+      "details": {},
+      "event_id": "audit_61afe04bfb72bd2e1d808c74",
+      "happened_at": "2026-10-30T22:04:14.146609+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "RUN_REVIEW_REQUIRED",
+      "details": {},
+      "event_id": "audit_f1f447f5665755e25e85a236",
+      "happened_at": "2026-10-30T22:04:41.394180+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_679024ac92e4f83cca3ffcd1",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_58d78ec9e37a2e358110933c",
+      "happened_at": "2026-10-30T22:04:43.400499+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_6e8d9748ff849fd31a3cfbe8",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_54b4a7b899aa06e245745c1b",
+      "happened_at": "2026-10-30T22:04:43.400562+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_69e3f8aa2696da49d5de02cd",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_acc42ff07464dea4c1b22fd3",
+      "happened_at": "2026-10-30T22:04:43.400582+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_4b427d7879fd4c5d00edb28c",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_99a463135ca9e8d12339cb24",
+      "happened_at": "2026-10-30T22:04:43.400598+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_3b5a6999d70ab5c3dd009578",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_a1b81ed6a6b1d58e13611665",
+      "happened_at": "2026-10-30T22:04:43.400613+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_29d3321f2d7e37e79572780d",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_6c4d13d32868d7d1163973da",
+      "happened_at": "2026-10-30T22:04:43.400666+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_87edce49a2cc0376c411cb39",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_8134e45eea5fa92ab4e280ef",
+      "happened_at": "2026-10-30T22:04:43.400687+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_0d57355c867c9d2173f9445e",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_66e1404003b827e22d7317b1",
+      "happened_at": "2026-10-30T22:04:43.400702+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_43c35121aef0bf7ec6986215",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_f6ba5fcfd0bee71481b68a14",
+      "happened_at": "2026-10-30T22:04:43.400718+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_cbed1e039ea756a07ca77047",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_9ab34e13bc0644e5c0fd6621",
+      "happened_at": "2026-10-30T22:04:43.400733+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_beeb8cd73c4cb2985f30d7b8",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_cbd840e503425474300ab981",
+      "happened_at": "2026-10-30T22:04:43.400748+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_91059384f0ddb6924b265208",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_44ed3d5b509f4735567928fe",
+      "happened_at": "2026-10-30T22:04:43.400777+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "REVIEW_RECORDED",
+      "details": {
+        "action": "defer",
+        "issue_id": "issue_010f31aeaeceab21a48f44cb",
+        "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+        "reviewer_identity_authenticated": false
+      },
+      "event_id": "audit_000d12c0bd0890a24e7b146e",
+      "happened_at": "2026-10-30T22:04:43.400793+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    },
+    {
+      "action": "CANONICAL_RECORDS_PERSISTED",
+      "details": {
+        "fact_count": 9,
+        "status": "REVIEW_REQUIRED"
+      },
+      "event_id": "audit_116c2bc383af23c8e278977c",
+      "happened_at": "2026-10-30T22:04:43.400904+00:00",
+      "run_id": "run_642d290910f841c8a3658183771b714d"
+    }
+  ],
+  "case_id": "public-disney-2024",
+  "coverage": [
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "control",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2941,
+      "chunks_total": 2941,
+      "completeness_asserted": false,
+      "description": "Voting rights, board appointments, control agreements, and their dates.",
+      "fact_count": 0,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [
+        "issue_cbed1e039ea756a07ca77047",
+        "issue_beeb8cd73c4cb2985f30d7b8",
+        "issue_91059384f0ddb6924b265208",
+        "issue_010f31aeaeceab21a48f44cb"
+      ],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "EXTRACTION_FAILED"
+    },
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "financial_condition",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2941,
+      "chunks_total": 2941,
+      "completeness_asserted": false,
+      "description": "Revenue, assets, funding, liabilities, and audit qualifications with period and units.",
+      "fact_count": 0,
+      "material": false,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [
+        "issue_cbed1e039ea756a07ca77047",
+        "issue_beeb8cd73c4cb2985f30d7b8",
+        "issue_91059384f0ddb6924b265208",
+        "issue_010f31aeaeceab21a48f44cb"
+      ],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "EXTRACTION_FAILED"
+    },
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "legal_identity",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2941,
+      "chunks_total": 2941,
+      "completeness_asserted": false,
+      "description": "Legal names, registration identifiers, jurisdiction, and status.",
+      "fact_count": 0,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [
+        "issue_cbed1e039ea756a07ca77047",
+        "issue_beeb8cd73c4cb2985f30d7b8",
+        "issue_91059384f0ddb6924b265208",
+        "issue_010f31aeaeceab21a48f44cb"
+      ],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "EXTRACTION_FAILED"
+    },
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "legal_regulatory",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2941,
+      "chunks_total": 2941,
+      "completeness_asserted": false,
+      "description": "Regulatory investigations, penalties, proceedings, and enforcement status.",
+      "fact_count": 0,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [
+        "issue_cbed1e039ea756a07ca77047",
+        "issue_beeb8cd73c4cb2985f30d7b8",
+        "issue_91059384f0ddb6924b265208",
+        "issue_010f31aeaeceab21a48f44cb"
+      ],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "EXTRACTION_FAILED"
+    },
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "material_changes",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2941,
+      "chunks_total": 2941,
+      "completeness_asserted": false,
+      "description": "Acquisitions, disposals, restructurings, amendments, and subsequent events.",
+      "fact_count": 0,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [
+        "issue_cbed1e039ea756a07ca77047",
+        "issue_beeb8cd73c4cb2985f30d7b8",
+        "issue_91059384f0ddb6924b265208",
+        "issue_010f31aeaeceab21a48f44cb"
+      ],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "EXTRACTION_FAILED"
+    },
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "ownership",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2941,
+      "chunks_total": 2941,
+      "completeness_asserted": false,
+      "description": "Direct and indirect equity interests, percentage, parties, and effective dates.",
+      "fact_count": 9,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [
+        "issue_679024ac92e4f83cca3ffcd1",
+        "issue_6e8d9748ff849fd31a3cfbe8",
+        "issue_69e3f8aa2696da49d5de02cd",
+        "issue_4b427d7879fd4c5d00edb28c",
+        "issue_3b5a6999d70ab5c3dd009578",
+        "issue_29d3321f2d7e37e79572780d",
+        "issue_87edce49a2cc0376c411cb39",
+        "issue_0d57355c867c9d2173f9445e",
+        "issue_43c35121aef0bf7ec6986215",
+        "issue_cbed1e039ea756a07ca77047",
+        "issue_beeb8cd73c4cb2985f30d7b8",
+        "issue_91059384f0ddb6924b265208",
+        "issue_010f31aeaeceab21a48f44cb"
+      ],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "EXTRACTION_FAILED"
+    },
+    {
+      "all_parsed_chunks_processed": true,
+      "applicability_reason": null,
+      "category": "related_parties",
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2941,
+      "chunks_total": 2941,
+      "completeness_asserted": false,
+      "description": "Affiliates, related parties, directors, and key counterparties.",
+      "fact_count": 0,
+      "material": true,
+      "note": "Rules are illustrative and do not provide exhaustive semantic review.",
+      "open_issue_ids": [
+        "issue_cbed1e039ea756a07ca77047",
+        "issue_beeb8cd73c4cb2985f30d7b8",
+        "issue_91059384f0ddb6924b265208",
+        "issue_010f31aeaeceab21a48f44cb"
+      ],
+      "review_method": "limited_pattern_rules",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "EXTRACTION_FAILED"
+    }
+  ],
+  "disclaimer": "Provisional evidence package. No completeness, identity, source independence, sanctions clearance, or KYC decision is guaranteed.",
+  "documents": [
+    {
+      "bytes": 1663966,
+      "current_run_id": "run_642d290910f841c8a3658183771b714d",
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "family": "financial_statements",
+      "filename": "disney_2024_annual_report.pdf",
+      "format": "pdf",
+      "page_count": 132,
+      "profile_id": "financial_annual_report",
+      "sha256": "8887cce1a4b609edc9f0b6aac241a1a097fa611cdaf46a84906e5c105eea66fd",
+      "structurally_blank_pdf_pages": [
+        2
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "bbox": [
+        70.56,
+        416.27,
+        269.3,
+        427.13
+      ],
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "document_sha256": "8887cce1a4b609edc9f0b6aac241a1a097fa611cdaf46a84906e5c105eea66fd",
+      "end": 43,
+      "evidence_id": "ev_02d14e0bb0f6a331f8339e1e",
+      "locator": "page:13/block:10",
+      "normalized_segment_sha256": "1c531b88f9cbb26540df6358a0a9c4f64e586800b458576577f237d7048260cd",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 13,
+      "quote": "• ESPN (generally owned 80% by the Company)",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_path": [
+        "SPORTS"
+      ],
+      "segment_id": "seg_4957671bf7e8b19b55820971",
+      "start": 0
+    },
+    {
+      "bbox": [
+        70.56,
+        585.42,
+        549.54,
+        623.71
+      ],
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "document_sha256": "8887cce1a4b609edc9f0b6aac241a1a097fa611cdaf46a84906e5c105eea66fd",
+      "end": 300,
+      "evidence_id": "ev_0de202e51a80c7189899e3f0",
+      "locator": "page:82/block:12",
+      "normalized_segment_sha256": "de98ba731ca761dece9b3327a8694700febfcaee7649ae5880ea371f1db42402",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 82,
+      "quote": "Entertainment also includes the following activities that are reported with Content Sales/Licensing: • National Geographic magazine and online business (owned 73% by the Company) • A 30% ownership interest in Tata Play Limited, which operates a direct-to-home satellite distribution platform in India",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_path": [
+        "DESCRIPTION OF THE BUSINESS"
+      ],
+      "segment_id": "seg_c74e07d31feee4951b61ec0e",
+      "start": 0
+    },
+    {
+      "bbox": [
+        110.25,
+        548.57,
+        483.87,
+        574.13
+      ],
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "document_sha256": "8887cce1a4b609edc9f0b6aac241a1a097fa611cdaf46a84906e5c105eea66fd",
+      "end": 127,
+      "evidence_id": "ev_2b11453aa7567ed7540604fa",
+      "locator": "page:15/block:18",
+      "normalized_segment_sha256": "42c3fd39d02f39634a8cda778119029e376c9072f82a650404f9304aed5180db",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 15,
+      "quote": "• National Geographic Expeditions (owned 73% by the Company) and Adventures by Disney • Aulani, a Disney Resort & Spa in Hawaii",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_path": [
+        "EXPERIENCES"
+      ],
+      "segment_id": "seg_8345cd7bc982155e6fbac647",
+      "start": 0
+    },
+    {
+      "bbox": [
+        70.56,
+        234.58,
+        550.93,
+        321.87
+      ],
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "document_sha256": "8887cce1a4b609edc9f0b6aac241a1a097fa611cdaf46a84906e5c105eea66fd",
+      "end": 489,
+      "evidence_id": "ev_2b69c452ebe4c36ebed1ea96",
+      "locator": "page:82/block:7",
+      "normalized_segment_sha256": "b4b175c6c825a97a4c4a621a323744a046ea7d40dae4d1d6e625be6cedde93b4",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 82,
+      "quote": "• Linear Networks ◦ Domestic: ABC Television Network (ABC Network); Disney, Freeform, FX and National Geographic (owned 73% by the Company) branded television channels; and eight owned ABC television stations ◦ International: Disney, FX, National Geographic (owned 73% by the Company) and Star branded general entertainment television channels outside of the U.S. ◦ A 50% equity investment in A+E Television Networks (A+E), which operates cable channels including A&E, HISTORY and Lifetime",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_path": [
+        "DESCRIPTION OF THE BUSINESS"
+      ],
+      "segment_id": "seg_e4bca690f5a3a9adc5c9d4e8",
+      "start": 0
+    },
+    {
+      "bbox": [
+        83.79,
+        225.17,
+        550.93,
+        247.79
+      ],
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "document_sha256": "8887cce1a4b609edc9f0b6aac241a1a097fa611cdaf46a84906e5c105eea66fd",
+      "end": 190,
+      "evidence_id": "ev_4a02ff10ec83fb10d86e4549",
+      "locator": "page:8/block:8",
+      "normalized_segment_sha256": "9567f11ac246217666ac38adadc1cfaaf64b46d154af358daeaf7d17df640307",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 8,
+      "quote": "◦ Domestic: ABC Television Network (ABC Network); Disney, Freeform, FX and National Geographic (owned 73% by the Company) branded television channels; and eight owned ABC television stations",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_path": [
+        "ENTERTAINMENT"
+      ],
+      "segment_id": "seg_183c1604689d5e5713020f41",
+      "start": 0
+    },
+    {
+      "bbox": [
+        83.79,
+        251.63,
+        506.86,
+        274.25
+      ],
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "document_sha256": "8887cce1a4b609edc9f0b6aac241a1a097fa611cdaf46a84906e5c105eea66fd",
+      "end": 154,
+      "evidence_id": "ev_515d55b1fdf3ce4902a21b5a",
+      "locator": "page:8/block:9",
+      "normalized_segment_sha256": "8769991ec30f3e89fa7c0329afb35876a5013a1b2f2c0fe0317d33019091fd11",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 8,
+      "quote": "◦ International: Disney, FX, National Geographic (owned 73% by the Company) and Star branded general entertainment television channels outside of the U.S.",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_path": [
+        "ENTERTAINMENT"
+      ],
+      "segment_id": "seg_67689125b2a3d1188cf7f60f",
+      "start": 0
+    },
+    {
+      "bbox": [
+        97.02,
+        141.87,
+        483.87,
+        207.61
+      ],
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "document_sha256": "8887cce1a4b609edc9f0b6aac241a1a097fa611cdaf46a84906e5c105eea66fd",
+      "end": 185,
+      "evidence_id": "ev_81fa76ebc4fecbefa9972317",
+      "locator": "page:84/block:3",
+      "normalized_segment_sha256": "5de51c6a1deac5cce6a288232e2c74bb0cb2273ffd56f1f88f3eabc342caec97",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 84,
+      "quote": "▪ Experiences • Disney Cruise Line • Disney Vacation Club • National Geographic Expeditions (owned 73% by the Company) and Adventures by Disney • Aulani, a Disney Resort & Spa in Hawaii",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_path": [
+        "DESCRIPTION OF THE BUSINESS"
+      ],
+      "segment_id": "seg_c75030c1a000ca56f6678479",
+      "start": 0
+    },
+    {
+      "bbox": [
+        70.56,
+        586.79,
+        407.42,
+        597.65
+      ],
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "document_sha256": "8887cce1a4b609edc9f0b6aac241a1a097fa611cdaf46a84906e5c105eea66fd",
+      "end": 77,
+      "evidence_id": "ev_b3f2d2d69774650d5316e545",
+      "locator": "page:8/block:23",
+      "normalized_segment_sha256": "59cb2743b589f0fce3d5c1522123f2504223795608aed2dc0eb968c165718b89",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 8,
+      "quote": "• National Geographic magazine and online business (owned 73% by the Company)",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_path": [
+        "ENTERTAINMENT"
+      ],
+      "segment_id": "seg_5d25bf4debc202442e5fd173",
+      "start": 0
+    },
+    {
+      "bbox": [
+        70.56,
+        330.03,
+        378.51,
+        423.21
+      ],
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "document_sha256": "8887cce1a4b609edc9f0b6aac241a1a097fa611cdaf46a84906e5c105eea66fd",
+      "end": 282,
+      "evidence_id": "ev_c9bbfb9642e7a26e9c7678f9",
+      "locator": "page:83/block:5",
+      "normalized_segment_sha256": "1e483a20180386bd78cb4a2be7fdacddd184302990482455f8ed9d63fd989ac2",
+      "offset_basis": "Unicode code-point offsets in the stored normalized segment, not raw file bytes",
+      "page": 83,
+      "quote": "• ESPN (generally owned 80% by the Company) ◦ Domestic: ▪ Seven ESPN branded television channels ▪ ESPN on ABC (sports programmed on the ABC Network by ESPN) ▪ ESPN+ DTC service ◦ International: ESPN-branded channels outside of the U.S. ◦ Star: Star-branded sports channels in India",
+      "representation": "pymupdf_whitespace_normalized_text_block",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_path": [
+        "DESCRIPTION OF THE BUSINESS"
+      ],
+      "segment_id": "seg_8b24c776f5e8b79a26bd9065",
+      "start": 0
+    }
+  ],
+  "facts": [
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "effective_date": null,
+      "entity_resolution": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_4a02ff10ec83fb10d86e4549"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_4a02ff10ec83fb10d86e4549",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_149de91f5aeea6df9374eaa7",
+      "object": "FX and National Geographic",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": null,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "the Company",
+      "unit": "percent",
+      "value": 73.0,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "effective_date": null,
+      "entity_resolution": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_c9bbfb9642e7a26e9c7678f9"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_c9bbfb9642e7a26e9c7678f9",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_44f0d0ea04a35e1d1c221507",
+      "object": "ESPN",
+      "predicate": "owns_equity_in",
+      "qualifier": "generally",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": null,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "the Company",
+      "unit": "percent",
+      "value": 80.0,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "effective_date": null,
+      "entity_resolution": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_02d14e0bb0f6a331f8339e1e"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_02d14e0bb0f6a331f8339e1e",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_8601425754334cfb11c0af60",
+      "object": "ESPN",
+      "predicate": "owns_equity_in",
+      "qualifier": "generally",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": null,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "the Company",
+      "unit": "percent",
+      "value": 80.0,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "effective_date": null,
+      "entity_resolution": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_81fa76ebc4fecbefa9972317"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_81fa76ebc4fecbefa9972317",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_af56bc58a319380cb95e0dcb",
+      "object": "National Geographic Expeditions",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": null,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "the Company",
+      "unit": "percent",
+      "value": 73.0,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "effective_date": null,
+      "entity_resolution": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_b3f2d2d69774650d5316e545"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_b3f2d2d69774650d5316e545",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_cd7755affc2170e2c22ff7ac",
+      "object": "National Geographic magazine and online business",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": null,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "the Company",
+      "unit": "percent",
+      "value": 73.0,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "effective_date": null,
+      "entity_resolution": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_2b69c452ebe4c36ebed1ea96"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_2b69c452ebe4c36ebed1ea96",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_d3e1d6eaa2d74ad1d5a4fb99",
+      "object": "FX and National Geographic",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": null,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "the Company",
+      "unit": "percent",
+      "value": 73.0,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "effective_date": null,
+      "entity_resolution": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_0de202e51a80c7189899e3f0"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_0de202e51a80c7189899e3f0",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_d419037f822044516a39ed5f",
+      "object": "National Geographic magazine and online business",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": null,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "the Company",
+      "unit": "percent",
+      "value": 73.0,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "effective_date": null,
+      "entity_resolution": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_2b11453aa7567ed7540604fa"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_2b11453aa7567ed7540604fa",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_e1a10011d997aff84e5de471",
+      "object": "National Geographic Expeditions",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": null,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "the Company",
+      "unit": "percent",
+      "value": 73.0,
+      "verification_status": "PENDING_HUMAN"
+    },
+    {
+      "attribution": null,
+      "category": "ownership",
+      "claim_type": "reported_statement",
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "effective_date": null,
+      "entity_resolution": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_515d55b1fdf3ce4902a21b5a"
+      ],
+      "evidence_roles": [
+        {
+          "evidence_id": "ev_515d55b1fdf3ce4902a21b5a",
+          "role": "primary_quote"
+        }
+      ],
+      "extractor": "rules",
+      "fact_id": "fact_ff57ae89711516aad3ca3706",
+      "object": "National Geographic",
+      "predicate": "owns_equity_in",
+      "qualifier": null,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "source_support": {
+        "literal_checks": {
+          "date_literal_present": null,
+          "exact_quote_match": true,
+          "object_literal_present": true,
+          "subject_literal_present": true,
+          "value_literal_present": true
+        },
+        "quote_match": "EXACT_NORMALIZED_TEXT_MATCH",
+        "semantic_check": "NOT_REQUESTED"
+      },
+      "subject": "the Company",
+      "unit": "percent",
+      "value": 73.0,
+      "verification_status": "PENDING_HUMAN"
+    }
+  ],
+  "findings": [
+    {
+      "category": "*",
+      "description": "Page contains image content that was not OCR'd, including potentially material text or a name.",
+      "fact_ids": [],
+      "finding_id": "finding_1010188178221c49e5aa2d54",
+      "issue_id": "issue_beeb8cd73c4cb2985f30d7b8",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "OPEN",
+      "type": "PARSE_OR_STRUCTURE_INCOMPLETE"
+    },
+    {
+      "category": "ownership",
+      "description": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "fact_ids": [
+        "fact_44f0d0ea04a35e1d1c221507"
+      ],
+      "finding_id": "finding_16da470d3dc76772951cc678",
+      "issue_id": "issue_0d57355c867c9d2173f9445e",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "OPEN",
+      "type": "ENTITY_IDENTITY_UNRESOLVED"
+    },
+    {
+      "category": "*",
+      "description": "Page contains image content that was not OCR'd, including potentially material text or a name.",
+      "fact_ids": [],
+      "finding_id": "finding_193c443b79fca1497d3eea15",
+      "issue_id": "issue_cbed1e039ea756a07ca77047",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "OPEN",
+      "type": "PARSE_OR_STRUCTURE_INCOMPLETE"
+    },
+    {
+      "category": "ownership",
+      "description": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "fact_ids": [
+        "fact_149de91f5aeea6df9374eaa7"
+      ],
+      "finding_id": "finding_2e1cccac31d9f3bf4ff6cc25",
+      "issue_id": "issue_679024ac92e4f83cca3ffcd1",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "OPEN",
+      "type": "ENTITY_IDENTITY_UNRESOLVED"
+    },
+    {
+      "category": "*",
+      "description": "Page contains image content that was not OCR'd, including potentially material text or a name.",
+      "fact_ids": [],
+      "finding_id": "finding_3d3e0968120fb65273f3c996",
+      "issue_id": "issue_91059384f0ddb6924b265208",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "OPEN",
+      "type": "PARSE_OR_STRUCTURE_INCOMPLETE"
+    },
+    {
+      "category": "ownership",
+      "description": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "fact_ids": [
+        "fact_d3e1d6eaa2d74ad1d5a4fb99"
+      ],
+      "finding_id": "finding_5450265fde1a3f333e51f623",
+      "issue_id": "issue_29d3321f2d7e37e79572780d",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "OPEN",
+      "type": "ENTITY_IDENTITY_UNRESOLVED"
+    },
+    {
+      "category": "*",
+      "description": "Page has little or no extractable text and nonblank or unknown content; manual review or OCR is required.",
+      "fact_ids": [],
+      "finding_id": "finding_5e675b35d8249a2f583af9c0",
+      "issue_id": "issue_010f31aeaeceab21a48f44cb",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "OPEN",
+      "type": "PARSE_OR_STRUCTURE_INCOMPLETE"
+    },
+    {
+      "category": "ownership",
+      "description": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "fact_ids": [
+        "fact_e1a10011d997aff84e5de471"
+      ],
+      "finding_id": "finding_65023236456e0086fed4b926",
+      "issue_id": "issue_3b5a6999d70ab5c3dd009578",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "OPEN",
+      "type": "ENTITY_IDENTITY_UNRESOLVED"
+    },
+    {
+      "category": "ownership",
+      "description": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "fact_ids": [
+        "fact_ff57ae89711516aad3ca3706"
+      ],
+      "finding_id": "finding_7a7e5df97bd4d56c6f1aa195",
+      "issue_id": "issue_6e8d9748ff849fd31a3cfbe8",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "OPEN",
+      "type": "ENTITY_IDENTITY_UNRESOLVED"
+    },
+    {
+      "category": "ownership",
+      "description": "Multiple source claims have the same normalized fields; independence and source reliability are not established.",
+      "fact_ids": [
+        "fact_cd7755affc2170e2c22ff7ac",
+        "fact_d419037f822044516a39ed5f"
+      ],
+      "finding_id": "finding_80b988983ed99a0766dfa049",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "INFORMATIONAL",
+      "type": "SIMILAR_SOURCE_CLAIMS"
+    },
+    {
+      "category": "ownership",
+      "description": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "fact_ids": [
+        "fact_af56bc58a319380cb95e0dcb"
+      ],
+      "finding_id": "finding_8b9dc5df8c8163b564f56306",
+      "issue_id": "issue_43c35121aef0bf7ec6986215",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "OPEN",
+      "type": "ENTITY_IDENTITY_UNRESOLVED"
+    },
+    {
+      "category": "ownership",
+      "description": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "fact_ids": [
+        "fact_cd7755affc2170e2c22ff7ac"
+      ],
+      "finding_id": "finding_959d54804e1900cc8d93fc96",
+      "issue_id": "issue_69e3f8aa2696da49d5de02cd",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "OPEN",
+      "type": "ENTITY_IDENTITY_UNRESOLVED"
+    },
+    {
+      "category": "ownership",
+      "description": "Multiple source claims have the same normalized fields; independence and source reliability are not established.",
+      "fact_ids": [
+        "fact_af56bc58a319380cb95e0dcb",
+        "fact_e1a10011d997aff84e5de471"
+      ],
+      "finding_id": "finding_afebdb9f27bd4da9b74bc9a1",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "INFORMATIONAL",
+      "type": "SIMILAR_SOURCE_CLAIMS"
+    },
+    {
+      "category": "ownership",
+      "description": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "fact_ids": [
+        "fact_8601425754334cfb11c0af60"
+      ],
+      "finding_id": "finding_b313e9e0cedf3da136cb8a16",
+      "issue_id": "issue_4b427d7879fd4c5d00edb28c",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "OPEN",
+      "type": "ENTITY_IDENTITY_UNRESOLVED"
+    },
+    {
+      "category": "ownership",
+      "description": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "fact_ids": [
+        "fact_d419037f822044516a39ed5f"
+      ],
+      "finding_id": "finding_cf75fdf2f02084f5eaad374f",
+      "issue_id": "issue_87edce49a2cc0376c411cb39",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "OPEN",
+      "type": "ENTITY_IDENTITY_UNRESOLVED"
+    },
+    {
+      "category": "ownership",
+      "description": "Multiple source claims have the same normalized fields; independence and source reliability are not established.",
+      "fact_ids": [
+        "fact_149de91f5aeea6df9374eaa7",
+        "fact_d3e1d6eaa2d74ad1d5a4fb99"
+      ],
+      "finding_id": "finding_d0952758d79887b50e007643",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "INFORMATIONAL",
+      "type": "SIMILAR_SOURCE_CLAIMS"
+    },
+    {
+      "category": "ownership",
+      "description": "Multiple source claims have the same normalized fields; independence and source reliability are not established.",
+      "fact_ids": [
+        "fact_44f0d0ea04a35e1d1c221507",
+        "fact_8601425754334cfb11c0af60"
+      ],
+      "finding_id": "finding_e7e22116882bfd54f415aaca",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "status": "INFORMATIONAL",
+      "type": "SIMILAR_SOURCE_CLAIMS"
+    }
+  ],
+  "issues": [
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "*"
+      ],
+      "code": "PARSE_OR_STRUCTURE_INCOMPLETE",
+      "details": {
+        "code": "PDF_PAGE_TEXT_INSUFFICIENT",
+        "page": 132
+      },
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "fact_ids": [],
+      "issue_id": "issue_010f31aeaeceab21a48f44cb",
+      "message": "Page has little or no extractable text and nonblank or unknown content; manual review or OCR is required.",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership"
+      ],
+      "code": "ENTITY_IDENTITY_UNRESOLVED",
+      "details": {
+        "subject": "the Company"
+      },
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "fact_ids": [
+        "fact_44f0d0ea04a35e1d1c221507"
+      ],
+      "issue_id": "issue_0d57355c867c9d2173f9445e",
+      "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership"
+      ],
+      "code": "ENTITY_IDENTITY_UNRESOLVED",
+      "details": {
+        "subject": "the Company"
+      },
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "fact_ids": [
+        "fact_d3e1d6eaa2d74ad1d5a4fb99"
+      ],
+      "issue_id": "issue_29d3321f2d7e37e79572780d",
+      "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership"
+      ],
+      "code": "ENTITY_IDENTITY_UNRESOLVED",
+      "details": {
+        "subject": "the Company"
+      },
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "fact_ids": [
+        "fact_e1a10011d997aff84e5de471"
+      ],
+      "issue_id": "issue_3b5a6999d70ab5c3dd009578",
+      "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership"
+      ],
+      "code": "ENTITY_IDENTITY_UNRESOLVED",
+      "details": {
+        "subject": "the Company"
+      },
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "fact_ids": [
+        "fact_af56bc58a319380cb95e0dcb"
+      ],
+      "issue_id": "issue_43c35121aef0bf7ec6986215",
+      "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership"
+      ],
+      "code": "ENTITY_IDENTITY_UNRESOLVED",
+      "details": {
+        "subject": "the Company"
+      },
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "fact_ids": [
+        "fact_8601425754334cfb11c0af60"
+      ],
+      "issue_id": "issue_4b427d7879fd4c5d00edb28c",
+      "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership"
+      ],
+      "code": "ENTITY_IDENTITY_UNRESOLVED",
+      "details": {
+        "subject": "the Company"
+      },
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "fact_ids": [
+        "fact_149de91f5aeea6df9374eaa7"
+      ],
+      "issue_id": "issue_679024ac92e4f83cca3ffcd1",
+      "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership"
+      ],
+      "code": "ENTITY_IDENTITY_UNRESOLVED",
+      "details": {
+        "subject": "the Company"
+      },
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "fact_ids": [
+        "fact_cd7755affc2170e2c22ff7ac"
+      ],
+      "issue_id": "issue_69e3f8aa2696da49d5de02cd",
+      "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership"
+      ],
+      "code": "ENTITY_IDENTITY_UNRESOLVED",
+      "details": {
+        "subject": "the Company"
+      },
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "fact_ids": [
+        "fact_ff57ae89711516aad3ca3706"
+      ],
+      "issue_id": "issue_6e8d9748ff849fd31a3cfbe8",
+      "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "ownership"
+      ],
+      "code": "ENTITY_IDENTITY_UNRESOLVED",
+      "details": {
+        "subject": "the Company"
+      },
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "fact_ids": [
+        "fact_d419037f822044516a39ed5f"
+      ],
+      "issue_id": "issue_87edce49a2cc0376c411cb39",
+      "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "*"
+      ],
+      "code": "PARSE_OR_STRUCTURE_INCOMPLETE",
+      "details": {
+        "code": "PDF_IMAGES_NOT_OCR",
+        "image_count": 1,
+        "page": 132
+      },
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "fact_ids": [],
+      "issue_id": "issue_91059384f0ddb6924b265208",
+      "message": "Page contains image content that was not OCR'd, including potentially material text or a name.",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "*"
+      ],
+      "code": "PARSE_OR_STRUCTURE_INCOMPLETE",
+      "details": {
+        "code": "PDF_IMAGES_NOT_OCR",
+        "image_count": 1,
+        "page": 129
+      },
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "fact_ids": [],
+      "issue_id": "issue_beeb8cd73c4cb2985f30d7b8",
+      "message": "Page contains image content that was not OCR'd, including potentially material text or a name.",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "severity": "high",
+      "status": "OPEN"
+    },
+    {
+      "allowed_actions": [
+        "defer"
+      ],
+      "categories": [
+        "*"
+      ],
+      "code": "PARSE_OR_STRUCTURE_INCOMPLETE",
+      "details": {
+        "code": "PDF_IMAGES_NOT_OCR",
+        "image_count": 1,
+        "page": 3
+      },
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "fact_ids": [],
+      "issue_id": "issue_cbed1e039ea756a07ca77047",
+      "message": "Page contains image content that was not OCR'd, including potentially material text or a name.",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "severity": "high",
+      "status": "OPEN"
+    }
+  ],
+  "pending_runs": [],
+  "review_decisions": [
+    {
+      "action": "defer",
+      "issue_id": "issue_010f31aeaeceab21a48f44cb",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:43.268522+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_0d57355c867c9d2173f9445e",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:43.268506+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_29d3321f2d7e37e79572780d",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:43.268500+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_3b5a6999d70ab5c3dd009578",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:43.268496+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_43c35121aef0bf7ec6986215",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:43.268510+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_4b427d7879fd4c5d00edb28c",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:43.268492+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_679024ac92e4f83cca3ffcd1",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:43.268468+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_69e3f8aa2696da49d5de02cd",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:43.268489+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_6e8d9748ff849fd31a3cfbe8",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:43.268485+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_87edce49a2cc0376c411cb39",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:43.268503+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_91059384f0ddb6924b265208",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:43.268519+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_beeb8cd73c4cb2985f30d7b8",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:43.268516+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "selected_fact_ids": []
+    },
+    {
+      "action": "defer",
+      "issue_id": "issue_cbed1e039ea756a07ca77047",
+      "reason": "Automated test deferral; no analyst has reviewed or resolved this item.",
+      "reviewed_at": "2026-10-30T22:04:43.268513+00:00",
+      "reviewer_id": "AUTOMATED_PUBLIC_DATA_TEST_NOT_HUMAN",
+      "reviewer_identity_authenticated": false,
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "selected_fact_ids": []
+    }
+  ],
+  "runs": [
+    {
+      "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+      "error": null,
+      "finished_at": "2026-10-30T22:04:43.305406+00:00",
+      "policy_id": "illustrative_corporate_kyc_v1",
+      "profile_id": "financial_annual_report",
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "started_at": "2026-10-30T22:04:14.146073+00:00",
+      "status": "REVIEW_REQUIRED",
+      "summary": {
+        "case_id": "public-disney-2024",
+        "disclaimer": "Provisional evidence preparation only; not a KYC decision or a guarantee of completeness.",
+        "document_id": "doc_8887cce1a4b609edc9f0b6aa",
+        "embedding_model": null,
+        "embeddings": "lexical",
+        "evidence_count": 9,
+        "extraction_model": null,
+        "extraction_pages": null,
+        "extractor": "rules",
+        "fact_count": 9,
+        "finished_at": "2026-10-30T22:04:43.305406+00:00",
+        "max_model_requests": null,
+        "model_batch_size": null,
+        "model_max_tokens": null,
+        "model_reasoning_effort": null,
+        "open_issue_count": 13,
+        "policy_id": "illustrative_corporate_kyc_v1",
+        "policy_sha256": "25a3015cb318b6ec4de055e67d2aebdae61b64a45f33df5ee6a79654c9f57b20",
+        "profile_id": "financial_annual_report",
+        "profiles_sha256": "61388008ca30daf8a0fe029045098377c401d2f100151c882f3d27bde7462372",
+        "provider_endpoint_sha256": null,
+        "run_id": "run_642d290910f841c8a3658183771b714d",
+        "semantic_verification_requested": false,
+        "started_at": "2026-10-30T22:04:14.146073+00:00",
+        "status": "REVIEW_REQUIRED"
+      }
+    }
+  ],
+  "section_inventory": [
+    {
+      "chunk_count": 42,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 42,
+      "pages": [
+        125,
+        126
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_018402d1e33f7eeb2cdc59d5",
+      "section_path": [
+        "2023 September"
+      ],
+      "segment_count": 42
+    },
+    {
+      "chunk_count": 9,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 9,
+      "pages": [
+        71
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_0330eff3492978a224d0a8c2",
+      "section_path": [
+        "23 Consent of PricewaterhouseCoopers LLP Filed herewith"
+      ],
+      "segment_count": 9
+    },
+    {
+      "chunk_count": 40,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 40,
+      "pages": [
+        77
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_07e2c5e4b445608682438908",
+      "section_path": [
+        "CONSOLIDATED STATEMENTS OF INCOME"
+      ],
+      "segment_count": 40
+    },
+    {
+      "chunk_count": 7,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 7,
+      "pages": [
+        108
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_0b9b44165a5010540a3e67e7",
+      "section_path": [
+        "10 Pension and Other Benefit Programs"
+      ],
+      "segment_count": 7
+    },
+    {
+      "chunk_count": 4,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 4,
+      "pages": [
+        69
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_0f6a94d334ac532531dd3d20",
+      "section_path": [
+        "PART III",
+        "10.32 Amended and Restated 1997 Non-Employee Directors Stock and Deferred Compensation Plan"
+      ],
+      "segment_count": 4
+    },
+    {
+      "chunk_count": 19,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 19,
+      "pages": [
+        127
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_1395696183831be24052f6ae",
+      "section_path": [
+        "18 Restructuring and Impairment Charges"
+      ],
+      "segment_count": 19
+    },
+    {
+      "chunk_count": 54,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 54,
+      "pages": [
+        101,
+        102
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_14a6acbfb5d4d8176de5ec5b",
+      "section_path": [
+        "7 Produced and Acquired/Licensed Content Costs and Advances"
+      ],
+      "segment_count": 54
+    },
+    {
+      "chunk_count": 5,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 5,
+      "pages": [
+        20,
+        84
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_165d6d07d8ae5aa93dca22d7",
+      "section_path": [
+        "STAR INDIA TRANSACTION"
+      ],
+      "segment_count": 5
+    },
+    {
+      "chunk_count": 5,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 5,
+      "pages": [
+        53
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_17b7895c79fef0123b535264",
+      "section_path": [
+        "CORPORATE AND UNALLOCATED SHARED EXPENSES"
+      ],
+      "segment_count": 5
+    },
+    {
+      "chunk_count": 76,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 76,
+      "pages": [
+        113,
+        114
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_18ec25386d2c3b3ec70e9bf9",
+      "section_path": [
+        "11 Equity"
+      ],
+      "segment_count": 76
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        117
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_195a9b035f87fd0566cde789",
+      "section_path": [
+        "13 Detail of Certain Balance Sheet Accounts"
+      ],
+      "segment_count": 2
+    },
+    {
+      "chunk_count": 28,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 28,
+      "pages": [
+        3,
+        4
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_1b124c2fae696f87653e8a1d",
+      "section_path": [
+        "FORM 10-K"
+      ],
+      "segment_count": 28
+    },
+    {
+      "chunk_count": 4,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 4,
+      "pages": [
+        32
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_1b65e1c69d718bf9b01a41d9",
+      "section_path": [
+        "RISKS RELATED TO OWNERSHIP OF OUR STOCK"
+      ],
+      "segment_count": 4
+    },
+    {
+      "chunk_count": 87,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 87,
+      "pages": [
+        5,
+        66,
+        67,
+        68,
+        69
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_1c87b443070a015faf5276e6",
+      "section_path": [
+        "PART III"
+      ],
+      "segment_count": 87
+    },
+    {
+      "chunk_count": 41,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 41,
+      "pages": [
+        81,
+        82
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_22517ab64bd91cc6e1f7f630",
+      "section_path": [
+        "CONSOLIDATED STATEMENTS OF SHAREHOLDERS’ EQUITY"
+      ],
+      "segment_count": 41
+    },
+    {
+      "chunk_count": 82,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 82,
+      "pages": [
+        38,
+        39,
+        40,
+        41
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_27f4f355bb846d65872a9b7c",
+      "section_path": [
+        "CONSOLIDATED RESULTS AND NON-SEGMENT ITEMS"
+      ],
+      "segment_count": 82
+    },
+    {
+      "chunk_count": 434,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 434,
+      "pages": [
+        45,
+        46,
+        47,
+        48,
+        49,
+        62,
+        79,
+        88,
+        90,
+        97,
+        98,
+        99,
+        100,
+        101,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        117,
+        118,
+        121,
+        122
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_2b4441da2861be8937c596d7",
+      "section_path": [
+        "2024 September 30,"
+      ],
+      "segment_count": 434
+    },
+    {
+      "chunk_count": 20,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 20,
+      "pages": [
+        70,
+        71
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_2e1a8a893323e06005b82240",
+      "section_path": [
+        "PART III",
+        "10.49 Form of Restricted Stock Unit Award Agreement (Time-Based Vesting) †"
+      ],
+      "segment_count": 20
+    },
+    {
+      "chunk_count": 45,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 45,
+      "pages": [
+        88,
+        89,
+        90
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_2e8a33a715ae01c7bc36b464",
+      "section_path": [
+        "2 Summary of Significant Accounting Policies"
+      ],
+      "segment_count": 45
+    },
+    {
+      "chunk_count": 22,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 22,
+      "pages": [
+        56,
+        57
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_3083bb3a6150f20a8b07c6a8",
+      "section_path": [
+        "2023 Borrowings Payments"
+      ],
+      "segment_count": 22
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        108
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_3086c55e8d057485c8b105f2",
+      "section_path": [
+        "2023 September 28,"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 60,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 60,
+      "pages": [
+        115,
+        116,
+        117
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_30a8891f87b0c22cdb8e06ad",
+      "section_path": [
+        "12 Equity-Based Compensation"
+      ],
+      "segment_count": 60
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        62
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_315d3243846805c7355c6e90",
+      "section_path": [
+        "2024 September 30,",
+        "2024. The Combo+ subscribers at September 30, 2023 were 10.8 million."
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 24,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 24,
+      "pages": [
+        79
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_326d7ae9c3e22b551fd17762",
+      "section_path": [
+        "LIABILITIES AND EQUITY"
+      ],
+      "segment_count": 24
+    },
+    {
+      "chunk_count": 19,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 19,
+      "pages": [
+        80
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_329ce0c8c3e8e00d3059b9e5",
+      "section_path": [
+        "OPERATING ACTIVITIES"
+      ],
+      "segment_count": 19
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        5
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_3426fcc7356d6313bd6c0b65",
+      "section_path": [
+        "THE WALT DISNEY COMPANY AND SUBSIDIARIES"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 24,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 24,
+      "pages": [
+        75,
+        76
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_366dd0a84381f67ec4411ea5",
+      "section_path": [
+        "REPORT OF INDEPENDENT REGISTERED PUBLIC ACCOUNTING FIRM"
+      ],
+      "segment_count": 24
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        14
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_3692432470ad3afdf9a3cc1e",
+      "section_path": [
+        "ESPN2(1) 66"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 51,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 51,
+      "pages": [
+        57,
+        58,
+        59,
+        60,
+        61
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_379f3d9d08afa1f7a3400878",
+      "section_path": [
+        "CRITICAL ACCOUNTING POLICIES AND ESTIMATES"
+      ],
+      "segment_count": 51
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        14
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_381b10172f180d576a647bad",
+      "section_path": [
+        "ESPN(1) 66"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 6,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 6,
+      "pages": [
+        74
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_3ab26ed4f887a5bbef85350a",
+      "section_path": [
+        "MANAGEMENT’S REPORT ON INTERNAL CONTROL OVER FINANCIAL REPORTING"
+      ],
+      "segment_count": 6
+    },
+    {
+      "chunk_count": 21,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 21,
+      "pages": [
+        79
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_3b44950b4ee2c96b4deb61f0",
+      "section_path": [
+        "ASSETS"
+      ],
+      "segment_count": 21
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        21
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_3bd0353ba5f968e85346aa80",
+      "section_path": [
+        "ENVIRONMENTAL SUSTAINABILITY"
+      ],
+      "segment_count": 2
+    },
+    {
+      "chunk_count": 12,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 12,
+      "pages": [
+        105,
+        106
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_4442d7e25f8a62bf3e465b95",
+      "section_path": [
+        "9 Income Taxes"
+      ],
+      "segment_count": 12
+    },
+    {
+      "chunk_count": 69,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 69,
+      "pages": [
+        5,
+        37,
+        38
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_45afba3be4970b1ceb83a6ad",
+      "section_path": [
+        "PART II"
+      ],
+      "segment_count": 69
+    },
+    {
+      "chunk_count": 82,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 82,
+      "pages": [
+        33,
+        34,
+        35,
+        36
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_4a3124abf042ae56e8ae6fb3",
+      "section_path": [
+        "GENERAL RISKS"
+      ],
+      "segment_count": 81
+    },
+    {
+      "chunk_count": 5,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 5,
+      "pages": [
+        57
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_4cb8516a5f4fcd473ecefc34",
+      "section_path": [
+        "DEVELOPMENTS AND TRENDS"
+      ],
+      "segment_count": 5
+    },
+    {
+      "chunk_count": 64,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 64,
+      "pages": [
+        85,
+        86,
+        87,
+        88
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_534e417857546a3a3e825642",
+      "section_path": [
+        "SEGMENT INFORMATION"
+      ],
+      "segment_count": 64
+    },
+    {
+      "chunk_count": 29,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 29,
+      "pages": [
+        122,
+        123,
+        124
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_556efd4a12e2c3cc7773231f",
+      "section_path": [
+        "16 Fair Value Measurements"
+      ],
+      "segment_count": 29
+    },
+    {
+      "chunk_count": 135,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 135,
+      "pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_5793f662fca24bd1cb07d65f",
+      "section_path": [
+        "ENTERTAINMENT"
+      ],
+      "segment_count": 135
+    },
+    {
+      "chunk_count": 6,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 6,
+      "pages": [
+        71
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_5a278db81e6edfe9856bd3cd",
+      "section_path": [
+        "104 Cover Page Interactive Data File (embedded within the Inline XBRL document)"
+      ],
+      "segment_count": 6
+    },
+    {
+      "chunk_count": 12,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 12,
+      "pages": [
+        5,
+        6,
+        7
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_5ece11608daf794e35d65b8a",
+      "section_path": [
+        "SIGNATURES 66"
+      ],
+      "segment_count": 12
+    },
+    {
+      "chunk_count": 6,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 6,
+      "pages": [
+        120,
+        121
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_61c2bc14cb4be444dff7d1ea",
+      "section_path": [
+        "15 Leases"
+      ],
+      "segment_count": 6
+    },
+    {
+      "chunk_count": 67,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 67,
+      "pages": [
+        62,
+        63,
+        64,
+        65
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_62e4dc5d7968f4262479cba6",
+      "section_path": [
+        "SUPPLEMENTAL GUARANTOR FINANCIAL INFORMATION"
+      ],
+      "segment_count": 62
+    },
+    {
+      "chunk_count": 10,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 10,
+      "pages": [
+        131,
+        132
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_65a7543e94c9157f87a49c2a",
+      "section_path": [
+        "BOARD OF DIRECTORS EXECUTIVE OFFICERS"
+      ],
+      "segment_count": 10
+    },
+    {
+      "chunk_count": 4,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 4,
+      "pages": [
+        8
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_66261777a7490fb973b5581d",
+      "section_path": [
+        "PART I"
+      ],
+      "segment_count": 4
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        72
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_683ea598bc8b725f9a1ed25e",
+      "section_path": [
+        "SIGNATURES"
+      ],
+      "segment_count": 2
+    },
+    {
+      "chunk_count": 6,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 6,
+      "pages": [
+        80
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_68da0d824368caecae617ae1",
+      "section_path": [
+        "INVESTING ACTIVITIES"
+      ],
+      "segment_count": 6
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        3
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_708f35af2a4bf2cf8edfad88",
+      "section_path": [
+        "UNITED STATES SECURITIES AND EXCHANGE COMMISSION"
+      ],
+      "segment_count": 2
+    },
+    {
+      "chunk_count": 121,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 121,
+      "pages": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_73ed8c2767ddbfa528507b39",
+      "section_path": [
+        "BUSINESS SEGMENT RESULTS"
+      ],
+      "segment_count": 121
+    },
+    {
+      "chunk_count": 10,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 10,
+      "pages": [
+        5
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_7ce0e3b19888d23a7bdeec79",
+      "section_path": [
+        "TABLE OF CONTENTS"
+      ],
+      "segment_count": 10
+    },
+    {
+      "chunk_count": 46,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 46,
+      "pages": [
+        72,
+        73
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_7e5a6194e02022ab5ad23d87",
+      "section_path": [
+        "THE WALT DISNEY COMPANY"
+      ],
+      "segment_count": 46
+    },
+    {
+      "chunk_count": 83,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 83,
+      "pages": [
+        90,
+        91,
+        92,
+        93,
+        94,
+        95
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_8244d2ed7e013a5497e19207",
+      "section_path": [
+        "2023 October 1,"
+      ],
+      "segment_count": 83
+    },
+    {
+      "chunk_count": 6,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 6,
+      "pages": [
+        23
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_8278701310be242675be6bba",
+      "section_path": [
+        "AVAILABLE INFORMATION"
+      ],
+      "segment_count": 6
+    },
+    {
+      "chunk_count": 68,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 68,
+      "pages": [
+        103,
+        104,
+        105
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_82b4ffd281350b8b38549ece",
+      "section_path": [
+        "2024 Sep. 30,"
+      ],
+      "segment_count": 68
+    },
+    {
+      "chunk_count": 38,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 38,
+      "pages": [
+        124,
+        125
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_83ec1e1f9f740befeb5d3f23",
+      "section_path": [
+        "17 Derivative Instruments"
+      ],
+      "segment_count": 38
+    },
+    {
+      "chunk_count": 73,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 73,
+      "pages": [
+        96,
+        97
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_8652094d26aa73131289a9be",
+      "section_path": [
+        "3 Revenues"
+      ],
+      "segment_count": 73
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        71
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_88cb1f32df82ff744690e1a0",
+      "section_path": [
+        "97 The Walt Disney Company Clawback Policy Filed herewith"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 10,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 10,
+      "pages": [
+        80
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_8c1c407976b72468c68d638e",
+      "section_path": [
+        "FINANCING ACTIVITIES"
+      ],
+      "segment_count": 10
+    },
+    {
+      "chunk_count": 26,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 26,
+      "pages": [
+        98,
+        99
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_8c2e6ce9d491b4e2641e8b17",
+      "section_path": [
+        "2024 September 30,",
+        "4. Dispositions"
+      ],
+      "segment_count": 26
+    },
+    {
+      "chunk_count": 12,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 12,
+      "pages": [
+        61,
+        62
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_8caaedb98f825b91fd269c72",
+      "section_path": [
+        "DTC PRODUCT DESCRIPTIONS, KEY DEFINITIONS AND SUPPLEMENTAL INFORMATION"
+      ],
+      "segment_count": 12
+    },
+    {
+      "chunk_count": 19,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 19,
+      "pages": [
+        20,
+        21
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_8de08e02eb995d8e7c8afd28",
+      "section_path": [
+        "HUMAN CAPITAL"
+      ],
+      "segment_count": 19
+    },
+    {
+      "chunk_count": 13,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 13,
+      "pages": [
+        80
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_9150ba9f1d59e61396a6a1fb",
+      "section_path": [
+        "CASH FLOWS FROM DISCONTINUED OPERATIONS"
+      ],
+      "segment_count": 13
+    },
+    {
+      "chunk_count": 2,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 2,
+      "pages": [
+        21
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_92b450d1aac9f0f56b25938d",
+      "section_path": [
+        "INTELLECTUAL PROPERTY PROTECTION"
+      ],
+      "segment_count": 2
+    },
+    {
+      "chunk_count": 19,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 19,
+      "pages": [
+        14,
+        15
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_96a55b240899fb778c3610ac",
+      "section_path": [
+        "ESPNEWS(2) 40"
+      ],
+      "segment_count": 19
+    },
+    {
+      "chunk_count": 102,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 102,
+      "pages": [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_9730fa177c36540abb9e278d",
+      "section_path": [
+        "RISKS RELATED TO OUR BUSINESSES AND INDUSTRY"
+      ],
+      "segment_count": 93
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        71
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_9734abeea0ae46d61d4e3388",
+      "section_path": [
+        "21 Subsidiaries of the Company Filed herewith"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 146,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 146,
+      "pages": [
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_9c2f831f98526c7bfa174162",
+      "section_path": [
+        "ESPN"
+      ],
+      "segment_count": 146
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        99
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_9c4282ad789edd1ac1a61f48",
+      "section_path": [
+        "5 Investments"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        71
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_a11a8cf333668900e8f5acba",
+      "section_path": [
+        "22 List of Guarantor Subsidiaries Filed herewith"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 6,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 6,
+      "pages": [
+        69
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_a934fc2c3ee440e899d55cb3",
+      "section_path": [
+        "PART III",
+        "10.25 Voluntary Non-Qualified Deferred Compensation Plan †"
+      ],
+      "segment_count": 6
+    },
+    {
+      "chunk_count": 5,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 5,
+      "pages": [
+        99,
+        100
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_b4e8df8b0d83f439446e0a1f",
+      "section_path": [
+        "6 International Theme Parks"
+      ],
+      "segment_count": 5
+    },
+    {
+      "chunk_count": 33,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 33,
+      "pages": [
+        13,
+        14
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_bbe8126573e892ec3dde5bb0",
+      "section_path": [
+        "SPORTS"
+      ],
+      "segment_count": 33
+    },
+    {
+      "chunk_count": 57,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 57,
+      "pages": [
+        54,
+        55,
+        56
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_c1bad5618fa0a9553dd81799",
+      "section_path": [
+        "LIQUIDITY AND CAPITAL RESOURCES"
+      ],
+      "segment_count": 57
+    },
+    {
+      "chunk_count": 102,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 102,
+      "pages": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_c95fba5bf5bef4ffe6a051a1",
+      "section_path": [
+        "EXPERIENCES"
+      ],
+      "segment_count": 102
+    },
+    {
+      "chunk_count": 11,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 11,
+      "pages": [
+        103
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_ce14c54589cc8c1f1c2c7f91",
+      "section_path": [
+        "8 Borrowings"
+      ],
+      "segment_count": 11
+    },
+    {
+      "chunk_count": 32,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 32,
+      "pages": [
+        82,
+        83,
+        84
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_cea35934dd79587f4f389bad",
+      "section_path": [
+        "DESCRIPTION OF THE BUSINESS"
+      ],
+      "segment_count": 32
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        14
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_cf2879f48ac5dbdbe6d6c935",
+      "section_path": [
+        "ESPNU(1) 47"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 16,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 16,
+      "pages": [
+        69,
+        70
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_d40918952f4e2694bd2c1792",
+      "section_path": [
+        "PART III",
+        "10.37 Second Amendment to the Disney Key Employees Retirement Savings Plan †"
+      ],
+      "segment_count": 16
+    },
+    {
+      "chunk_count": 28,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 28,
+      "pages": [
+        119,
+        120
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_d6cbf67f25e61c8bae92c6aa",
+      "section_path": [
+        "14 Commitments and Contingencies"
+      ],
+      "segment_count": 25
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        80
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_d93bc868ee504d6aeded9440",
+      "section_path": [
+        "CONSOLIDATED STATEMENTS OF CASH FLOWS"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        79
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_e953b937f267dd6f50b819f8",
+      "section_path": [
+        "CONSOLIDATED BALANCE SHEETS"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 1,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 1,
+      "pages": [
+        1
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_ec006e24bf5f76097e15c8a0",
+      "section_path": [
+        "FISCAL YEAR 2024 ANNUAL FINANCIAL REPORT"
+      ],
+      "segment_count": 1
+    },
+    {
+      "chunk_count": 15,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 15,
+      "pages": [
+        78
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_ec0f728a19bc33cca4293907",
+      "section_path": [
+        "CONSOLIDATED STATEMENTS OF COMPREHENSIVE INCOME"
+      ],
+      "segment_count": 15
+    },
+    {
+      "chunk_count": 3,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 3,
+      "pages": [
+        5
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_ed8057ef48a254afb7ba1193",
+      "section_path": [
+        "PART IV"
+      ],
+      "segment_count": 3
+    },
+    {
+      "chunk_count": 27,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 27,
+      "pages": [
+        21,
+        22,
+        23
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_ef66d27060d9102a943669fd",
+      "section_path": [
+        "REGULATION"
+      ],
+      "segment_count": 27
+    },
+    {
+      "chunk_count": 47,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "chunks_processed": 47,
+      "pages": [
+        127,
+        128,
+        129,
+        130
+      ],
+      "run_id": "run_642d290910f841c8a3658183771b714d",
+      "section_id": "sec_fe703299dbce1de33a94eb8b",
+      "section_path": [
+        "19 New Accounting Pronouncements and Other Disclosure Rules"
+      ],
+      "segment_count": 47
+    }
+  ],
+  "status": "REVIEW_REQUIRED",
+  "unresolved": {
+    "material_requirement_gaps": [
+      {
+        "category": "control",
+        "chunks_not_reviewed": 0,
+        "run_id": "run_642d290910f841c8a3658183771b714d",
+        "status": "EXTRACTION_FAILED"
+      },
+      {
+        "category": "legal_identity",
+        "chunks_not_reviewed": 0,
+        "run_id": "run_642d290910f841c8a3658183771b714d",
+        "status": "EXTRACTION_FAILED"
+      },
+      {
+        "category": "legal_regulatory",
+        "chunks_not_reviewed": 0,
+        "run_id": "run_642d290910f841c8a3658183771b714d",
+        "status": "EXTRACTION_FAILED"
+      },
+      {
+        "category": "material_changes",
+        "chunks_not_reviewed": 0,
+        "run_id": "run_642d290910f841c8a3658183771b714d",
+        "status": "EXTRACTION_FAILED"
+      },
+      {
+        "category": "ownership",
+        "chunks_not_reviewed": 0,
+        "run_id": "run_642d290910f841c8a3658183771b714d",
+        "status": "EXTRACTION_FAILED"
+      },
+      {
+        "category": "related_parties",
+        "chunks_not_reviewed": 0,
+        "run_id": "run_642d290910f841c8a3658183771b714d",
+        "status": "EXTRACTION_FAILED"
+      }
+    ],
+    "open_issue_ids": [
+      "issue_010f31aeaeceab21a48f44cb",
+      "issue_0d57355c867c9d2173f9445e",
+      "issue_29d3321f2d7e37e79572780d",
+      "issue_3b5a6999d70ab5c3dd009578",
+      "issue_43c35121aef0bf7ec6986215",
+      "issue_4b427d7879fd4c5d00edb28c",
+      "issue_679024ac92e4f83cca3ffcd1",
+      "issue_69e3f8aa2696da49d5de02cd",
+      "issue_6e8d9748ff849fd31a3cfbe8",
+      "issue_87edce49a2cc0376c411cb39",
+      "issue_91059384f0ddb6924b265208",
+      "issue_beeb8cd73c4cb2985f30d7b8",
+      "issue_cbed1e039ea756a07ca77047"
+    ],
+    "verification_note": "Source-match checks are not external verification; all facts remain pending human verification."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "description": "Exhaustive ownership labels for synthetic_ownership_conflict.txt; the conflicting percentages intentionally have the same date.",
+  "claims": [
+    {"category": "ownership", "subject": "Aster Holdings Ltd", "predicate": "owns_equity_in", "object": "Birch Ltd", "value": 65.0, "unit": "percent", "effective_date": "2024-12-31"},
+    {"category": "ownership", "subject": "Aster Holdings Ltd", "predicate": "owns_equity_in", "object": "Birch Ltd", "value": 45.0, "unit": "percent", "effective_date": "2024-12-31"}
+  ]
+}

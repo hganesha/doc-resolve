@@ -1,0 +1,10 @@
+{
+  "description": "Exhaustive labels for the five intentionally extractable claims in synthetic_annual_report.txt; not a representative KYC benchmark.",
+  "claims": [
+    {"category": "ownership", "subject": "Aster Holdings Ltd", "predicate": "owns_equity_in", "object": "Birch Ltd", "value": 65.0, "unit": "percent", "effective_date": "2023-12-31"},
+    {"category": "control", "subject": "Cedar Group Ltd", "predicate": "has_voting_rights_over", "object": "Birch Ltd", "value": null, "unit": null, "effective_date": "2023-12-31"},
+    {"category": "legal_regulatory", "subject": "Birch Ltd", "predicate": "subject_to_regulatory_investigation", "object": null, "value": null, "unit": null, "effective_date": "2024-10-15"},
+    {"category": "financial_condition", "subject": "Birch Ltd", "predicate": "reported_revenue", "object": null, "value": 200.0, "unit": "USD_millions", "effective_date": "2024"},
+    {"category": "material_changes", "subject": "Aster Holdings Ltd", "predicate": "disposed_interest_in", "object": "Birch Ltd", "value": null, "unit": null, "effective_date": "2024-02-15"}
+  ]
+}

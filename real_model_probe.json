@@ -1,0 +1,24 @@
+{
+  "provider": "Pollinations anonymous public endpoint",
+  "model": "openai-fast",
+  "input": [
+    {
+      "id": "b45",
+      "text": "As of December 31, 2024, Berkshire or a subsidiary owned approximately 27% of the outstanding common stock of The Kraft Heinz Company (\u201cKraft Heinz\u201d) and 28% of the outstanding Occidental Petroleum Corporation (\u201cOccidental\u201d) common stock. Kraft Heinz manufactures and markets food and beverage products, including condiments and sauces, cheese and dairy, meals, meats, refreshment beverages, coffee and other grocery products. Occidental is an international energy company, including oil and natural gas exploration, development and production, and chemicals manufacturing businesses. Occidental\u2019s midstream businesses purchase, market, gather, process, transport and store various oil, natural gas, carbon dioxide and other products. Information concerning these investments is included in Note 5 to Berkshire\u2019s Consolidated Financial Statements."
+    },
+    {
+      "id": "b53",
+      "text": "Berkshire and its subsidiaries are parties in a variety of legal actions that routinely arise out of the normal course of business, including legal actions seeking to establish liability directly through insurance contracts or indirectly through reinsurance contracts issued by Berkshire subsidiaries. Plaintiffs occasionally seek punitive or exemplary damages. We do not believe that such normal and routine litigation will have a material effect on our financial condition or results of operations."
+    },
+    {
+      "id": "d13",
+      "text": "\u2022 ESPN (generally owned 80% by the Company)"
+    },
+    {
+      "id": "d38",
+      "text": "CONSOLIDATED RESULTS ($ in millions, except per share data) 2024 2023 % Change Better (Worse) Total revenues 91,361 88,898 3 %"
+    }
+  ],
+  "output": "{\"claims\":[{\"id\":\"b45\",\"category\":\"ownership\",\"subject\":\"Berkshire or a subsidiary\",\"predicate\":\"owned_approximately\",\"object\":\"27% of the outstanding common stock of The Kraft Heinz Company\",\"value\":27,\"unit\":\"%\",\"effective_date\":\"2024-12-31\",\"claim_type\":\"ownership\",\"source_quote\":\"As of December 31, 2024, Berkshire or a subsidiary owned approximately 27% of the outstanding common stock of The Kraft Heinz Company (\u201cKraft Heinz\u201d)\"},{\"id\":\"b45-2\",\"category\":\"ownership\",\"subject\":\"Berkshire or a subsidiary\",\"predicate\":\"owned_approximately\",\"object\":\"28% of the outstanding common stock of Occidental Petroleum Corporation\",\"value\":28,\"unit\":\"%\",\"effective_date\":\"2024-12-31\",\"claim_type\":\"ownership\",\"source_quote\":\"As of December 31, 2024, Berkshire or a subsidiary owned approximately 28% of the outstanding Occidental Petroleum Corporation (\u201cOccidental\u201d) common stock\"},{\"id\":\"b53\",\"category\":\"legal\",\"subject\":\"Berkshire and its subsidiaries\",\"predicate\":\"are_parties_in\",\"object\":\"a variety of legal actions\",\"claim_type\":\"legal\",\"source_quote\":\"Berkshire and its subsidiaries are parties in a variety of legal actions that routinely arise out of the normal course of business\"},{\"id\":\"d13\",\"category\":\"ownership\",\"subject\":\"Company\",\"predicate\":\"generally_owned\",\"object\":\"80% of ESPN\",\"value\":80,\"unit\":\"%\",\"claim_type\":\"ownership\",\"source_quote\":\"ESPN (generally owned 80% by the Company)\"},{\"id\":\"d38-2024\",\"category\":\"financial\",\"subject\":\"Berkshire\",\"predicate\":\"total_revenues\",\"value\":91361,\"unit\":\"million\",\"effective_date\":\"2024-12-31\",\"claim_type\":\"financial\",\"source_quote\":\"Total revenues 91,361 88,898 3 %\"},{\"id\":\"d38-2023\",\"category\":\"financial\",\"subject\":\"Berkshire\",\"predicate\":\"total_revenues\",\"value\":88898,\"unit\":\"million\",\"effective_date\":\"2023-12-31\",\"claim_type\":\"financial\",\"source_quote\":\"Total revenues 91,361 88,898 3 %\"},{\"id\":\"d38-change\",\"category\":\"financial\",\"subject\":\"Berkshire\",\"predicate\":\"percent_change_total_revenues\",\"value\":3,\"unit\":\"%\",\"effective_date\":\"2024-12-31\",\"claim_type\":\"financial\",\"source_quote\":\"Total revenues 91,361 88,898 3 %\"}]}",
+  "finish_reason": "stop"
+}

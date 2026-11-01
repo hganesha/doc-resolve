@@ -1,0 +1,17 @@
+# Synthetic Annual Report
+All entities and amounts in this document are fictional.
+
+# Corporate Structure
+As of 2023-12-31, Aster Holdings Ltd owns 65% of Birch Ltd.
+# Related Parties and Voting Control
+Cedar Group Ltd has contractual voting rights over Birch Ltd as of 2023-12-31.
+# Legal Proceedings
+Birch Ltd is subject to a regulatory investigation as of 2024-10-15.
+# Financial Highlights
+| Company | Revenue (USD millions) | Period | Note |
+| --- | --- | --- | --- |
+| Birch Ltd | 200 | 2024 | [^1] |
+
+[^1]: Revenue excludes discontinued operations.
+# Subsequent Events
+Aster Holdings Ltd disposed of part of its interest in Birch Ltd on 2024-02-15.

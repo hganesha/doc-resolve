@@ -1,0 +1,248 @@
+{
+  "dataset": "two public, 2024 primary-source annual reports; 8 source-checked examples, not exhaustive or independently human-adjudicated",
+  "mode": "offline_rules_no_extraction_model",
+  "retrieval_embeddings": "lexical",
+  "embedding_model": null,
+  "scope_note": "All parsed chunks were processed by narrow rules; this is NOT exhaustive semantic review.",
+  "documents": [
+    {
+      "document": "berkshire",
+      "pdf_pages": 150,
+      "chunks_total": 3615,
+      "chunks_processed_by_rules": 3615,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "facts": 15,
+      "evidence_spans": 121,
+      "normalized_quote_offsets_valid": 121,
+      "status": "REVIEW_REQUIRED",
+      "seconds": 14.6
+    },
+    {
+      "document": "disney",
+      "pdf_pages": 132,
+      "chunks_total": 3218,
+      "chunks_processed_by_rules": 3218,
+      "chunks_failed": 0,
+      "chunks_not_reviewed": 0,
+      "facts": 17,
+      "evidence_spans": 24,
+      "normalized_quote_offsets_valid": 24,
+      "status": "REVIEW_REQUIRED",
+      "seconds": 10.8
+    }
+  ],
+  "fact_targets": [
+    {
+      "id": "BRK-ownership-kraft",
+      "page": 45,
+      "status": "MATCHED_SOURCE_CLAIM",
+      "matching_fact_ids": [
+        "fact_a781b441ce9a6e25c22c7121"
+      ],
+      "partial_fact_ids": [],
+      "caveat": "The source says Berkshire OR a subsidiary; do not assume the direct owner. The figure is approximate."
+    },
+    {
+      "id": "BRK-ownership-occidental",
+      "page": 45,
+      "status": "MATCHED_SOURCE_CLAIM",
+      "matching_fact_ids": [
+        "fact_7df025f4cc5e23dc1109c6cc"
+      ],
+      "partial_fact_ids": [],
+      "caveat": "Source reports Berkshire or a subsidiary, so the specific direct holder remains unresolved."
+    },
+    {
+      "id": "BRK-consolidated-revenue",
+      "page": 90,
+      "status": "MATCHED_SOURCE_CLAIM",
+      "matching_fact_ids": [
+        "fact_f8e1b4942f1cd6e02c7b6ba8"
+      ],
+      "partial_fact_ids": [],
+      "caveat": "Year, unit and consolidated subject require the table header and nearby source blocks."
+    },
+    {
+      "id": "BRK-bhe-repurchase",
+      "page": 102,
+      "status": "MATCHED_SOURCE_CLAIM",
+      "matching_fact_ids": [
+        "fact_5069edd06234643ba944adb9"
+      ],
+      "partial_fact_ids": [],
+      "caveat": "The reported repurchase occurred on September 30, 2024; it is not a subsequent event."
+    },
+    {
+      "id": "BRK-legal-actions",
+      "page": 53,
+      "status": "MATCHED_SOURCE_CLAIM",
+      "matching_fact_ids": [
+        "fact_7ec5c257a341e7e4c333e4c3"
+      ],
+      "partial_fact_ids": [],
+      "caveat": "The source reports that proceedings exist; it does not establish wrongdoing or the absence of material proceedings."
+    },
+    {
+      "id": "DIS-espn-stake",
+      "page": 13,
+      "status": "MATCHED_SOURCE_CLAIM",
+      "matching_fact_ids": [
+        "fact_0586f0a2e04a4cc17a0ec0b3"
+      ],
+      "partial_fact_ids": [],
+      "caveat": "The report says generally 80% and uses the generic term 'the Company'; exact legal-entity resolution is unresolved."
+    },
+    {
+      "id": "DIS-consolidated-revenue",
+      "page": 38,
+      "status": "PARTIAL_SUBJECT_UNRESOLVED_OR_DIFFERENT",
+      "matching_fact_ids": [],
+      "partial_fact_ids": [
+        "fact_2eba676d3f32a31db6747db2"
+      ],
+      "caveat": "The value and period are in an inferred borderless table; the extractor must not guess the legal subject."
+    },
+    {
+      "id": "DIS-venu-injunction",
+      "page": 13,
+      "status": "MATCHED_SOURCE_CLAIM",
+      "matching_fact_ids": [
+        "fact_7c4ed395df2ce0135b0c1920"
+      ],
+      "partial_fact_ids": [],
+      "caveat": "This is a reported injunction at the time of the 2024 report, not a current litigation outcome or finding of guilt."
+    }
+  ],
+  "annotated_passage_retrieval": [
+    {
+      "id": "BRK-ownership-kraft",
+      "query": "What ownership interest did Berkshire report in Kraft Heinz at the end of 2024?",
+      "annotated_page": 45,
+      "annotated_child_rank_at_5": null,
+      "annotated_parent_rank_at_5": null,
+      "relevant_parent_rank_at_5_including_labeled_alternatives": 1,
+      "returned_pages": [
+        142,
+        104,
+        105,
+        9,
+        141
+      ]
+    },
+    {
+      "id": "BRK-ownership-occidental",
+      "query": "What did Berkshire report about ownership of Occidental Petroleum at year end 2024?",
+      "annotated_page": 45,
+      "annotated_child_rank_at_5": null,
+      "annotated_parent_rank_at_5": null,
+      "relevant_parent_rank_at_5_including_labeled_alternatives": null,
+      "returned_pages": [
+        9,
+        104,
+        75,
+        147,
+        105
+      ]
+    },
+    {
+      "id": "BRK-consolidated-revenue",
+      "query": "What were Berkshire's consolidated total revenues for 2024, in millions?",
+      "annotated_page": 90,
+      "annotated_child_rank_at_5": 1,
+      "annotated_parent_rank_at_5": 1,
+      "relevant_parent_rank_at_5_including_labeled_alternatives": 1,
+      "returned_pages": [
+        90,
+        105,
+        89,
+        89,
+        88
+      ]
+    },
+    {
+      "id": "BRK-bhe-repurchase",
+      "query": "What stock repurchase did Berkshire Hathaway Energy report in 2024?",
+      "annotated_page": 102,
+      "annotated_child_rank_at_5": 3,
+      "annotated_parent_rank_at_5": 3,
+      "relevant_parent_rank_at_5_including_labeled_alternatives": 3,
+      "returned_pages": [
+        77,
+        54,
+        102,
+        54,
+        126
+      ]
+    },
+    {
+      "id": "BRK-legal-actions",
+      "query": "What does Berkshire say about its legal proceedings?",
+      "annotated_page": 53,
+      "annotated_child_rank_at_5": null,
+      "annotated_parent_rank_at_5": 2,
+      "relevant_parent_rank_at_5_including_labeled_alternatives": 2,
+      "returned_pages": [
+        3,
+        53,
+        22,
+        149,
+        138
+      ]
+    },
+    {
+      "id": "DIS-espn-stake",
+      "query": "What percentage of ESPN does the company own?",
+      "annotated_page": 13,
+      "annotated_child_rank_at_5": 1,
+      "annotated_parent_rank_at_5": 1,
+      "relevant_parent_rank_at_5_including_labeled_alternatives": 1,
+      "returned_pages": [
+        13,
+        94,
+        100,
+        99,
+        83
+      ]
+    },
+    {
+      "id": "DIS-consolidated-revenue",
+      "query": "What were Disney's consolidated total revenues in 2024?",
+      "annotated_page": 38,
+      "annotated_child_rank_at_5": 2,
+      "annotated_parent_rank_at_5": 2,
+      "relevant_parent_rank_at_5_including_labeled_alternatives": 2,
+      "returned_pages": [
+        77,
+        38,
+        79,
+        81,
+        86
+      ]
+    },
+    {
+      "id": "DIS-venu-injunction",
+      "query": "What court action affected the launch of Venu Sports in August 2024?",
+      "annotated_page": 13,
+      "annotated_child_rank_at_5": 2,
+      "annotated_parent_rank_at_5": 2,
+      "relevant_parent_rank_at_5_including_labeled_alternatives": 2,
+      "returned_pages": [
+        83,
+        13,
+        120,
+        37,
+        120
+      ]
+    }
+  ],
+  "matched_source_claims": 7,
+  "partial_subject_claims": 1,
+  "target_count": 8,
+  "annotated_child_hits_at_5": 5,
+  "annotated_parent_hits_at_5": 6,
+  "relevant_parent_hits_at_5_including_labeled_alternatives": 7,
+  "unsupported_claim_rate": null,
+  "unsupported_rate_note": "Not measured: source-support labels must be independently adjudicated. The blank CSV template is provided; exact quote/offset matching is not a semantic accuracy metric.",
+  "review_note": "All graph interrupts in this benchmark were automatically deferred, never resolved or represented as human review."
+}

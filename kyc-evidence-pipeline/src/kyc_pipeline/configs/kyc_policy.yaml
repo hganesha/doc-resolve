@@ -1,0 +1,73 @@
+# Illustrative extraction contract, NOT a bank policy or regulatory standard.
+policy_id: illustrative_corporate_kyc_v1
+# Illustrative look-through settings for the ownership graph, not regulatory thresholds.
+ownership_graph:
+  reporting_threshold_percent: 25
+  control_threshold_percent: 50
+  max_chain_depth: 8
+categories:
+  legal_identity:
+    description: Legal names, registration identifiers, jurisdiction, and status.
+    material: true
+  ownership:
+    description: Direct and indirect equity interests, percentage, parties, and effective dates.
+    material: true
+  control:
+    description: Voting rights, board appointments, control agreements, and their dates.
+    material: true
+  financial_condition:
+    description: Revenue, assets, funding, liabilities, and audit qualifications with period and units.
+    material: false
+  related_parties:
+    description: Affiliates, related parties, directors, and key counterparties.
+    material: true
+  legal_regulatory:
+    description: Regulatory investigations, penalties, proceedings, and enforcement status.
+    material: true
+  material_changes:
+    description: Acquisitions, disposals, restructurings, amendments, and subsequent events.
+    material: true
+  identity_fields:
+    description: Identity fields, document number, nationality, and expiration date.
+    material: true
+  address:
+    description: Residential or registered address, its source, and date.
+    material: true
+  license_status:
+    description: License type, issuing authority, status, restrictions, and effective dates.
+    material: true
+  legal_proceedings:
+    description: Parties, case identifiers, allegations, findings, orders, and dispositions.
+    material: true
+  allegations_and_outcomes:
+    description: Named entities, allegations, attribution, event dates, denials, corrections, and outcomes.
+    material: true
+  source_metadata:
+    description: Author or publisher, publication date, source, and corrections.
+    material: false
+  sanctions_pep:
+    description: List or PEP status, names, aliases, identifiers, relationships, and dates.
+    material: true
+  wealth_and_funds:
+    description: Origin and nature of wealth or funds, amounts, counterparties, and dates.
+    material: true
+  transactions:
+    description: Transactions, amounts, units, dates, originators, and beneficiaries.
+    material: true
+  prior_decisions:
+    description: Prior KYC decisions, dates, reasoning, and declared information.
+    material: false
+  discrepancies:
+    description: Inconsistencies between customer declarations, evidence, and historical records.
+    material: true
+families:
+  corporate_registration: [legal_identity, ownership, control, material_changes]
+  ownership_and_control: [legal_identity, ownership, control, related_parties, material_changes]
+  financial_statements: [legal_identity, ownership, control, related_parties, financial_condition, legal_regulatory, material_changes]
+  identity_verification: [identity_fields, address]
+  regulatory_and_licensing: [legal_identity, license_status, legal_regulatory, material_changes]
+  legal_and_litigation: [legal_identity, legal_proceedings, allegations_and_outcomes, legal_regulatory]
+  adverse_media: [legal_identity, allegations_and_outcomes, legal_regulatory, source_metadata]
+  sanctions_and_pep: [legal_identity, sanctions_pep]
+  source_of_wealth_and_funds: [legal_identity, wealth_and_funds, transactions, related_parties]
+  internal_bank_records: [legal_identity, ownership, control, prior_decisions, discrepancies, material_changes]

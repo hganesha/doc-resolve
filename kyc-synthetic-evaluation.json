@@ -1,0 +1,28 @@
+{
+  "dataset": "two tiny fictional documents with exhaustive labels for this demonstration",
+  "expected_facts": 7,
+  "predicted_facts": 7,
+  "matched_facts": 7,
+  "fact_recall": 1.0,
+  "unsupported_claim_rate_vs_synthetic_gold": 0.0,
+  "expected_review_issues_detected": "2/2",
+  "scenarios": [
+    {
+      "scenario": "annual",
+      "gold_facts": 5,
+      "predicted_facts": 5,
+      "matched_facts": 5,
+      "expected_review_issue_detected": true,
+      "table_header_and_footnote_linked": true
+    },
+    {
+      "scenario": "conflict",
+      "gold_facts": 2,
+      "predicted_facts": 2,
+      "matched_facts": 2,
+      "expected_review_issue_detected": true,
+      "table_header_and_footnote_linked": null
+    }
+  ],
+  "note": "Plumbing check only, not a performance estimate for real documents. Add independently annotated diverse sources, complex tables, OCR, entity ambiguity and temporal cases."
+}
