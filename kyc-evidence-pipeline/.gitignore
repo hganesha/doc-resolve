@@ -11,3 +11,7 @@ __pycache__/
 *.egg-info/
 results/
 .env
+dist/
+build/
+.databricks/
+.DS_Store

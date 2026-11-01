@@ -35,6 +35,7 @@ Document → parse + classify → structure/chunk → index
 - **Conservative reconciliation:** matching on resolved entities (text only where unresolved), same/overlapping-date ownership conflicts, conflicting single-valued attributes such as two legal names for one entity, duplicate-like source claims, and older ownership snapshots followed by disposals. Different dated stakes are not automatically contradictions. No current percentage is inferred from a partial disposal.
 - **Human intervention:** a LangGraph interrupt includes the issues, related facts and source quotes. Review decisions are persisted with self-reported reviewer attribution. Deferring an issue does not resolve it; resolving a possible conflict preserves all source claims and does not automatically verify either claim.
 - **Checkpoints and retry:** graph stages are checkpointed in SQLite; extraction results are cached per chunk. A retry of identical source bytes and the same configuration reuses successful units and retries failed ones. An optimistic case-revision check prevents persisting conclusions based on a case that changed during processing or review.
+- **Delta tables and Databricks:** each case's evidence package can be written to 14 Delta tables (cases, documents, runs, facts, evidence, entities, issues, findings, coverage, ownership edges, beneficial owners, screening checks, review decisions, audit events), locally or in Unity Catalog. An asset bundle deploys a serverless job that processes case folders dropped into a volume (see below).
 - **Offline by default:** BM25 retrieval and intentionally narrow rule extraction require no API key and make no network calls. Optional local neural embeddings run on your machine after downloading model weights; optional model extraction, material-fact source-support checks and embeddings (OpenAI, Azure OpenAI or an OpenAI-compatible server, with strict structured output and retries) require explicit data-sharing opt-in. A model-request budget and optional PDF page scope mark remaining chunks as not reviewed.
 
 ## Requirements and quick start
@@ -518,6 +519,66 @@ Each document pauses on its adverse-media issues. A paused run joins the case on
 
 Limits: the sentence rules expect a named subject at the start of a plain sentence, so most real reporting needs model extraction. Several publishers are not proof of independent reporting, since outlets repeat one another. A subject is matched by name, so a common name can join unrelated people. A report is not a finding.
 
+## Delta tables and Databricks
+
+**Tables.** A case's evidence package (the `report` output) becomes one row per record in 14 Delta tables, all named `kyc_*`:
+
+| Table | Key | Holds |
+|---|---|---|
+| `kyc_cases` | case | Status, counts, export time and schema version of the case's latest package |
+| `kyc_documents`, `kyc_runs` | document; run | Documents and their current run; runs still paused for review or failed (`is_current = false`) |
+| `kyc_facts`, `kyc_evidence` | run + fact; run + evidence | Facts with their case entity IDs and a numeric `value_number`; quotes with locations |
+| `kyc_entities` | entity | Case entities with names, birth dates, identifiers and documents |
+| `kyc_issues`, `kyc_findings`, `kyc_coverage` | issue; finding; run + category | Review items, findings and the coverage ledger |
+| `kyc_ownership_edges`, `kyc_beneficial_owners` | edge; company + owner | The ownership graph's edges (stake ranges) and the beneficial-owner report |
+| `kyc_screening_checks` | check | Sanctions-list checks (identical checks from several runs kept once) |
+| `kyc_review_decisions`, `kyc_audit_events` | run + issue; event | Review decisions (self-reported reviewer) and the store's audit events |
+
+Every table has `case_id`, typed columns for querying, a `payload` column with the record's full JSON, and the package's `export_id` (a digest of the package). Writing a case is one `MERGE` per table: rows are updated or inserted, and the case's rows that are no longer in the package are deleted. Other cases are untouched. The tables are not written in one transaction, so `kyc_cases` is written last: a reader that keeps only rows whose `export_id` matches the case's row in `kyc_cases` sees one complete package. A case whose package has not changed is not rewritten. Change data feed is on.
+
+**Locally** (needs the `delta` extra):
+
+```bash
+pip install -e '.[delta]'
+kyc-pipeline lakehouse --case-id CASE --delta-dir kyc_data/delta    # --force rewrites an unchanged case
+kyc-pipeline lakehouse-ddl --catalog main --schema kyc_evidence     # CREATE TABLE statements for Unity Catalog
+```
+
+**The batch job** (`kyc-databricks-job`) works on two folders:
+
+```text
+<inbox>/cases/<case_id>/<documents>      documents to ingest, in file-name order
+<inbox>/decisions/<run_id>.json          review decisions, in the resume command's format
+<state>/evidence.sqlite, checkpoints.sqlite, reports/<time>.json
+```
+
+For each case folder, it first resumes paused runs that have a decision file. While a run in the case is still paused, it ingests nothing new, so the next document is checked against the reviewed one; otherwise it ingests new documents (matched by SHA-256) one at a time, stopping at the first that pauses or fails. Then it writes the case's package to the tables if it changed. The job report lists, per case, what was resumed, ingested, skipped (unsupported file types) or failed, and each paused run's issues and the decision file to write. The job exits non-zero if anything failed.
+
+SQLite needs file locks and random writes, which Unity Catalog volumes do not provide, so the job copies both databases to local disk and copies consistent snapshots back at the end, even if a table write failed. It refuses to copy back if the stored databases changed while it ran. Run it locally with `--local-delta DIR` instead of `--catalog`/`--schema`:
+
+```bash
+kyc-databricks-job --inbox inbox --state state --local-delta delta --screening-list examples/synthetic_screening_list.csv
+```
+
+**On Databricks.** `databricks.yml` is an asset bundle that builds the wheel and creates:
+
+- a schema (`kyc_evidence` by default, in the `workspace` catalog; the `dev` target prefixes it with your user name);
+- the volumes `kyc_inbox` (documents and decisions) and `kyc_state` (databases and job reports; give it job-only access);
+- a serverless job, one run at a time (later runs queue), with a file-arrival trigger on the inbox that is deployed paused.
+
+```bash
+databricks bundle validate
+databricks bundle deploy                      # --var catalog=NAME for another catalog
+databricks fs cp examples/synthetic_registry_extract.txt dbfs:/Volumes/workspace/dev_<you>_kyc_evidence/kyc_inbox/cases/birch/01_registry.txt
+databricks bundle run kyc_evidence
+```
+
+Only the wheel and the bundle configuration are uploaded; examples, tests, scripts and evaluation outputs stay local.
+
+The job creates the tables on its first run (it needs `CREATE TABLE` on the schema) and checks that existing tables have the expected columns; a change of table layout needs a migration. It uses the local rules extractor and native parser only. Azure Document Intelligence and model extraction would need their keys from a secret scope, which is not wired up yet, and screening lists must be passed as task parameters.
+
+Tested on a workspace (1 November 2026, serverless environment version 3, `dev` target): four runs on a synthetic case. The first ingested a registry extract and an ownership declaration and created and filled the tables. The second picked up the stored databases, ingested only a newly added screening report and paused on its sanctions hit. The third read a defer decision from the inbox, resumed and rewrote the case. The fourth found nothing new and wrote nothing. SQL queries confirmed that every row matched its case's `export_id`, the table properties, and that the deferred issue stayed `OPEN`. The local Delta writer and the job are also covered by tests; the Spark writer's tests use a stub session. The tables hold document text and personal data: grant access accordingly. Copying the SQLite store in and out of a volume suits a proof of concept with one job at a time, not concurrent processing.
+
 ## Input formats and known gaps
 
 - UTF-8 `.txt`/`.md`, static `.html`, `.csv`, and text-based `.pdf` up to 50 MiB. TXT form feeds create supplied page anchors; HTML/CSV do not have invented page numbers. No URL fetching or JavaScript execution. With `--parser azure-di`: PDF, PNG, JPEG, TIFF, BMP, HEIF, DOCX, XLSX, PPTX and HTML (see above).
@@ -527,7 +588,7 @@ Limits: the sentence rules expect a named subject at the start of a plain senten
 - Apart from the opt-in GLEIF and Companies House lookups, the pipeline does not perform authoritative registry or licence-register checks, live sanctions/PEP screening (list screening reads only a local file you supply), identity verification (identity documents are checked for internal consistency only), verified beneficial-owner identification (people are matched by name only, and the report is built from what the documents and register state), source-of-funds verification (statement arithmetic and amount matching are not proof of origin), complete contradiction resolution, or policy-driven customer acceptance decisions. Allegations are not findings of guilt.
 - Literal quote and number checks are not semantic validation. Model source-support checks can also be wrong or manipulated. Automated `NOT_FOUND_AFTER_REVIEW` means only that the parsed chunks received a successful model pass; it is not proof of absence.
 - SQLite is suitable only for a single-host POC. The evidence store and graph checkpoints are separate databases, so their commits are not one distributed transaction; writes are designed to be idempotent and use a case revision check. There is no authentication, authorization, encryption, secrets manager, immutable/WORM audit log, redaction, retention/deletion workflow, scalable job queue, or production observability. Human reviewer IDs are self-reported. Add these before handling real KYC information.
-- All document content in the evidence database, extraction cache, checkpoint database, exports, and review files is sensitive. Control access to all copies, including SQLite WAL/SHM files and backups. External API calls send source text when opted in; configure provider logging and retention appropriately.
+- All document content in the evidence database, extraction cache, checkpoint database, exports, Delta tables, Databricks volumes, and review files is sensitive. Control access to all copies, including SQLite WAL/SHM files and backups. External API calls send source text when opted in; configure provider logging and retention appropriately.
 
 ## Project layout
 
@@ -548,12 +609,15 @@ src/kyc_pipeline/
   screening.py          # screening-report and PEP checks, local sanctions-list loading and name matching
   prior.py              # prior KYC file checks: overdue review, adverse decisions, changes since review
   media.py              # adverse-media and enforcement events across documents
+  lakehouse.py          # Delta table definitions, case-package rows, local (deltalake) and Spark MERGE writers
+  databricks_job.py     # batch job: inbox case folders, review decisions, state copy, table writes
   ownership.py          # ownership/control graph, look-through interests, register PSCs, beneficial owners, graph checks
   coverage.py           # coverage ledger and section manifest
   graph.py              # LangGraph orchestration and human interrupt
   store.py              # local SQLite records, cache, audit and case revisions
   retrieval.py          # BM25 + optional embedding search, parent context
-  cli.py                # ingest, status, resume, retry, report, ownership, query, segment
+  cli.py                # ingest, status, resume, retry, report, ownership, query, segment, lakehouse
+databricks.yml          # asset bundle: schema, volumes and the serverless job
 examples/               # fictional fixtures and two pinned public-report PDFs
 real_evaluation/         # source-checked sample targets and recorded test outputs
 scripts/                # demo, public-PDF evaluation and reviewer scoring

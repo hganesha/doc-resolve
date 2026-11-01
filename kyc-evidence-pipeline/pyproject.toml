@@ -21,9 +21,11 @@ dependencies = [
 [project.optional-dependencies]
 test = ["pytest>=8,<10"]
 local-embeddings = ["fastembed>=0.4,<1"]
+delta = ["deltalake>=1.0,<2", "pyarrow>=16"]
 
 [project.scripts]
 kyc-pipeline = "kyc_pipeline.cli:main"
+kyc-databricks-job = "kyc_pipeline.databricks_job:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

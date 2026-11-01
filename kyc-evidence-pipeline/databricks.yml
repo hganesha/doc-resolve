@@ -1,0 +1,87 @@
+# Databricks Asset Bundle: a Unity Catalog schema, two volumes and a serverless job
+# that processes inbox case folders and writes each case's evidence package to Delta tables.
+# Synthetic or public documents only (see README).
+bundle:
+  name: kyc-evidence-pipeline
+
+variables:
+  catalog:
+    description: Existing Unity Catalog catalog for the schema, volumes and tables
+    default: workspace
+  schema:
+    description: Schema to create for the pipeline (prefixed with your user name in the dev target)
+    default: kyc_evidence
+
+# The job runs from the wheel; the documents, evaluation outputs and tests stay local.
+sync:
+  exclude:
+    - examples/**
+    - real_evaluation/**
+    - tests/**
+    - scripts/**
+
+artifacts:
+  wheel:
+    type: whl
+    path: .
+    build: python3 -m pip wheel --no-deps --wheel-dir dist .
+
+resources:
+  schemas:
+    kyc:
+      catalog_name: ${var.catalog}
+      name: ${var.schema}
+      comment: KYC evidence packages (proof of concept). Contains document text and personal data.
+
+  volumes:
+    inbox:
+      catalog_name: ${var.catalog}
+      schema_name: ${resources.schemas.kyc.name}
+      name: kyc_inbox
+      comment: cases/<case_id>/ documents to ingest and decisions/<run_id>.json review decisions
+    state:
+      catalog_name: ${var.catalog}
+      schema_name: ${resources.schemas.kyc.name}
+      name: kyc_state
+      comment: The pipeline's SQLite evidence store, graph checkpoints and job reports. Job access only.
+
+  jobs:
+    kyc_evidence:
+      name: kyc-evidence-pipeline
+      # The job copies the SQLite store from the state volume and back; two runs at once would
+      # overwrite each other's work (the copy back then fails), so runs queue instead.
+      max_concurrent_runs: 1
+      queue:
+        enabled: true
+      trigger:
+        pause_status: PAUSED
+        file_arrival:
+          url: /Volumes/${var.catalog}/${resources.schemas.kyc.name}/${resources.volumes.inbox.name}/
+          wait_after_last_change_seconds: 120
+      environments:
+        - environment_key: default
+          spec:
+            environment_version: "3"
+            dependencies:
+              - ./dist/*.whl
+      tasks:
+        - task_key: process_cases
+          environment_key: default
+          timeout_seconds: 3600
+          python_wheel_task:
+            package_name: kyc_evidence_pipeline
+            entry_point: kyc-databricks-job
+            parameters:
+              - --inbox
+              - /Volumes/${var.catalog}/${resources.schemas.kyc.name}/${resources.volumes.inbox.name}
+              - --state
+              - /Volumes/${var.catalog}/${resources.schemas.kyc.name}/${resources.volumes.state.name}
+              - --catalog
+              - ${var.catalog}
+              - --schema
+              - ${resources.schemas.kyc.name}
+
+targets:
+  dev:
+    mode: development
+    default: true

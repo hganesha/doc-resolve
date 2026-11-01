@@ -16,6 +16,7 @@ from .azure_di import AzureLayoutClient, endpoint_from_env
 from .config import load_contract, requirements_for
 from .extraction import OpenAICompatible, ProviderError, provider_endpoint
 from .graph import build_graph, validate_review_response
+from .lakehouse import LocalDeltaSink, ddl_script, write_case
 from .local_embeddings import DEFAULT_LOCAL_EMBEDDING_MODEL, LocalEmbeddingProvider
 from .ownership import to_mermaid
 from .screening import load_list
@@ -160,6 +161,15 @@ def make_parser() -> argparse.ArgumentParser:
     p.add_argument("--format", choices=["json", "mermaid"], default="json")
     p.add_argument("--output", help="Write to this file instead of stdout")
     _db_options(p)
+    p = sub.add_parser("lakehouse", help="Write the case evidence package to local Delta tables (needs the delta extra)")
+    p.add_argument("--case-id", type=_case, required=True)
+    p.add_argument("--delta-dir", required=True, help="Folder holding one Delta table per record type; created if missing")
+    p.add_argument("--force", action="store_true", help="Rewrite the case even if the tables already hold this package")
+    _db_options(p)
+    p = sub.add_parser("lakehouse-ddl", help="Print CREATE TABLE statements for the Delta tables in Unity Catalog")
+    p.add_argument("--catalog", required=True)
+    p.add_argument("--schema", required=True)
+    p.add_argument("--output", help="Write to this file instead of stdout")
     p = sub.add_parser("query", help="Retrieve relevant child chunks with parent-section context")
     p.add_argument("--case-id", type=_case, required=True)
     p.add_argument("--query", required=True)
@@ -274,6 +284,8 @@ def execute(args: argparse.Namespace) -> dict | str:
     if args.command == "profiles":
         contract = load_contract(args.profiles_file, args.policy_file, args.schemas_file)
         return {"policy_id": contract["policy"]["policy_id"], "profiles": [{"profile_id": pid, **p, "requirements": requirements_for(contract, p)} for pid, p in contract["profiles"].items()], "note": "Profiles and policy are illustrative, not bank-approved policy."}
+    if args.command == "lakehouse-ddl":
+        return ddl_script(args.catalog, args.schema)
     store = EvidenceStore(args.db)
     if args.command == "report":
         package = store.export_case(args.case_id)
@@ -286,6 +298,13 @@ def execute(args: argparse.Namespace) -> dict | str:
             raise ValueError("Case has no persisted documents")
         graph = package["ownership_graph"]
         return to_mermaid(graph) if args.format == "mermaid" else {"case_id": args.case_id, "status": package["status"], "ownership_graph": graph}
+    if args.command == "lakehouse":
+        package = store.export_case(args.case_id)
+        if not package["documents"] and not package["pending_runs"]:
+            raise ValueError("Case has no persisted documents or paused runs")
+        sink = LocalDeltaSink(args.delta_dir)
+        sink.setup()
+        return write_case(sink, package, utc_now(), force=args.force)
     if args.command == "segment":
         segment = store.get_segment(args.case_id, args.segment_id)
         if not segment:
