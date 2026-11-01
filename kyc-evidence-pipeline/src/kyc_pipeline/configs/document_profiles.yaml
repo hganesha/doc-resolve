@@ -14,7 +14,7 @@ profiles:
   corporate_registry:
     family: corporate_registration
     title: Corporate registry extract
-    signals: [registry extract, certificate of incorporation, business registry, company registration]
+    signals: [registry extract, certificate of incorporation, business registry, company registration, companies registry]
     strategy: field_aware
     max_chars: 1800
     overlap_chars: 120
@@ -54,7 +54,7 @@ profiles:
   regulatory_licensing:
     family: regulatory_and_licensing
     title: Regulatory or licensing document
-    signals: [banking license, regulatory registration, enforcement notice, licence certificate]
+    signals: [banking license, regulatory registration, enforcement notice, licence certificate, financial services register, licence register, license register]
     strategy: clause_event_aware
     max_chars: 1800
     overlap_chars: 120

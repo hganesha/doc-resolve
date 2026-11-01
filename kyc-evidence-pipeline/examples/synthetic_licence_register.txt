@@ -1,0 +1,10 @@
+# Financial Services Register Entry
+Register date: 2 February 2026
+Firm name: Aster Payments Ltd
+Firm reference number: 912345
+Licence type: Electronic money institution authorisation
+Status: Suspended
+Regulator: Texas Financial Services Commission
+Date granted: 1 June 2019
+Expiry date: 31 May 2025
+Restrictions: No new customers may be onboarded; Safeguarding audit required by 30 June 2026

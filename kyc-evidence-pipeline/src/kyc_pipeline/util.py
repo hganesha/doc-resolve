@@ -51,6 +51,13 @@ def normalize_date(value: str) -> str:
     raise ValueError("effective_date must be ISO or an unambiguous English month-name date")
 
 
+def lei_check_digits_valid(lei: str) -> bool:
+    """ISO 17442 / ISO 7064 MOD 97-10: letters become 10-35 and the whole number mod 97 is 1."""
+    if not re.fullmatch(r"[A-Z0-9]{18}[0-9]{2}", lei):
+        return False
+    return int("".join(str(int(ch, 36)) for ch in lei)) % 97 == 1
+
+
 def date_present_in_text(value: str, text: str) -> bool:
     """Require the normalized date to be expressed in the cited text; no inferred date."""
     if re.search(r"(?<!\d)" + re.escape(value) + r"(?!\d)", text):

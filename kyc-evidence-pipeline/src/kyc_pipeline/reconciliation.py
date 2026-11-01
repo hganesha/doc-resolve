@@ -35,9 +35,13 @@ def rounding_consistent(a: dict, b: dict) -> bool:
     return approximate and round(x) == round(y)
 
 
-def _attribute_key(fact: dict) -> str:
+def _attribute_value(fact: dict, per_object: bool = False):
+    return fact.get("value") if per_object or fact.get("object") is None else fact.get("object")
+
+
+def _attribute_key(fact: dict, per_object: bool = False) -> str:
     """'BERKSHIRE HATHAWAY INC.' and 'Berkshire Hathaway Incorporated' agree; so do '12-3456789' and '123456789'."""
-    value = fact.get("object") if fact.get("object") is not None else fact.get("value")
+    value = _attribute_value(fact, per_object)
     return re.sub(r"\s+", "", legal_key(value)) if isinstance(value, str) else json_text(value)
 
 
@@ -48,7 +52,7 @@ def issue_finding(issue: dict) -> dict:
 def reconcile(document: dict, current_facts: list[dict], previous_facts: list[dict], existing_issues: list[dict], entity_map: dict[str, str] | None = None, schemas: dict[str, dict] | None = None) -> tuple[list[dict], list[dict]]:
     """Conservative matching on resolved entities (or text, where unresolved) and chronology. No UBO calculation."""
     entity_map = entity_map or {}
-    single_valued = {name for name, spec in (schemas or {}).items() if spec.get("single_valued")}
+    single_valued = {name: spec["single_valued"] == "per_object" for name, spec in (schemas or {}).items() if spec.get("single_valued")}
 
     def _key(fact: dict) -> tuple[str, str]:
         return party_key(fact, "subject", entity_map), party_key(fact, "object", entity_map)
@@ -113,15 +117,18 @@ def reconcile(document: dict, current_facts: list[dict], previous_facts: list[di
     for f in all_facts:
         if f["predicate"] in single_valued and f.get("entity_resolution") != "UNRESOLVED" and not f["subject"].startswith("UNRESOLVED_"):
             subject = party_key(f, "subject", entity_map)
-            if subject:
-                attributes[(subject, f["predicate"])].append(f)
-    for (_, predicate), claims in attributes.items():
+            per_object = single_valued[f["predicate"]]
+            if subject and (not per_object or f.get("value") is not None):
+                # Per-object attributes (a licence's status) are keyed by the object too.
+                attributes[(subject, f["predicate"], legal_key(f.get("object") or "") if per_object else "")].append(f)
+    for (_, predicate, _), claims in attributes.items():
+        per_object = single_valued[predicate]
         for a, b in combinations(claims, 2):
-            if not ({a["fact_id"], b["fact_id"]} & current_ids) or _attribute_key(a) == _attribute_key(b):
+            if not ({a["fact_id"], b["fact_id"]} & current_ids) or _attribute_key(a, per_object) == _attribute_key(b, per_object):
                 continue
             if not temporal_overlap(a.get("effective_date"), b.get("effective_date")):
                 continue
-            issues.append(make_issue("POSSIBLE_ATTRIBUTE_CONFLICT", f"The same entity has different values for {predicate} in overlapping or unknown periods. This may be an error, a change over time such as a rename, or two entities wrongly merged.", document_id=document_id, categories=sorted({a["category"], b["category"]}), fact_ids=[a["fact_id"], b["fact_id"]], details={"predicate": predicate, "values": sorted({str(a.get("object") if a.get("object") is not None else a.get("value")), str(b.get("object") if b.get("object") is not None else b.get("value"))})}, allowed_actions=["resolve", "defer"]))
+            issues.append(make_issue("POSSIBLE_ATTRIBUTE_CONFLICT", f"The same entity has different values for {predicate} in overlapping or unknown periods. This may be an error, a change over time such as a rename, or two entities wrongly merged.", document_id=document_id, categories=sorted({a["category"], b["category"]}), fact_ids=[a["fact_id"], b["fact_id"]], details={"predicate": predicate, **({"object": a.get("object")} if per_object else {}), "values": sorted({str(_attribute_value(a, per_object)), str(_attribute_value(b, per_object))})}, allowed_actions=["resolve", "defer"]))
 
     unique = {issue["issue_id"]: issue for issue in issues}
     issues = list(unique.values())

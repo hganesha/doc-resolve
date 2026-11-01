@@ -3,16 +3,16 @@
     {
       "action": "RUN_STARTED",
       "details": {},
-      "event_id": "audit_58c43b0d699e4ccc2deb0a54",
-      "happened_at": "2026-11-01T11:57:04.126800+00:00",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4"
+      "event_id": "audit_c6ed73a084d5ecbeddad52d4",
+      "happened_at": "2026-11-01T14:18:04.741139+00:00",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b"
     },
     {
       "action": "RUN_REVIEW_REQUIRED",
       "details": {},
-      "event_id": "audit_9dd00d92a0b1736f4feaf396",
-      "happened_at": "2026-11-01T11:57:17.483754+00:00",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4"
+      "event_id": "audit_ae2fae0486678c10131c2916",
+      "happened_at": "2026-11-01T14:18:18.399804+00:00",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -22,9 +22,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_8d36cb530d1c1f1d7888446d",
-      "happened_at": "2026-11-01T11:57:18.131534+00:00",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4"
+      "event_id": "audit_69c4760015d4e06c16be8a3c",
+      "happened_at": "2026-11-01T14:18:19.058316+00:00",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -34,9 +34,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_215cd6210be96c957ceb0ed8",
-      "happened_at": "2026-11-01T11:57:18.131564+00:00",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4"
+      "event_id": "audit_7a2f04fa5faf1fe1599af2b5",
+      "happened_at": "2026-11-01T14:18:19.058349+00:00",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -46,9 +46,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_fb23b41a64c6245fd5706c5c",
-      "happened_at": "2026-11-01T11:57:18.131571+00:00",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4"
+      "event_id": "audit_6754e6ce1375fcdf9691e36e",
+      "happened_at": "2026-11-01T14:18:19.058356+00:00",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -58,9 +58,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_1456fa86d065ddce0cbacf18",
-      "happened_at": "2026-11-01T11:57:18.131577+00:00",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4"
+      "event_id": "audit_c664c334f98d90df52137085",
+      "happened_at": "2026-11-01T14:18:19.058362+00:00",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -70,9 +70,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_01cc27ebc964a91acc13166b",
-      "happened_at": "2026-11-01T11:57:18.131583+00:00",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4"
+      "event_id": "audit_d9f6c4a293f04d105ed7c5ac",
+      "happened_at": "2026-11-01T14:18:19.058368+00:00",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -82,9 +82,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_1f75d6873fec4d74c05b4e32",
-      "happened_at": "2026-11-01T11:57:18.131588+00:00",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4"
+      "event_id": "audit_1ef8c14aca0311616176d6cc",
+      "happened_at": "2026-11-01T14:18:19.058373+00:00",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -94,9 +94,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_09fa354d6eecc3ab70e322a6",
-      "happened_at": "2026-11-01T11:57:18.131593+00:00",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4"
+      "event_id": "audit_6c07c3c3e8b0afc3b8e89e60",
+      "happened_at": "2026-11-01T14:18:19.058378+00:00",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b"
     },
     {
       "action": "CANONICAL_RECORDS_PERSISTED",
@@ -104,9 +104,9 @@
         "fact_count": 15,
         "status": "REVIEW_REQUIRED"
       },
-      "event_id": "audit_2b650fcfc1e0260c0db314ad",
-      "happened_at": "2026-11-01T11:57:18.131631+00:00",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4"
+      "event_id": "audit_3a56e5fccf41d7d745c59461",
+      "happened_at": "2026-11-01T14:18:19.058420+00:00",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b"
     }
   ],
   "case_id": "berkshire",
@@ -134,7 +134,7 @@
         139
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "source_fully_parsed": false,
       "status": "NOT_REVIEWED"
     },
@@ -161,7 +161,7 @@
         139
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "source_fully_parsed": false,
       "status": "FOUND"
     },
@@ -190,7 +190,7 @@
         139
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "source_fully_parsed": false,
       "status": "FOUND"
     },
@@ -218,7 +218,7 @@
         139
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "source_fully_parsed": false,
       "status": "FOUND"
     },
@@ -245,7 +245,7 @@
         139
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "source_fully_parsed": false,
       "status": "FOUND"
     },
@@ -277,7 +277,7 @@
         139
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "source_fully_parsed": false,
       "status": "FOUND"
     },
@@ -304,7 +304,7 @@
         139
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "source_fully_parsed": false,
       "status": "NOT_REVIEWED"
     }
@@ -337,7 +337,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -366,7 +366,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -395,7 +395,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -428,7 +428,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -457,7 +457,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -486,7 +486,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -515,7 +515,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -544,7 +544,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -573,7 +573,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -602,7 +602,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -631,7 +631,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -653,7 +653,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -691,7 +691,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -713,7 +713,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -742,7 +742,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -771,7 +771,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -800,7 +800,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -829,7 +829,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -851,7 +851,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -880,7 +880,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -909,7 +909,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -938,7 +938,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -967,7 +967,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -996,7 +996,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1025,7 +1025,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1054,7 +1054,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1083,7 +1083,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1105,7 +1105,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1136,7 +1136,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1230,7 +1230,7 @@
       "roles": [
         "sec_registrant"
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "IDENTIFIED"
     },
     {
@@ -1269,7 +1269,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1313,7 +1313,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1344,7 +1344,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1366,7 +1366,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1397,7 +1397,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1428,7 +1428,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1450,7 +1450,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1479,7 +1479,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1508,7 +1508,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1539,7 +1539,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1568,7 +1568,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1590,7 +1590,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1619,7 +1619,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1648,7 +1648,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1677,7 +1677,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1708,7 +1708,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1737,7 +1737,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1766,7 +1766,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1795,7 +1795,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1824,7 +1824,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1853,7 +1853,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1882,7 +1882,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1911,7 +1911,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1940,7 +1940,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -1973,7 +1973,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2012,7 +2012,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2041,7 +2041,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2074,7 +2074,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2103,7 +2103,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2125,7 +2125,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2164,7 +2164,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2193,7 +2193,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2222,7 +2222,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2251,7 +2251,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2280,7 +2280,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2309,7 +2309,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2338,7 +2338,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2367,7 +2367,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2396,7 +2396,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2425,7 +2425,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2464,7 +2464,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2493,7 +2493,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2515,7 +2515,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2537,7 +2537,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2559,7 +2559,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2602,7 +2602,7 @@
         "ev_949787739f00a4b38c10a2ac"
       ],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2631,7 +2631,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2660,7 +2660,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2701,7 +2701,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     },
     {
@@ -2723,14 +2723,14 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "strength": "DEFINED"
     }
   ],
   "documents": [
     {
       "bytes": 1852116,
-      "current_run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "current_run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "document_id": "doc_6aa0a501680c50a57e0a1a2e",
       "family": "financial_statements",
       "filename": "berkshire_2024_annual_report.pdf",
@@ -4863,7 +4863,7 @@
       "page": 45,
       "quote": "The Kraft Heinz Company (“Kraft Heinz”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -4888,7 +4888,7 @@
       "page": 56,
       "quote": "Berkshire Hathaway Primary Group (“BH Primary”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -4914,7 +4914,7 @@
       "page": 28,
       "quote": "BNSF Railway Company (“BNSF Railway”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -4939,7 +4939,7 @@
       "page": 43,
       "quote": "TTI, Inc. (“TTI”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -4964,7 +4964,7 @@
       "page": 58,
       "quote": "National Indemnity Company (“NICO Primary”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -4990,7 +4990,7 @@
       "page": 41,
       "quote": "Albecca Inc. (“Albecca”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5015,7 +5015,7 @@
       "page": 26,
       "quote": "MLMIC Insurance Company (“MLMIC”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5040,7 +5040,7 @@
       "page": 42,
       "quote": "McLane Company, Inc. (“McLane”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5065,7 +5065,7 @@
       "page": 43,
       "quote": "IPS-Integrated Project Services, LLC (“IPS”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5090,7 +5090,7 @@
       "page": 45,
       "quote": "The Pampered Chef, Ltd. (“Pampered Chef”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5115,7 +5115,7 @@
       "page": 38,
       "quote": "Johns Manville Corporation (“JM”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5140,7 +5140,7 @@
       "page": 27,
       "quote": "Insurance Australia Group Limited (“IAG”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5165,7 +5165,7 @@
       "page": 90,
       "quote": "and Subsidiaries CONSOLIDATED STATEMENTS OF EARNINGS",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -5191,7 +5191,7 @@
       "page": 49,
       "quote": "Berkshire Business Group (“Business Group”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1C. Cybersecurity"
@@ -5216,7 +5216,7 @@
       "page": 63,
       "quote": "Burlington Northern Santa Fe, LLC (“BNSF”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -5242,7 +5242,7 @@
       "page": 30,
       "quote": "Northern Natural Gas Company (“Northern Natural”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5267,7 +5267,7 @@
       "page": 44,
       "quote": "Star Furniture Company (“Star”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5292,7 +5292,7 @@
       "page": 21,
       "quote": "BERKSHIRE HATHAWAY INC. (Exact name of Registrant as specified in its charter)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "The Annual Gathering in Omaha",
         "Washington, D.C. 20549"
@@ -5317,7 +5317,7 @@
       "page": 65,
       "quote": "MidAmerican Energy Company (“MEC”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -5343,7 +5343,7 @@
       "page": 104,
       "quote": "As of December 31, 2024, we owned 151.6 million shares of American Express Company (“American Express”) common stock representing 21.6% of the outstanding common stock of American Express.",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -5369,7 +5369,7 @@
       "page": 23,
       "quote": "Berkshire Hathaway Inc. (“Berkshire,” “Company” or “Registrant”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5394,7 +5394,7 @@
       "page": 90,
       "quote": "|  | Year Ended December 31, |  |  |  |  |  |  |  |  |  |  |\n|  | 2024 |  |  |  | 2023 |  |  |  | 2022 |  |  |",
       "representation": "reconstructed_pdf_table",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -5420,7 +5420,7 @@
       "page": 27,
       "quote": "General Reinsurance Corporation (“GRC”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5445,7 +5445,7 @@
       "page": 21,
       "quote": "Delaware 47-0813844 State or other jurisdiction of incorporation",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "The Annual Gathering in Omaha",
         "Washington, D.C. 20549"
@@ -5470,7 +5470,7 @@
       "page": 104,
       "quote": "American Express Company (“American Express”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -5496,7 +5496,7 @@
       "page": 65,
       "quote": "Berkshire Hathaway Energy Company (“BHE”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -5522,7 +5522,7 @@
       "page": 43,
       "quote": "XTRA Corporation (“XTRA”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5547,7 +5547,7 @@
       "page": 37,
       "quote": "LiquidPower Specialty Products Inc. (“LSPI”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5572,7 +5572,7 @@
       "page": 140,
       "quote": "Berkshire Hathaway Inc. and subsidiaries (the “Company”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
         "REPORT OF INDEPENDENT REGISTERED PUBLIC ACCOUNTING FIRM"
@@ -5597,7 +5597,7 @@
       "page": 102,
       "quote": "On September 30, 2024, Berkshire Hathaway Energy Company (“BHE”) repurchased 5.85% of its outstanding common stock held by certain noncontrolling BHE shareholders for $2.9 billion.",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -5623,7 +5623,7 @@
       "page": 29,
       "quote": "NV Energy, Inc.’s (“NV Energy”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5648,7 +5648,7 @@
       "page": 112,
       "quote": "Berkshire Hathaway Primary Group (“BH Primary”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -5674,7 +5674,7 @@
       "page": 45,
       "quote": "Helzberg’s Diamond Shops, LLC (“Helzberg”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5699,7 +5699,7 @@
       "page": 30,
       "quote": "Kern River Gas Transmission Company (“Kern River”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5724,7 +5724,7 @@
       "page": 36,
       "quote": "CTB International Corp. (“CTB”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5749,7 +5749,7 @@
       "page": 29,
       "quote": "Nevada Power Company (“Nevada Power”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5774,7 +5774,7 @@
       "page": 90,
       "quote": "| Total revenues |  | 371,433 |  |  |  | 364,482 |  |  |  | 302,020 |  |",
       "representation": "reconstructed_pdf_table",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -5800,7 +5800,7 @@
       "page": 93,
       "quote": "Berkshire Hathaway Inc. (“Berkshire”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -5826,7 +5826,7 @@
       "page": 26,
       "quote": "Berkshire Hathaway Direct Insurance Company and its affiliates (“BH Direct”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5851,7 +5851,7 @@
       "page": 41,
       "quote": "The Duracell Company (“Duracell”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5876,7 +5876,7 @@
       "page": 104,
       "quote": "Jefferies Financial Group Inc. (“Jefferies”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -5902,7 +5902,7 @@
       "page": 26,
       "quote": "MedPro Group (“MedPro”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5927,7 +5927,7 @@
       "page": 59,
       "quote": "National Indemnity Company (“NICO”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -5953,7 +5953,7 @@
       "page": 29,
       "quote": "MidAmerican Energy Company (“MEC”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -5978,7 +5978,7 @@
       "page": 93,
       "quote": "Pilot Travel Centers LLC (“Pilot”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -6004,7 +6004,7 @@
       "page": 73,
       "quote": "Berkshire Hathaway Automotive, Inc. (“BHA”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -6030,7 +6030,7 @@
       "page": 104,
       "quote": "Occidental Petroleum Corporation (“Occidental”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -6056,7 +6056,7 @@
       "page": 45,
       "quote": "Oriental Trading Company (“OTC”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6081,7 +6081,7 @@
       "page": 37,
       "quote": "Clayton Properties Group (“CPG”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6106,7 +6106,7 @@
       "page": 40,
       "quote": "Fruit of the Loom, Inc. (“FOL”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6131,7 +6131,7 @@
       "page": 45,
       "quote": "See’s Candy Shops, Incorporated (“See’s”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6156,7 +6156,7 @@
       "page": 104,
       "quote": "The Kraft Heinz Company (“Kraft Heinz”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -6182,7 +6182,7 @@
       "page": 41,
       "quote": "Jazwares, LLC, (“Jazwares”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6207,7 +6207,7 @@
       "page": 39,
       "quote": "Benjamin Moore & Co. (“Benjamin Moore”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6232,7 +6232,7 @@
       "page": 26,
       "quote": "National Indemnity Company (“NICO”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6257,7 +6257,7 @@
       "page": 104,
       "quote": "As of December 31, 2024, we owned 27.2% of the Kraft Heinz outstanding common stock and 28.2% of the outstanding Occidental common stock which excludes the potential effect of the exercise of Occidental’s outstanding common stock warrants.",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -6283,7 +6283,7 @@
       "page": 26,
       "quote": "Transatlantic Reinsurance Company and its affiliates (“TransRe Group”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6308,7 +6308,7 @@
       "page": 56,
       "quote": "Berkshire Hathaway Reinsurance Group (“BHRG”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -6334,7 +6334,7 @@
       "page": 45,
       "quote": "Borsheim Jewelry Company, Inc. (“Borsheims”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6359,7 +6359,7 @@
       "page": 46,
       "quote": "Berkshire and its subsidiaries (referred to herein as “we,” “us,” “our” or similar expressions)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1A. Risk Factors"
@@ -6384,7 +6384,7 @@
       "page": 45,
       "quote": "Occidental Petroleum Corporation (“Occidental”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6409,7 +6409,7 @@
       "page": 33,
       "quote": "HomeServices of America, Inc. (“HomeServices”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6434,7 +6434,7 @@
       "page": 102,
       "quote": "Pilot Travel Centers, LLC (“Pilot”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -6460,7 +6460,7 @@
       "page": 28,
       "quote": "Burlington Northern Santa Fe, LLC (“BNSF”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6485,7 +6485,7 @@
       "page": 42,
       "quote": "FlightSafety International Inc. (“FlightSafety”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6510,7 +6510,7 @@
       "page": 68,
       "quote": "The Lubrizol Corporation (“Lubrizol”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -6536,7 +6536,7 @@
       "page": 53,
       "quote": "Berkshire and its subsidiaries are parties in a variety of legal actions that routinely arise out of the normal course of business, including legal actions seeking to establish liability directly through insurance contracts or indirectly through reinsurance contracts issued by Berkshire subsidiaries.",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 3. Legal Proceedings"
@@ -6561,7 +6561,7 @@
       "page": 30,
       "quote": "BHE GT&S, LLC (“BHE GT&S”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6586,7 +6586,7 @@
       "page": 75,
       "quote": "McLane Company, Inc. (“McLane”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -6612,7 +6612,7 @@
       "page": 33,
       "quote": "Precision Castparts Corp. (“PCC”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6637,7 +6637,7 @@
       "page": 143,
       "quote": "Precision Castparts Corporation (“PCC”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
         "EXHIBIT INDEX"
@@ -6662,7 +6662,7 @@
       "page": 41,
       "quote": "Pilot Travel Centers, LLC (“Pilot”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6687,7 +6687,7 @@
       "page": 45,
       "quote": "As of December 31, 2024, Berkshire or a subsidiary owned approximately 27% of the outstanding common stock of The Kraft Heinz Company (“Kraft Heinz”) and 28% of the outstanding Occidental Petroleum Corporation (“Occidental”) common stock.",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6712,7 +6712,7 @@
       "page": 38,
       "quote": "Shaw Industries Group, Inc. (“Shaw”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6737,7 +6737,7 @@
       "page": 131,
       "quote": "McLane Company (“McLane”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -6763,7 +6763,7 @@
       "page": 146,
       "quote": "Marmon Holding, Inc. (“Marmon”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
         "OPERATING COMPANIES"
@@ -6788,7 +6788,7 @@
       "page": 44,
       "quote": "Jordan’s Furniture, Inc. (“Jordan’s”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6813,7 +6813,7 @@
       "page": 40,
       "quote": "U.S. Fechheimer Brothers Company (“Fechheimers”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6838,7 +6838,7 @@
       "page": 93,
       "quote": "the terms “us,” “we,” or “our” refer to Berkshire and its consolidated subsidiaries",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -6864,7 +6864,7 @@
       "page": 26,
       "quote": "General Re Corporation and its subsidiaries (“General Re Group”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6889,7 +6889,7 @@
       "page": 90,
       "quote": "BERKSHIRE HATHAWAY INC.",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -6915,7 +6915,7 @@
       "page": 44,
       "quote": "Berkshire Hathaway Automotive, Inc. (“BHA”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6940,7 +6940,7 @@
       "page": 65,
       "quote": "HomeServices of America, Inc. (“HomeServices”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -6966,7 +6966,7 @@
       "page": 40,
       "quote": "Forest River, Inc. (“Forest River”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -6991,7 +6991,7 @@
       "page": 103,
       "quote": "Cove Point LNG, LP (“Cove Point”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -7017,7 +7017,7 @@
       "page": 25,
       "quote": "Berkshire Hathaway Primary Group (“BH Primary”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7042,7 +7042,7 @@
       "page": 120,
       "quote": "Berkshire Hathaway Finance Corporation (“BHFC”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -7068,7 +7068,7 @@
       "page": 86,
       "quote": "Berkshire Hathaway Inc. and subsidiaries (the “Company”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -7094,7 +7094,7 @@
       "page": 120,
       "quote": "Berkshire Hathaway Inc. (“Berkshire”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -7120,7 +7120,7 @@
       "page": 68,
       "quote": "Precision Castparts Corp. (“PCC”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -7146,7 +7146,7 @@
       "page": 36,
       "quote": "Union Tank Car Company (“UTLX”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7171,7 +7171,7 @@
       "page": 30,
       "quote": "AltaLink L.P. (“AltaLink”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7196,7 +7196,7 @@
       "page": 26,
       "quote": "Berkshire Hathaway Reinsurance Group (“BHRG”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7221,7 +7221,7 @@
       "page": 135,
       "quote": "HomeServices of America, Inc. (“HomeServices”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -7247,7 +7247,7 @@
       "page": 25,
       "quote": "Alleghany Corporation (“Alleghany”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7272,7 +7272,7 @@
       "page": 135,
       "quote": "Berkshire Hathaway Energy Company (“BHE”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -7298,7 +7298,7 @@
       "page": 138,
       "quote": "National Indemnity Company (“NICO”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -7324,7 +7324,7 @@
       "page": 34,
       "quote": "The Lubrizol Corporation (“Lubrizol”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7349,7 +7349,7 @@
       "page": 26,
       "quote": "U.S. Liability Insurance Company (“USLI”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7374,7 +7374,7 @@
       "page": 39,
       "quote": "MiTek Industries, Inc. (“MiTek”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7399,7 +7399,7 @@
       "page": 121,
       "quote": "Berkshire Hathaway Energy Company (“BHE”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -7425,7 +7425,7 @@
       "page": 42,
       "quote": "NetJets Inc. (“NetJets”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7450,7 +7450,7 @@
       "page": 26,
       "quote": "CapSpecialty, Inc. and its subsidiaries (“CapSpecialty”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7475,7 +7475,7 @@
       "page": 29,
       "quote": "Berkshire Hathaway Energy Company (“BHE”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7500,7 +7500,7 @@
       "page": 102,
       "quote": "Berkshire Hathaway Energy Company (“BHE”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -7526,7 +7526,7 @@
       "page": 90,
       "quote": "(dollars in millions except per share amounts)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -7552,7 +7552,7 @@
       "page": 29,
       "quote": "Sierra Pacific Power Company (“Sierra Pacific”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7577,7 +7577,7 @@
       "page": 26,
       "quote": "RSUI Group, Inc. and its subsidiaries (“RSUI”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7602,7 +7602,7 @@
       "page": 112,
       "quote": "Berkshire Hathaway Reinsurance Group (“BHRG”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -7628,7 +7628,7 @@
       "page": 43,
       "quote": "CORT Business Services Corporation (“CORT”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7653,7 +7653,7 @@
       "page": 142,
       "quote": "As of December 31, 2024, Berkshire owned 27.2% of the outstanding shares of The Kraft Heinz Company common stock, which is accounted for pursuant to the equity method.",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
         "Note to Condensed Financial Information"
@@ -7678,7 +7678,7 @@
       "page": 43,
       "quote": "Business Wire Inc. (“Business Wire”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7703,7 +7703,7 @@
       "page": 37,
       "quote": "Clayton Homes, Inc. (“Clayton”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7728,7 +7728,7 @@
       "page": 44,
       "quote": "Nebraska Furniture Mart Inc. (“NFM”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7753,7 +7753,7 @@
       "page": 40,
       "quote": "Garan Incorporated (“Garan”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7778,7 +7778,7 @@
       "page": 102,
       "quote": "Alleghany Corporation (“Alleghany”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -7804,7 +7804,7 @@
       "page": 39,
       "quote": "Acme Brick Company (“Acme”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7829,7 +7829,7 @@
       "page": 21,
       "quote": "Commission file number 001-14905",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "The Annual Gathering in Omaha",
         "Washington, D.C. 20549"
@@ -7854,7 +7854,7 @@
       "page": 56,
       "quote": "Berkshire Hathaway Finance Corporation (“BHFC”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -7880,7 +7880,7 @@
       "page": 35,
       "quote": "Marmon Holdings, Inc. (“Marmon”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part I",
         "Item 1. Business Description"
@@ -7905,7 +7905,7 @@
       "page": 104,
       "quote": "Berkadia Commercial Mortgage LLC (“Berkadia”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_path": [
         "Part II",
         "Item 8. Financial Statements and Supplementary Data",
@@ -7959,7 +7959,7 @@
       "object": "American Express",
       "predicate": "owns_equity_in",
       "qualifier": null,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8024,7 +8024,7 @@
       "object": "Kraft Heinz",
       "predicate": "owns_equity_in",
       "qualifier": null,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8087,7 +8087,7 @@
       "object": "The Kraft Heinz Company",
       "predicate": "owns_equity_in",
       "qualifier": null,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8145,7 +8145,7 @@
       "object": "001-14905",
       "predicate": "has_sec_file_number",
       "qualifier": null,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8198,7 +8198,7 @@
       "object": "its outstanding common stock",
       "predicate": "repurchased_own_shares",
       "qualifier": null,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8256,7 +8256,7 @@
       "object": "Delaware",
       "predicate": "has_jurisdiction",
       "qualifier": null,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8319,7 +8319,7 @@
       "object": "Occidental Petroleum Corporation",
       "predicate": "owns_equity_in",
       "qualifier": null,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8376,7 +8376,7 @@
       "object": "a variety of legal actions",
       "predicate": "party_to_legal_proceedings",
       "qualifier": null,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8441,7 +8441,7 @@
       "object": "Occidental",
       "predicate": "owns_equity_in",
       "qualifier": null,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8494,7 +8494,7 @@
       "object": "BERKSHIRE HATHAWAY INC",
       "predicate": "has_legal_name",
       "qualifier": null,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8557,7 +8557,7 @@
       "object": "The Kraft Heinz Company",
       "predicate": "owns_equity_in",
       "qualifier": "approximately",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8630,7 +8630,7 @@
       "object": null,
       "predicate": "reported_revenue",
       "qualifier": "consolidated",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8703,7 +8703,7 @@
       "object": null,
       "predicate": "reported_revenue",
       "qualifier": "consolidated",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8761,7 +8761,7 @@
       "object": "47-0813844",
       "predicate": "has_us_employer_identification_number",
       "qualifier": null,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8834,7 +8834,7 @@
       "object": null,
       "predicate": "reported_revenue",
       "qualifier": "consolidated",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -8863,7 +8863,7 @@
       "fact_ids": [],
       "finding_id": "finding_06dbe18653eb3c98c8bab1ed",
       "issue_id": "issue_c6f9c373706dc330b5f805ec",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "status": "OPEN",
       "type": "DEFINED_TERM_AMBIGUOUS"
     },
@@ -8875,7 +8875,7 @@
         "fact_933d15229f01a42a2604da77"
       ],
       "finding_id": "finding_2a2643c3be35702ed9aa6456",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "status": "INFORMATIONAL",
       "type": "OWNERSHIP_FIGURES_DIFFER_BY_ROUNDING"
     },
@@ -8887,7 +8887,7 @@
       ],
       "finding_id": "finding_304159d708483cb663707e7f",
       "issue_id": "issue_4714aeed45fb8ee0760ab607",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -8899,7 +8899,7 @@
       ],
       "finding_id": "finding_3f92d15abdc64302eab364b8",
       "issue_id": "issue_0d7b22d7030c293c344eab28",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -8909,7 +8909,7 @@
       "fact_ids": [],
       "finding_id": "finding_4304a03d720950056aa106ca",
       "issue_id": "issue_7e204931c7588e10cbee6395",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "status": "OPEN",
       "type": "DEFINED_TERM_AMBIGUOUS"
     },
@@ -8921,7 +8921,7 @@
       ],
       "finding_id": "finding_504fb21a88b4e7e1feee573d",
       "issue_id": "issue_9ecc5376f21da4b25c167c13",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -8933,7 +8933,7 @@
       ],
       "finding_id": "finding_64c0fbe122484c506fa6ed7e",
       "issue_id": "issue_fd6915a81c691e7506d1f867",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -8945,7 +8945,7 @@
       ],
       "finding_id": "finding_acc1280462321c24456dcfb7",
       "issue_id": "issue_b2c0db2ce831aa4e796154ce",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -8957,7 +8957,7 @@
         "fact_a781b441ce9a6e25c22c7121"
       ],
       "finding_id": "finding_bed01df7e72e912163024da9",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "status": "INFORMATIONAL",
       "type": "OWNERSHIP_FIGURES_DIFFER_BY_ROUNDING"
     },
@@ -8969,7 +8969,7 @@
       ],
       "finding_id": "finding_d574ba467351d2ab44b972cd",
       "issue_id": "issue_224cf3a31fcfd8a820e9cf14",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -8979,7 +8979,7 @@
       "fact_ids": [],
       "finding_id": "finding_f056ac1328b116b04a24c665",
       "issue_id": "issue_2676d6dd2787941525c746e2",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "status": "OPEN",
       "type": "PARSE_OR_STRUCTURE_INCOMPLETE"
     }
@@ -9004,7 +9004,7 @@
       ],
       "issue_id": "issue_0d7b22d7030c293c344eab28",
       "message": "The source attributes this claim to BERKSHIRE HATHAWAY INC and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "severity": "high",
       "status": "OPEN"
     },
@@ -9027,7 +9027,7 @@
       ],
       "issue_id": "issue_224cf3a31fcfd8a820e9cf14",
       "message": "The source attributes this claim to BERKSHIRE HATHAWAY INC and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "severity": "high",
       "status": "OPEN"
     },
@@ -9056,7 +9056,7 @@
       "fact_ids": [],
       "issue_id": "issue_2676d6dd2787941525c746e2",
       "message": "A borderless table was inferred from text positions; verify its rows, columns, units, and header against the original page.",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "severity": "high",
       "status": "OPEN"
     },
@@ -9079,7 +9079,7 @@
       ],
       "issue_id": "issue_4714aeed45fb8ee0760ab607",
       "message": "The source attributes this claim to BERKSHIRE HATHAWAY INC and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "severity": "high",
       "status": "OPEN"
     },
@@ -9102,7 +9102,7 @@
       "fact_ids": [],
       "issue_id": "issue_7e204931c7588e10cbee6395",
       "message": "The document defines the same term for different entities; facts using it were not linked.",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "severity": "medium",
       "status": "OPEN"
     },
@@ -9125,7 +9125,7 @@
       ],
       "issue_id": "issue_9ecc5376f21da4b25c167c13",
       "message": "The source attributes this claim to BERKSHIRE HATHAWAY INC and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "severity": "high",
       "status": "OPEN"
     },
@@ -9148,7 +9148,7 @@
       ],
       "issue_id": "issue_b2c0db2ce831aa4e796154ce",
       "message": "The source attributes this claim to BERKSHIRE HATHAWAY INC and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "severity": "high",
       "status": "OPEN"
     },
@@ -9172,7 +9172,7 @@
       "fact_ids": [],
       "issue_id": "issue_c6f9c373706dc330b5f805ec",
       "message": "The document defines the same term for different entities; facts using it were not linked.",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "severity": "medium",
       "status": "OPEN"
     },
@@ -9195,7 +9195,7 @@
       ],
       "issue_id": "issue_fd6915a81c691e7506d1f867",
       "message": "The source attributes this claim to BERKSHIRE HATHAWAY INC and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "severity": "high",
       "status": "OPEN"
     }
@@ -9489,75 +9489,76 @@
     "truncated": false
   },
   "pending_runs": [],
+  "registry_checks": [],
   "review_decisions": [
     {
       "action": "defer",
       "issue_id": "issue_0d7b22d7030c293c344eab28",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:18.038430+00:00",
+      "reviewed_at": "2026-11-01T14:18:18.954410+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_224cf3a31fcfd8a820e9cf14",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:18.038428+00:00",
+      "reviewed_at": "2026-11-01T14:18:18.954408+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_2676d6dd2787941525c746e2",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:18.038437+00:00",
+      "reviewed_at": "2026-11-01T14:18:18.954415+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_4714aeed45fb8ee0760ab607",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:18.038434+00:00",
+      "reviewed_at": "2026-11-01T14:18:18.954413+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_9ecc5376f21da4b25c167c13",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:18.038432+00:00",
+      "reviewed_at": "2026-11-01T14:18:18.954411+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_b2c0db2ce831aa4e796154ce",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:18.038436+00:00",
+      "reviewed_at": "2026-11-01T14:18:18.954414+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_fd6915a81c691e7506d1f867",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:18.038420+00:00",
+      "reviewed_at": "2026-11-01T14:18:18.954401+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "selected_fact_ids": []
     }
   ],
@@ -9565,11 +9566,11 @@
     {
       "document_id": "doc_6aa0a501680c50a57e0a1a2e",
       "error": null,
-      "finished_at": "2026-11-01T11:57:18.054446+00:00",
+      "finished_at": "2026-11-01T14:18:18.971825+00:00",
       "policy_id": "illustrative_corporate_kyc_v1",
       "profile_id": "financial_annual_report",
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
-      "started_at": "2026-11-01T11:57:04.126439+00:00",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
+      "started_at": "2026-11-01T14:18:04.740752+00:00",
       "status": "REVIEW_REQUIRED",
       "summary": {
         "case_id": "berkshire",
@@ -9582,11 +9583,14 @@
         "extraction_pages": null,
         "extractor": "rules",
         "fact_count": 15,
-        "finished_at": "2026-11-01T11:57:18.054446+00:00",
+        "finished_at": "2026-11-01T14:18:18.971825+00:00",
         "max_model_requests": null,
         "model_batch_size": null,
         "model_max_tokens": null,
+        "model_output_mode": null,
+        "model_provider": null,
         "model_reasoning_effort": null,
+        "model_usage": null,
         "open_issue_count": 9,
         "ownership_graph_settings": {
           "control_threshold_percent": 50,
@@ -9594,14 +9598,16 @@
           "reporting_threshold_percent": 25
         },
         "policy_id": "illustrative_corporate_kyc_v1",
-        "policy_sha256": "93256cea265c64ddb225acc871db93a2cb89b24eff41d90dda13277689bacfc0",
+        "policy_sha256": "9369ceebff98ebb0d31e727d31db3cbf5150c3d26a79f490273785b9809fb9ac",
         "profile_id": "financial_annual_report",
-        "profiles_sha256": "48e972f251b725e4f5a798c528ee2d67370742ba3ea3fbf3b38c8b3aeaeffce2",
+        "profiles_sha256": "588123e37a3f6d1b37eee5320ae9c0c94e8e288d6c4eacc1b16b34dffb645623",
         "provider_endpoint_sha256": null,
-        "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
-        "schemas_sha256": "6005b8b714782eb078f4b44646db61c04f1e9966d3ba2f7d2acdf26b33ca983b",
+        "registry_check": null,
+        "registry_checks": [],
+        "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
+        "schemas_sha256": "d77ec72ab17d7a6bfa86037e14ab75672c19d9b6390c618b68200762b5670ad0",
         "semantic_verification_requested": false,
-        "started_at": "2026-11-01T11:57:04.126439+00:00",
+        "started_at": "2026-11-01T14:18:04.740752+00:00",
         "status": "REVIEW_REQUIRED"
       }
     }
@@ -9615,7 +9621,7 @@
       "pages": [
         53
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_0422cbb123ee666bb18f8e27",
       "section_path": [
         "Part II",
@@ -9632,7 +9638,7 @@
         118,
         119
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_070e1f6ea156a993624316d9",
       "section_path": [
         "Part II",
@@ -9649,7 +9655,7 @@
       "pages": [
         22
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_08b2e90464b4090fca0cdd25",
       "section_path": [
         "Part IV"
@@ -9664,7 +9670,7 @@
       "pages": [
         139
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_0a7e80981bfc430e63fd880a",
       "section_path": [
         "Part II",
@@ -9680,7 +9686,7 @@
       "pages": [
         55
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_1167745d00ae659e5aacb2f4",
       "section_path": [
         "Part II",
@@ -9696,7 +9702,7 @@
       "pages": [
         107
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_14ebb93bb768e294ff31aedc",
       "section_path": [
         "Part II",
@@ -9714,7 +9720,7 @@
         90,
         91
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_1749d8d3f96e2a21ab603dbe",
       "section_path": [
         "Part II",
@@ -9731,7 +9737,7 @@
       "pages": [
         54
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_18f1417a4999c6142ec1059b",
       "section_path": [
         "Part II",
@@ -9754,7 +9760,7 @@
         117,
         118
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_196a66708709d66d48091449",
       "section_path": [
         "Part II",
@@ -9773,7 +9779,7 @@
         125,
         126
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_19d3d342a3665b2745ce4bc1",
       "section_path": [
         "Part II",
@@ -9791,7 +9797,7 @@
         14,
         15
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_1b45227803dcf753a8ddcec5",
       "section_path": [
         "Berkshire Increases its Japanese Investments"
@@ -9806,7 +9812,7 @@
       "pages": [
         3
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_1bbff13b4df69dc4ac750c52",
       "section_path": [
         "2024 ANNUAL REPORT"
@@ -9821,7 +9827,7 @@
       "pages": [
         49
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_1de59da30e8377384e1d8492",
       "section_path": [
         "Part I",
@@ -9837,7 +9843,7 @@
       "pages": [
         86
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_1ffa28914ff9a0503df37b60",
       "section_path": [
         "Part II",
@@ -9854,7 +9860,7 @@
         22,
         53
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_229713089836cfee9051c51b",
       "section_path": [
         "Part II"
@@ -9869,7 +9875,7 @@
       "pages": [
         85
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_22f1b0220ab9f0ef835bbedd",
       "section_path": [
         "Part II",
@@ -9885,7 +9891,7 @@
       "pages": [
         54
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_249b779d2eb34b28c72a15d6",
       "section_path": [
         "Part II",
@@ -9901,7 +9907,7 @@
       "pages": [
         139
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_2660749b259b4351c53a3edf",
       "section_path": [
         "Part II",
@@ -9917,7 +9923,7 @@
       "pages": [
         20
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_2c1433156e9418ba95304f65",
       "section_path": [
         "The Annual Gathering in Omaha",
@@ -9934,7 +9940,7 @@
         5,
         6
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_2f6fb2d4db5a5df814555ed3",
       "section_path": [
         "Mistakes – Yes, We Make Them at Berkshire"
@@ -9949,7 +9955,7 @@
       "pages": [
         22
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_2fd7952af520b7fd75b3b704",
       "section_path": [
         "Part II",
@@ -9966,7 +9972,7 @@
         3,
         5
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_302b167a5692c226ecff39b0",
       "section_path": [
         "TABLE OF CONTENTS"
@@ -9981,7 +9987,7 @@
       "pages": [
         21
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_34adf8d3ffa3f931be9f1a23",
       "section_path": [
         "The Annual Gathering in Omaha",
@@ -9997,7 +10003,7 @@
       "pages": [
         53
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_357f073d0951738510e1a4f3",
       "section_path": [
         "Part I",
@@ -10014,7 +10020,7 @@
       "pages": [
         20
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_3722f27b361101a28d3256be",
       "section_path": [
         "The Annual Gathering in Omaha",
@@ -10030,7 +10036,7 @@
       "pages": [
         54
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_3b51d112b180a85aeee5e2ee",
       "section_path": [
         "Part II",
@@ -10048,7 +10054,7 @@
         11,
         12
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_3e6dea200783163ff2423655",
       "section_path": [
         "Where Your Money Is"
@@ -10064,7 +10070,7 @@
         126,
         127
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_4014f598600ee4451ae57da2",
       "section_path": [
         "Part II",
@@ -10082,7 +10088,7 @@
         103,
         104
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_41dddee6158abb4e591e037f",
       "section_path": [
         "Part II",
@@ -10102,7 +10108,7 @@
         137,
         138
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_437a5421f58ef9117f17345d",
       "section_path": [
         "Part II",
@@ -10119,7 +10125,7 @@
       "pages": [
         94
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_4405c848fa2c5bd6673bfc6d",
       "section_path": [
         "Part II",
@@ -10137,7 +10143,7 @@
         149,
         150
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_4672b55c29bdc1c19bd352a4",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
@@ -10154,7 +10160,7 @@
         9,
         10
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_4daf55eea173e040c24d934b",
       "section_path": [
         "Surprise, Surprise! An Important American Record is Smashed"
@@ -10169,7 +10175,7 @@
       "pages": [
         141
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_4e581e41845a536d563a9cc1",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
@@ -10185,7 +10191,7 @@
       "pages": [
         111
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_4e8f4446e0335a6193926a56",
       "section_path": [
         "Part II",
@@ -10202,7 +10208,7 @@
       "pages": [
         140
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_4f041594b4008dc1fe1292ff",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
@@ -10218,7 +10224,7 @@
       "pages": [
         103
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_4f4eca15a9e16859db4d39cd",
       "section_path": [
         "Part II",
@@ -10235,7 +10241,7 @@
       "pages": [
         141
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_4fd49fd09bdef498a66a468d",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
@@ -10252,7 +10258,7 @@
         110,
         111
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_56954e513309f9f1904f1f9a",
       "section_path": [
         "Part II",
@@ -10271,7 +10277,7 @@
         16,
         17
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_56df1b4465e630fca5615ab7",
       "section_path": [
         "The Annual Gathering in Omaha"
@@ -10287,7 +10293,7 @@
         51,
         52
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_5b217198c30a19f8b5056c5d",
       "section_path": [
         "Part I",
@@ -10304,7 +10310,7 @@
       "pages": [
         54
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_5c902c30e1ef4835f36207d7",
       "section_path": [
         "Part II",
@@ -10320,7 +10326,7 @@
       "pages": [
         52
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_5caba27ae86f6e8474075120",
       "section_path": [
         "Part I",
@@ -10339,7 +10345,7 @@
         105,
         106
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_5d6b8f87224b70555fb99aa7",
       "section_path": [
         "Part II",
@@ -10356,7 +10362,7 @@
       "pages": [
         139
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_5da1b9a9c2f5f3c8b73e4fa2",
       "section_path": [
         "Part II",
@@ -10373,7 +10379,7 @@
         147,
         149
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_5dad5bc873192d3cce875c9f",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
@@ -10390,7 +10396,7 @@
         1,
         3
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_61fed9b0b434f6076efec169",
       "section_path": [
         "Document"
@@ -10406,7 +10412,7 @@
         146,
         147
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_6294f2123b76def41e6cbb0c",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
@@ -10422,7 +10428,7 @@
       "pages": [
         50
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_64e34809374708f03594297c",
       "section_path": [
         "Part I",
@@ -10439,7 +10445,7 @@
         91,
         92
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_65104d6b5c26ea270e7c186e",
       "section_path": [
         "Part II",
@@ -10457,7 +10463,7 @@
         141,
         142
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_6a7b24e24688612ab6888174",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
@@ -10474,7 +10480,7 @@
         127,
         128
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_6f2eb1d6341eed24ae637dd0",
       "section_path": [
         "Part II",
@@ -10492,7 +10498,7 @@
         87,
         88
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_71e9f03e4689c61b001014cc",
       "section_path": [
         "Part II",
@@ -10509,7 +10515,7 @@
       "pages": [
         46
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_75dbf151e6f9565864005b64",
       "section_path": [
         "Part I",
@@ -10526,7 +10532,7 @@
         141,
         142
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_7ef1cac3c9f7e1002288d726",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
@@ -10547,7 +10553,7 @@
         134,
         135
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_7f484af3da41a6261296592a",
       "section_path": [
         "Part II",
@@ -10565,7 +10571,7 @@
         107,
         108
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_89385675107971aec2db441e",
       "section_path": [
         "Part II",
@@ -10583,7 +10589,7 @@
         109,
         110
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_8bee20bde032325ff80f0f12",
       "section_path": [
         "Part II",
@@ -10600,7 +10606,7 @@
       "pages": [
         22
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_9424f129c8358691743ccf50",
       "section_path": [
         "Part III"
@@ -10616,7 +10622,7 @@
         22,
         23
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_95ebf5df3c0d8ad1f8992347",
       "section_path": [
         "Part I"
@@ -10631,7 +10637,7 @@
       "pages": [
         22
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_96281b81d6424e62cfff94bf",
       "section_path": [
         "The Annual Gathering in Omaha",
@@ -10647,7 +10653,7 @@
       "pages": [
         142
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_9e95049fc008d2f9b942c64a",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
@@ -10663,7 +10669,7 @@
       "pages": [
         130
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_a2c6f701cfd788a530efbeac",
       "section_path": [
         "Part II",
@@ -10680,7 +10686,7 @@
       "pages": [
         86
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_a30440edaad35d63d50278d3",
       "section_path": [
         "Part II",
@@ -10699,7 +10705,7 @@
         123,
         124
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_a9506c77c674ff28749f8b53",
       "section_path": [
         "Part II",
@@ -10716,7 +10722,7 @@
       "pages": [
         139
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_a964d55c3530c79e926e65a4",
       "section_path": [
         "Part II",
@@ -10733,7 +10739,7 @@
         143,
         144
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_a968e8b33dd9eee031ce5ce7",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
@@ -10749,7 +10755,7 @@
       "pages": [
         53
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_acfe735db3a5879b2b81d045",
       "section_path": [
         "Part I",
@@ -10766,7 +10772,7 @@
       "pages": [
         53
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_ae0a63ebb4417690229332a0",
       "section_path": [
         "Part I",
@@ -10784,7 +10790,7 @@
         89,
         90
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_b6a317f8e19ab7c586382a0d",
       "section_path": [
         "Part II",
@@ -10802,7 +10808,7 @@
         119,
         120
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_b6f71159e6e6a0b021473647",
       "section_path": [
         "Part II",
@@ -10820,7 +10826,7 @@
         49,
         50
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_b6febcae570dec19d48448c4",
       "section_path": [
         "Part I",
@@ -10836,7 +10842,7 @@
       "pages": [
         20
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_b719e2ae4aba37cd3be5304e",
       "section_path": [
         "The Annual Gathering in Omaha",
@@ -10853,7 +10859,7 @@
         48,
         49
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_ba02844f016ee8e218ec0e0c",
       "section_path": [
         "Part I",
@@ -10871,7 +10877,7 @@
         18,
         19
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_ba1b96a4cba15927dd7b1f6f",
       "section_path": [
         "The Annual Gathering in Omaha",
@@ -10889,7 +10895,7 @@
         47,
         48
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_bc49136a85f29c7f5b13be89",
       "section_path": [
         "Part I",
@@ -10928,7 +10934,7 @@
         44,
         45
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_bedd0b9a5e5ed36e93ff8530",
       "section_path": [
         "Part I",
@@ -10944,7 +10950,7 @@
       "pages": [
         139
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_c0d7c9998c1aedf2e5e744f0",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules"
@@ -10964,7 +10970,7 @@
         82,
         83
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_c185bccd00e3b886f73c8548",
       "section_path": [
         "Part II",
@@ -10982,7 +10988,7 @@
         92,
         93
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_c1fc17cfaff1d6ba92dbb8b7",
       "section_path": [
         "Part II",
@@ -10999,7 +11005,7 @@
       "pages": [
         91
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_c3f60c5f1faa4507877e026a",
       "section_path": [
         "Part II",
@@ -11017,7 +11023,7 @@
         8,
         9
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_c6170f3c21d88228780db6f2",
       "section_path": [
         "Last Year’s Performance"
@@ -11033,7 +11039,7 @@
         6,
         7
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_c6402a1d79fbca6b1b463b26",
       "section_path": [
         "Pete Liegl – One of a Kind"
@@ -11049,7 +11055,7 @@
         106,
         107
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_c81db96052b0b347434342c6",
       "section_path": [
         "Part II",
@@ -11066,7 +11072,7 @@
       "pages": [
         54
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_c86e66e395672bea27f3bc6d",
       "section_path": [
         "Part II",
@@ -11082,7 +11088,7 @@
       "pages": [
         85
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_c8bbb7b2394dae0613f8ecf3",
       "section_path": [
         "Part II",
@@ -11101,7 +11107,7 @@
         13,
         14
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_c90be7e3b74adf9265b40af5",
       "section_path": [
         "Property-Casualty Insurance"
@@ -11117,7 +11123,7 @@
         145,
         146
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_cad9314b1db96e9de9eb76ef",
       "section_path": [
         "Part IV Item 15. Exhibits and Financial Statement Schedules",
@@ -11135,7 +11141,7 @@
         121,
         122
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_cc195e1e1aad9d0d07b6b238",
       "section_path": [
         "Part II",
@@ -11152,7 +11158,7 @@
       "pages": [
         50
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_ccbf39270030b59fe37e5ef8",
       "section_path": [
         "Part I",
@@ -11171,7 +11177,7 @@
         84,
         85
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_ce153145664347c4f663131a",
       "section_path": [
         "Part II",
@@ -11190,7 +11196,7 @@
         129,
         130
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_d145c9c980da709e450f2de1",
       "section_path": [
         "Part II",
@@ -11207,7 +11213,7 @@
       "pages": [
         110
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_d79ec4592be2e8fe667b8f5a",
       "section_path": [
         "Part II",
@@ -11225,7 +11231,7 @@
         77,
         78
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_d8831d2700fffc6b74c49f0c",
       "section_path": [
         "Part II",
@@ -11242,7 +11248,7 @@
       "pages": [
         106
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_de64733517d318968b1d0b37",
       "section_path": [
         "Part II",
@@ -11259,7 +11265,7 @@
       "pages": [
         53
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_dee3e4cf1cf54956e7536532",
       "section_path": [
         "Part I",
@@ -11276,7 +11282,7 @@
         108,
         109
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_df2bbcb080186af793c1a43e",
       "section_path": [
         "Part II",
@@ -11293,7 +11299,7 @@
       "pages": [
         21
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_e3bb3c0fa530335e3c0135a2",
       "section_path": [
         "The Annual Gathering in Omaha",
@@ -11310,7 +11316,7 @@
         102,
         103
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_e4d318ab00aa14d59e025032",
       "section_path": [
         "Part II",
@@ -11327,7 +11333,7 @@
       "pages": [
         93
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_e5aab3e10bd460a9d23181cb",
       "section_path": [
         "Part II",
@@ -11344,7 +11350,7 @@
       "pages": [
         78
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_eee53abee4f7fdfb45dd3e3b",
       "section_path": [
         "Part II",
@@ -11361,7 +11367,7 @@
       "pages": [
         55
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_f0f874152fc72dc9b475906e",
       "section_path": [
         "Part II",
@@ -11399,7 +11405,7 @@
         76,
         77
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_f40e9531093ccc2f0f74bd0d",
       "section_path": [
         "Part II",
@@ -11425,7 +11431,7 @@
         101,
         102
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_f6957601a371829d6e78c569",
       "section_path": [
         "Part II",
@@ -11442,7 +11448,7 @@
       "pages": [
         109
       ],
-      "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+      "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
       "section_id": "sec_fe30616d9d44607c0540f724",
       "section_path": [
         "Part II",
@@ -11461,7 +11467,7 @@
         "parse_gap_pages": [
           139
         ],
-        "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+        "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
         "status": "NOT_REVIEWED"
       },
       {
@@ -11470,7 +11476,7 @@
         "parse_gap_pages": [
           139
         ],
-        "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+        "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
         "status": "FOUND"
       },
       {
@@ -11479,7 +11485,7 @@
         "parse_gap_pages": [
           139
         ],
-        "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+        "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
         "status": "FOUND"
       },
       {
@@ -11488,7 +11494,7 @@
         "parse_gap_pages": [
           139
         ],
-        "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+        "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
         "status": "FOUND"
       },
       {
@@ -11497,7 +11503,7 @@
         "parse_gap_pages": [
           139
         ],
-        "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+        "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
         "status": "FOUND"
       },
       {
@@ -11506,7 +11512,7 @@
         "parse_gap_pages": [
           139
         ],
-        "run_id": "run_85c1c4d76a8e40a4a15fbc479f43fda4",
+        "run_id": "run_db209611809b4de0bf27a28d7c3cab6b",
         "status": "NOT_REVIEWED"
       }
     ],

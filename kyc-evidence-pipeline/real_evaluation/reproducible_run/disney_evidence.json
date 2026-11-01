@@ -3,16 +3,16 @@
     {
       "action": "RUN_STARTED",
       "details": {},
-      "event_id": "audit_283cb9e1e458fdd677f3d5c6",
-      "happened_at": "2026-11-01T11:57:19.229404+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_4e76851f4ffd2fe0760281ad",
+      "happened_at": "2026-11-01T14:18:20.173523+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "RUN_REVIEW_REQUIRED",
       "details": {},
-      "event_id": "audit_785745dbbac89eee650518e2",
-      "happened_at": "2026-11-01T11:57:28.735790+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_fc53f69555297789629ea6b1",
+      "happened_at": "2026-11-01T14:18:29.801219+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -22,9 +22,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_1d6fa8e664ffc2cc275b57d1",
-      "happened_at": "2026-11-01T11:57:29.246221+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_584b7cbe858ee6d92424baa4",
+      "happened_at": "2026-11-01T14:18:30.327536+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -34,9 +34,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_7a249efb7907359febdfaea0",
-      "happened_at": "2026-11-01T11:57:29.246251+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_220cb5ecad83edef15f7366d",
+      "happened_at": "2026-11-01T14:18:30.327569+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -46,9 +46,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_858711a0df5100f484aa07ad",
-      "happened_at": "2026-11-01T11:57:29.246258+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_d2c62acfd55b585cddd50d0f",
+      "happened_at": "2026-11-01T14:18:30.327577+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -58,9 +58,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_715e18d4abc6d9b0e2d0db82",
-      "happened_at": "2026-11-01T11:57:29.246264+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_c2bca9c0fa7ed44aa9bee4a5",
+      "happened_at": "2026-11-01T14:18:30.327582+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -70,9 +70,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_804c5ea4d1d58ace23fa1407",
-      "happened_at": "2026-11-01T11:57:29.246269+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_9d101dcade368eb581e0c4a4",
+      "happened_at": "2026-11-01T14:18:30.327588+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -82,9 +82,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_50182e7b0a06344e0d8177f0",
-      "happened_at": "2026-11-01T11:57:29.246274+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_352f19051f7d0520d1ccea9d",
+      "happened_at": "2026-11-01T14:18:30.327594+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -94,9 +94,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_cfdfe880ac5dc21e6a50060a",
-      "happened_at": "2026-11-01T11:57:29.246279+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_0d679827e7329aac544dd7f0",
+      "happened_at": "2026-11-01T14:18:30.327599+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -106,9 +106,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_862c21dcd7b41c19b15b5ea9",
-      "happened_at": "2026-11-01T11:57:29.246285+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_64552ae6fe50feb1ca1ccb02",
+      "happened_at": "2026-11-01T14:18:30.327604+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -118,9 +118,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_3bd27d7b850fb6e86c1d7d4f",
-      "happened_at": "2026-11-01T11:57:29.246290+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_7ada7c6152d7d01ffdacbb0b",
+      "happened_at": "2026-11-01T14:18:30.327609+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -130,9 +130,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_db22f295425b2220a7571623",
-      "happened_at": "2026-11-01T11:57:29.246295+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_66222381e084bf474d025ab0",
+      "happened_at": "2026-11-01T14:18:30.327614+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -142,9 +142,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_ecef4dbd396e61da93473a83",
-      "happened_at": "2026-11-01T11:57:29.246301+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_02e5b1dd8eac1dccc3559d58",
+      "happened_at": "2026-11-01T14:18:30.327619+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -154,9 +154,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_09ded1701d15acc242f511a7",
-      "happened_at": "2026-11-01T11:57:29.246307+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_a13a4ff4df93f852025a875c",
+      "happened_at": "2026-11-01T14:18:30.327624+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -166,9 +166,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_17281e9bd38a81588bf53cdd",
-      "happened_at": "2026-11-01T11:57:29.246312+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_ac2b94f0153e48f089fdaa61",
+      "happened_at": "2026-11-01T14:18:30.327629+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -178,9 +178,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_0a17b07436296929b88e0326",
-      "happened_at": "2026-11-01T11:57:29.246317+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_ff0f7e79a49bc45b37bad833",
+      "happened_at": "2026-11-01T14:18:30.327633+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -190,9 +190,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_862f7eff6e5444e12d8b9c35",
-      "happened_at": "2026-11-01T11:57:29.246334+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_d627cb3383cf1cee1e20cc13",
+      "happened_at": "2026-11-01T14:18:30.327649+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -202,9 +202,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_e870e312049c6bc7b0d87e29",
-      "happened_at": "2026-11-01T11:57:29.246339+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_9b29f08db945ec3f508995bd",
+      "happened_at": "2026-11-01T14:18:30.327655+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "REVIEW_RECORDED",
@@ -214,9 +214,9 @@
         "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
         "reviewer_identity_authenticated": false
       },
-      "event_id": "audit_7f263eca0b55ef38c4044ee2",
-      "happened_at": "2026-11-01T11:57:29.246344+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_406ee7015f28f4e3a3149393",
+      "happened_at": "2026-11-01T14:18:30.327660+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     },
     {
       "action": "CANONICAL_RECORDS_PERSISTED",
@@ -224,9 +224,9 @@
         "fact_count": 17,
         "status": "REVIEW_REQUIRED"
       },
-      "event_id": "audit_f5961c96a5bb6e78773be3c6",
-      "happened_at": "2026-11-01T11:57:29.246388+00:00",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35"
+      "event_id": "audit_9f9e5cb1973b63808e1f9fd1",
+      "happened_at": "2026-11-01T14:18:30.327700+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18"
     }
   ],
   "case_id": "disney",
@@ -286,7 +286,7 @@
         132
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "source_fully_parsed": false,
       "status": "NOT_REVIEWED"
     },
@@ -349,7 +349,7 @@
         132
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "source_fully_parsed": false,
       "status": "EXTRACTION_FAILED"
     },
@@ -408,7 +408,7 @@
         132
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "source_fully_parsed": false,
       "status": "FOUND"
     },
@@ -468,7 +468,7 @@
         132
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "source_fully_parsed": false,
       "status": "FOUND"
     },
@@ -527,7 +527,7 @@
         132
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "source_fully_parsed": false,
       "status": "NOT_REVIEWED"
     },
@@ -599,7 +599,7 @@
         132
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "source_fully_parsed": false,
       "status": "EXTRACTION_FAILED"
     },
@@ -658,7 +658,7 @@
         132
       ],
       "review_method": "limited_pattern_rules",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "source_fully_parsed": false,
       "status": "NOT_REVIEWED"
     }
@@ -684,7 +684,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "strength": "MENTIONED"
     },
     {
@@ -707,7 +707,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "strength": "MENTIONED"
     },
     {
@@ -770,7 +770,7 @@
       "roles": [
         "sec_registrant"
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "strength": "IDENTIFIED"
     },
     {
@@ -816,7 +816,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "strength": "DEFINED"
     },
     {
@@ -839,7 +839,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "strength": "MENTIONED"
     },
     {
@@ -862,7 +862,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "strength": "MENTIONED"
     },
     {
@@ -891,7 +891,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "strength": "DEFINED"
     },
     {
@@ -914,7 +914,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "strength": "MENTIONED"
     },
     {
@@ -943,7 +943,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "strength": "DEFINED"
     },
     {
@@ -966,7 +966,7 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "strength": "MENTIONED"
     },
     {
@@ -995,14 +995,14 @@
       ],
       "resolution_evidence_ids": [],
       "roles": [],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "strength": "DEFINED"
     }
   ],
   "documents": [
     {
       "bytes": 1663966,
-      "current_run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "current_run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "document_id": "doc_8887cce1a4b609edc9f0b6aa",
       "family": "financial_statements",
       "filename": "disney_2024_annual_report.pdf",
@@ -1323,7 +1323,7 @@
       "page": 36,
       "quote": "PepsiCo, Inc. (“PepsiCo”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART I",
         "ITEM 4. Mine Safety Disclosures",
@@ -1349,7 +1349,7 @@
       "page": 13,
       "quote": "• ESPN (generally owned 80% by the Company)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART I",
         "ITEM 1. Business",
@@ -1375,7 +1375,7 @@
       "page": 82,
       "quote": "Entertainment also includes the following activities that are reported with Content Sales/Licensing: • National Geographic magazine and online business (owned 73% by the Company) • A 30% ownership interest in Tata Play Limited, which operates a direct-to-home satellite distribution platform in India",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
         "CONSOLIDATED STATEMENTS OF SHAREHOLDERS’ EQUITY"
@@ -1400,7 +1400,7 @@
       "page": 15,
       "quote": "• National Geographic Expeditions (owned 73% by the Company) and Adventures by Disney • Aulani, a Disney Resort & Spa in Hawaii",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART I",
         "ITEM 1. Business",
@@ -1426,7 +1426,7 @@
       "page": 82,
       "quote": "• Linear Networks ◦ Domestic: ABC Television Network (ABC Network); Disney, Freeform, FX and National Geographic (owned 73% by the Company) branded television channels; and eight owned ABC television stations ◦ International: Disney, FX, National Geographic (owned 73% by the Company) and Star branded general entertainment television channels outside of the U.S. ◦ A 50% equity investment in A+E Television Networks (A+E), which operates cable channels including A&E, HISTORY and Lifetime",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
         "CONSOLIDATED STATEMENTS OF SHAREHOLDERS’ EQUITY"
@@ -1451,7 +1451,7 @@
       "page": 8,
       "quote": "◦ Domestic: ABC Television Network (ABC Network); Disney, Freeform, FX and National Geographic (owned 73% by the Company) branded television channels; and eight owned ABC television stations",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART I",
         "ITEM 1. Business",
@@ -1477,7 +1477,7 @@
       "page": 8,
       "quote": "◦ International: Disney, FX, National Geographic (owned 73% by the Company) and Star branded general entertainment television channels outside of the U.S.",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART I",
         "ITEM 1. Business",
@@ -1503,7 +1503,7 @@
       "page": 38,
       "quote": "CONSOLIDATED RESULTS ($ in millions, except per share data)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART II",
         "ITEM 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations"
@@ -1528,7 +1528,7 @@
       "page": 13,
       "quote": "In August 2024, a motion for preliminary injunction in a matter before the District Court for the Southern District of New York was granted, enjoining the launch of Venu Sports.",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART I",
         "ITEM 1. Business",
@@ -1554,7 +1554,7 @@
       "page": 35,
       "quote": "As disclosed in Note 14 to the Consolidated Financial Statements, the Company is engaged in certain legal matters, and the disclosure set forth in Note 14 relating to certain legal matters is incorporated herein by reference.",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART I",
         "ITEM 3. Legal Proceedings"
@@ -1579,7 +1579,7 @@
       "page": 82,
       "quote": "The terms “Company”, “we”, “our” and “us” are used in this report to refer collectively to the parent company and the subsidiaries through which businesses are conducted",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
         "CONSOLIDATED STATEMENTS OF SHAREHOLDERS’ EQUITY"
@@ -1604,7 +1604,7 @@
       "page": 38,
       "quote": "2024 2023 % Change Better (Worse)",
       "representation": "reconstructed_pdf_layout_table",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART II",
         "ITEM 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations"
@@ -1629,7 +1629,7 @@
       "page": 84,
       "quote": "▪ Experiences • Disney Cruise Line • Disney Vacation Club • National Geographic Expeditions (owned 73% by the Company) and Adventures by Disney • Aulani, a Disney Resort & Spa in Hawaii",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
         "CONSOLIDATED STATEMENTS OF SHAREHOLDERS’ EQUITY"
@@ -1654,7 +1654,7 @@
       "page": 75,
       "quote": "The Walt Disney Company and its subsidiaries (the “Company”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
         "Opinions on the Financial Statements and Internal Control over Financial Reporting"
@@ -1679,7 +1679,7 @@
       "page": 83,
       "quote": "In August 2024, a motion for preliminary injunction in a matter before the District Court for the Southern District of New York was granted, enjoining the launch of Venu Sports.",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
         "CONSOLIDATED STATEMENTS OF SHAREHOLDERS’ EQUITY"
@@ -1704,7 +1704,7 @@
       "page": 120,
       "quote": "Media Inc. (together, “Fubo”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
         "14 Commitments and Contingencies"
@@ -1729,7 +1729,7 @@
       "page": 8,
       "quote": "The terms “Company”, “we”, “our” and “us” are used in this report to refer collectively to the parent company and the subsidiaries through which businesses are conducted",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART I",
         "ITEM 1. Business"
@@ -1754,7 +1754,7 @@
       "page": 62,
       "quote": "The Walt Disney Company (“TWDC”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART II",
         "ITEM 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations",
@@ -1780,7 +1780,7 @@
       "page": 8,
       "quote": "• National Geographic magazine and online business (owned 73% by the Company)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART I",
         "ITEM 1. Business",
@@ -1806,7 +1806,7 @@
       "page": 38,
       "quote": "Total revenues 91,361 88,898 3 %",
       "representation": "reconstructed_pdf_layout_table",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART II",
         "ITEM 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations"
@@ -1831,7 +1831,7 @@
       "page": 83,
       "quote": "• ESPN (generally owned 80% by the Company) ◦ Domestic: ▪ Seven ESPN branded television channels ▪ ESPN on ABC (sports programmed on the ABC Network by ESPN) ▪ ESPN+ DTC service ◦ International: ESPN-branded channels outside of the U.S. ◦ Star: Star-branded sports channels in India",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
         "CONSOLIDATED STATEMENTS OF SHAREHOLDERS’ EQUITY"
@@ -1856,7 +1856,7 @@
       "page": 3,
       "quote": "Delaware 83-0940635 State or Other Jurisdiction of I.R.S. Employer Identification Incorporation",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "FORM 10-K"
       ],
@@ -1880,7 +1880,7 @@
       "page": 120,
       "quote": "Warner Bros. Discovery, Inc. (collectively, “Defendants”)",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
         "14 Commitments and Contingencies"
@@ -1905,7 +1905,7 @@
       "page": 3,
       "quote": "Commission File Number 001-38842",
       "representation": "pymupdf_whitespace_normalized_text_block",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_path": [
         "FORM 10-K"
       ],
@@ -1954,7 +1954,7 @@
       "object": "ESPN",
       "predicate": "owns_equity_in",
       "qualifier": "generally",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2015,7 +2015,7 @@
       "object": "National Geographic Expeditions",
       "predicate": "owns_equity_in",
       "qualifier": null,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2076,7 +2076,7 @@
       "object": "National Geographic",
       "predicate": "owns_equity_in",
       "qualifier": null,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2131,7 +2131,7 @@
       "object": null,
       "predicate": "reported_revenue",
       "qualifier": "consolidated",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2192,7 +2192,7 @@
       "object": "FX and National Geographic",
       "predicate": "owns_equity_in",
       "qualifier": null,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2253,7 +2253,7 @@
       "object": "FX and National Geographic",
       "predicate": "owns_equity_in",
       "qualifier": null,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2314,7 +2314,7 @@
       "object": "National Geographic magazine and online business",
       "predicate": "owns_equity_in",
       "qualifier": null,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2367,7 +2367,7 @@
       "object": "83-0940635",
       "predicate": "has_us_employer_identification_number",
       "qualifier": null,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2422,7 +2422,7 @@
       "object": "certain legal matters",
       "predicate": "party_to_legal_proceedings",
       "qualifier": null,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2475,7 +2475,7 @@
       "object": "motion for preliminary injunction",
       "predicate": "launch_enjoined_by_court",
       "qualifier": null,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2528,7 +2528,7 @@
       "object": "Delaware",
       "predicate": "has_jurisdiction",
       "qualifier": null,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2583,7 +2583,7 @@
       "object": null,
       "predicate": "reported_revenue",
       "qualifier": "consolidated",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2644,7 +2644,7 @@
       "object": "National Geographic magazine and online business",
       "predicate": "owns_equity_in",
       "qualifier": null,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2697,7 +2697,7 @@
       "object": "001-38842",
       "predicate": "has_sec_file_number",
       "qualifier": null,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2758,7 +2758,7 @@
       "object": "National Geographic Expeditions",
       "predicate": "owns_equity_in",
       "qualifier": null,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2819,7 +2819,7 @@
       "object": "ESPN",
       "predicate": "owns_equity_in",
       "qualifier": "generally",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2872,7 +2872,7 @@
       "object": "motion for preliminary injunction",
       "predicate": "launch_enjoined_by_court",
       "qualifier": null,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "schema_check": {
         "status": "CONFORMS",
         "violations": []
@@ -2903,7 +2903,7 @@
       ],
       "finding_id": "finding_01ebacc3133d7980ce047eea",
       "issue_id": "issue_fde0b7c8d6f3f6ae712b9647",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "OBJECT_SCOPE_AMBIGUOUS"
     },
@@ -2915,7 +2915,7 @@
       ],
       "finding_id": "finding_03ca798c51f85ec19f3ab44c",
       "issue_id": "issue_a06cecdf5946e6806a16d450",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -2927,7 +2927,7 @@
       ],
       "finding_id": "finding_15c7b0c42a6cecbdd1df5af0",
       "issue_id": "issue_7380428a516621bdb9e6401e",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "ENTITY_IDENTITY_UNRESOLVED"
     },
@@ -2939,7 +2939,7 @@
       ],
       "finding_id": "finding_274fd6bb4202a6328d01f293",
       "issue_id": "issue_c21af8db4f2daba882849d30",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -2951,7 +2951,7 @@
         "fact_efbbc448166fc9c39fdb086c"
       ],
       "finding_id": "finding_2850be88e9ed171c6c778225",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "INFORMATIONAL",
       "type": "SIMILAR_SOURCE_CLAIMS"
     },
@@ -2963,7 +2963,7 @@
       ],
       "finding_id": "finding_2bad1d25d1e7ef7855a2b401",
       "issue_id": "issue_d0dbd487dc35c36105e2fe10",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "CLAIM_LITERAL_SUPPORT_INCOMPLETE"
     },
@@ -2975,7 +2975,7 @@
       ],
       "finding_id": "finding_2f215e955fb9690bec3d5bd3",
       "issue_id": "issue_23ba1ab0c61ddd010dd16e98",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -2987,7 +2987,7 @@
       ],
       "finding_id": "finding_34aefd2bd2431f4d4adc7d87",
       "issue_id": "issue_4d3471310245cd03c163b398",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "OBJECT_SCOPE_AMBIGUOUS"
     },
@@ -2997,7 +2997,7 @@
       "fact_ids": [],
       "finding_id": "finding_3fbbcdac25beac5aded5d2b2",
       "issue_id": "issue_ca118daa718214ab79864c63",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "PARSE_OR_STRUCTURE_INCOMPLETE"
     },
@@ -3009,7 +3009,7 @@
       ],
       "finding_id": "finding_401723e3d1f8569fc4f980ab",
       "issue_id": "issue_523c0469b10268dac75eccf9",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "ENTITY_IDENTITY_UNRESOLVED"
     },
@@ -3021,7 +3021,7 @@
       ],
       "finding_id": "finding_4ffbf69d7936e4aa51a18177",
       "issue_id": "issue_ae1c203462ebe36b4d341974",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -3033,7 +3033,7 @@
         "fact_a03385c113a7293e2667fc2e"
       ],
       "finding_id": "finding_5f9e95ab5ccb17dcc6b1d251",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "INFORMATIONAL",
       "type": "SIMILAR_SOURCE_CLAIMS"
     },
@@ -3043,7 +3043,7 @@
       "fact_ids": [],
       "finding_id": "finding_63382270f1e0efc66e02b231",
       "issue_id": "issue_043dcd4d6174187bdd5be0ae",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "PARSE_OR_STRUCTURE_INCOMPLETE"
     },
@@ -3055,7 +3055,7 @@
       ],
       "finding_id": "finding_6349377b09914e14f84f7c3a",
       "issue_id": "issue_523a5c1a74bb99a44b2fe507",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -3067,7 +3067,7 @@
       ],
       "finding_id": "finding_6b8d84aa6a08cb57130e7ed1",
       "issue_id": "issue_7565c37cfdeb6fff918e7e7b",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -3079,7 +3079,7 @@
         "fact_37f095a3550b20f6752b3239"
       ],
       "finding_id": "finding_78987243fb5b37c9d837ef4d",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "INFORMATIONAL",
       "type": "SIMILAR_SOURCE_CLAIMS"
     },
@@ -3091,7 +3091,7 @@
       ],
       "finding_id": "finding_860d613235c899bbbf33e5f4",
       "issue_id": "issue_b1729d9b18c906a2ff760842",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "OBJECT_SCOPE_AMBIGUOUS"
     },
@@ -3103,7 +3103,7 @@
       ],
       "finding_id": "finding_86ede88f9bd18023b4f49a83",
       "issue_id": "issue_adc99143f6ed8d4bcec26d56",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -3113,7 +3113,7 @@
       "fact_ids": [],
       "finding_id": "finding_8a286b5b90f9bc57732f29ab",
       "issue_id": "issue_89923372c4e4bf1dee8b13c8",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "PARSE_OR_STRUCTURE_INCOMPLETE"
     },
@@ -3125,7 +3125,7 @@
         "fact_c83a5d3c78cd6d3ca8d888b1"
       ],
       "finding_id": "finding_8d3df9bfd3ed3c006dc91718",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "INFORMATIONAL",
       "type": "SIMILAR_SOURCE_CLAIMS"
     },
@@ -3137,7 +3137,7 @@
       ],
       "finding_id": "finding_90ebdda096d8bfaf26717a0f",
       "issue_id": "issue_bf0c3471a978c6deb53ac920",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -3149,7 +3149,7 @@
       ],
       "finding_id": "finding_97ec17615453e38922cd25e1",
       "issue_id": "issue_fc5659b380853fc59f4e70f8",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "OBJECT_SCOPE_AMBIGUOUS"
     },
@@ -3161,7 +3161,7 @@
       ],
       "finding_id": "finding_b2df8124779e319e5554ff59",
       "issue_id": "issue_1b01912eb0f736c93560fe68",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     },
@@ -3173,7 +3173,7 @@
       ],
       "finding_id": "finding_d14f118b1c2ff1f10f9a31e7",
       "issue_id": "issue_536ffe169f92f9daa71aacda",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "CLAIM_LITERAL_SUPPORT_INCOMPLETE"
     },
@@ -3185,7 +3185,7 @@
         "fact_f8283de4ad3ae87a10f1355e"
       ],
       "finding_id": "finding_fca7a487bfe21fcafdd85ce5",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "INFORMATIONAL",
       "type": "SIMILAR_SOURCE_CLAIMS"
     },
@@ -3197,7 +3197,7 @@
       ],
       "finding_id": "finding_fd1609a2131c94aea6c13482",
       "issue_id": "issue_edd13504ab7eb0182375c4f1",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "status": "OPEN",
       "type": "ENTITY_RESOLVED_TO_GROUP"
     }
@@ -3238,7 +3238,7 @@
       "fact_ids": [],
       "issue_id": "issue_043dcd4d6174187bdd5be0ae",
       "message": "Page contains image content that was not OCR'd, including potentially material text or a name.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3261,7 +3261,7 @@
       ],
       "issue_id": "issue_1b01912eb0f736c93560fe68",
       "message": "The source attributes this claim to The Walt Disney Company and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3284,7 +3284,7 @@
       ],
       "issue_id": "issue_23ba1ab0c61ddd010dd16e98",
       "message": "The source attributes this claim to The Walt Disney Company and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3303,7 +3303,7 @@
       ],
       "issue_id": "issue_4d3471310245cd03c163b398",
       "message": "The extracted object joins names with 'and'; review which entity the stated ownership percentage actually qualifies.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3326,7 +3326,7 @@
       ],
       "issue_id": "issue_523a5c1a74bb99a44b2fe507",
       "message": "The source attributes this claim to The Walt Disney Company and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3347,7 +3347,7 @@
       ],
       "issue_id": "issue_523c0469b10268dac75eccf9",
       "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "medium",
       "status": "OPEN"
     },
@@ -3370,7 +3370,7 @@
       ],
       "issue_id": "issue_536ffe169f92f9daa71aacda",
       "message": "A claim contains a subject, object, value, or date not literally present in its cited quotes; context or human review is required.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "medium",
       "status": "OPEN"
     },
@@ -3391,7 +3391,7 @@
       ],
       "issue_id": "issue_7380428a516621bdb9e6401e",
       "message": "The source uses a generic, pronoun, or disjunctive subject; its precise legal entity is not established.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "medium",
       "status": "OPEN"
     },
@@ -3414,7 +3414,7 @@
       ],
       "issue_id": "issue_7565c37cfdeb6fff918e7e7b",
       "message": "The source attributes this claim to The Walt Disney Company and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3442,7 +3442,7 @@
       "fact_ids": [],
       "issue_id": "issue_89923372c4e4bf1dee8b13c8",
       "message": "Page has little or no extractable text and nonblank or unknown content; manual review or OCR is required.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3465,7 +3465,7 @@
       ],
       "issue_id": "issue_a06cecdf5946e6806a16d450",
       "message": "The source attributes this claim to The Walt Disney Company and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3488,7 +3488,7 @@
       ],
       "issue_id": "issue_adc99143f6ed8d4bcec26d56",
       "message": "The source attributes this claim to The Walt Disney Company and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3511,7 +3511,7 @@
       ],
       "issue_id": "issue_ae1c203462ebe36b4d341974",
       "message": "The source attributes this claim to The Walt Disney Company and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3530,7 +3530,7 @@
       ],
       "issue_id": "issue_b1729d9b18c906a2ff760842",
       "message": "The extracted object joins names with 'and'; review which entity the stated ownership percentage actually qualifies.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3553,7 +3553,7 @@
       ],
       "issue_id": "issue_bf0c3471a978c6deb53ac920",
       "message": "The source attributes this claim to The Walt Disney Company and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3576,7 +3576,7 @@
       ],
       "issue_id": "issue_c21af8db4f2daba882849d30",
       "message": "The source attributes this claim to The Walt Disney Company and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3730,7 +3730,7 @@
       "fact_ids": [],
       "issue_id": "issue_ca118daa718214ab79864c63",
       "message": "A borderless table was inferred from text positions; verify its rows, columns, units, and header against the original page.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3753,7 +3753,7 @@
       ],
       "issue_id": "issue_d0dbd487dc35c36105e2fe10",
       "message": "A claim contains a subject, object, value, or date not literally present in its cited quotes; context or human review is required.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "medium",
       "status": "OPEN"
     },
@@ -3776,7 +3776,7 @@
       ],
       "issue_id": "issue_edd13504ab7eb0182375c4f1",
       "message": "The source attributes this claim to The Walt Disney Company and subsidiaries, not to one legal entity; the direct holder or actor is not stated.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3795,7 +3795,7 @@
       ],
       "issue_id": "issue_fc5659b380853fc59f4e70f8",
       "message": "The extracted object joins names with 'and'; review which entity the stated ownership percentage actually qualifies.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     },
@@ -3814,7 +3814,7 @@
       ],
       "issue_id": "issue_fde0b7c8d6f3f6ae712b9647",
       "message": "The extracted object joins names with 'and'; review which entity the stated ownership percentage actually qualifies.",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "severity": "high",
       "status": "OPEN"
     }
@@ -4325,175 +4325,176 @@
     "truncated": false
   },
   "pending_runs": [],
+  "registry_checks": [],
   "review_decisions": [
     {
       "action": "defer",
       "issue_id": "issue_043dcd4d6174187bdd5be0ae",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164520+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242969+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_1b01912eb0f736c93560fe68",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164513+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242962+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_23ba1ab0c61ddd010dd16e98",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164514+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242964+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_4d3471310245cd03c163b398",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164497+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242946+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_523a5c1a74bb99a44b2fe507",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164519+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242968+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_7565c37cfdeb6fff918e7e7b",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164518+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242967+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_89923372c4e4bf1dee8b13c8",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164523+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242972+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_a06cecdf5946e6806a16d450",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164512+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242961+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_adc99143f6ed8d4bcec26d56",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164508+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242957+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_ae1c203462ebe36b4d341974",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164509+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242959+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_b1729d9b18c906a2ff760842",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164503+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242953+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_bf0c3471a978c6deb53ac920",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164517+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242966+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_c21af8db4f2daba882849d30",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164511+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242960+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_ca118daa718214ab79864c63",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164522+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242971+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_edd13504ab7eb0182375c4f1",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164516+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242965+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_fc5659b380853fc59f4e70f8",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164505+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242955+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     },
     {
       "action": "defer",
       "issue_id": "issue_fde0b7c8d6f3f6ae712b9647",
       "reason": "Automated benchmark deferral. No analyst reviewed or resolved this issue.",
-      "reviewed_at": "2026-11-01T11:57:29.164507+00:00",
+      "reviewed_at": "2026-11-01T14:18:30.242956+00:00",
       "reviewer_id": "AUTOMATED_BENCHMARK_DEFER_ONLY_NOT_HUMAN",
       "reviewer_identity_authenticated": false,
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "selected_fact_ids": []
     }
   ],
@@ -4501,11 +4502,11 @@
     {
       "document_id": "doc_8887cce1a4b609edc9f0b6aa",
       "error": null,
-      "finished_at": "2026-11-01T11:57:29.181283+00:00",
+      "finished_at": "2026-11-01T14:18:30.264578+00:00",
       "policy_id": "illustrative_corporate_kyc_v1",
       "profile_id": "financial_annual_report",
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
-      "started_at": "2026-11-01T11:57:19.229041+00:00",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
+      "started_at": "2026-11-01T14:18:20.173162+00:00",
       "status": "REVIEW_REQUIRED",
       "summary": {
         "case_id": "disney",
@@ -4518,11 +4519,14 @@
         "extraction_pages": null,
         "extractor": "rules",
         "fact_count": 17,
-        "finished_at": "2026-11-01T11:57:29.181283+00:00",
+        "finished_at": "2026-11-01T14:18:30.264578+00:00",
         "max_model_requests": null,
         "model_batch_size": null,
         "model_max_tokens": null,
+        "model_output_mode": null,
+        "model_provider": null,
         "model_reasoning_effort": null,
+        "model_usage": null,
         "open_issue_count": 21,
         "ownership_graph_settings": {
           "control_threshold_percent": 50,
@@ -4530,14 +4534,16 @@
           "reporting_threshold_percent": 25
         },
         "policy_id": "illustrative_corporate_kyc_v1",
-        "policy_sha256": "93256cea265c64ddb225acc871db93a2cb89b24eff41d90dda13277689bacfc0",
+        "policy_sha256": "9369ceebff98ebb0d31e727d31db3cbf5150c3d26a79f490273785b9809fb9ac",
         "profile_id": "financial_annual_report",
-        "profiles_sha256": "48e972f251b725e4f5a798c528ee2d67370742ba3ea3fbf3b38c8b3aeaeffce2",
+        "profiles_sha256": "588123e37a3f6d1b37eee5320ae9c0c94e8e288d6c4eacc1b16b34dffb645623",
         "provider_endpoint_sha256": null,
-        "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
-        "schemas_sha256": "6005b8b714782eb078f4b44646db61c04f1e9966d3ba2f7d2acdf26b33ca983b",
+        "registry_check": null,
+        "registry_checks": [],
+        "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
+        "schemas_sha256": "d77ec72ab17d7a6bfa86037e14ab75672c19d9b6390c618b68200762b5670ad0",
         "semantic_verification_requested": false,
-        "started_at": "2026-11-01T11:57:19.229041+00:00",
+        "started_at": "2026-11-01T14:18:20.173162+00:00",
         "status": "REVIEW_REQUIRED"
       }
     }
@@ -4551,7 +4557,7 @@
       "pages": [
         64
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_0180e255e4f3e72429fa52a5",
       "section_path": [
         "PART II",
@@ -4570,7 +4576,7 @@
         107,
         108
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_020789ea8b45318898e0b7ba",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -4586,7 +4592,7 @@
       "pages": [
         63
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_0320eeb3fda691e0567e6c9c",
       "section_path": [
         "PART II",
@@ -4602,7 +4608,7 @@
       "pages": [
         80
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_052615299d5b9da2be5317cc",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -4620,7 +4626,7 @@
         97,
         98
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_05c7f9aa68313900f3c4cd6a",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -4636,7 +4642,7 @@
       "pages": [
         39
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_0e39870bdc8fa35eba342151",
       "section_path": [
         "PART II",
@@ -4653,7 +4659,7 @@
       "pages": [
         75
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_0ea20ef7562fa32ad009b3b6",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -4669,7 +4675,7 @@
       "pages": [
         64
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_15877d62503f5c0cc2d4633a",
       "section_path": [
         "PART II",
@@ -4686,7 +4692,7 @@
       "pages": [
         15
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_16dc59c9572dcf5dcb489772",
       "section_path": [
         "PART I",
@@ -4704,7 +4710,7 @@
         3,
         4
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_1b124c2fae696f87653e8a1d",
       "section_path": [
         "FORM 10-K"
@@ -4719,7 +4725,7 @@
       "pages": [
         66
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_1b46742be03a05aae4230e1f",
       "section_path": [
         "PART III",
@@ -4736,7 +4742,7 @@
         5,
         66
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_1c87b443070a015faf5276e6",
       "section_path": [
         "PART III"
@@ -4752,7 +4758,7 @@
         56,
         57
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_1ed006bf51ac6532ac784930",
       "section_path": [
         "PART II",
@@ -4769,7 +4775,7 @@
       "pages": [
         40
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_253cf4de33aeadbaf4f6d835",
       "section_path": [
         "PART II",
@@ -4786,7 +4792,7 @@
       "pages": [
         64
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_27c6ae0ef3c4fad4e3f1bf9b",
       "section_path": [
         "PART II",
@@ -4802,7 +4808,7 @@
       "pages": [
         5
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_28acd2404823b5769d5b584f",
       "section_path": [
         "FORM 10-K",
@@ -4818,7 +4824,7 @@
       "pages": [
         41
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_2914beebe0f44d6dff96de18",
       "section_path": [
         "PART II",
@@ -4835,7 +4841,7 @@
       "pages": [
         20
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_2aef24faf6c66d9cdf5ba5c9",
       "section_path": [
         "PART I",
@@ -4853,7 +4859,7 @@
         75,
         76
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_2b8e0929cf07df84e0652d08",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -4869,7 +4875,7 @@
       "pages": [
         14
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_2e2bacdd557f569f2ebd3b9a",
       "section_path": [
         "PART I",
@@ -4886,7 +4892,7 @@
       "pages": [
         33
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_3067c7160b5688228fe4bb55",
       "section_path": [
         "PART I",
@@ -4903,7 +4909,7 @@
         119,
         120
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_31b17121541dee5e2cd2b90e",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -4921,7 +4927,7 @@
         125,
         126
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_33cb4131fb72498d8d5a7b84",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -4937,7 +4943,7 @@
       "pages": [
         23
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_379dd0852b7a0ea476369a9e",
       "section_path": [
         "PART I",
@@ -4955,7 +4961,7 @@
         13,
         14
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_3bc75bd688316fc86308285f",
       "section_path": [
         "PART I",
@@ -4972,7 +4978,7 @@
       "pages": [
         53
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_3cf4d6b064fe13b20afb0864",
       "section_path": [
         "PART II",
@@ -4996,7 +5002,7 @@
         94,
         95
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_4075816319939feeb7a7b0c5",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5013,7 +5019,7 @@
         5,
         37
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_45afba3be4970b1ceb83a6ad",
       "section_path": [
         "PART II"
@@ -5031,7 +5037,7 @@
         18,
         19
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_476ae0a82605debeae15d735",
       "section_path": [
         "PART I",
@@ -5049,7 +5055,7 @@
         38,
         39
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_48c9ef512825721b332135e8",
       "section_path": [
         "PART II",
@@ -5066,7 +5072,7 @@
       "pages": [
         38
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_496797bff20ce22c25110ae9",
       "section_path": [
         "PART II",
@@ -5083,7 +5089,7 @@
       "pages": [
         79
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_4ad28d9bc1b13b7c988ad02f",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5099,7 +5105,7 @@
       "pages": [
         77
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_4b65beda2110b75eb9da138f",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5115,7 +5121,7 @@
       "pages": [
         47
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_4c3efe92f0f56490a367487f",
       "section_path": [
         "PART II",
@@ -5132,7 +5138,7 @@
       "pages": [
         23
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_4ee8d78dab40447bb7aee646",
       "section_path": [
         "PART I",
@@ -5150,7 +5156,7 @@
         54,
         55
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_50a536731262cc9a73399640",
       "section_path": [
         "PART II",
@@ -5167,7 +5173,7 @@
       "pages": [
         66
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_5127fc36567b71529bd47f24",
       "section_path": [
         "PART III",
@@ -5183,7 +5189,7 @@
       "pages": [
         61
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_5212dd16c13250f56098017d",
       "section_path": [
         "PART II",
@@ -5200,7 +5206,7 @@
       "pages": [
         35
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_52ebe48f8f7cf0c3e9e661a4",
       "section_path": [
         "PART I",
@@ -5218,7 +5224,7 @@
         121,
         122
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_54cda7dec260d025764eb4f3",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5235,7 +5241,7 @@
         34,
         35
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_57e8f041264f2a419bb69355",
       "section_path": [
         "PART I",
@@ -5251,7 +5257,7 @@
       "pages": [
         14
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_599ca465ebe05da3349e6325",
       "section_path": [
         "PART I",
@@ -5269,7 +5275,7 @@
         20,
         21
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_5b6227bea0a0ca06ed3caa0d",
       "section_path": [
         "PART I",
@@ -5290,7 +5296,7 @@
         70,
         71
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_6160467e7a782e04e0865445",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules"
@@ -5307,7 +5313,7 @@
         100,
         101
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_616e9387fa9ef9fae985dbba",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5323,7 +5329,7 @@
       "pages": [
         37
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_633b00545fd5ca7e5ca1fc76",
       "section_path": [
         "PART II",
@@ -5339,7 +5345,7 @@
       "pages": [
         127
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_638ce0e40bbe8e354848cde0",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5355,7 +5361,7 @@
       "pages": [
         8
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_66261777a7490fb973b5581d",
       "section_path": [
         "PART I"
@@ -5371,7 +5377,7 @@
         9,
         10
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_6894d51919e87a2b60949c30",
       "section_path": [
         "PART I",
@@ -5389,7 +5395,7 @@
         61,
         62
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_69577a4fbf37767b84a74b31",
       "section_path": [
         "PART II",
@@ -5406,7 +5412,7 @@
       "pages": [
         78
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_6c5b5c9c6f8e133f4949b46c",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5422,7 +5428,7 @@
       "pages": [
         50
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_7088eff588532a5558cb7106",
       "section_path": [
         "PART II",
@@ -5439,7 +5445,7 @@
       "pages": [
         3
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_708f35af2a4bf2cf8edfad88",
       "section_path": [
         "UNITED STATES SECURITIES AND EXCHANGE COMMISSION"
@@ -5454,7 +5460,7 @@
       "pages": [
         33
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_70c969e221a3d15250cfd89f",
       "section_path": [
         "PART I",
@@ -5471,7 +5477,7 @@
       "pages": [
         42
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_70f1270b3afc1cb23164103e",
       "section_path": [
         "PART II",
@@ -5488,7 +5494,7 @@
       "pages": [
         75
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_7107478c7edbee99c83401b5",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5504,7 +5510,7 @@
       "pages": [
         21
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_72d02c4f7dd7337507d3cabb",
       "section_path": [
         "PART I",
@@ -5522,7 +5528,7 @@
         127,
         128
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_7313631ea94523867bbdf13f",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5538,7 +5544,7 @@
       "pages": [
         39
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_737ca558b4df1a5d81c5c256",
       "section_path": [
         "PART II",
@@ -5555,7 +5561,7 @@
       "pages": [
         21
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_740b7cbec927b6003f9198a3",
       "section_path": [
         "PART I",
@@ -5573,7 +5579,7 @@
         45,
         46
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_767fdf19794f48028a05058a",
       "section_path": [
         "PART II",
@@ -5590,7 +5596,7 @@
       "pages": [
         23
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_792c4b3689ab2a74c610db12",
       "section_path": [
         "PART I",
@@ -5610,7 +5616,7 @@
         60,
         61
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_794973330fd76a52eec61c18",
       "section_path": [
         "PART II",
@@ -5629,7 +5635,7 @@
         49,
         50
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_79c2449f5ba3e4f46f3414e3",
       "section_path": [
         "PART II",
@@ -5651,7 +5657,7 @@
         112,
         113
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_7b2bded2f768b1f5e81293b9",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5667,7 +5673,7 @@
       "pages": [
         66
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_7b3e5f0d2d92ea17761aed6e",
       "section_path": [
         "PART III",
@@ -5684,7 +5690,7 @@
         101,
         102
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_7da960e36f896bf190950439",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5700,7 +5706,7 @@
       "pages": [
         5
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_7dfcde69e6e01fe77f3c646d",
       "section_path": [
         "FORM 10-K",
@@ -5717,7 +5723,7 @@
         43,
         44
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_817ddfec54acc1ee03b36d17",
       "section_path": [
         "PART II",
@@ -5735,7 +5741,7 @@
         117,
         118
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_8359d614f914c244b53def62",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5751,7 +5757,7 @@
       "pages": [
         73
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_86193b3735d7f20ce9cdff33",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5768,7 +5774,7 @@
         113,
         114
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_87641fc4b840b4d4abb9e217",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5784,7 +5790,7 @@
       "pages": [
         39
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_879b915e0143a2f45d9e4403",
       "section_path": [
         "PART II",
@@ -5803,7 +5809,7 @@
         123,
         124
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_8835d6a17fb9638c0c18a828",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5820,7 +5826,7 @@
         62,
         63
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_8a29d9d8028cd6e0b2b48149",
       "section_path": [
         "PART II",
@@ -5837,7 +5843,7 @@
       "pages": [
         8
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_8b5648f1b28b7206e9d312ae",
       "section_path": [
         "PART I",
@@ -5853,7 +5859,7 @@
       "pages": [
         39
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_9289566526037f71c367b851",
       "section_path": [
         "PART II",
@@ -5870,7 +5876,7 @@
       "pages": [
         19
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_93cc6384ca2bb1bba0a138d1",
       "section_path": [
         "PART I",
@@ -5888,7 +5894,7 @@
         11,
         12
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_95c73441b8f9691522e118bf",
       "section_path": [
         "PART I",
@@ -5905,7 +5911,7 @@
       "pages": [
         57
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_9c42169e363e0e06d3550169",
       "section_path": [
         "PART II",
@@ -5922,7 +5928,7 @@
       "pages": [
         75
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_9ccdf060a1dfdc3bba15c460",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5938,7 +5944,7 @@
       "pages": [
         38
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_a38b037edb86ec632cebbef7",
       "section_path": [
         "PART II",
@@ -5955,7 +5961,7 @@
       "pages": [
         64
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_a5e3f570ee83c9d37c45128f",
       "section_path": [
         "PART II",
@@ -5978,7 +5984,7 @@
         87,
         88
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_a77fbedd831637cb7aa2deb2",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -5994,7 +6000,7 @@
       "pages": [
         42
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_a850fe2affd917dfa9c269e1",
       "section_path": [
         "PART II",
@@ -6011,7 +6017,7 @@
       "pages": [
         32
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_aa50e26c73178c00beb18087",
       "section_path": [
         "PART I",
@@ -6029,7 +6035,7 @@
         21,
         22
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_aab8772c35d1c5733fb2839b",
       "section_path": [
         "PART I",
@@ -6046,7 +6052,7 @@
       "pages": [
         34
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_ad5269eb36cba2592572ce0a",
       "section_path": [
         "PART I",
@@ -6072,7 +6078,7 @@
         31,
         32
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_ade532bb651a2cac63ef9f41",
       "section_path": [
         "PART I",
@@ -6089,7 +6095,7 @@
       "pages": [
         15
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_ae3045ff4fb6d2d1f59df963",
       "section_path": [
         "PART I",
@@ -6106,7 +6112,7 @@
       "pages": [
         53
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_af258b4abea90c3e2d3d0c21",
       "section_path": [
         "PART II",
@@ -6123,7 +6129,7 @@
       "pages": [
         74
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_b48dd079aa1263178d793cc7",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -6139,7 +6145,7 @@
       "pages": [
         99
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_b50cb50c6446f6d59cadefce",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -6156,7 +6162,7 @@
         98,
         99
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_b57979e5c4dc94b540de8baa",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -6172,7 +6178,7 @@
       "pages": [
         63
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_b6470a19fd4daa30c51cd266",
       "section_path": [
         "PART II",
@@ -6189,7 +6195,7 @@
       "pages": [
         65
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_b660175c87e5e63bcc3d48a9",
       "section_path": [
         "PART II",
@@ -6205,7 +6211,7 @@
       "pages": [
         72
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_b907e4418d5a6cbcd73364d6",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -6221,7 +6227,7 @@
       "pages": [
         75
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_be896efab9201c374d3df064",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -6238,7 +6244,7 @@
         22,
         23
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_c4a59f5991432ee83ef17d21",
       "section_path": [
         "PART I",
@@ -6255,7 +6261,7 @@
       "pages": [
         64
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_c56920dbcf855dfa1c25f3f0",
       "section_path": [
         "PART II",
@@ -6273,7 +6279,7 @@
         40,
         41
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_ce9932ebfef4ed7418950970",
       "section_path": [
         "PART II",
@@ -6290,7 +6296,7 @@
       "pages": [
         35
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_d03246b148c770dff469d0e7",
       "section_path": [
         "PART I",
@@ -6309,7 +6315,7 @@
         52,
         53
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_d1d6d29b0869472aa18c51d3",
       "section_path": [
         "PART II",
@@ -6328,7 +6334,7 @@
         116,
         117
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_d340e1a5a4dfc89328465aff",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -6344,7 +6350,7 @@
       "pages": [
         21
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_d3ee952fd34655857eeaa85f",
       "section_path": [
         "PART I",
@@ -6361,7 +6367,7 @@
       "pages": [
         66
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_d4ffd9dd10dfc2380cb61a65",
       "section_path": [
         "PART III",
@@ -6377,7 +6383,7 @@
       "pages": [
         38
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_d59acbcd4849ced7d1197265",
       "section_path": [
         "PART II",
@@ -6394,7 +6400,7 @@
         35,
         36
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_d69459bfe896ed9c19ad0aee",
       "section_path": [
         "PART I",
@@ -6412,7 +6418,7 @@
         15,
         16
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_da62f8e167d08e5872a55ae5",
       "section_path": [
         "PART I",
@@ -6429,7 +6435,7 @@
       "pages": [
         11
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_db20ba6df9e4728ea24178aa",
       "section_path": [
         "PART I",
@@ -6448,7 +6454,7 @@
         104,
         105
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_dc8f187b6e902b1932238ca4",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -6464,7 +6470,7 @@
       "pages": [
         66
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_dca7b6163c52fa511faeec53",
       "section_path": [
         "PART III",
@@ -6481,7 +6487,7 @@
         55,
         56
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_e4593591a4c73bd6279daa99",
       "section_path": [
         "PART II",
@@ -6498,7 +6504,7 @@
       "pages": [
         54
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_e4b24fdc34e7c44a9bbffbf7",
       "section_path": [
         "PART II",
@@ -6516,7 +6522,7 @@
         64,
         65
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_ebda969bcf23d7630f3aad3b",
       "section_path": [
         "PART II",
@@ -6533,7 +6539,7 @@
       "pages": [
         1
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_ec006e24bf5f76097e15c8a0",
       "section_path": [
         "FISCAL YEAR 2024 ANNUAL FINANCIAL REPORT"
@@ -6550,7 +6556,7 @@
         15,
         20
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_ecc80be874840bf108e2e100",
       "section_path": [
         "PART I",
@@ -6568,7 +6574,7 @@
         5,
         6
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_ed8057ef48a254afb7ba1193",
       "section_path": [
         "PART IV"
@@ -6583,7 +6589,7 @@
       "pages": [
         12
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_f099eedf8641878b1fd823dc",
       "section_path": [
         "PART I",
@@ -6600,7 +6606,7 @@
       "pages": [
         33
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_f17250b42ca294d5312e1938",
       "section_path": [
         "PART I",
@@ -6619,7 +6625,7 @@
         131,
         132
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_f39130abf9fa9a0b7d964eb9",
       "section_path": [
         "PART IV ITEM 15. Exhibits and Financial Statement Schedules",
@@ -6638,7 +6644,7 @@
         42,
         43
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_f5a46ac6911fa788444519dd",
       "section_path": [
         "PART II",
@@ -6655,7 +6661,7 @@
       "pages": [
         7
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_f7ce80d0e002d585c2ff8713",
       "section_path": [
         "PART IV",
@@ -6672,7 +6678,7 @@
         8,
         9
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_f8ddd85ca5b46001dcbc2a43",
       "section_path": [
         "PART I",
@@ -6690,7 +6696,7 @@
         33,
         34
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_fa7a8a963ce2452591c15dcd",
       "section_path": [
         "PART I",
@@ -6707,7 +6713,7 @@
       "pages": [
         64
       ],
-      "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+      "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
       "section_id": "sec_ffe62b5f9f96806cf7702cdf",
       "section_path": [
         "PART II",
@@ -6754,7 +6760,7 @@
           129,
           132
         ],
-        "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+        "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
         "status": "NOT_REVIEWED"
       },
       {
@@ -6791,7 +6797,7 @@
           129,
           132
         ],
-        "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+        "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
         "status": "FOUND"
       },
       {
@@ -6828,7 +6834,7 @@
           129,
           132
         ],
-        "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+        "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
         "status": "FOUND"
       },
       {
@@ -6865,7 +6871,7 @@
           129,
           132
         ],
-        "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+        "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
         "status": "NOT_REVIEWED"
       },
       {
@@ -6902,7 +6908,7 @@
           129,
           132
         ],
-        "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+        "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
         "status": "EXTRACTION_FAILED"
       },
       {
@@ -6939,7 +6945,7 @@
           129,
           132
         ],
-        "run_id": "run_ee4ee9e3a9af4887adb2d4c2c1419d35",
+        "run_id": "run_76dd1108568f4f53a33b4855e18b6c18",
         "status": "NOT_REVIEWED"
       }
     ],

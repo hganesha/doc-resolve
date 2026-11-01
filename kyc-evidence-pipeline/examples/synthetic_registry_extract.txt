@@ -1,0 +1,13 @@
+# Companies Registry Extract
+Date of extract: 15 January 2026
+Company name: Aster Holdings Ltd
+Company number: TX-123456
+Jurisdiction: Texas
+Company status: Active
+Company type: Private limited company
+Date of incorporation: 12 March 2015
+Registered office: 100 Main Street, Austin, Texas 78701
+Previous names: Aster Ventures Ltd
+LEI: 5299000ASTERHOLD0035
+Directors: Jane Smith (appointed 2019-01-01); Omar Haddad
+Company secretary: Lena Park

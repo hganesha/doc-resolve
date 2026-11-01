@@ -89,6 +89,11 @@ class EvidenceStore:
               document_sha256 TEXT NOT NULL, fingerprint TEXT NOT NULL, payload_json TEXT NOT NULL,
               created_at TEXT NOT NULL, PRIMARY KEY (document_sha256, fingerprint)
             );
+            -- Public-register lookups (GLEIF), reused for a while so retries see the same record.
+            CREATE TABLE IF NOT EXISTS registry_records (
+              source TEXT NOT NULL, identifier TEXT NOT NULL, payload_json TEXT NOT NULL,
+              fetched_at TEXT NOT NULL, PRIMARY KEY (source, identifier)
+            );
             CREATE TABLE IF NOT EXISTS extraction_units (
               run_id TEXT NOT NULL, chunk_id TEXT NOT NULL, status TEXT NOT NULL,
               payload_json TEXT NOT NULL, updated_at TEXT NOT NULL,
@@ -126,6 +131,15 @@ class EvidenceStore:
     def put_layout_result(self, document_sha256: str, fingerprint: str, result: dict) -> None:
         with self._connect() as conn:
             conn.execute("INSERT OR IGNORE INTO layout_results VALUES(?,?,?,?)", (document_sha256, fingerprint, json_text(result), utc_now()))
+
+    def get_registry_record(self, source: str, identifier: str) -> dict | None:
+        with self._connect() as conn:
+            row = conn.execute("SELECT payload_json, fetched_at FROM registry_records WHERE source=? AND identifier=?", (source, identifier)).fetchone()
+        return {"record": json.loads(row[0]), "fetched_at": row[1]} if row else None
+
+    def put_registry_record(self, source: str, identifier: str, record: dict | None, fetched_at: str) -> None:
+        with self._connect() as conn:
+            conn.execute("INSERT OR REPLACE INTO registry_records VALUES(?,?,?,?)", (source, identifier, json_text(record), fetched_at))
 
     def put_extraction_unit(self, run_id: str, unit: dict) -> None:
         with self._connect() as conn:
@@ -226,6 +240,7 @@ class EvidenceStore:
             "model_provider": state.get("model_provider", "openai") if state["extractor"] == "openai" or state["embeddings"] == "openai" else None,
             "model_output_mode": state.get("model_output_mode", "strict") if state["extractor"] == "openai" else None,
             "model_usage": state.get("model_usage"),
+            "registry_check": state.get("registry_check"), "registry_checks": state.get("registry_checks", []),
             "ownership_graph_settings": graph_settings(state["contract"]["policy"]),
             "status": status, "fact_count": len(state.get("facts", [])), "evidence_count": len(state.get("evidence", [])),
             "open_issue_count": sum(i["status"] == "OPEN" for i in issues),
@@ -320,4 +335,4 @@ class EvidenceStore:
         ownership_graph, _ = build_ownership_graph(facts, entities, entity_map, issues, settings=settings)
         open_requirements = [c for c in cov if c["material"] and (c["status"] in {"NOT_REVIEWED", "NOT_FOUND_AFTER_REVIEW", "EXTRACTION_FAILED", "CONFLICTED"} or c.get("chunks_not_reviewed", 0) > 0 or not c.get("source_fully_parsed", True))]
         status = "REVIEW_REQUIRED" if pending or open_issues or open_requirements or not docs else "PROVISIONAL"
-        return {"case_id": case_id, "status": status, "disclaimer": "Provisional evidence package. No completeness, identity, source independence, sanctions clearance, or KYC decision is guaranteed.", "documents": docs, "runs": active_runs, "pending_runs": pending, "evidence": evidence, "facts": facts, "entities": entities, "document_entities": document_entities, "ownership_graph": ownership_graph, "findings": findings, "coverage": cov, "section_inventory": sections, "issues": issues, "unresolved": {"open_issue_ids": [i["issue_id"] for i in open_issues], "material_requirement_gaps": [{"run_id": c["run_id"], "category": c["category"], "status": c["status"], "chunks_not_reviewed": c.get("chunks_not_reviewed", 0), "parse_gap_pages": c.get("parse_gap_pages", [])} for c in open_requirements], "verification_note": "Source-match checks are not external verification; all facts remain pending human verification."}, "review_decisions": reviews, "audit_events": audit}
+        return {"case_id": case_id, "status": status, "disclaimer": "Provisional evidence package. No completeness, identity, source independence, sanctions clearance, or KYC decision is guaranteed.", "documents": docs, "runs": active_runs, "pending_runs": pending, "evidence": evidence, "facts": facts, "entities": entities, "document_entities": document_entities, "ownership_graph": ownership_graph, "registry_checks": [c for r in active_runs for c in (r.get("summary") or {}).get("registry_checks", [])], "findings": findings, "coverage": cov, "section_inventory": sections, "issues": issues, "unresolved": {"open_issue_ids": [i["issue_id"] for i in open_issues], "material_requirement_gaps": [{"run_id": c["run_id"], "category": c["category"], "status": c["status"], "chunks_not_reviewed": c.get("chunks_not_reviewed", 0), "parse_gap_pages": c.get("parse_gap_pages", [])} for c in open_requirements], "verification_note": "Source-match checks are not external verification; all facts remain pending human verification."}, "review_decisions": reviews, "audit_events": audit}

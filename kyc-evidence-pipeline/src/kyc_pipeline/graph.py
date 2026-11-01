@@ -19,11 +19,12 @@ from .local_embeddings import LocalEmbeddingProvider
 from .parsing import parse_file
 from .ownership import build_ownership_graph, graph_settings
 from .reconciliation import issue_finding, reconcile
+from .registry import GleifClient, cached_lookup, check_gleif, status_issues
 from .store import EvidenceStore
 from .util import digest, json_text, utc_now
 
 # Increment whenever extraction prompts, rules, or output schema change.
-EXTRACTION_CACHE_VERSION = {"rules": "7", "openai": "5"}
+EXTRACTION_CACHE_VERSION = {"rules": "8", "openai": "5"}
 # A batch that fails for one of these reasons is split in half and retried, so
 # one long or filtered chunk does not cost the whole batch.
 _SPLIT_ON = {"output_truncated", "content_filter"}
@@ -56,6 +57,8 @@ class PipelineState(TypedDict, total=False):
     model_timeout: float
     model_max_retries: int
     model_usage: dict
+    registry_check: str | None
+    registry_checks: list[dict]
     provider_endpoint_sha256: str | None
     retry_from_run: str | None
     expected_document_sha256: str | None
@@ -87,6 +90,10 @@ def _provider(state: PipelineState) -> OpenAICompatible:
 
 def _layout_client(state: PipelineState) -> AzureLayoutClient:
     return AzureLayoutClient(allow_remote=state["allow_remote"])
+
+
+def _registry_client(state: PipelineState) -> GleifClient:
+    return GleifClient()
 
 
 def validate_review_response(response: Any, issues: list[dict]) -> list[dict]:
@@ -125,7 +132,7 @@ def validate_review_response(response: Any, issues: list[dict]) -> list[dict]:
     return normalized
 
 
-def build_graph(store: EvidenceStore, checkpointer: Any, provider_factory: Callable[[PipelineState], Any] = _provider, layout_factory: Callable[[PipelineState], Any] = _layout_client):
+def build_graph(store: EvidenceStore, checkpointer: Any, provider_factory: Callable[[PipelineState], Any] = _provider, layout_factory: Callable[[PipelineState], Any] = _layout_client, registry_factory: Callable[[PipelineState], Any] = _registry_client):
     def parse_node(state: PipelineState) -> dict:
         layout = None
         if state.get("parser", "native") == "azure_di":
@@ -318,7 +325,27 @@ def build_graph(store: EvidenceStore, checkpointer: Any, provider_factory: Calla
         _, graph_issues = build_ownership_graph(previous + state["facts"], case_entities, entity_map, issues, document_id=state["document"]["document_id"], current_fact_ids={f["fact_id"] for f in state["facts"]}, settings=graph_settings(state["contract"]["policy"]))
         known = {i["issue_id"] for i in issues}
         graph_issues = [i for i in graph_issues if i["issue_id"] not in known]
-        return {"findings": findings + [issue_finding(i) for i in graph_issues], "issues": issues + graph_issues, "case_revision": revision, "case_entities": case_entities}
+        material = {r["category"]: r["material"] for r in state["requirements"]}
+        extra = status_issues(state["document"]["document_id"], state["facts"], material)
+        checks: list[dict] = []
+        if state.get("registry_check") == "gleif":
+            # Only the entities this document is about are looked up.
+            facts_by_entity: dict[str, list[dict]] = {}
+            for f in previous + state["facts"]:
+                link = f.get("entity_links", {}).get("subject")
+                if link and link["entity_id"] in entity_map:
+                    facts_by_entity.setdefault(entity_map[link["entity_id"]], []).append(f)
+            client = registry_factory(state)
+            try:
+                checks, gleif_issues = check_gleif(state["document"]["document_id"], case_entities, facts_by_entity, current_case, cached_lookup(store, client))
+            finally:
+                if hasattr(client, "client"):
+                    client.client.close()
+            extra += gleif_issues
+        known |= {i["issue_id"] for i in graph_issues}
+        extra = [i for i in {i["issue_id"]: i for i in extra}.values() if i["issue_id"] not in known]
+        new = graph_issues + extra
+        return {"findings": findings + [issue_finding(i) for i in new], "issues": issues + new, "case_revision": revision, "case_entities": case_entities, "registry_checks": checks}
 
     def review_node(state: PipelineState) -> dict:
         items = [i for i in state["issues"] if i["status"] == "OPEN" and i["severity"] == "high"]

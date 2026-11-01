@@ -13,7 +13,9 @@
 #   date: required | optional                      (default optional)
 #   date_roles / claim_types: allowed values       (default any)
 #   evidence_terms: regex the cited spans must match, or the fact is flagged
-#   single_valued: one value per subject and period; differing values conflict
+#   single_valued: true: one object (or value) per subject and period;
+#     per_object: one value per subject, object and period (one status per licence).
+#     Differing values in overlapping or undated periods conflict.
 version: 1
 predicates:
   # legal_identity
@@ -56,6 +58,22 @@ predicates:
     description: US IRS Employer Identification Number.
     object: required
     single_valued: true
+  has_registered_address:
+    category: legal_identity
+    description: Registered office address, as one line.
+    object: required
+    single_valued: true
+  has_incorporation_date:
+    category: legal_identity
+    description: Date of incorporation or registration; the date goes in effective_date.
+    object: none
+    date: required
+    date_roles: [event, unspecified]
+  has_legal_form:
+    category: legal_identity
+    description: Legal form or company type, such as private limited company.
+    object: required
+    single_valued: true
 
   # ownership
   owns_equity_in:
@@ -85,8 +103,9 @@ predicates:
     object: required
   is_officer_of:
     category: related_parties
-    description: The subject is an executive officer of the object.
+    description: The subject is an officer of the object, such as company secretary or chief executive; value is the role if stated.
     object: required
+    value: text
   has_related_party_transaction_with:
     category: related_parties
     description: A transaction the source reports as with a related party; value is its amount.
@@ -228,10 +247,29 @@ predicates:
   # license_status
   holds_license:
     category: license_status
-    description: The subject holds a license; object is its type, value its status if stated.
+    description: The subject holds a licence or permission; object is its type, value its status (authorised, suspended, revoked, ...) if stated.
     object: required
     value: text
+    single_valued: per_object
+  has_license_number:
+    category: license_status
+    description: The reference number of the subject's licence, or its number on the regulator's register.
+    object: required
   license_issued_by:
     category: license_status
-    description: The authority that issued the subject's license.
+    description: The authority that issued the subject's licence.
+    object: required
+  license_granted_on:
+    category: license_status
+    description: Date the licence was granted or took effect; object is the licence type if stated.
+    date: required
+    date_roles: [event, unspecified]
+  license_expires_on:
+    category: license_status
+    description: Date the licence expires or must be renewed; object is the licence type if stated.
+    date: required
+    date_roles: [event, unspecified]
+  license_restricted_by:
+    category: license_status
+    description: A condition, restriction or limitation on the subject's licence; object states it.
     object: required

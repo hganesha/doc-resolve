@@ -21,7 +21,7 @@ from collections import defaultdict
 from typing import Any
 
 from .evidence import _evidence_record, make_issue
-from .util import identity_key, stable_id
+from .util import identity_key, lei_check_digits_valid, stable_id
 
 _FORMS = {
     "inc": "inc", "incorporated": "inc", "corp": "corp", "corporation": "corp", "co": "co", "company": "co",
@@ -249,6 +249,8 @@ def resolve_document(document: dict, segments: list[dict], facts: list[dict], is
                 attrs["jurisdictions"].append({"value": f["object"], "evidence_ids": ev, "fact_id": f["fact_id"]})
             elif f["predicate"] in _IDENTIFIER_PREDICATES:
                 scheme = _IDENTIFIER_PREDICATES[f["predicate"]]
+                if scheme == "LEI" and not lei_check_digits_valid(f["object"].replace(" ", "").upper()):
+                    continue  # a malformed LEI must not identify, or merge, entities
                 attrs["identifiers"].append({"scheme": scheme, "value": f["object"].strip(), "jurisdiction": jurisdiction if scheme == "REGISTRATION_NUMBER" else None, "evidence_ids": ev, "fact_id": f["fact_id"]})
             if f["predicate"] == "has_sec_file_number":
                 attrs["roles"].add("sec_registrant")

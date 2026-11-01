@@ -106,6 +106,125 @@ def _sec_cover_facts(body: str) -> list[dict]:
     return found
 
 
+# "Label: value" lines in registry extracts and licence register entries.
+# Each label maps to (category, predicate, how the value is used).
+_SUBJECT_LABELS = r"(?:legal|registered|company|entity|firm)\s+name|name\s+of\s+(?:company|entity|firm)|licen[cs]ee|licen[cs]e\s+holder|authori[sz]ed\s+firm"
+_LICENCE_TYPE_LABEL = r"licen[cs]e\s+(?:type|category|class)|type\s+of\s+licen[cs]e|permission|authori[sz]ation\s+type|licen[cs]e"
+_RECORD_FIELDS: list[tuple[str, str, str, str]] = [
+    (r"(?:legal|registered|company|entity|firm)\s+name|name\s+of\s+(?:company|entity|firm)", "legal_identity", "has_legal_name", "object"),
+    (r"(?:registration|company|registered|entity|file)\s+(?:number|no\.?|id)", "legal_identity", "has_registration_number", "object"),
+    (r"jurisdiction(?:\s+of\s+(?:incorporation|registration))?|(?:place|country|state)\s+of\s+(?:incorporation|registration)", "legal_identity", "has_jurisdiction", "object"),
+    (r"(?:company|entity|registration|legal)\s+status", "legal_identity", "has_legal_status", "object"),
+    (r"lei(?:\s+code)?|legal\s+entity\s+identifier", "legal_identity", "has_lei", "lei"),
+    (r"registered\s+(?:office|address)(?:\s+address)?", "legal_identity", "has_registered_address", "object"),
+    (r"(?:date\s+of\s+(?:incorporation|registration)|incorporation\s+date|incorporated\s+on)", "legal_identity", "has_incorporation_date", "date"),
+    (r"(?:company|entity)\s+type|legal\s+form|type\s+of\s+company", "legal_identity", "has_legal_form", "object"),
+    (r"(?:previous|former)\s+names?", "legal_identity", "has_former_name", "list"),
+    (r"directors?", "related_parties", "is_director_of", "people"),
+    (r"(?:company\s+)?secretary", "related_parties", "is_officer_of", "people"),
+    (_LICENCE_TYPE_LABEL, "license_status", "holds_license", "object"),
+    (r"licen[cs]e\s+(?:number|no\.?|reference)|(?:firm\s+)?reference\s+number|frn|register\s+number", "license_status", "has_license_number", "object"),
+    (r"issued\s+by|issuing\s+authority|(?:competent|licensing)\s+authority|regulator", "license_status", "license_issued_by", "object"),
+    (r"date\s+(?:granted|of\s+authori[sz]ation|issued)|granted\s+on|issue\s+date|authori[sz]ed\s+since|effective\s+date", "license_status", "license_granted_on", "date"),
+    (r"expiry\s+date|expiration\s+date|expires(?:\s+on)?|valid\s+until", "license_status", "license_expires_on", "date"),
+    (r"conditions|restrictions?|limitations", "license_status", "license_restricted_by", "list"),
+]
+_RECORD_DATE_LABELS = r"(?:date\s+of\s+extract|extract\s+date|as\s+at|data\s+as\s+of|retrieved\s+on|register\s+date)"
+_LICENCE_STATUS_LABEL = r"(?:licen[cs]e\s+)?status"
+
+
+def _field_line(label: str, body: str) -> re.Match | None:
+    return re.search(rf"(?im)^[ \t]*(?:{label})[ \t]*:[ \t]*(?P<value>[^\n]*\S)", body)
+
+
+def _field_record_facts(body: str, applicable: set[str]) -> list[dict]:
+    """Facts from a registry or licence record's "Label: value" lines.
+
+    Every fact cites its own line; the line naming the subject (and any
+    extract date) is cited as support. Without a name line the subject stays
+    UNRESOLVED_REGISTRY_SUBJECT, and people (directors) are not extracted
+    because the company they serve is unknown.
+    """
+    if not applicable & {"legal_identity", "related_parties", "license_status"}:
+        return []
+    found: list[dict] = []
+    name_match = _field_line(_SUBJECT_LABELS, body)
+    subject = _trim_entity(name_match.group("value")) if name_match else "UNRESOLVED_REGISTRY_SUBJECT"
+    name_quote = name_match.group(0).strip() if name_match else None
+    date_match = _field_line(_RECORD_DATE_LABELS, body)
+    as_of = None
+    if date_match:
+        try:
+            as_of = normalize_date(date_match.group("value").strip(" ."))
+        except ValueError:
+            as_of = None
+    date_quote = date_match.group(0).strip() if as_of else None
+    is_licence = bool(re.search(r"(?im)^[ \t]*(?:licen[cs]e|permission|authori[sz]ation)\b[^:\n]{0,30}:", body))
+    status_match = _field_line(_LICENCE_STATUS_LABEL, body) if is_licence else None
+
+    def support(quote: str, dated: bool) -> list[str]:
+        extra = [q for q in (name_quote, date_quote if dated else None) if q and q not in quote]
+        return list(dict.fromkeys(extra))
+
+    seen: set[int] = set()
+    for label, category, predicate, kind in _RECORD_FIELDS:
+        if category not in applicable:
+            continue
+        for m in re.finditer(rf"(?im)^[ \t]*(?:{label})[ \t]*:[ \t]*(?P<value>[^\n]*\S)", body):
+            if m.start() in seen or len(m.group(0)) > 1200:
+                continue
+            seen.add(m.start())
+            quote = m.group(0).strip()
+            raw = _trim_entity(m.group("value"))
+            if not raw:
+                continue
+            if kind == "date":
+                try:
+                    when = normalize_date(raw)
+                except ValueError:
+                    continue
+                fields = {"effective_date": when, "date_role": "event", "supporting_quotes": support(quote, False)}
+                licence = _field_line(_LICENCE_TYPE_LABEL, body) if category == "license_status" else None
+                if licence:
+                    # The date belongs to the record's licence; cite the line naming it.
+                    fields["object"] = _trim_entity(licence.group("value"))
+                    fields["supporting_quotes"] += [licence.group(0).strip()] if licence.group(0).strip() not in quote else []
+                found.append(_mk(category, subject, predicate, quote, **fields))
+                continue
+            if kind == "lei":
+                value = raw.replace(" ", "").upper()
+                if not re.fullmatch(r"[A-Z0-9]{20}", value):
+                    continue
+                values = [value]
+            elif kind in {"list", "people"}:
+                # "Jane Smith (appointed 2019-01-01); John Lee": names without their notes.
+                values = [_trim_entity(re.sub(r"\s*\([^)]*\)$", "", v) if kind == "people" else v) for v in re.split(r"\s*;\s*", raw)]
+                values = [v for v in values if v]
+            else:
+                values = [raw]
+            dated = predicate not in {"has_legal_name", "has_registration_number", "has_jurisdiction", "has_lei", "has_incorporation_date", "has_former_name"}
+            base = {"effective_date": as_of, "date_role": "as_of"} if dated and as_of else {}
+            for value in values:
+                if kind == "people":
+                    if not name_match:
+                        continue
+                    role = None if predicate == "is_director_of" else _trim_entity(re.match(r"\s*([^:]+?)\s*:", quote).group(1))
+                    found.append(_mk(category, value, predicate, quote, object=subject, value=role, supporting_quotes=support(quote, bool(base)), **base))
+                elif predicate == "holds_license":
+                    status = _trim_entity(status_match.group("value")) if status_match else None
+                    extra = [status_match.group(0).strip()] if status_match and status_match.group(0).strip() not in quote else []
+                    found.append(_mk(category, subject, predicate, quote, object=value, value=status or None, supporting_quotes=support(quote, bool(base)) + extra, **base))
+                else:
+                    found.append(_mk(category, subject, predicate, quote, object=value, supporting_quotes=support(quote, bool(base)), **base))
+    # "Status:" alone is the company's status in a registry extract.
+    if "legal_identity" in applicable and not is_licence:
+        m = _field_line(r"status", body)
+        if m and m.start() not in seen:
+            base = {"effective_date": as_of, "date_role": "as_of"} if as_of else {}
+            found.append(_mk("legal_identity", subject, "has_legal_status", m.group(0).strip(), object=_trim_entity(m.group("value")), supporting_quotes=support(m.group(0).strip(), bool(base)), **base))
+    return found
+
+
 def rules_extract(chunk: dict, requirements: list[dict]) -> list[dict]:
     """Small, intentionally non-exhaustive examples; absence is never a negative finding."""
     applicable = {r["category"] for r in requirements if r["applicable"]}
@@ -173,17 +292,8 @@ def rules_extract(chunk: dict, requirements: list[dict]) -> list[dict]:
             m = re.match(r"^(?P<subject>.+?)\s+(?:was|is|has been)\s+accused of\s+(?P<object>.+?)[.;]?$", text, re.I)
             if m:
                 found.append(_mk("allegations_and_outcomes", _trim_entity(m.group("subject")), "accused_of", quote, object=_trim_entity(m.group("object")), effective_date=_date_in(text), claim_type="allegation"))
+    found.extend(_field_record_facts(body, applicable))
     if "legal_identity" in applicable:
-        name_match = re.search(r"(?im)^\s*(?:legal\s+name|registered\s+name)\s*:\s*([^\n]+)", body)
-        subject = _trim_entity(name_match.group(1)) if name_match else "UNRESOLVED_REGISTRY_SUBJECT"
-        patterns = [(r"(?:legal\s+name|registered\s+name)", "has_legal_name"), (r"(?:registration|company)\s+(?:number|id)", "has_registration_number"), (r"jurisdiction", "has_jurisdiction")]
-        for pattern, predicate in patterns:
-            for m in re.finditer(rf"(?im)^\s*{pattern}\s*:\s*([^\n]+)", body):
-                quote = m.group(0).strip()
-                if len(quote) <= 1200:
-                    name_quote = name_match.group(0).strip() if name_match else None
-                    support = [name_quote] if name_quote and name_quote != quote else []
-                    found.append(_mk("legal_identity", subject, predicate, quote, object=_trim_entity(m.group(1)), supporting_quotes=support))
         found.extend(_sec_cover_facts(body))
     if "financial_condition" in applicable and chunk["kind"] == "table" and chunk.get("table_header") and chunk["text"] != chunk["table_header"]:
         header = chunk["table_header"]

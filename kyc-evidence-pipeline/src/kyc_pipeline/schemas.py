@@ -28,9 +28,13 @@ def validate_schemas(data: dict[str, Any]) -> dict[str, dict]:
             raise ValueError(f"{where}: value must be one of {sorted(VALUE_TYPES)}")
         if spec.get("date", "optional") not in {"required", "optional"}:
             raise ValueError(f"{where}: date must be required or optional")
-        for key in ("value_required", "single_valued"):
-            if not isinstance(spec.get(key, False), bool):
-                raise ValueError(f"{where}: {key} must be true or false")
+        if not isinstance(spec.get("value_required", False), bool):
+            raise ValueError(f"{where}: value_required must be true or false")
+        single = spec.get("single_valued", False)
+        if not (isinstance(single, bool) or single == "per_object"):
+            raise ValueError(f"{where}: single_valued must be true, false or per_object")
+        if spec.get("single_valued") == "per_object" and (spec.get("object", "optional") != "required" or spec.get("value", "none") == "none"):
+            raise ValueError(f"{where}: single_valued per_object needs a required object and a value type")
         if spec.get("value_required") and spec.get("value", "none") == "none":
             raise ValueError(f"{where}: value_required needs a value type")
         for key, allowed in (("date_roles", _DATE_ROLES), ("claim_types", _CLAIM_TYPES)):
