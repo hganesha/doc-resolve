@@ -28,6 +28,7 @@ postgres = ["psycopg[binary,pool]>=3.2,<4", "langgraph-checkpoint-postgres>=3.0,
 [project.scripts]
 kyc-pipeline = "kyc_pipeline.cli:main"
 kyc-databricks-job = "kyc_pipeline.databricks_job:main"
+kyc-evidence-server = "kyc_pipeline.server:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

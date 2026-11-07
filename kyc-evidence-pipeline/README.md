@@ -652,6 +652,48 @@ Secret files readable by group or others are refused.
 - SQLite suits a single host; use Postgres for anything shared. The evidence store and graph checkpoints commit separately even in one Postgres database, so their commits are not one transaction. Writes are designed to be idempotent and use a case revision check. There is no authentication or authorization: reviewer IDs and erasure requesters are self-reported, and anyone with database access can read identifiers and audit events. The audit chain is tamper-evident, not tamper-proof (keep anchors outside the database). There is no key rotation, no encryption of exports or Delta tables, no redaction of document text, no scalable job queue and no production observability. The Databricks job uses SQLite state on a volume and does not read `KYC_DATA_KEY` from a secret scope yet. Add these before handling real KYC information.
 - All document content in the evidence database, extraction cache, checkpoint database, exports, Delta tables, Databricks volumes, and review files is sensitive. Control access to all copies, including SQLite WAL/SHM files and backups. External API calls send source text when opted in; configure provider logging and retention appropriately.
 
+## HTTP API (optional)
+
+`kyc-evidence-server` puts a thin, authenticated HTTP API in front of the same commands, so another service can submit documents and read the evidence package without shelling out. It uses only the Python standard library and calls the CLI's `execute` in process: each result is exactly what the matching command returns. The server always runs the **offline** pipeline (`--parser native --extractor rules --embeddings lexical`); no request can make it call a model, OCR or registry endpoint.
+
+| Method and path | CLI equivalent | Body |
+| --- | --- | --- |
+| `GET /healthz` | – (unauthenticated) | – |
+| `POST /v1/cases/{case_id}/documents` | `ingest FILE --case-id ID [--profile P]` | `{"filename": "...", "content_base64": "...", "profile": "optional_profile_id"}` |
+| `GET /v1/runs/{run_id}` | `status --run-id` | – |
+| `POST /v1/runs/{run_id}/resume` | `resume --run-id --decision` | the review decision object (`reviewer_id`, `decisions`) |
+| `GET /v1/cases/{case_id}/package` | `report --case-id` | – |
+| `GET /v1/cases/{case_id}/ownership` | `ownership --case-id --format json` | – |
+
+```bash
+export EVIDENCE_PIPELINE_TOKEN="$(python -c 'import secrets; print(secrets.token_urlsafe(32))')"
+EVIDENCE_PIPELINE_DATA_DIR=kyc_data/server kyc-evidence-server --port 8080 &
+curl -s http://127.0.0.1:8080/v1/cases/acme-demo/documents \
+  -H "Authorization: Bearer $EVIDENCE_PIPELINE_TOKEN" -H 'Content-Type: application/json' \
+  -d "{\"filename\": \"annual.txt\", \"profile\": \"financial_annual_report\", \"content_base64\": \"$(base64 -w0 examples/synthetic_annual_report.txt)\"}"
+```
+
+Configuration comes from the environment:
+
+- `EVIDENCE_PIPELINE_TOKEN` (or `EVIDENCE_PIPELINE_TOKEN_FILE`): the bearer token every endpoint except `/healthz` requires, compared in constant time. The server **refuses to start** without one unless `EVIDENCE_PIPELINE_MODE=demo`, which accepts the published token `evidence-demo-token-local-only` and is for synthetic data only. Outside demo mode the token must be at least 16 characters.
+- `EVIDENCE_PIPELINE_DATA_DIR` (default `kyc_data/server`): the evidence and checkpoint SQLite files and per-case working folders, created owner-only. `KYC_DATABASE_URL` / `KYC_CHECKPOINT_DATABASE_URL` select Postgres instead, as for the CLI, and `KYC_DATA_KEY` encrypts as usual.
+- `EVIDENCE_PIPELINE_MAX_BODY_BYTES` (default 16 MiB, base64 included), `EVIDENCE_PIPELINE_HOST` (default `127.0.0.1`) and `EVIDENCE_PIPELINE_PORT` (default 8080).
+
+Behaviour worth knowing:
+
+- Case IDs follow the CLI rule (1–80 letters, digits, dots, underscores or hyphens) and run IDs must look like `run_<32 hex>`; anything else is rejected before the pipeline runs. Uploaded file names are reduced to a safe base name inside the case folder.
+- Ingests and resumes for one case run **one at a time** (a per-case lock). With SQLite, graph runs for different cases are also serialized, because SQLite admits a single writer; with Postgres they run concurrently.
+- The uploaded bytes are written to the case folder for the run and **deleted when the run returns**; the stores keep what was parsed and the document hash. Retain the original in your evidence repository, as for the CLI.
+- Errors are JSON `{"status": "ERROR", "code", "message"}`: 400 invalid input, 401 missing or wrong token, 404 unknown case or run, 413 body too large, 415 not JSON, 422 the pipeline refused the request (for example a review decision that does not match the open issues).
+- There is no TLS, rate limiting or per-tenant authorization: keep the server on a private network behind a caller that holds the token, such as a platform gateway.
+
+The `Dockerfile` builds this server (non-root, data in the `/data` volume, port 8080):
+
+```bash
+docker build -t kyc-evidence-pipeline .
+docker run --rm -p 127.0.0.1:8080:8080 -e EVIDENCE_PIPELINE_MODE=demo -v kyc-evidence:/data kyc-evidence-pipeline
+```
+
 ## Project layout
 
 ```text
@@ -681,6 +723,7 @@ src/kyc_pipeline/
   credentials.py        # secrets from files, a secrets folder or the environment
   retrieval.py          # BM25 + optional embedding search, parent context
   cli.py                # ingest, status, resume, retry, report, ownership, query, segment, lakehouse, verify-audit, erase-case, retention
+  server.py             # authenticated stdlib HTTP API over ingest, status, resume, report and ownership
 databricks.yml          # asset bundle: schema, volumes and the serverless job
 examples/               # fictional fixtures and two pinned public-report PDFs
 real_evaluation/         # source-checked sample targets and recorded test outputs
